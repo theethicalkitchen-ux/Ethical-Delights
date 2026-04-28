@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Process — Ethical Delights®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE0;
+    --wheat: #D4A96A;
+    --deep: #1C1408;
+    --earth: #6B4C1E;
+    --rust: #C4622D;
+    --pale: #FAF6EE;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--pale); color: var(--deep); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 6vw;
+    background: rgba(250,246,238,0.9); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(212,169,106,0.2);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 0.8rem 6vw; box-shadow: 0 4px 30px rgba(28,20,8,0.08); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--earth); text-decoration: none; }
+  .nav-logo em { font-style: italic; color: var(--rust); }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a { font-size: 0.75rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--deep); text-decoration: none; font-weight: 500; position: relative; padding-bottom: 3px; transition: color 0.3s; }
+  .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
+  .nav-links a:hover, .nav-links a.active { color: var(--rust); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+  .nav-cta { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--rust); color: #fff; padding: 0.55rem 1.3rem; text-decoration: none; font-weight: 500; transition: background 0.3s; }
+  .nav-cta:hover { background: var(--earth); }
+
+  /* PAGE HERO */
+  .page-hero {
+    min-height: 70vh; background: var(--deep);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 7rem 7vw 5rem;
+    position: relative; overflow: hidden;
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(107,76,30,0.35) 0%, transparent 65%);
+  }
+  .page-hero-glyph {
+    position: absolute; right: 6vw; top: 50%; transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(10rem, 22vw, 20rem); font-weight: 300;
+    color: rgba(212,169,106,0.06); line-height: 1; user-select: none; pointer-events: none;
+  }
+  .page-hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--wheat); font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .page-hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: var(--wheat); }
+  .page-hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 7vw, 7.5rem); font-weight: 300; color: var(--cream); line-height: 1.02; opacity: 0; animation: fadeUp 0.9s 0.35s forwards; }
+  .page-hero-h1 em { font-style: italic; color: var(--wheat); }
+  .page-hero-sub { font-size: 1rem; font-weight: 300; color: rgba(245,239,224,0.55); max-width: 52ch; margin-top: 1.5rem; line-height: 1.8; opacity: 0; animation: fadeUp 0.9s 0.5s forwards; }
+  .page-hero-scroll { display: flex; align-items: center; gap: 0.8rem; margin-top: 3rem; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(212,169,106,0.5); opacity: 0; animation: fadeUp 0.9s 0.65s forwards; }
+  .scroll-line { width: 3rem; height: 1px; background: rgba(212,169,106,0.3); }
+
+  /* SHARED */
+  .section-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); font-weight: 500; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+  .section-label::before { content: ''; width: 1.8rem; height: 1px; background: var(--rust); }
+  .section-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--deep); }
+  .section-heading em { font-style: italic; color: var(--earth); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.8rem; background: var(--rust); color: #fff; padding: 0.9rem 2.2rem; font-size: 0.75rem; letter-spacing: 0.13em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.3s, transform 0.2s; }
+  .btn-primary:hover { background: var(--earth); transform: translateY(-2px); }
+
+  /* INTRO STRIP */
+  #intro { padding: 6rem 7vw; background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .intro-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 2.8vw, 2.6rem); font-weight: 300; font-style: italic; line-height: 1.35; color: var(--earth); border-left: 2px solid var(--wheat); padding-left: 2rem; }
+  .intro-text { font-size: 0.95rem; font-weight: 300; line-height: 1.85; color: #5a4a2e; }
+  .intro-text p + p { margin-top: 1.2rem; }
+
+  /* PROCESS STEPS */
+  #steps { padding: 7rem 7vw; background: var(--pale); }
+  .steps-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 5rem; }
+  .steps-intro { font-size: 0.95rem; font-weight: 300; line-height: 1.85; color: #5a4a2e; }
+
+  .step-block {
+    display: grid; grid-template-columns: auto 1fr; gap: 0 3rem;
+    align-items: start; padding: 3rem 0;
+    border-top: 1px solid rgba(212,169,106,0.25);
+    position: relative;
+    opacity: 0; transform: translateX(-20px);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  }
+  .step-block.visible { opacity: 1; transform: translateX(0); }
+  .step-block:last-child { border-bottom: 1px solid rgba(212,169,106,0.25); }
+  .step-left { text-align: right; width: 8rem; flex-shrink: 0; }
+  .step-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 300; line-height: 1;
+    color: rgba(212,169,106,0.2); display: block;
+  }
+  .step-tag { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); font-weight: 500; }
+  .step-right { padding-top: 0.5rem; }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--deep); margin-bottom: 1rem; }
+  .step-title em { font-style: italic; color: var(--earth); }
+  .step-desc { font-size: 0.92rem; font-weight: 300; line-height: 1.85; color: #5a4a2e; max-width: 55ch; }
+  .step-details { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .step-detail { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(107,76,30,0.25); padding: 0.3rem 0.8rem; color: var(--earth); }
+  .step-visual { position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 5rem; opacity: 0.07; user-select: none; pointer-events: none; }
+
+  /* TECH SECTION */
+  #tech { padding: 7rem 7vw; background: var(--deep); }
+  .tech-label::before { background: var(--wheat); }
+  .tech-label { color: var(--wheat); }
+  .tech-heading { color: var(--cream); }
+  .tech-heading em { color: var(--wheat); }
+  .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+  .tech-card { padding: 2rem 1.6rem; border: 1px solid rgba(212,169,106,0.15); transition: border-color 0.3s; }
+  .tech-card:hover { border-color: rgba(212,169,106,0.45); }
+  .tech-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .tech-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--cream); margin-bottom: 0.7rem; }
+  .tech-desc { font-size: 0.83rem; font-weight: 300; color: rgba(245,239,224,0.55); line-height: 1.75; }
+
+  /* QUALITY STRIP */
+  #quality { padding: 6rem 7vw; background: var(--earth); }
+  .quality-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .quality-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4.5vw, 4.5rem); font-weight: 300; color: var(--cream); line-height: 1.08; }
+  .quality-heading em { font-style: italic; color: var(--wheat); }
+  .quality-points { display: flex; flex-direction: column; gap: 1.2rem; }
+  .quality-point { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.1rem 1.2rem; border: 1px solid rgba(245,239,224,0.15); }
+  .q-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .q-title { font-size: 0.85rem; font-weight: 500; color: var(--cream); margin-bottom: 0.2rem; }
+  .q-desc { font-size: 0.78rem; font-weight: 300; color: rgba(245,239,224,0.6); line-height: 1.65; }
+
+  /* FOOTER */
+  footer { background: #0d0a04; padding: 1.8rem 7vw; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(212,169,106,0.08); }
+  .foot-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--wheat); }
+  .foot-logo em { font-style: italic; }
+  .foot-links { display: flex; gap: 2rem; }
+  .foot-links a { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(212,169,106,0.4); text-decoration: none; transition: color 0.3s; }
+  .foot-links a:hover { color: var(--wheat); }
+  .foot-copy { font-size: 0.68rem; color: rgba(212,169,106,0.25); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1); }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    #intro, .steps-header, .tech-grid, .quality-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .step-block { grid-template-columns: 1fr; }
+    .step-left { text-align: left; width: auto; }
+    .step-number { font-size: 3rem; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Ethical <em>Delights</em>®</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="process.html" class="active">Our Process</a>
+    <a href="about.html">About Us</a>
+    <a href="index.html#contact-strip" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-glyph">⚙</div>
+  <div class="page-hero-eyebrow">Crafted with Care</div>
+  <h1 class="page-hero-h1">Crafted with <em>Care,</em><br>Scaled with<br>Precision</h1>
+  <p class="page-hero-sub">Every flatbread we produce follows a meticulous five-step process — developed over 8 months of research and refinement — to deliver homestyle quality at commercial scale.</p>
+  <div class="page-hero-scroll"><div class="scroll-line"></div>Explore the process</div>
+</div>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="intro-quote">"We spent 8 months asking one question: how do you make a chapati at scale that still tastes like home?"</div>
+  <div class="intro-text">
+    <p>Most commercial flatbreads compromise somewhere — on flour quality, on cooking method, on preservatives to extend shelf life. We refused every one of those compromises.</p>
+    <p>Our process was built from scratch, combining Amit's experience in artisan food production with Nishant's expertise in precision manufacturing, to create a system that is both scalable and uncompromising.</p>
+    <p>The result: flatbreads that your kitchen team can rely on — and your diners cannot tell weren't made fresh that morning.</p>
+  </div>
+</section>
+
+<!-- PROCESS STEPS -->
+<section id="steps">
+  <div class="steps-header">
+    <div>
+      <div class="section-label">Five Steps</div>
+      <h2 class="section-heading">From Grain<br>to <em>Golden</em></h2>
+    </div>
+    <p class="steps-intro">Our end-to-end process is designed with one goal: to produce flatbreads that are indistinguishable from home-made, at any volume, with total consistency.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-left">
+      <span class="step-number">01</span>
+      <span class="step-tag">Foundation</span>
+    </div>
+    <div class="step-right">
+      <h3 class="step-title"><em>Freshly Ground</em> Flour</h3>
+      <p class="step-desc">We begin with whole wheat sourced from trusted farms and milled fresh for each production run. The difference between fresh-ground and stored flour is immediately noticeable in aroma, texture, and taste. We never use pre-ground flour that has been sitting in a warehouse — nutrition and flavour start degrading from the moment the grain is broken.</p>
+      <div class="step-details">
+        <span class="step-detail">Whole Wheat</span>
+        <span class="step-detail">Fresh-Milled</span>
+        <span class="step-detail">Traceable Origin</span>
+        <span class="step-detail">No Additives</span>
+      </div>
+    </div>
+    <div class="step-visual">🌾</div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-left">
+      <span class="step-number">02</span>
+      <span class="step-tag">Texture</span>
+    </div>
+    <div class="step-right">
+      <h3 class="step-title">Kneaded<br>with <em>Care</em></h3>
+      <p class="step-desc">Dough preparation is where the soul of the flatbread lives. The hydration ratio, kneading duration, and resting time all profoundly affect the final texture and pliability. Our dough recipe was developed through hundreds of test batches, dialling in the exact parameters that produce a chapati soft enough to fold but strong enough to hold a full serving without tearing.</p>
+      <div class="step-details">
+        <span class="step-detail">Precise Hydration</span>
+        <span class="step-detail">Controlled Resting</span>
+        <span class="step-detail">No Shortcuts</span>
+      </div>
+    </div>
+    <div class="step-visual">🫙</div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-left">
+      <span class="step-number">03</span>
+      <span class="step-tag">Consistency</span>
+    </div>
+    <div class="step-right">
+      <h3 class="step-title"><em>Precision</em> Rolling</h3>
+      <p class="step-desc">Our automated chapati line ensures every piece emerges with the exact same diameter, thickness, and edge profile. This isn't just for aesthetics — uniform thickness means uniform cooking time, which means consistent results every single time your kitchen fires them. No more variation between the first chapati and the last of the service.</p>
+      <div class="step-details">
+        <span class="step-detail">Automated Line</span>
+        <span class="step-detail">Uniform Thickness</span>
+        <span class="step-detail">Consistent Diameter</span>
+        <span class="step-detail">Scalable</span>
+      </div>
+    </div>
+    <div class="step-visual">⚙️</div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-left">
+      <span class="step-number">04</span>
+      <span class="step-tag">Quality Lock</span>
+    </div>
+    <div class="step-right">
+      <h3 class="step-title">Half-<em>Cooked</em></h3>
+      <p class="step-desc">Each flatbread is partially cooked on a calibrated tawa at a precise temperature. This locks in pliability, sets the structure, and significantly reduces your final cook time without pre-cooking the flatbread to a point where it loses the sensory experience of being freshly made. Your team finishes them to order — the result feels fresh-made because it is.</p>
+      <div class="step-details">
+        <span class="step-detail">Calibrated Temperature</span>
+        <span class="step-detail">Locks Pliability</span>
+        <span class="step-detail">Reduces Cook Time</span>
+        <span class="step-detail">Fresh Finish</span>
+      </div>
+    </div>
+    <div class="step-visual">🔥</div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-left">
+      <span class="step-number">05</span>
+      <span class="step-tag">Preservation</span>
+    </div>
+    <div class="step-right">
+      <h3 class="step-title">Hygienic<br><em>Packaging</em></h3>
+      <p class="step-desc">Immediately after cooking, flatbreads are flash-frozen at –18°C and packed in clean, food-safe packaging. The speed of this step is critical — every second between cooking and freezing is an opportunity for quality degradation. Our line is designed to minimise this window to seconds, not minutes. The result is flatbreads that arrive to you at the peak of their quality, every delivery.</p>
+      <div class="step-details">
+        <span class="step-detail">Flash Frozen</span>
+        <span class="step-detail">–18°C</span>
+        <span class="step-detail">Food-Safe Packaging</span>
+        <span class="step-detail">1-Year Shelf Life</span>
+      </div>
+    </div>
+    <div class="step-visual">❄️</div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="tech">
+  <div class="section-label tech-label">Technology & Innovation</div>
+  <h2 class="section-heading tech-heading">Built for <em>Scale,</em><br>Designed for Quality</h2>
+  <div class="tech-grid">
+    <div class="tech-card fade-up">
+      <span class="tech-icon">🤖</span>
+      <div class="tech-title">Automated Chapati Line</div>
+      <div class="tech-desc">Our precision rolling machinery ensures every flatbread meets exact specifications — diameter, thickness, and weight — with zero variation across thousands of pieces per run.</div>
+    </div>
+    <div class="tech-card fade-up">
+      <span class="tech-icon">🏷️</span>
+      <div class="tech-title">Clean-Label Promise</div>
+      <div class="tech-desc">Every ingredient that goes into our flatbreads is on the label. No hidden additives, no undeclared preservatives. What you read is exactly what your diners eat.</div>
+    </div>
+    <div class="tech-card fade-up">
+      <span class="tech-icon">🔗</span>
+      <div class="tech-title">Transparent Supply Chain</div>
+      <div class="tech-desc">We maintain complete traceability from farm to freezer. Our sourcing relationships are built on direct partnerships — we know where every grain of our flour comes from.</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section id="quality">
+  <div class="quality-inner">
+    <div>
+      <h2 class="quality-heading">Our Quality<br><em>Standards</em><br>are Non-<br>Negotiable</h2>
+    </div>
+    <div class="quality-points">
+      <div class="quality-point fade-up">
+        <span class="q-icon">✓</span>
+        <div>
+          <div class="q-title">Zero Preservatives, Every Batch</div>
+          <div class="q-desc">We test every production run to confirm the complete absence of artificial preservatives. This is not aspirational — it is our baseline.</div>
+        </div>
+      </div>
+      <div class="quality-point fade-up">
+        <span class="q-icon">✓</span>
+        <div>
+          <div class="q-title">Consistent Weight & Dimension</div>
+          <div class="q-desc">Each flatbread is checked against specification. Any piece that doesn't meet our standards doesn't leave our facility.</div>
+        </div>
+      </div>
+      <div class="quality-point fade-up">
+        <span class="q-icon">✓</span>
+        <div>
+          <div class="q-title">Hygienic Production Environment</div>
+          <div class="q-desc">Our facility maintains food-safe conditions throughout production, with regular audits and strict hygiene protocols for all staff and equipment.</div>
+        </div>
+      </div>
+      <div class="quality-point fade-up">
+        <span class="q-icon">✓</span>
+        <div>
+          <div class="q-title">Cold Chain Maintained to Delivery</div>
+          <div class="q-desc">The frozen chain is never broken from our facility to your kitchen. We partner only with cold-chain logistics providers who meet our temperature standards.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Ethical <em>Delights</em>®</div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="process.html">Process</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="foot-copy">© 2025 Ethical Delights®. Less Prep. More Consistency.</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.step-block, .fade-up').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 3) * 0.1}s`;
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
