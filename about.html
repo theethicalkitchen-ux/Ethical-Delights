@@ -203,22 +203,49 @@
   </div>
 </nav>
 
-<!-- PAGE HERO -->
-<div class="page-hero">
-  <div class="ph-left">
-    <div class="ph-eyebrow">Our Story</div>
-    <h1 class="ph-h1">Eight Months.<br>One <em>Vision.</em><br>Infinite<br>Flatbreads.</h1>
-    <p class="ph-sub">Two founders. A combined 30 years of expertise. And an unshakeable belief that India's most beloved flatbreads deserve more respect than mass production offers.</p>
-  </div>
-  <div class="ph-right">
-    <div class="ph-pattern"></div>
-    <div class="ph-center-text">
-      <div class="ph-big">ED</div>
-      <div class="ph-small">Ethical Delights®</div>
+<!-- PAGE HERO — Split: headline left, founders photo right -->
+<div class="page-hero" style="display:grid;grid-template-columns:1fr 1fr;min-height:85vh;padding-top:4.5rem;">
+  <div class="ph-left" style="display:flex;flex-direction:column;justify-content:center;padding:7vw 4vw 7vw 7vw;background:var(--deep);position:relative;z-index:2;">
+    <!-- decorative left border -->
+    <div style="position:absolute;left:0;top:15%;bottom:15%;width:3px;background:linear-gradient(to bottom,transparent,var(--wheat),transparent);"></div>
+    <div class="ph-eyebrow" style="font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1.8rem;display:flex;align-items:center;gap:0.8rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards;">
+      <span style="display:inline-block;width:2rem;height:1px;background:var(--wheat);"></span>
+      Our Story · Founded 2024 · Pune
     </div>
-    <div class="founded-badge">
-      <div class="founded-year">2024</div>
-      <div class="founded-label">Founded</div>
+    <h1 class="ph-h1" style="font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,6.5rem);font-weight:300;line-height:1.02;color:var(--cream);opacity:0;animation:fadeUp 0.9s 0.35s forwards;">
+      Two Friends.<br>One <em style="font-style:italic;color:var(--wheat);">Big Idea.</em><br>Infinite<br>Flatbreads.
+    </h1>
+    <p class="ph-sub" style="font-size:1rem;font-weight:300;color:rgba(245,239,224,0.6);max-width:42ch;margin-top:1.8rem;line-height:1.8;opacity:0;animation:fadeUp 0.9s 0.5s forwards;">
+      We started Ethical Delights with one simple thought — chapatis, the food closest to our hearts, deserve consistency, purity, and care.
+    </p>
+    <!-- Key stats row -->
+    <div style="display:flex;gap:2.5rem;margin-top:2.8rem;opacity:0;animation:fadeUp 0.9s 0.65s forwards;">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--wheat);line-height:1;">600+</div>
+        <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,239,224,0.45);margin-top:0.2rem;">Families Trusted</div>
+      </div>
+      <div style="width:1px;background:rgba(212,169,106,0.2);"></div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--wheat);line-height:1;">8</div>
+        <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,239,224,0.45);margin-top:0.2rem;">Months R&amp;D</div>
+      </div>
+      <div style="width:1px;background:rgba(212,169,106,0.2);"></div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--wheat);line-height:1;">2024</div>
+        <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,239,224,0.45);margin-top:0.2rem;">Founded in Pune</div>
+      </div>
+    </div>
+  </div>
+  <!-- Right: founders photo -->
+  <div style="position:relative;overflow:hidden;">
+    <img src="founders.jpg" alt="Amit and Nishant — Founders of Ethical Delights"
+      style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+    <!-- subtle dark gradient on left edge to blend with left panel -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(28,20,8,0.4) 0%,transparent 30%);"></div>
+    <!-- caption badge bottom left -->
+    <div style="position:absolute;bottom:2rem;left:2rem;padding:0.8rem 1.2rem;background:rgba(28,20,8,0.7);backdrop-filter:blur(8px);border:1px solid rgba(212,169,106,0.25);">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:var(--cream);">Amit &amp; Nishant</div>
+      <div style="font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(212,169,106,0.6);margin-top:0.2rem;">Co-Founders, Ethical Delights</div>
     </div>
   </div>
 </div>
@@ -281,7 +308,7 @@
   <div class="founders-grid">
     <div class="founder-card fade-up">
       <div class="founder-photo-wrap">
-        <img src="amit.png" alt="Amit — Co-Founder, Ethical Delights">
+        <img src="amit.jpg" alt="Amit — Co-Founder, Ethical Delights">
       </div>
       <div class="founder-name">Amit</div>
       <span class="founder-role">Co-Founder</span>
@@ -290,7 +317,7 @@
     </div>
     <div class="founder-card fade-up">
       <div class="founder-photo-wrap">
-        <img src="nishant.png" alt="Nishant — Co-Founder, Ethical Delights">
+        <img src="nishant.jpg" alt="Nishant — Co-Founder, Ethical Delights">
       </div>
       <div class="founder-name">Nishant</div>
       <span class="founder-role">Co-Founder</span>
@@ -298,9 +325,29 @@
       <p class="founder-bio" style="margin-top:1rem;">That's how his journey with Ethical Delights began — with the belief that real food shouldn't be a luxury. It should just be normal.</p>
     </div>
   </div>
-  <div class="founders-together fade-up">
-    <div class="together-icon">🤝</div>
-    <div class="together-text">Together, <strong>Amit and Nishant</strong> bring complementary expertise that is rare in food production — the food entrepreneur's eye for authenticity and the engineer's obsession with consistency. Eight months of recipe development produced a system neither could have built alone.</div>
+  <div class="founders-together fade-up" style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(212,169,106,0.2);overflow:hidden;">
+    <!-- Photo left -->
+    <div style="overflow:hidden;max-height:28rem;">
+      <img src="founders.jpg" alt="Amit and Nishant together"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform 0.5s;">
+    </div>
+    <!-- Text right -->
+    <div style="padding:3rem;display:flex;flex-direction:column;justify-content:center;background:var(--deep);">
+      <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;">
+        <span style="display:inline-block;width:1.2rem;height:1px;background:var(--wheat);"></span>
+        Together
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:1.4rem;">
+        Our Shared Purpose
+      </div>
+      <div style="font-size:0.92rem;font-weight:300;color:rgba(245,239,224,0.65);line-height:1.85;margin-bottom:1.4rem;">
+        To help kitchens run smoother — with less chaos, more consistency, and truly fresh food. Eight months of recipe development produced a system neither of us could have built alone.
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--wheat);line-height:1.5;border-left:2px solid var(--wheat);padding-left:1.2rem;">
+        "Fresh, Satvik, and scalable can co-exist."
+      </div>
+      <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(212,169,106,0.5);margin-top:0.8rem;">— Amit &amp; Nishant</div>
+    </div>
   </div>
 </section>
 
