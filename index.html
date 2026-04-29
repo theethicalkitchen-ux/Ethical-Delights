@@ -739,7 +739,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video autoplay muted loop playsinline>
+          <video muted loop playsinline preload="auto">
             <source src="video1.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Behind the Scenes</div><div class="media-caption-title">Inside the Ethical Delights kitchen</div></div>
@@ -748,7 +748,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video autoplay muted loop playsinline>
+          <video muted loop playsinline preload="auto">
             <source src="video2.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Our Process</div><div class="media-caption-title">Precision rolling — uniform, consistent, every time</div></div>
@@ -757,7 +757,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video autoplay muted loop playsinline>
+          <video muted loop playsinline preload="auto">
             <source src="video3.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Crafted with Care</div><div class="media-caption-title">Homestyle quality at commercial scale</div></div>
@@ -766,7 +766,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video autoplay muted loop playsinline>
+          <video muted loop playsinline preload="auto">
             <source src="video4.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Natural Colours</div><div class="media-caption-title">No artificial dyes — nature does it better</div></div>
@@ -775,7 +775,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video autoplay muted loop playsinline>
+          <video muted loop playsinline preload="auto">
             <source src="video5.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Frozen Right</div><div class="media-caption-title">Flash-frozen at –18°C — peak freshness, preserved</div></div>
@@ -863,12 +863,12 @@
 
   // ── MEDIA CAROUSEL ──
   const MEDIA_TOTAL = document.querySelectorAll('.media-slide').length;
-  const MEDIA_MS = 5000;
   let mediaCur = 0, mediaTimer = null, mediaRaf = null, mediaStart = null;
 
   const mediaTrack = document.getElementById('media-track');
   const mediaFill = document.getElementById('media-progress-fill');
   const mediaDotsEl = document.getElementById('media-dots');
+  const mediaVideos = document.querySelectorAll('.media-slide-inner video');
 
   for (let i = 0; i < MEDIA_TOTAL; i++) {
     const d = document.createElement('button');
@@ -877,15 +877,40 @@
     mediaDotsEl.appendChild(d);
   }
 
+  // Get duration of current slide — video duration or 5s for images
+  function getMediaDuration() {
+    const vids = document.querySelectorAll('.media-slide-inner video');
+    // find video in current slide (offset by slide index)
+    const slides = document.querySelectorAll('.media-slide');
+    const currentSlide = slides[mediaCur];
+    const vid = currentSlide ? currentSlide.querySelector('video') : null;
+    if (vid && vid.duration && isFinite(vid.duration)) {
+      return vid.duration * 1000;
+    }
+    return 5000;
+  }
+
+  function playCurrentVideo() {
+    const slides = document.querySelectorAll('.media-slide');
+    slides.forEach((slide, i) => {
+      const vid = slide.querySelector('video');
+      if (!vid) return;
+      if (i === mediaCur) {
+        vid.currentTime = 0;
+        const p = vid.play();
+        if (p !== undefined) p.catch(() => {});
+      } else {
+        vid.pause();
+        vid.currentTime = 0;
+      }
+    });
+  }
+
   function goMedia(idx) {
     mediaCur = ((idx % MEDIA_TOTAL) + MEDIA_TOTAL) % MEDIA_TOTAL;
     mediaTrack.style.transform = 'translateX(-' + (mediaCur * 100) + '%)';
     document.querySelectorAll('.media-dot').forEach((d, i) => d.classList.toggle('active', i === mediaCur));
-    // Play active video, pause others
-    document.querySelectorAll('.media-slide-inner video').forEach((v, i) => {
-      if (i === mediaCur) { v.play().catch(()=>{}); }
-      else { v.pause(); }
-    });
+    playCurrentVideo();
     clearTimeout(mediaTimer);
     cancelAnimationFrame(mediaRaf);
     startMediaAuto();
@@ -895,7 +920,8 @@
 
   function animateMediaProgress(ts) {
     if (!mediaStart) mediaStart = ts;
-    const pct = Math.min(((ts - mediaStart) / MEDIA_MS) * 100, 100);
+    const dur = getMediaDuration();
+    const pct = Math.min(((ts - mediaStart) / dur) * 100, 100);
     mediaFill.style.width = pct + '%';
     if (pct < 100) mediaRaf = requestAnimationFrame(animateMediaProgress);
   }
@@ -903,11 +929,22 @@
   function startMediaAuto() {
     mediaStart = null;
     mediaFill.style.width = '0%';
+    const dur = getMediaDuration();
     mediaRaf = requestAnimationFrame(animateMediaProgress);
-    mediaTimer = setTimeout(() => moveMedia(1), MEDIA_MS);
+    mediaTimer = setTimeout(() => moveMedia(1), dur);
   }
 
-  startMediaAuto();
+  // Wait for page load then initialise — ensures videos have metadata
+  window.addEventListener('load', () => {
+    playCurrentVideo();
+    startMediaAuto();
+    // When first video ends, advance
+    document.querySelectorAll('.media-slide-inner video').forEach((vid, i) => {
+      vid.addEventListener('ended', () => {
+        if (i === mediaCur) moveMedia(1);
+      });
+    });
+  });
 
   // ── VARIANT ROTATORS ──
   const varState = {};
