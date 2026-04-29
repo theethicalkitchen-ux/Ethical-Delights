@@ -39,15 +39,49 @@
   .btn-primary:hover{background:var(--earth);transform:translateY(-2px);}
   .btn-ghost{font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--earth);text-decoration:none;font-weight:500;border-bottom:1px solid var(--wheat);padding-bottom:2px;transition:color 0.3s,border-color 0.3s;}
   .btn-ghost:hover{color:var(--rust);border-color:var(--rust);}
-  .hero-right{position:relative;background:var(--cream);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-  .hero-ring{width:78%;aspect-ratio:1;border-radius:50%;background:conic-gradient(from 0deg,#c8a55a,#e8d090,#d4b060,#a07030,#c8a55a);display:flex;align-items:center;justify-content:center;animation:slowspin 30s linear infinite;box-shadow:0 0 80px rgba(160,112,48,0.3);}
+  /* HERO RIGHT — revamped */
+  .hero-right{position:relative;background:#0e2a1e;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+
+  /* Subtle radial glow background */
+  .hero-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(107,76,30,0.25) 0%,transparent 70%);pointer-events:none;}
+
+  /* Centre logo + monogram stack */
+  .hero-center{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;z-index:2;}
+  .hero-monogram{width:clamp(7rem,13vw,11rem);height:clamp(7rem,13vw,11rem);object-fit:contain;filter:drop-shadow(0 4px 24px rgba(212,169,106,0.25));animation:float 6s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  .hero-logo-img{width:clamp(9rem,16vw,14rem);object-fit:contain;filter:brightness(1.05);}
+
+  /* Spinning badge pill */
   @keyframes slowspin{to{transform:rotate(360deg);}}
-  .hero-ring-inner{width:80%;aspect-ratio:1;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;animation:slowspin 30s linear infinite reverse;}
-  .ring-glyph{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,7rem);color:var(--earth);opacity:0.18;line-height:1;user-select:none;}
-  .ring-text{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--earth);opacity:0.5;font-weight:500;}
-  .hero-badge{position:absolute;bottom:2.5rem;right:2.5rem;width:5.5rem;height:5.5rem;border-radius:50%;background:var(--deep);color:var(--wheat);display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.57rem;letter-spacing:0.1em;text-transform:uppercase;line-height:1.6;font-weight:500;animation:badge-spin 14s linear infinite;}
+  @keyframes slowspinrev{to{transform:rotate(-360deg);}}
+
+  .spin-badge{
+    position:absolute;
+    width:5.2rem;height:5.2rem;
+    border-radius:50%;
+    background:var(--deep);
+    border:1px solid rgba(212,169,106,0.35);
+    color:var(--wheat);
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    font-size:0.48rem;letter-spacing:0.09em;
+    text-transform:uppercase;line-height:1.55;font-weight:500;
+    padding:0.5rem;
+    animation:badge-orbit linear infinite;
+    box-shadow:0 2px 12px rgba(0,0,0,0.4);
+    z-index:3;
+  }
+  /* Each badge orbits around the centre at its own radius + speed */
+  /* We use CSS custom properties + JS to place them via transform */
   @keyframes badge-spin{to{transform:rotate(360deg);}}
-  .hero-bg-text{position:absolute;bottom:-1rem;left:-2rem;font-family:'Cormorant Garamond',serif;font-size:12rem;font-weight:600;color:rgba(212,169,106,0.07);white-space:nowrap;pointer-events:none;user-select:none;line-height:1;}
+  @keyframes badge-spin-rev{to{transform:rotate(-360deg);}}
+
+  /* orbit wrapper — rotates around centre */
+  .orbit{position:absolute;width:0;height:0;animation:slowspin linear infinite;}
+  /* badge inside orbit — counter-rotates so text stays upright */
+  .orbit .spin-badge{animation:slowspinrev linear infinite;transform-origin:center;}
+
+  .hero-bg-text{display:none;}
 
   /* MARQUEE */
   .marquee-strip{background:var(--deep);overflow:hidden;padding:0.85rem 0;}
@@ -234,15 +268,13 @@
       <a href="about.html" class="btn-ghost">Our Story</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-ring">
-      <div class="hero-ring-inner">
-        <div class="ring-glyph">◎</div>
-        <div class="ring-text">Pure · Ethical · True</div>
-      </div>
+  <div class="hero-right" id="hero-right">
+    <!-- Centre: monogram + logo -->
+    <div class="hero-center">
+      <img src="monogram.png" class="hero-monogram" alt="Ethical Delights monogram">
+      <img src="logo.png" class="hero-logo-img" alt="Ethical Delights">
     </div>
-    <div class="hero-badge">100%<br>Satvik<br>Goodness</div>
-    <div class="hero-bg-text">Chapati</div>
+    <!-- Orbit badges injected by JS -->
   </div>
 </section>
 
@@ -492,6 +524,51 @@
   // NAV
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  // ── ORBIT BADGES ──
+  // Each badge: { lines: ['line1','line2'], radius (% of container half-width), startAngle (deg), speed (s), color }
+  const badges = [
+    { lines: ['100%', 'Satvik', 'Goodness'],  radius: 0.72, angle:  20, speed: 18, bg: '#1C1408', border: 'rgba(212,169,106,0.5)' },
+    { lines: ['No',   'Maida'],                radius: 0.68, angle: 110, speed: 22, bg: '#2a1a06', border: 'rgba(196,98,45,0.5)'   },
+    { lines: ['No',   'Palm Oil'],             radius: 0.75, angle: 195, speed: 20, bg: '#1C1408', border: 'rgba(212,169,106,0.4)' },
+    { lines: ['Clean','Label'],                radius: 0.65, angle: 290, speed: 25, bg: '#0e2a1e', border: 'rgba(122,140,110,0.6)' },
+    { lines: ['Ready','to Cook/Fry'],          radius: 0.80, angle: 340, speed: 16, bg: '#2a1a06', border: 'rgba(196,98,45,0.45)'  },
+    { lines: ['Half', 'Baked'],                radius: 0.60, angle:  60, speed: 28, bg: '#1C1408', border: 'rgba(212,169,106,0.4)' },
+    { lines: ['No',   'Preservatives'],        radius: 0.78, angle: 155, speed: 21, bg: '#0e2a1e', border: 'rgba(122,140,110,0.5)' },
+  ];
+
+  function placeBadges() {
+    const heroRight = document.getElementById('hero-right');
+    if (!heroRight) return;
+    const rect = heroRight.getBoundingClientRect();
+    const cx = rect.width  / 2;
+    const cy = rect.height / 2;
+    const halfMin = Math.min(cx, cy);
+
+    badges.forEach(b => {
+      const rad = b.angle * Math.PI / 180;
+      const r   = halfMin * b.radius;
+      const x   = cx + r * Math.cos(rad);
+      const y   = cy + r * Math.sin(rad);
+
+      const el = document.createElement('div');
+      el.className = 'spin-badge';
+      el.innerHTML = b.lines.join('<br>');
+      el.style.cssText = `
+        left:${x}px; top:${y}px;
+        transform:translate(-50%,-50%);
+        background:${b.bg};
+        border:1px solid ${b.border};
+        animation:badge-spin ${b.speed}s linear infinite;
+        position:absolute;
+      `;
+      heroRight.appendChild(el);
+    });
+  }
+
+  // Run after layout
+  if (document.readyState === 'complete') { placeBadges(); }
+  else { window.addEventListener('load', placeBadges); }
 
   // FADE-UP
   const obs = new IntersectionObserver(entries => {
