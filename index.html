@@ -223,6 +223,74 @@
     .media-header{flex-direction:column;align-items:flex-start;gap:1.5rem;}
     .media-slide-inner{height:50vw;min-height:260px;}
   }
+
+  /* ── SPECIALTIES SECTION ── */
+  #specialties { background: var(--cream); padding: 7rem 7vw; }
+
+  .spec-tabs { display: flex; gap: 0; margin-top: 3rem; border-bottom: 1px solid rgba(212,169,106,0.3); }
+  .spec-tab {
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+    padding: 0.8rem 2rem; border: none; background: transparent; cursor: pointer;
+    color: rgba(107,76,30,0.45); position: relative; transition: color 0.3s;
+  }
+  .spec-tab::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
+    background: var(--rust); transform: scaleX(0); transition: transform 0.3s;
+  }
+  .spec-tab.active { color: var(--rust); }
+  .spec-tab.active::after { transform: scaleX(1); }
+
+  .spec-panels { margin-top: 0; }
+  .spec-panel { display: none; }
+  .spec-panel.active { display: block; }
+
+  /* Variant rotator */
+  .var-rotator { position: relative; overflow: hidden; }
+  .var-track { display: flex; transition: transform 0.6s cubic-bezier(.4,0,.2,1); }
+  .var-slide {
+    min-width: 100%; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 0;
+    min-height: 26rem;
+  }
+  .var-img {
+    overflow: hidden; position: relative;
+  }
+  .var-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s; }
+  .var-slide:hover .var-img img { transform: scale(1.04); }
+
+  .var-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 3rem 3.5rem;
+    background: var(--pale);
+    border: 1px solid rgba(212,169,106,0.2);
+    border-left: none;
+  }
+  .var-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(212,169,106,0.18); line-height: 1; margin-bottom: 0.5rem; }
+  .var-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); font-weight: 500; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.6rem; }
+  .var-tag::before { content: ''; width: 1.2rem; height: 1px; background: var(--rust); }
+  .var-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--deep); line-height: 1.1; margin-bottom: 1rem; }
+  .var-name em { font-style: italic; color: var(--earth); }
+  .var-desc { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: #5a4a2e; max-width: 38ch; }
+  .var-attrs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.4rem; }
+  .var-attr { font-size: 0.63rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(107,76,30,0.25); padding: 0.25rem 0.65rem; color: var(--earth); }
+  .var-note { font-size: 0.75rem; font-weight: 300; color: rgba(107,76,30,0.5); margin-top: 1rem; font-style: italic; }
+
+  /* Nav controls */
+  .var-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; }
+  .var-dots-wrap { display: flex; gap: 0.5rem; }
+  .var-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(212,169,106,0.25); border: none; cursor: pointer; padding: 0; transition: background 0.3s, transform 0.3s; }
+  .var-dot.active { background: var(--rust); transform: scale(1.3); }
+  .var-arrows { display: flex; gap: 0.5rem; }
+  .var-arrow { width: 2.4rem; height: 2.4rem; border: 1px solid rgba(212,169,106,0.35); background: transparent; color: var(--earth); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; }
+  .var-arrow:hover { background: var(--rust); border-color: var(--rust); color: #fff; }
+
+  .spec-intro { font-size: 0.95rem; font-weight: 300; line-height: 1.8; color: #5a4a2e; max-width: 60ch; margin-top: 0.6rem; }
+
+  @media(max-width:900px) {
+    .var-slide { grid-template-columns: 1fr; min-height: auto; }
+    .var-img { height: 55vw; }
+    .var-content { border-left: 1px solid rgba(212,169,106,0.2); border-top: none; padding: 2rem 1.5rem; }
+  }
 </style>
 </head>
 <body>
@@ -418,11 +486,11 @@
     <div class="product-card fade-up">
       <div class="card-carousel">
         <div class="carousel-track" id="track-chapati">
-          <div class="carousel-slide"><img src="chapati.png" alt="Satvik Chapati"></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🫓</div><div class="placeholder-text">Chapati · Image 2</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🫓</div><div class="placeholder-text">Chapati · Image 3</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🫓</div><div class="placeholder-text">Chapati · Image 4</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🫓</div><div class="placeholder-text">Chapati · Image 5</div><div class="placeholder-hint">Upload to replace</div></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Classic Satvik Chapati"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Spinach Chapati"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Beetroot Chapati"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Khapli Chapati"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Satvik Chapati variants"></div>
         </div>
         <button class="carousel-prev" onclick="moveCard('chapati',-1)">&#8592;</button>
         <button class="carousel-next" onclick="moveCard('chapati',1)">&#8594;</button>
@@ -441,11 +509,11 @@
     <div class="product-card fade-up">
       <div class="card-carousel">
         <div class="carousel-track" id="track-puri">
-          <div class="carousel-slide"><img src="puri.png" alt="Satvik Puri"></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🫔</div><div class="placeholder-text">Puri · Image 2</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🫔</div><div class="placeholder-text">Puri · Image 3</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🫔</div><div class="placeholder-text">Puri · Image 4</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🫔</div><div class="placeholder-text">Puri · Image 5</div><div class="placeholder-hint">Upload to replace</div></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Classic Satvik Puri"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Masala Puri"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Tri-Color Puri"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Aloo Puri"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Satvik Puri variants"></div>
         </div>
         <button class="carousel-prev" onclick="moveCard('puri',-1)">&#8592;</button>
         <button class="carousel-next" onclick="moveCard('puri',1)">&#8594;</button>
@@ -464,11 +532,11 @@
     <div class="product-card fade-up">
       <div class="card-carousel">
         <div class="carousel-track" id="track-wrap">
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🌯</div><div class="placeholder-text">Wrap · Image 1</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🌯</div><div class="placeholder-text">Wrap · Image 2</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🌯</div><div class="placeholder-text">Wrap · Image 3</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🌯</div><div class="placeholder-text">Wrap · Image 4</div><div class="placeholder-hint">Upload to replace</div></div>
-          <div class="carousel-slide placeholder"><div class="placeholder-icon">🌯</div><div class="placeholder-text">Wrap · Image 5</div><div class="placeholder-hint">Upload to replace</div></div>
+          <div class="carousel-slide"><img src="wrap1.jpg" alt="Spinach Wrap"></div>
+          <div class="carousel-slide"><img src="wrap2.jpg" alt="Tri-Color Wrap on conveyor"></div>
+          <div class="carousel-slide"><img src="wrap3.jpg" alt="Beetroot and Spinach Wraps"></div>
+          <div class="carousel-slide"><img src="wrap4.jpg" alt="Beetroot Wrap closeup"></div>
+          <div class="carousel-slide"><img src="wrap5.jpg" alt="Spinach Wraps — wide shot"></div>
         </div>
         <button class="carousel-prev" onclick="moveCard('wrap',-1)">&#8592;</button>
         <button class="carousel-next" onclick="moveCard('wrap',1)">&#8594;</button>
@@ -480,6 +548,149 @@
         <div class="product-name">Wraps</div>
         <p class="product-desc">Flexible, hygienic, and fully customizable. The perfect canvas for your fillings — soft enough to fold cleanly, sturdy enough to hold every serving.</p>
         <div class="product-tags"><span class="tag">Flexible</span><span class="tag">Hygienic</span><span class="tag">Customizable</span><span class="tag">High-Yield</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- SPECIALTIES -->
+<section id="specialties">
+  <div class="section-label">Our Homestyle Specialties</div>
+  <h2 class="section-heading">Authentic Taste,<br><em>Eight Variants</em></h2>
+  <p class="spec-intro">We bring the authentic taste of Maharashtrian kitchens straight to your plate — crafted from whole wheat, coloured with nature, and frozen at their freshest.</p>
+
+  <!-- Tabs -->
+  <div class="spec-tabs">
+    <button class="spec-tab active" onclick="switchTab('chapatis')">🫓 &nbsp;Satvik Chapatis</button>
+    <button class="spec-tab" onclick="switchTab('puris')">🫔 &nbsp;Satvik Puris</button>
+  </div>
+
+  <div class="spec-panels">
+
+    <!-- CHAPATI PANEL -->
+    <div class="spec-panel active" id="panel-chapatis">
+      <div class="var-rotator">
+        <div class="var-track" id="vtrack-chapatis">
+
+          <div class="var-slide">
+            <div class="var-img"><img src="chapati.png" alt="Classic Satvik Chapati"></div>
+            <div class="var-content">
+              <div class="var-num">01</div>
+              <div class="var-tag">Classic</div>
+              <div class="var-name">Whole Wheat<br><em>Chapati</em></div>
+              <p class="var-desc">Soft, wholesome, and made in true Maharashtrian homestyle tradition. Our signature — rolled thin, half-cooked, and frozen at peak freshness. The everyday flatbread, perfected.</p>
+              <div class="var-attrs"><span class="var-attr">Whole Wheat</span><span class="var-attr">Half-Cooked</span><span class="var-attr">Ready to Cook</span><span class="var-attr">No Preservatives</span></div>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="chapati.png" alt="Spinach Chapati"></div>
+            <div class="var-content">
+              <div class="var-num">02</div>
+              <div class="var-tag">Variety</div>
+              <div class="var-name">Spinach<br><em>Chapati</em></div>
+              <p class="var-desc">Kneaded with fresh spinach for a vibrant green hue and a gentle earthy flavour. Naturally coloured — no dyes, no additives. A wholesome twist on the classic.</p>
+              <div class="var-attrs"><span class="var-attr">Real Spinach</span><span class="var-attr">Natural Colour</span><span class="var-attr">No Artificial Dye</span></div>
+              <p class="var-note">Photo coming soon — this one's as beautiful as it is nutritious.</p>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="chapati.png" alt="Beetroot Chapati"></div>
+            <div class="var-content">
+              <div class="var-num">03</div>
+              <div class="var-tag">Variety</div>
+              <div class="var-name">Beetroot<br><em>Chapati</em></div>
+              <p class="var-desc">Deep rose-pink from real beetroot — naturally sweet, rich in antioxidants, and absolutely stunning on the plate. A feast for the eyes and the body.</p>
+              <div class="var-attrs"><span class="var-attr">Real Beetroot</span><span class="var-attr">Natural Colour</span><span class="var-attr">Antioxidant-Rich</span></div>
+              <p class="var-note">Photo coming soon — the colour alone is worth the wait.</p>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="chapati.png" alt="Khapli Wheat Chapati"></div>
+            <div class="var-content">
+              <div class="var-num">04</div>
+              <div class="var-tag">Premium</div>
+              <div class="var-name">Khapli Wheat<br><em>Chapati</em></div>
+              <p class="var-desc">Made from ancient Khapli (Emmer) wheat — naturally low glycaemic index, easier to digest, and richer in fibre and protein. The smart choice for health-conscious kitchens.</p>
+              <div class="var-attrs"><span class="var-attr">Khapli / Emmer Wheat</span><span class="var-attr">Low GI</span><span class="var-attr">High Fibre</span><span class="var-attr">Diabetic-Friendly</span></div>
+            </div>
+          </div>
+
+        </div>
+        <div class="var-controls">
+          <div class="var-dots-wrap" id="vdots-chapatis"></div>
+          <div class="var-arrows">
+            <button class="var-arrow" onclick="moveVar('chapatis',-1)">&#8592;</button>
+            <button class="var-arrow" onclick="moveVar('chapatis',1)">&#8594;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PURI PANEL -->
+    <div class="spec-panel" id="panel-puris">
+      <div class="var-rotator">
+        <div class="var-track" id="vtrack-puris">
+
+          <div class="var-slide">
+            <div class="var-img"><img src="puri.png" alt="Classic Plain Puri"></div>
+            <div class="var-content">
+              <div class="var-num">01</div>
+              <div class="var-tag">Classic</div>
+              <div class="var-name">Plain<br><em>Puri</em></div>
+              <p class="var-desc">Classic, golden, and fluffy. Our signature puri — half-baked and ready to fry in seconds. Consistent diameter, predictable frying time, perfect puff every time.</p>
+              <div class="var-attrs"><span class="var-attr">Whole Wheat</span><span class="var-attr">Half Baked</span><span class="var-attr">Ready to Fry</span><span class="var-attr">No Maida</span></div>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="puri.png" alt="Masala Puri"></div>
+            <div class="var-content">
+              <div class="var-num">02</div>
+              <div class="var-tag">Spiced</div>
+              <div class="var-name">Masala<br><em>Puri</em></div>
+              <p class="var-desc">Spiced with a flavorful blend of whole spices for a zesty, aromatic twist. Pairs beautifully with sabzi, chutneys, or as a standalone street-food style snack.</p>
+              <div class="var-attrs"><span class="var-attr">Whole Spices</span><span class="var-attr">No Artificial Flavour</span><span class="var-attr">Half Baked</span></div>
+              <p class="var-note">Photo coming soon.</p>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="puri.png" alt="Tri-Color Puri"></div>
+            <div class="var-content">
+              <div class="var-num">03</div>
+              <div class="var-tag">Our New Invention</div>
+              <div class="var-name">Tri-Color<br><em>Puri</em></div>
+              <p class="var-desc">Vibrant and healthy — naturally coloured with spinach (green), beetroot (red), and turmeric (yellow). Zero artificial colours. Our proudest innovation, inspired by the Indian tricolour.</p>
+              <div class="var-attrs"><span class="var-attr">Spinach</span><span class="var-attr">Beetroot</span><span class="var-attr">Turmeric</span><span class="var-attr">No Artificial Colour</span></div>
+              <p class="var-note">A visual delight — photo coming soon.</p>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="puri.png" alt="Aloo Puri"></div>
+            <div class="var-content">
+              <div class="var-num">04</div>
+              <div class="var-tag">Stuffed</div>
+              <div class="var-name">Aloo<br><em>Puri</em></div>
+              <p class="var-desc">Stuffed with seasoned potato for a hearty, satisfying delight. A classic combination loved across India — now available frozen, consistently portioned, and ready to fry.</p>
+              <div class="var-attrs"><span class="var-attr">Potato-Stuffed</span><span class="var-attr">Seasoned</span><span class="var-attr">Hearty</span><span class="var-attr">Ready to Fry</span></div>
+              <p class="var-note">Photo coming soon.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="var-controls">
+          <div class="var-dots-wrap" id="vdots-puris"></div>
+          <div class="var-arrows">
+            <button class="var-arrow" onclick="moveVar('puris',-1)">&#8592;</button>
+            <button class="var-arrow" onclick="moveVar('puris',1)">&#8594;</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -528,29 +739,36 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <div class="media-placeholder"><div class="media-placeholder-icon">📸</div><div class="media-placeholder-label">Photo or Video · Slide 3</div><div class="media-placeholder-hint">Upload to replace this placeholder</div></div>
-          <div class="media-caption"><div class="media-caption-tag">Behind the Scenes</div><div class="media-caption-title">Your photo or video here</div></div>
+          <img src="wrap1.jpg" alt="Spinach Wraps — fresh and vivid">
+          <div class="media-caption"><div class="media-caption-tag">Our Wraps</div><div class="media-caption-title">Spinach wraps — vibrant, fresh, preservative-free</div></div>
         </div>
       </div>
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <div class="media-placeholder"><div class="media-placeholder-icon">🎬</div><div class="media-placeholder-label">Photo or Video · Slide 4</div><div class="media-placeholder-hint">Upload to replace this placeholder</div></div>
-          <div class="media-caption"><div class="media-caption-tag">Our Process</div><div class="media-caption-title">Your photo or video here</div></div>
+          <img src="wrap2.jpg" alt="Tri-color wraps on the production line">
+          <div class="media-caption"><div class="media-caption-tag">Our Process</div><div class="media-caption-title">Tri-color wraps — spinach &amp; beetroot, naturally coloured</div></div>
         </div>
       </div>
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <div class="media-placeholder"><div class="media-placeholder-icon">📸</div><div class="media-placeholder-label">Photo or Video · Slide 5</div><div class="media-placeholder-hint">Upload to replace this placeholder</div></div>
-          <div class="media-caption"><div class="media-caption-tag">Homestyle Quality</div><div class="media-caption-title">Your photo or video here</div></div>
+          <img src="wrap3.jpg" alt="Beetroot and spinach wraps">
+          <div class="media-caption"><div class="media-caption-tag">Natural Colour</div><div class="media-caption-title">No artificial colours — ever. Nature does it better.</div></div>
         </div>
       </div>
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <div class="media-placeholder"><div class="media-placeholder-icon">🎬</div><div class="media-placeholder-label">Photo or Video · Slide 6</div><div class="media-placeholder-hint">Upload to replace this placeholder</div></div>
-          <div class="media-caption"><div class="media-caption-tag">The Ethical Kitchen</div><div class="media-caption-title">Your photo or video here</div></div>
+          <img src="wrap4.jpg" alt="Beetroot wrap closeup">
+          <div class="media-caption"><div class="media-caption-tag">Beetroot Wrap</div><div class="media-caption-title">Rich, earthy, and wholesome — made with real beetroot</div></div>
+        </div>
+      </div>
+
+      <div class="media-slide">
+        <div class="media-slide-inner">
+          <img src="wrap5.jpg" alt="Spinach wraps wide shot">
+          <div class="media-caption"><div class="media-caption-tag">Made Fresh</div><div class="media-caption-title">Rolled fresh, flash-frozen at –18°C, ready when you are</div></div>
         </div>
       </div>
 
@@ -558,7 +776,7 @@
   </div>
   <div class="media-progress"><div class="media-progress-fill" id="media-progress-fill"></div></div>
   <div class="media-dots" id="media-dots"></div>
-  <div class="media-upload-hint">📁 &nbsp;Upload your photos &amp; videos to replace these placeholders</div>
+
 </section>
 
 <!-- CONTACT -->
@@ -675,6 +893,43 @@
   }
 
   startMediaAuto();
+
+  // ── VARIANT ROTATORS ──
+  const varState = {};
+
+  function initVar(id, total) {
+    varState[id] = { current: 0, total, timer: null };
+    const dotsEl = document.getElementById('vdots-' + id);
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('button');
+      d.className = 'var-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goVar(id, i);
+      dotsEl.appendChild(d);
+    }
+    varState[id].timer = setInterval(() => moveVar(id, 1), 4000);
+  }
+
+  function goVar(id, idx) {
+    const s = varState[id];
+    s.current = ((idx % s.total) + s.total) % s.total;
+    document.getElementById('vtrack-' + id).style.transform = 'translateX(-' + (s.current * 100) + '%)';
+    document.querySelectorAll('#vdots-' + id + ' .var-dot').forEach((d, i) => d.classList.toggle('active', i === s.current));
+    clearInterval(s.timer);
+    varState[id].timer = setInterval(() => moveVar(id, 1), 4000);
+  }
+
+  function moveVar(id, dir) { goVar(id, varState[id].current + dir); }
+
+  function switchTab(id) {
+    document.querySelectorAll('.spec-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.spec-panel').forEach(p => p.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    document.getElementById('panel-' + id).classList.add('active');
+  }
+
+  initVar('chapatis', 4);
+  initVar('puris', 4);
+
 </script>
 </body>
 </html>
