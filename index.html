@@ -739,36 +739,46 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <img src="wrap1.jpg" alt="Spinach Wraps — fresh and vivid">
-          <div class="media-caption"><div class="media-caption-tag">Our Wraps</div><div class="media-caption-title">Spinach wraps — vibrant, fresh, preservative-free</div></div>
+          <video autoplay muted loop playsinline>
+            <source src="video1.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Behind the Scenes</div><div class="media-caption-title">Inside the Ethical Delights kitchen</div></div>
         </div>
       </div>
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <img src="wrap2.jpg" alt="Tri-color wraps on the production line">
-          <div class="media-caption"><div class="media-caption-tag">Our Process</div><div class="media-caption-title">Tri-color wraps — spinach &amp; beetroot, naturally coloured</div></div>
+          <video autoplay muted loop playsinline>
+            <source src="video2.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Our Process</div><div class="media-caption-title">Precision rolling — uniform, consistent, every time</div></div>
         </div>
       </div>
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <img src="wrap3.jpg" alt="Beetroot and spinach wraps">
-          <div class="media-caption"><div class="media-caption-tag">Natural Colour</div><div class="media-caption-title">No artificial colours — ever. Nature does it better.</div></div>
+          <video autoplay muted loop playsinline>
+            <source src="video3.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Crafted with Care</div><div class="media-caption-title">Homestyle quality at commercial scale</div></div>
         </div>
       </div>
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <img src="wrap4.jpg" alt="Beetroot wrap closeup">
-          <div class="media-caption"><div class="media-caption-tag">Beetroot Wrap</div><div class="media-caption-title">Rich, earthy, and wholesome — made with real beetroot</div></div>
+          <video autoplay muted loop playsinline>
+            <source src="video4.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Natural Colours</div><div class="media-caption-title">No artificial dyes — nature does it better</div></div>
         </div>
       </div>
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <img src="wrap5.jpg" alt="Spinach wraps wide shot">
-          <div class="media-caption"><div class="media-caption-tag">Made Fresh</div><div class="media-caption-title">Rolled fresh, flash-frozen at –18°C, ready when you are</div></div>
+          <video autoplay muted loop playsinline>
+            <source src="video5.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Frozen Right</div><div class="media-caption-title">Flash-frozen at –18°C — peak freshness, preserved</div></div>
         </div>
       </div>
 
@@ -871,6 +881,11 @@
     mediaCur = ((idx % MEDIA_TOTAL) + MEDIA_TOTAL) % MEDIA_TOTAL;
     mediaTrack.style.transform = 'translateX(-' + (mediaCur * 100) + '%)';
     document.querySelectorAll('.media-dot').forEach((d, i) => d.classList.toggle('active', i === mediaCur));
+    // Play active video, pause others
+    document.querySelectorAll('.media-slide-inner video').forEach((v, i) => {
+      if (i === mediaCur) { v.play().catch(()=>{}); }
+      else { v.pause(); }
+    });
     clearTimeout(mediaTimer);
     cancelAnimationFrame(mediaRaf);
     startMediaAuto();
