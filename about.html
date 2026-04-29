@@ -175,16 +175,19 @@
     nav .nav-links { display: none; }
   }
 
-  .founder-photo {
-    width: 100%; height: 16rem; overflow: hidden;
-    margin-bottom: 1.2rem; border-radius: 0.25rem;
+  .founder-photo-wrap {
+    width: 100%; height: 18rem; overflow: hidden;
+    margin-bottom: 1.4rem; border-radius: 0.25rem;
+    border: 1px solid rgba(212,169,106,0.2);
   }
-  .founder-photo img {
-    width: 100%; height: 100%; object-fit: cover; object-position: top;
-    display: block; filter: grayscale(15%);
+  .founder-photo-wrap img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    display: block; filter: grayscale(10%);
     transition: filter 0.4s, transform 0.4s;
   }
-  .founder-card:hover .founder-photo img { filter: grayscale(0%); transform: scale(1.03); }
+  .founder-card:hover .founder-photo-wrap img { filter: grayscale(0%); transform: scale(1.03); }
+  /* Hide old avatar and initial elements */
+  .founder-initial, .founder-avatar { display: none; }
 
 </style>
 </head>
@@ -277,32 +280,22 @@
   <h2 class="section-heading founders-heading">The <em>Founders</em></h2>
   <div class="founders-grid">
     <div class="founder-card fade-up">
-      <div class="founder-initial">A</div>
-      <div class="founder-avatar">AK</div>
-      <div class="founder-name">Amit Kumar Patil</div>
-      <span class="founder-role">Co-Founder</span>
-      <p class="founder-bio">Amit's journey into ethical food began with Vedaz Organics, where he pioneered the distribution of A2 milk in glass bottles — long before clean-label food became mainstream. His conviction that Indian consumers deserve better drove him to bring the same philosophy to flatbreads.</p>
-      <p class="founder-bio" style="margin-top:1rem;">With an IT background that gave him systems thinking, and a food entrepreneur's instinct for what consumers actually want, Amit is the brand conscience of Ethical Delights.</p>
-      <div class="founder-tags">
-        <span class="f-tag">Vedaz Organics</span>
-        <span class="f-tag">A2 Milk Pioneer</span>
-        <span class="f-tag">Clean-Label Advocate</span>
-        <span class="f-tag">Food Entrepreneur</span>
+      <div class="founder-photo-wrap">
+        <img src="amit.png" alt="Amit — Co-Founder, Ethical Delights">
       </div>
+      <div class="founder-name">Amit</div>
+      <span class="founder-role">Co-Founder</span>
+      <p class="founder-bio">Before starting Ethical Delights, Amit co-founded Vedaaz Organics, introducing A2 milk in glass bottles with reverse logistics to over 25,000 homes. Across every venture, one thing stayed constant: his respect for systems built on trust, ethics, and efficiency.</p>
+      <p class="founder-bio" style="margin-top:1rem;">With Ethical Delights, he wanted to create something that helps kitchens serve fresh without chaos — giving chefs and teams more control, less dependency, and consistent quality every single time.</p>
     </div>
     <div class="founder-card fade-up">
-      <div class="founder-initial">N</div>
-      <div class="founder-avatar">N</div>
+      <div class="founder-photo-wrap">
+        <img src="nishant.png" alt="Nishant — Co-Founder, Ethical Delights">
+      </div>
       <div class="founder-name">Nishant</div>
       <span class="founder-role">Co-Founder</span>
-      <p class="founder-bio">With 22 years in technology across Amazon, BMC Software, and Marvell, Nishant has spent his career solving hard engineering problems at scale. He brings that discipline — process maps, tolerance specifications, quality gates — to flatbread manufacturing.</p>
-      <p class="founder-bio" style="margin-top:1rem;">His insight that machine-driven precision and homestyle quality are not mutually exclusive is the foundation of everything Ethical Delights produces. If it can be measured and controlled, it can be perfected.</p>
-      <div class="founder-tags">
-        <span class="f-tag">Amazon</span>
-        <span class="f-tag">BMC Software</span>
-        <span class="f-tag">Marvell</span>
-        <span class="f-tag">Process Engineering</span>
-      </div>
+      <p class="founder-bio">After over two decades building tech products for Amazon, BMC Software, and Marvell Semiconductors, Nishant realised something — while technology had evolved, our approach to food hadn't. We'd made eating faster, but not necessarily better.</p>
+      <p class="founder-bio" style="margin-top:1rem;">That's how his journey with Ethical Delights began — with the belief that real food shouldn't be a luxury. It should just be normal.</p>
     </div>
   </div>
   <div class="founders-together fade-up">
