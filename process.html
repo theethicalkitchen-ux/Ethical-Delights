@@ -106,7 +106,17 @@
   .step-desc { font-size: 0.92rem; font-weight: 300; line-height: 1.85; color: #5a4a2e; max-width: 55ch; }
   .step-details { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
   .step-detail { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(107,76,30,0.25); padding: 0.3rem 0.8rem; color: var(--earth); }
-  .step-visual { position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 5rem; opacity: 0.07; user-select: none; pointer-events: none; }
+  .step-visual {
+    position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+    width: clamp(8rem, 14vw, 13rem);
+    height: clamp(8rem, 14vw, 13rem);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 1; pointer-events: none;
+    flex-shrink: 0;
+  }
+  .step-visual svg { width: 100%; height: 100%; }
+  /* Shift step-right to avoid overlap with illustration */
+  .step-right { padding-right: clamp(10rem, 18vw, 17rem); }
 
   /* TECH SECTION */
   #tech { padding: 7rem 7vw; background: var(--deep); }
@@ -212,7 +222,39 @@
         <span class="step-detail">No Additives</span>
       </div>
     </div>
-    <div class="step-visual">🌾</div>
+    <div class="step-visual">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background circle -->
+        <circle cx="80" cy="80" r="72" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
+        <!-- Grain bowl / millstone base -->
+        <ellipse cx="80" cy="112" rx="36" ry="10" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+        <ellipse cx="80" cy="108" rx="36" ry="10" fill="rgba(245,239,224,0.6)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+        <!-- Wheat grains falling into bowl -->
+        <ellipse cx="68" cy="96" rx="5" ry="7" fill="rgba(212,169,106,0.5)" stroke="rgba(107,76,30,0.4)" stroke-width="1" transform="rotate(-15 68 96)"/>
+        <ellipse cx="80" cy="93" rx="5" ry="7" fill="rgba(212,169,106,0.6)" stroke="rgba(107,76,30,0.4)" stroke-width="1"/>
+        <ellipse cx="92" cy="96" rx="5" ry="7" fill="rgba(212,169,106,0.5)" stroke="rgba(107,76,30,0.4)" stroke-width="1" transform="rotate(15 92 96)"/>
+        <!-- Main wheat stalk -->
+        <path d="M80 88 L80 38" stroke="rgba(107,76,30,0.5)" stroke-width="2" stroke-linecap="round"/>
+        <!-- Left wheat ears -->
+        <ellipse cx="66" cy="55" rx="6" ry="11" fill="rgba(212,169,106,0.45)" stroke="rgba(107,76,30,0.4)" stroke-width="1.2" transform="rotate(-25 66 55)"/>
+        <ellipse cx="68" cy="68" rx="5" ry="10" fill="rgba(212,169,106,0.4)" stroke="rgba(107,76,30,0.35)" stroke-width="1.2" transform="rotate(-20 68 68)"/>
+        <ellipse cx="71" cy="80" rx="4.5" ry="9" fill="rgba(212,169,106,0.35)" stroke="rgba(107,76,30,0.3)" stroke-width="1" transform="rotate(-15 71 80)"/>
+        <!-- Right wheat ears -->
+        <ellipse cx="94" cy="55" rx="6" ry="11" fill="rgba(212,169,106,0.45)" stroke="rgba(107,76,30,0.4)" stroke-width="1.2" transform="rotate(25 94 55)"/>
+        <ellipse cx="92" cy="68" rx="5" ry="10" fill="rgba(212,169,106,0.4)" stroke="rgba(107,76,30,0.35)" stroke-width="1.2" transform="rotate(20 92 68)"/>
+        <ellipse cx="89" cy="80" rx="4.5" ry="9" fill="rgba(212,169,106,0.35)" stroke="rgba(107,76,30,0.3)" stroke-width="1" transform="rotate(15 89 80)"/>
+        <!-- Top grain -->
+        <ellipse cx="80" cy="42" rx="5" ry="9" fill="rgba(212,169,106,0.55)" stroke="rgba(107,76,30,0.5)" stroke-width="1.2"/>
+        <!-- Tiny stalks branching -->
+        <path d="M80 62 L70 55" stroke="rgba(107,76,30,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M80 62 L90 55" stroke="rgba(107,76,30,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M80 74 L71 67" stroke="rgba(107,76,30,0.3)" stroke-width="1" stroke-linecap="round"/>
+        <path d="M80 74 L89 67" stroke="rgba(107,76,30,0.3)" stroke-width="1" stroke-linecap="round"/>
+        <!-- "Fresh Milled" arc text substitute — small label box -->
+        <rect x="52" y="120" width="56" height="16" rx="8" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <text x="80" y="131" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">FRESH MILLED</text>
+      </svg>
+    </div>
   </div>
 
   <div class="step-block">
@@ -229,7 +271,35 @@
         <span class="step-detail">No Shortcuts</span>
       </div>
     </div>
-    <div class="step-visual">🫙</div>
+    <div class="step-visual">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="80" cy="80" r="72" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
+        <!-- Dough mound -->
+        <ellipse cx="80" cy="100" rx="42" ry="14" fill="rgba(245,239,224,0.7)" stroke="rgba(107,76,30,0.25)" stroke-width="1.5"/>
+        <ellipse cx="80" cy="94" rx="40" ry="22" fill="rgba(245,239,224,0.9)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+        <!-- Dough texture lines -->
+        <path d="M58 90 Q70 86 82 90 Q94 94 106 90" stroke="rgba(107,76,30,0.15)" stroke-width="1" fill="none"/>
+        <path d="M62 97 Q74 93 86 97 Q98 101 110 97" stroke="rgba(107,76,30,0.12)" stroke-width="1" fill="none"/>
+        <!-- Left hand -->
+        <path d="M42 78 Q38 70 44 64 Q50 58 54 66 L58 82 Q52 88 46 84 Z" fill="rgba(196,98,45,0.2)" stroke="rgba(196,98,45,0.5)" stroke-width="1.5"/>
+        <!-- Left fingers -->
+        <path d="M50 66 Q48 56 52 52 Q56 50 56 58" stroke="rgba(196,98,45,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M54 64 Q53 54 57 50 Q61 48 61 56" stroke="rgba(196,98,45,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M58 65 Q58 55 62 52 Q66 51 65 59" stroke="rgba(196,98,45,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <!-- Right hand -->
+        <path d="M118 78 Q122 70 116 64 Q110 58 106 66 L102 82 Q108 88 114 84 Z" fill="rgba(196,98,45,0.2)" stroke="rgba(196,98,45,0.5)" stroke-width="1.5"/>
+        <!-- Right fingers -->
+        <path d="M110 66 Q112 56 108 52 Q104 50 104 58" stroke="rgba(196,98,45,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M106 64 Q107 54 103 50 Q99 48 99 56" stroke="rgba(196,98,45,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M102 65 Q102 55 98 52 Q94 51 95 59" stroke="rgba(196,98,45,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <!-- Hydration water drops -->
+        <path d="M72 42 Q72 36 76 34 Q80 36 80 42 Q80 48 76 50 Q72 48 72 42Z" fill="rgba(107,76,30,0.15)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
+        <path d="M84 38 Q84 33 87 31 Q90 33 90 38 Q90 43 87 44 Q84 43 84 38Z" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
+        <!-- Label -->
+        <rect x="46" y="118" width="68" height="16" rx="8" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <text x="80" y="129" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">HAND RECIPE</text>
+      </svg>
+    </div>
   </div>
 
   <div class="step-block">
@@ -247,7 +317,62 @@
         <span class="step-detail">Scalable</span>
       </div>
     </div>
-    <div class="step-visual">⚙️</div>
+    <div class="step-visual">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="80" cy="80" r="72" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
+        <!-- Conveyor belt base -->
+        <rect x="20" y="100" width="120" height="14" rx="7" fill="rgba(107,76,30,0.15)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+        <!-- Belt texture -->
+        <line x1="35" y1="100" x2="35" y2="114" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <line x1="55" y1="100" x2="55" y2="114" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <line x1="75" y1="100" x2="75" y2="114" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <line x1="95" y1="100" x2="95" y2="114" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <line x1="115" y1="100" x2="115" y2="114" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <!-- Roller top -->
+        <rect x="18" y="86" width="124" height="16" rx="8" fill="rgba(28,20,8,0.2)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/>
+        <!-- Chapati circles on belt — uniform and precise -->
+        <circle cx="42" cy="93" r="14" fill="rgba(245,239,224,0.85)" stroke="rgba(107,76,30,0.35)" stroke-width="1.5"/>
+        <circle cx="80" cy="93" r="14" fill="rgba(245,239,224,0.9)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/>
+        <circle cx="118" cy="93" r="14" fill="rgba(245,239,224,0.85)" stroke="rgba(107,76,30,0.35)" stroke-width="1.5"/>
+        <!-- Chapati texture - concentric rings -->
+        <circle cx="42" cy="93" r="9" stroke="rgba(107,76,30,0.12)" stroke-width="1" fill="none"/>
+        <circle cx="42" cy="93" r="4" stroke="rgba(107,76,30,0.1)" stroke-width="1" fill="none"/>
+        <circle cx="80" cy="93" r="9" stroke="rgba(107,76,30,0.12)" stroke-width="1" fill="none"/>
+        <circle cx="80" cy="93" r="4" stroke="rgba(107,76,30,0.1)" stroke-width="1" fill="none"/>
+        <circle cx="118" cy="93" r="9" stroke="rgba(107,76,30,0.12)" stroke-width="1" fill="none"/>
+        <circle cx="118" cy="93" r="4" stroke="rgba(107,76,30,0.1)" stroke-width="1" fill="none"/>
+        <!-- Precision gear top left -->
+        <g transform="translate(38,42)">
+          <circle cx="0" cy="0" r="16" fill="rgba(28,20,8,0.08)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="8" fill="rgba(28,20,8,0.06)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
+          <circle cx="0" cy="0" r="3" fill="rgba(107,76,30,0.3)"/>
+          <path d="M0,-16 L2,-19 L0,-22 L-2,-19 Z" fill="rgba(107,76,30,0.4)"/>
+          <path d="M0,16 L2,19 L0,22 L-2,19 Z" fill="rgba(107,76,30,0.4)"/>
+          <path d="M-16,0 L-19,2 L-22,0 L-19,-2 Z" fill="rgba(107,76,30,0.4)"/>
+          <path d="M16,0 L19,2 L22,0 L19,-2 Z" fill="rgba(107,76,30,0.4)"/>
+          <path d="M-11,-11 L-13,-14 L-10,-16 L-8,-13 Z" fill="rgba(107,76,30,0.3)"/>
+          <path d="M11,11 L13,14 L10,16 L8,13 Z" fill="rgba(107,76,30,0.3)"/>
+          <path d="M11,-11 L14,-13 L16,-10 L13,-8 Z" fill="rgba(107,76,30,0.3)"/>
+          <path d="M-11,11 L-14,13 L-16,10 L-13,8 Z" fill="rgba(107,76,30,0.3)"/>
+        </g>
+        <!-- Precision gear top right -->
+        <g transform="translate(122,42)">
+          <circle cx="0" cy="0" r="14" fill="rgba(28,20,8,0.08)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+          <circle cx="0" cy="0" r="7" fill="rgba(28,20,8,0.06)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
+          <circle cx="0" cy="0" r="3" fill="rgba(107,76,30,0.3)"/>
+          <path d="M0,-14 L2,-17 L0,-20 L-2,-17 Z" fill="rgba(107,76,30,0.4)"/>
+          <path d="M0,14 L2,17 L0,20 L-2,17 Z" fill="rgba(107,76,30,0.4)"/>
+          <path d="M-14,0 L-17,2 L-20,0 L-17,-2 Z" fill="rgba(107,76,30,0.4)"/>
+          <path d="M14,0 L17,2 L20,0 L17,-2 Z" fill="rgba(107,76,30,0.4)"/>
+        </g>
+        <!-- Dimension arrows showing uniform size -->
+        <line x1="30" y1="75" x2="54" y2="75" stroke="rgba(196,98,45,0.5)" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="42" y="72" text-anchor="middle" font-family="Jost,sans-serif" font-size="6" fill="rgba(196,98,45,0.8)">= =</text>
+        <!-- Label -->
+        <rect x="38" y="128" width="84" height="16" rx="8" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <text x="80" y="139" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">PRECISION ROLLED</text>
+      </svg>
+    </div>
   </div>
 
   <div class="step-block">
@@ -265,7 +390,42 @@
         <span class="step-detail">Fresh Finish</span>
       </div>
     </div>
-    <div class="step-visual">🔥</div>
+    <div class="step-visual">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="80" cy="80" r="72" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
+        <!-- Tawa (griddle) handle left -->
+        <rect x="16" y="96" width="22" height="8" rx="4" fill="rgba(28,20,8,0.4)" stroke="rgba(28,20,8,0.5)" stroke-width="1"/>
+        <!-- Tawa body -->
+        <ellipse cx="84" cy="98" rx="54" ry="12" fill="rgba(28,20,8,0.3)" stroke="rgba(28,20,8,0.5)" stroke-width="2"/>
+        <ellipse cx="84" cy="94" rx="54" ry="12" fill="rgba(40,28,10,0.5)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/>
+        <!-- Chapati on tawa — half-browned -->
+        <ellipse cx="84" cy="88" rx="38" ry="10" fill="rgba(245,239,224,0.9)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+        <!-- Half browned effect -->
+        <path d="M84 78 Q104 78 122 82 Q122 94 104 98 Q84 98 84 98 Z" fill="rgba(196,140,60,0.35)" clip-path="url(#tawa-clip)"/>
+        <ellipse cx="84" cy="88" rx="38" ry="10" fill="none" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+        <!-- Brown spots on chapati -->
+        <circle cx="72" cy="87" r="3" fill="rgba(107,76,30,0.2)"/>
+        <circle cx="88" cy="84" r="4" fill="rgba(107,76,30,0.18)"/>
+        <circle cx="100" cy="89" r="3" fill="rgba(107,76,30,0.2)"/>
+        <circle cx="78" cy="92" r="2.5" fill="rgba(107,76,30,0.15)"/>
+        <!-- Heat waves rising -->
+        <path d="M55 74 Q58 68 55 62 Q52 56 55 50" stroke="rgba(196,98,45,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M70 70 Q73 63 70 56 Q67 49 70 42" stroke="rgba(196,98,45,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M84 68 Q87 61 84 54 Q81 47 84 40" stroke="rgba(196,98,45,0.55)" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M98 70 Q101 63 98 56 Q95 49 98 42" stroke="rgba(196,98,45,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M112 74 Q115 68 112 62 Q109 56 112 50" stroke="rgba(196,98,45,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <!-- Temperature indicator -->
+        <rect x="118" y="36" width="28" height="20" rx="4" fill="rgba(196,98,45,0.15)" stroke="rgba(196,98,45,0.4)" stroke-width="1"/>
+        <text x="132" y="48" text-anchor="middle" font-family="Jost,sans-serif" font-size="7.5" fill="rgba(196,98,45,0.9)" font-weight="500">180°</text>
+        <!-- 50% done indicator -->
+        <rect x="14" y="36" width="36" height="20" rx="4" fill="rgba(107,76,30,0.1)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
+        <rect x="14" y="36" width="18" height="20" rx="4" fill="rgba(212,169,106,0.3)"/>
+        <text x="32" y="48" text-anchor="middle" font-family="Jost,sans-serif" font-size="7.5" fill="rgba(107,76,30,0.8)" font-weight="500">50%</text>
+        <!-- Label -->
+        <rect x="44" y="118" width="80" height="16" rx="8" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <text x="84" y="129" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">HALF COOKED</text>
+      </svg>
+    </div>
   </div>
 
   <div class="step-block">
@@ -283,7 +443,50 @@
         <span class="step-detail">1-Year Shelf Life</span>
       </div>
     </div>
-    <div class="step-visual">❄️</div>
+    <div class="step-visual">
+      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="80" cy="80" r="72" fill="rgba(107,76,30,0.06)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
+        <!-- Packaging bag shape -->
+        <path d="M46 48 Q46 40 54 38 L106 38 Q114 40 114 48 L118 118 Q118 126 110 126 L50 126 Q42 126 42 118 Z"
+          fill="rgba(212,169,106,0.18)" stroke="rgba(107,76,30,0.35)" stroke-width="2"/>
+        <!-- Serrated top edge of pack -->
+        <path d="M46 48 L50 44 L54 48 L58 44 L62 48 L66 44 L70 48 L74 44 L78 48 L82 44 L86 48 L90 44 L94 48 L98 44 L102 48 L106 44 L110 48 L114 48"
+          stroke="rgba(107,76,30,0.4)" stroke-width="1.5" fill="none"/>
+        <!-- Pack label area -->
+        <rect x="54" y="58" width="52" height="46" rx="3" fill="rgba(245,239,224,0.6)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <!-- Label text lines -->
+        <text x="80" y="72" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(107,76,30,0.6)" letter-spacing="0.5">Ethical Delights®</text>
+        <text x="80" y="82" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="9" font-weight="600" fill="rgba(28,20,8,0.8)">Satvik</text>
+        <text x="80" y="91" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="9" font-weight="600" fill="rgba(28,20,8,0.8)">Chapati</text>
+        <line x1="60" y1="96" x2="100" y2="96" stroke="rgba(107,76,30,0.2)" stroke-width="0.8"/>
+        <text x="80" y="104" text-anchor="middle" font-family="Jost,sans-serif" font-size="5.5" fill="rgba(107,76,30,0.5)" letter-spacing="0.5">NO PRESERVATIVES</text>
+        <!-- Big snowflake overlaid on pack -->
+        <g transform="translate(80,80)" opacity="0.18">
+          <!-- Main cross -->
+          <line x1="0" y1="-36" x2="0" y2="36" stroke="rgba(107,76,30,1)" stroke-width="3"/>
+          <line x1="-36" y1="0" x2="36" y2="0" stroke="rgba(107,76,30,1)" stroke-width="3"/>
+          <!-- Diagonals -->
+          <line x1="-25" y1="-25" x2="25" y2="25" stroke="rgba(107,76,30,1)" stroke-width="2"/>
+          <line x1="25" y1="-25" x2="-25" y2="25" stroke="rgba(107,76,30,1)" stroke-width="2"/>
+          <!-- Branches on main cross -->
+          <line x1="-8" y1="-20" x2="8" y2="-20" stroke="rgba(107,76,30,1)" stroke-width="2"/>
+          <line x1="-8" y1="20" x2="8" y2="20" stroke="rgba(107,76,30,1)" stroke-width="2"/>
+          <line x1="-20" y1="-8" x2="-20" y2="8" stroke="rgba(107,76,30,1)" stroke-width="2"/>
+          <line x1="20" y1="-8" x2="20" y2="8" stroke="rgba(107,76,30,1)" stroke-width="2"/>
+        </g>
+        <!-- Temperature badge -->
+        <circle cx="114" cy="46" r="18" fill="rgba(28,20,8,0.7)" stroke="rgba(212,169,106,0.4)" stroke-width="1.5"/>
+        <text x="114" y="43" text-anchor="middle" font-family="Jost,sans-serif" font-size="8" fill="var(--wheat,#D4A96A)" font-weight="500">–18°</text>
+        <text x="114" y="53" text-anchor="middle" font-family="Jost,sans-serif" font-size="6" fill="rgba(212,169,106,0.7)">Celsius</text>
+        <!-- 1 Year shelf life badge -->
+        <rect x="16" y="32" width="34" height="28" rx="4" fill="rgba(196,98,45,0.15)" stroke="rgba(196,98,45,0.35)" stroke-width="1"/>
+        <text x="33" y="44" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="11" font-weight="600" fill="rgba(196,98,45,0.9)">1yr</text>
+        <text x="33" y="54" text-anchor="middle" font-family="Jost,sans-serif" font-size="5.5" fill="rgba(196,98,45,0.7)" letter-spacing="0.3">SHELF LIFE</text>
+        <!-- Label -->
+        <rect x="40" y="132" width="80" height="14" rx="7" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <text x="80" y="142" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">FLASH FROZEN</text>
+      </svg>
+    </div>
   </div>
 </section>
 
