@@ -1,74 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Process — Ethical Delights®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --cream:#F5EFE0; --wheat:#D4A96A; --deep:#1C1408; --earth:#6B4C1E; --rust:#C4622D; --pale:#FAF6EE; }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Jost',sans-serif;background:var(--pale);color:var(--deep);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 6vw;background:rgba(250,246,238,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,169,106,0.2);transition:padding 0.3s;}
+  nav.scrolled{padding:0.8rem 6vw;box-shadow:0 4px 30px rgba(28,20,8,0.08);}
+  .nav-logo{display:inline-flex;align-items:center;text-decoration:none;height:2.8rem;}
+  .nav-logo img{height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply;filter:saturate(1.1);}
+  .nav-links{display:flex;gap:2.5rem;align-items:center;}
+  .nav-links a{font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--deep);text-decoration:none;font-weight:500;position:relative;padding-bottom:3px;transition:color 0.3s;}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--rust);transform:scaleX(0);transform-origin:left;transition:transform 0.35s cubic-bezier(.4,0,.2,1);}
+  .nav-links a:hover,.nav-links a.active{color:var(--rust);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-cta{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:0.55rem 1.3rem;text-decoration:none;font-weight:500;transition:background 0.3s;}
+  .nav-cta:hover{background:var(--earth);}
+
+  /* PAGE HERO */
+  .page-hero{min-height:70vh;background:var(--deep);display:flex;flex-direction:column;justify-content:flex-end;padding:7rem 7vw 5rem;position:relative;overflow:hidden;}
+  .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(107,76,30,0.35) 0%,transparent 65%);}
+  .page-hero-glyph{position:absolute;right:6vw;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(10rem,22vw,20rem);font-weight:300;color:rgba(212,169,106,0.06);line-height:1;user-select:none;pointer-events:none;}
+  .page-hero-eyebrow{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.8rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
+  .page-hero-eyebrow::before{content:'';width:2rem;height:1px;background:var(--wheat);}
+  .page-hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,7vw,7.5rem);font-weight:300;color:var(--cream);line-height:1.02;opacity:0;animation:fadeUp 0.9s 0.35s forwards;}
+  .page-hero-h1 em{font-style:italic;color:var(--wheat);}
+  .page-hero-sub{font-size:1rem;font-weight:300;color:rgba(245,239,224,0.55);max-width:52ch;margin-top:1.5rem;line-height:1.8;opacity:0;animation:fadeUp 0.9s 0.5s forwards;}
+  .page-hero-scroll{display:flex;align-items:center;gap:0.8rem;margin-top:3rem;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(212,169,106,0.5);opacity:0;animation:fadeUp 0.9s 0.65s forwards;}
+  .scroll-line{width:3rem;height:1px;background:rgba(212,169,106,0.3);}
+
+  /* SHARED */
+  .section-label{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;}
+  .section-label::before{content:'';width:1.8rem;height:1px;background:var(--rust);}
+  .section-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,4rem);font-weight:300;line-height:1.1;color:var(--deep);}
+  .section-heading em{font-style:italic;color:var(--earth);}
+  .btn-primary{display:inline-flex;align-items:center;gap:0.8rem;background:var(--rust);color:#fff;padding:0.9rem 2.2rem;font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.3s,transform 0.2s;}
+  .btn-primary:hover{background:var(--earth);transform:translateY(-2px);}
+
+  /* INTRO */
+  #intro{padding:6rem 7vw;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+  .intro-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.8vw,2.6rem);font-weight:300;font-style:italic;line-height:1.35;color:var(--earth);border-left:2px solid var(--wheat);padding-left:2rem;}
+  .intro-text{font-size:0.95rem;font-weight:300;line-height:1.85;color:#5a4a2e;}
+  .intro-text p+p{margin-top:1.2rem;}
+
+  /* PROCESS STEPS */
+  #steps{padding:7rem 7vw;background:var(--pale);}
+  .steps-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:5rem;}
+  .steps-intro{font-size:0.95rem;font-weight:300;line-height:1.85;color:#5a4a2e;}
+
+  .step-block{
+    display:grid;grid-template-columns:auto 1fr auto;
+    gap:0 3rem;align-items:start;padding:3rem 0;
+    border-top:1px solid rgba(212,169,106,0.25);
+    position:relative;
+    opacity:0;transform:translateX(-20px);
+    transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);
+  }
+  .step-block.visible{opacity:1;transform:translateX(0);}
+  .step-block:last-child{border-bottom:1px solid rgba(212,169,106,0.25);}
+
+  .step-left{text-align:right;width:8rem;flex-shrink:0;}
+  .step-number{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;line-height:1;color:rgba(212,169,106,0.2);display:block;}
+  .step-tag{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);font-weight:500;}
+
+  .step-right{padding-top:0.5rem;}
+  .step-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--deep);margin-bottom:1rem;}
+  .step-title em{font-style:italic;color:var(--earth);}
+  .step-desc{font-size:0.92rem;font-weight:300;line-height:1.85;color:#5a4a2e;max-width:55ch;}
+  .step-details{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
+  .step-detail{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(107,76,30,0.25);padding:0.3rem 0.8rem;color:var(--earth);}
+
+  /* STEP VISUAL — fixed size box on the right */
+  .step-visual{
+    width:clamp(9rem,14vw,13rem);
+    height:clamp(9rem,14vw,13rem);
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    overflow:hidden;
+    border:1.5px solid rgba(212,169,106,0.3);
+    background:rgba(245,239,224,0.4);
+    box-shadow:0 8px 32px rgba(107,76,30,0.1);
+    margin-top:0.5rem;
+  }
+  .step-visual svg{width:100%;height:100%;display:block;}
+  .step-visual video{width:100%;height:100%;object-fit:cover;display:block;}
+
+  /* TECH */
+  #tech{padding:7rem 7vw;background:var(--deep);}
+  .tech-label::before{background:var(--wheat);}
+  .tech-label{color:var(--wheat);}
+  .tech-heading{color:var(--cream);}
+  .tech-heading em{color:var(--wheat);}
+  .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;}
+  .tech-card{padding:2rem 1.6rem;border:1px solid rgba(212,169,106,0.15);transition:border-color 0.3s;}
+  .tech-card:hover{border-color:rgba(212,169,106,0.45);}
+  .tech-icon{font-size:2rem;margin-bottom:1rem;display:block;}
+  .tech-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--cream);margin-bottom:0.7rem;}
+  .tech-desc{font-size:0.83rem;font-weight:300;color:rgba(245,239,224,0.55);line-height:1.75;}
+
+  /* QUALITY */
+  #quality{padding:6rem 7vw;background:var(--earth);}
+  .quality-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+  .quality-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:300;color:var(--cream);line-height:1.08;}
+  .quality-heading em{font-style:italic;color:var(--wheat);}
+  .quality-points{display:flex;flex-direction:column;gap:1.2rem;}
+  .quality-point{display:flex;gap:1.2rem;align-items:flex-start;padding:1.1rem 1.2rem;border:1px solid rgba(245,239,224,0.15);}
+  .q-icon{font-size:1.1rem;flex-shrink:0;}
+  .q-title{font-size:0.85rem;font-weight:500;color:var(--cream);margin-bottom:0.2rem;}
+  .q-desc{font-size:0.78rem;font-weight:300;color:rgba(245,239,224,0.6);line-height:1.65;}
+
+  /* FOOTER */
+  footer{background:#0d0a04;padding:1.8rem 7vw;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(212,169,106,0.08);}
+  .foot-logo{display:inline-flex;align-items:center;height:2rem;}
+  .foot-logo img{height:100%;width:auto;object-fit:contain;filter:brightness(0) invert(1) sepia(1) saturate(0.5) hue-rotate(5deg);opacity:0.7;}
+  .foot-links{display:flex;gap:2rem;}
+  .foot-links a{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(212,169,106,0.4);text-decoration:none;transition:color 0.3s;}
+  .foot-links a:hover{color:var(--wheat);}
+  .foot-copy{font-size:0.68rem;color:rgba(212,169,106,0.25);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    #intro,.steps-header,.tech-grid,.quality-inner{grid-template-columns:1fr;gap:2.5rem;}
+    .step-block{grid-template-columns:1fr;gap:1rem;}
+    .step-left{text-align:left;width:auto;}
+    .step-number{font-size:3rem;}
+    .step-visual{width:8rem;height:8rem;margin:0 auto;}
+    nav .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="logo-green.png" alt="Ethical Delights"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="process.html" class="active">Our Process</a>
+    <a href="about.html">About Us</a>
+    <a href="index.html#contact-strip" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-glyph">⚙</div>
+  <div class="page-hero-eyebrow">Crafted with Care</div>
+  <h1 class="page-hero-h1">Crafted with <em>Care,</em><br>Scaled with<br>Precision</h1>
+  <p class="page-hero-sub">Every flatbread we produce follows a meticulous five-step process — developed over 8 months of research and refinement — to deliver homestyle quality at commercial scale.</p>
+  <div class="page-hero-scroll"><div class="scroll-line"></div>Explore the process</div>
+</div>
+
+<section id="intro">
+  <div class="intro-quote">"We spent 8 months asking one question: how do you make a chapati at scale that still tastes like home?"</div>
+  <div class="intro-text">
+    <p>Most commercial flatbreads compromise somewhere — on flour quality, on cooking method, on preservatives to extend shelf life. We refused every one of those compromises.</p>
+    <p>Our process was built from scratch, combining Amit's experience in artisan food production with Nishant's expertise in precision manufacturing, to create a system that is both scalable and uncompromising.</p>
+    <p>The result: flatbreads that your kitchen team can rely on — and your diners cannot tell weren't made fresh that morning.</p>
+  </div>
+</section>
+
+<section id="steps">
+  <div class="steps-header">
+    <div>
+      <div class="section-label">Five Steps</div>
+      <h2 class="section-heading">From Grain<br>to <em>Golden</em></h2>
+    </div>
+    <p class="steps-intro">Our end-to-end process is designed with one goal: to produce flatbreads that are indistinguishable from home-made, at any volume, with total consistency.</p>
+  </div>
+
+  <!-- STEP 01 -->
+  <div class="step-block">
+    <div class="step-left">
+      <span class="step-number">01</span>
+      <span class="step-tag">Foundation</span>
+    </div>
+    <div class="step-right">
+      <h3 class="step-title"><em>Freshly Ground</em> Flour</h3>
+      <p class="step-desc">We begin with whole wheat sourced from trusted farms and milled fresh for each production run. The difference between fresh-ground and stored flour is immediately noticeable in aroma, texture, and taste. We never use pre-ground flour that has been sitting in a warehouse — nutrition and flavour start degrading from the moment the grain is broken.</p>
+      <div class="step-details">
+        <span class="step-detail">Whole Wheat</span>
+        <span class="step-detail">Fresh-Milled</span>
+        <span class="step-detail">Traceable Origin</span>
+        <span class="step-detail">No Additives</span>
+      </div>
+    </div>
     <div class="step-visual">
-      <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="80" cy="80" r="72" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
-        <!-- Surface/counter -->
-        <rect x="18" y="108" width="124" height="6" rx="3" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.18)" stroke-width="1"/>
-        <!-- Flour dusting on surface -->
-        <circle cx="35" cy="107" r="1.5" fill="rgba(245,239,224,0.6)"/>
-        <circle cx="48" cy="109" r="1" fill="rgba(245,239,224,0.5)"/>
-        <circle cx="120" cy="107" r="1.5" fill="rgba(245,239,224,0.6)"/>
-        <circle cx="132" cy="109" r="1" fill="rgba(245,239,224,0.5)"/>
-        <circle cx="110" cy="106" r="1" fill="rgba(245,239,224,0.4)"/>
-        <!-- Dough shadow -->
-        <ellipse cx="80" cy="108" rx="38" ry="7" fill="rgba(107,76,30,0.1)"/>
-        <!-- Main dough ball — smooth, plump -->
-        <ellipse cx="80" cy="88" rx="42" ry="30" fill="rgba(245,239,224,0.95)" stroke="rgba(107,76,30,0.25)" stroke-width="2"/>
-        <!-- Dough highlight — catches light on top left -->
-        <ellipse cx="65" cy="72" rx="14" ry="9" fill="rgba(255,255,255,0.35)" transform="rotate(-20 65 72)"/>
-        <!-- Dough subtle surface tension lines — very gentle -->
-        <path d="M48 88 Q64 82 80 84 Q96 86 112 80" stroke="rgba(107,76,30,0.07)" stroke-width="1.5" fill="none"/>
-        <path d="M44 96 Q62 91 80 93 Q98 95 116 90" stroke="rgba(107,76,30,0.06)" stroke-width="1.2" fill="none"/>
-        <!-- Centre pinch mark — where dough was folded -->
-        <path d="M72 78 Q80 75 88 78" stroke="rgba(107,76,30,0.15)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        <!-- Water droplets around dough — hydration -->
-        <path d="M32 58 Q32 51 36 49 Q40 51 40 58 Q40 64 36 65 Q32 64 32 58Z" fill="rgba(100,160,220,0.25)" stroke="rgba(100,160,220,0.4)" stroke-width="1"/>
-        <path d="M118 54 Q118 48 121 47 Q124 48 124 54 Q124 59 121 60 Q118 59 118 54Z" fill="rgba(100,160,220,0.2)" stroke="rgba(100,160,220,0.35)" stroke-width="1"/>
-        <path d="M138 70 Q138 65 141 64 Q144 65 144 70 Q144 74 141 75 Q138 74 138 70Z" fill="rgba(100,160,220,0.18)" stroke="rgba(100,160,220,0.3)" stroke-width="1"/>
-        <!-- Flour cloud puffs -->
-        <circle cx="26" cy="78" r="5" fill="rgba(245,239,224,0.4)"/>
-        <circle cx="33" cy="75" r="4" fill="rgba(245,239,224,0.35)"/>
-        <circle cx="29" cy="71" r="3.5" fill="rgba(245,239,224,0.3)"/>
-        <circle cx="134" cy="76" r="4.5" fill="rgba(245,239,224,0.35)"/>
-        <circle cx="140" cy="73" r="3.5" fill="rgba(245,239,224,0.3)"/>
-        <!-- Label -->
-        <rect x="38" y="122" width="84" height="14" rx="7" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
-        <text x="80" y="132" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">DOUGH KNEADED</text>
-      </svg>
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="grind.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <!-- STEP 02 -->
+  <div class="step-block">
+    <div class="step-left">
+      <span class="step-number">02</span>
+      <span class="step-tag">Texture</span>
+    </div>
+    <div class="step-right">
+      <h3 class="step-title">Kneaded<br>with <em>Care</em></h3>
+      <p class="step-desc">Dough preparation is where the soul of the flatbread lives. The hydration ratio, kneading duration, and resting time all profoundly affect the final texture and pliability. Our dough recipe was developed through hundreds of test batches, dialling in the exact parameters that produce a chapati soft enough to fold but strong enough to hold a full serving without tearing.</p>
+      <div class="step-details">
+        <span class="step-detail">Precise Hydration</span>
+        <span class="step-detail">Controlled Resting</span>
+        <span class="step-detail">No Shortcuts</span>
+      </div>
     </div>
     <div class="step-visual">
       <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="80" cy="80" r="72" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
-        <!-- Machine drum / mixer body -->
-        <rect x="50" y="52" width="60" height="52" rx="6" fill="rgba(28,20,8,0.12)" stroke="rgba(107,76,30,0.4)" stroke-width="2"/>
-        <!-- Bowl inside machine -->
-        <ellipse cx="80" cy="104" rx="32" ry="10" fill="rgba(107,76,30,0.15)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
-        <path d="M48 78 Q48 110 80 114 Q112 110 112 78 Z" fill="rgba(245,239,224,0.7)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
-        <!-- Dough mound in bowl -->
-        <ellipse cx="80" cy="100" rx="26" ry="9" fill="rgba(245,239,224,0.95)" stroke="rgba(107,76,30,0.25)" stroke-width="1.5"/>
-        <ellipse cx="80" cy="95" rx="24" ry="14" fill="rgba(245,239,224,0.95)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
-        <!-- Dough surface texture -->
-        <path d="M62 92 Q70 89 78 92 Q86 95 94 92" stroke="rgba(107,76,30,0.12)" stroke-width="1" fill="none"/>
-        <path d="M65 98 Q73 95 81 98 Q89 101 97 98" stroke="rgba(107,76,30,0.1)" stroke-width="1" fill="none"/>
-        <!-- Machine hook / spiral arm -->
-        <path d="M80 56 L80 80" stroke="rgba(107,76,30,0.5)" stroke-width="3" stroke-linecap="round"/>
-        <path d="M80 80 Q92 88 88 98 Q84 106 80 100" stroke="rgba(107,76,30,0.5)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <!-- Motor top -->
-        <rect x="62" y="40" width="36" height="16" rx="4" fill="rgba(28,20,8,0.2)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/>
-        <circle cx="80" cy="48" r="5" fill="rgba(107,76,30,0.3)" stroke="rgba(107,76,30,0.5)" stroke-width="1"/>
-        <!-- Rotation arrows around hook -->
-        <path d="M68 70 Q66 62 72 58" stroke="rgba(196,98,45,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none" marker-end="url(#a)"/>
-        <path d="M92 70 Q94 62 88 58" stroke="rgba(196,98,45,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        <!-- Speed/precision badge -->
-        <rect x="16" y="52" width="28" height="22" rx="4" fill="rgba(196,98,45,0.12)" stroke="rgba(196,98,45,0.35)" stroke-width="1"/>
-        <text x="30" y="63" text-anchor="middle" font-family="Jost,sans-serif" font-size="6" fill="rgba(196,98,45,0.8)" letter-spacing="0.3">AUTO</text>
-        <text x="30" y="71" text-anchor="middle" font-family="Jost,sans-serif" font-size="6" fill="rgba(196,98,45,0.8)" letter-spacing="0.3">MIX</text>
-        <!-- Label -->
-        <rect x="40" y="126" width="80" height="14" rx="7" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
-        <text x="80" y="136" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">MACHINE KNEADED</text>
+        <circle cx="80" cy="80" r="78" fill="rgba(245,239,224,0.5)"/>
+        <!-- Counter surface -->
+        <rect x="10" y="108" width="140" height="8" rx="3" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.18)" stroke-width="1"/>
+        <!-- Dough shadow -->
+        <ellipse cx="80" cy="110" rx="46" ry="7" fill="rgba(107,76,30,0.08)"/>
+        <!-- Main dough ball -->
+        <ellipse cx="80" cy="86" rx="48" ry="34" fill="rgba(240,228,200,1)" stroke="rgba(107,76,30,0.28)" stroke-width="2"/>
+        <!-- Highlight -->
+        <ellipse cx="62" cy="68" rx="16" ry="10" fill="rgba(255,255,255,0.4)" transform="rotate(-20 62 68)"/>
+        <!-- Surface folds -->
+        <path d="M44 86 Q62 79 80 82 Q98 85 116 78" stroke="rgba(107,76,30,0.1)" stroke-width="1.5" fill="none"/>
+        <path d="M40 97 Q60 91 80 94 Q100 97 120 91" stroke="rgba(107,76,30,0.08)" stroke-width="1.2" fill="none"/>
+        <!-- Centre pinch -->
+        <path d="M70 78 Q80 74 90 78" stroke="rgba(107,76,30,0.18)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <!-- Water drops left -->
+        <path d="M22 62 Q22 54 26 52 Q30 54 30 62 Q30 69 26 70 Q22 69 22 62Z" fill="rgba(100,160,220,0.3)" stroke="rgba(100,160,220,0.5)" stroke-width="1"/>
+        <path d="M30 50 Q30 44 33 43 Q36 44 36 50 Q36 55 33 56 Q30 55 30 50Z" fill="rgba(100,160,220,0.25)" stroke="rgba(100,160,220,0.4)" stroke-width="1"/>
+        <!-- Water drops right -->
+        <path d="M130 62 Q130 54 134 52 Q138 54 138 62 Q138 69 134 70 Q130 69 130 62Z" fill="rgba(100,160,220,0.28)" stroke="rgba(100,160,220,0.45)" stroke-width="1"/>
+        <!-- Flour puffs -->
+        <circle cx="20" cy="82" r="6" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="28" cy="78" r="4.5" fill="rgba(255,255,255,0.38)"/>
+        <circle cx="22" cy="74" r="3.5" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="140" cy="80" r="5.5" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="146" cy="76" r="4" fill="rgba(255,255,255,0.32)"/>
+        <!-- Label pill -->
+        <rect x="36" y="122" width="88" height="15" rx="7.5" fill="rgba(107,76,30,0.15)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
+        <text x="80" y="133" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(107,76,30,0.75)" letter-spacing="0.8">DOUGH READY</text>
       </svg>
     </div>
   </div>
 
+  <!-- STEP 03 -->
   <div class="step-block">
     <div class="step-left">
       <span class="step-number">03</span>
@@ -86,48 +270,43 @@
     </div>
     <div class="step-visual">
       <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="80" cy="80" r="72" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
-        <!-- Marble / work surface -->
-        <rect x="16" y="112" width="128" height="10" rx="3" fill="rgba(245,239,224,0.6)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
-        <!-- Flat chapati disc — perfectly circular, thin -->
-        <ellipse cx="80" cy="112" rx="48" ry="7" fill="rgba(245,239,224,0.95)" stroke="rgba(107,76,30,0.28)" stroke-width="1.5"/>
-        <!-- Chapati texture — subtle concentric rings -->
-        <ellipse cx="80" cy="112" rx="36" ry="5" fill="none" stroke="rgba(107,76,30,0.1)" stroke-width="1"/>
-        <ellipse cx="80" cy="112" rx="24" ry="3.5" fill="none" stroke="rgba(107,76,30,0.08)" stroke-width="1"/>
-        <ellipse cx="80" cy="112" rx="12" ry="2" fill="none" stroke="rgba(107,76,30,0.07)" stroke-width="1"/>
-        <!-- Rolling pin — chunky and clear, horizontal -->
-        <rect x="20" y="84" width="120" height="24" rx="12" fill="rgba(180,120,50,0.35)" stroke="rgba(107,76,30,0.55)" stroke-width="2.5"/>
-        <!-- Pin highlight -->
-        <rect x="22" y="86" width="116" height="8" rx="6" fill="rgba(255,255,255,0.15)"/>
-        <!-- Pin wood grain lines -->
-        <line x1="44" y1="86" x2="44" y2="106" stroke="rgba(107,76,30,0.18)" stroke-width="1.5"/>
-        <line x1="64" y1="86" x2="64" y2="106" stroke="rgba(107,76,30,0.15)" stroke-width="1.5"/>
-        <line x1="84" y1="86" x2="84" y2="106" stroke="rgba(107,76,30,0.15)" stroke-width="1.5"/>
-        <line x1="104" y1="86" x2="104" y2="106" stroke="rgba(107,76,30,0.15)" stroke-width="1.5"/>
-        <line x1="120" y1="86" x2="120" y2="106" stroke="rgba(107,76,30,0.18)" stroke-width="1.5"/>
-        <!-- Handles — solid cylinders -->
-        <rect x="10" y="88" width="12" height="18" rx="5" fill="rgba(80,45,10,0.55)" stroke="rgba(107,76,30,0.6)" stroke-width="1.5"/>
-        <rect x="138" y="88" width="12" height="18" rx="5" fill="rgba(80,45,10,0.55)" stroke="rgba(107,76,30,0.6)" stroke-width="1.5"/>
-        <!-- Push-down arrows — showing pressure -->
-        <line x1="80" y1="44" x2="80" y2="72" stroke="rgba(196,98,45,0.7)" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M73 68 L80 76 L87 68" stroke="rgba(196,98,45,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <line x1="50" y1="48" x2="50" y2="72" stroke="rgba(196,98,45,0.4)" stroke-width="2" stroke-linecap="round"/>
-        <path d="M44 68 L50 75 L56 68" stroke="rgba(196,98,45,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <line x1="110" y1="48" x2="110" y2="72" stroke="rgba(196,98,45,0.4)" stroke-width="2" stroke-linecap="round"/>
-        <path d="M104 68 L110 75 L116 68" stroke="rgba(196,98,45,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- Diameter arrow at bottom -->
-        <line x1="32" y1="128" x2="128" y2="128" stroke="rgba(196,98,45,0.5)" stroke-width="1" stroke-dasharray="3 2"/>
-        <line x1="32" y1="124" x2="32" y2="132" stroke="rgba(196,98,45,0.5)" stroke-width="1.5"/>
-        <line x1="128" y1="124" x2="128" y2="132" stroke="rgba(196,98,45,0.5)" stroke-width="1.5"/>
-        <text x="80" y="143" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" fill="rgba(196,98,45,0.7)" letter-spacing="0.5">UNIFORM DIAMETER</text>
+        <circle cx="80" cy="80" r="78" fill="rgba(245,239,224,0.5)"/>
+        <!-- Work surface -->
+        <rect x="10" y="114" width="140" height="9" rx="3" fill="rgba(220,205,175,0.8)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
+        <!-- Flat chapati on surface -->
+        <ellipse cx="80" cy="114" rx="52" ry="7" fill="rgba(240,228,200,0.95)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
+        <ellipse cx="80" cy="114" rx="40" ry="5" fill="none" stroke="rgba(107,76,30,0.1)" stroke-width="1"/>
+        <ellipse cx="80" cy="114" rx="26" ry="3.5" fill="none" stroke="rgba(107,76,30,0.08)" stroke-width="1"/>
+        <ellipse cx="80" cy="114" rx="13" ry="2" fill="none" stroke="rgba(107,76,30,0.07)" stroke-width="1"/>
+        <!-- Rolling pin -->
+        <rect x="14" y="84" width="132" height="26" rx="13" fill="rgba(170,108,40,0.4)" stroke="rgba(107,76,30,0.6)" stroke-width="2.5"/>
+        <!-- Pin sheen -->
+        <rect x="16" y="86" width="128" height="9" rx="6" fill="rgba(255,255,255,0.18)"/>
+        <!-- Grain lines -->
+        <line x1="38" y1="86" x2="38" y2="108" stroke="rgba(107,76,30,0.2)" stroke-width="1.5"/>
+        <line x1="60" y1="86" x2="60" y2="108" stroke="rgba(107,76,30,0.16)" stroke-width="1.5"/>
+        <line x1="82" y1="86" x2="82" y2="108" stroke="rgba(107,76,30,0.16)" stroke-width="1.5"/>
+        <line x1="104" y1="86" x2="104" y2="108" stroke="rgba(107,76,30,0.16)" stroke-width="1.5"/>
+        <line x1="124" y1="86" x2="124" y2="108" stroke="rgba(107,76,30,0.2)" stroke-width="1.5"/>
+        <!-- Handles -->
+        <rect x="4" y="88" width="12" height="20" rx="5" fill="rgba(70,38,8,0.65)" stroke="rgba(107,76,30,0.7)" stroke-width="1.5"/>
+        <rect x="144" y="88" width="12" height="20" rx="5" fill="rgba(70,38,8,0.65)" stroke="rgba(107,76,30,0.7)" stroke-width="1.5"/>
+        <!-- Press arrows -->
+        <line x1="80" y1="42" x2="80" y2="70" stroke="rgba(196,98,45,0.75)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M72 66 L80 76 L88 66" stroke="rgba(196,98,45,0.75)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="48" y1="46" x2="48" y2="70" stroke="rgba(196,98,45,0.45)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M41 66 L48 74 L55 66" stroke="rgba(196,98,45,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="112" y1="46" x2="112" y2="70" stroke="rgba(196,98,45,0.45)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M105 66 L112 74 L119 66" stroke="rgba(196,98,45,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         <!-- Label -->
-        <rect x="36" y="149" width="88" height="13" rx="6.5" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
-        <text x="80" y="158" text-anchor="middle" font-family="Jost,sans-serif" font-size="6" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">PRECISION ROLLED</text>
+        <rect x="28" y="130" width="104" height="15" rx="7.5" fill="rgba(107,76,30,0.15)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
+        <text x="80" y="141" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(107,76,30,0.75)" letter-spacing="0.8">PRECISION ROLLED</text>
       </svg>
     </div>
   </div>
 
-    <div class="step-block">
+  <!-- STEP 04 -->
+  <div class="step-block">
     <div class="step-left">
       <span class="step-number">04</span>
       <span class="step-tag">Quality Lock</span>
@@ -136,58 +315,58 @@
       <h3 class="step-title">Half-<em>Cooked</em></h3>
       <p class="step-desc">Each flatbread is partially cooked on a calibrated tawa at a precise temperature. This locks in pliability, sets the structure, and significantly reduces your final cook time without pre-cooking the flatbread to a point where it loses the sensory experience of being freshly made. Your team finishes them to order — the result feels fresh-made because it is.</p>
       <div class="step-details">
-        <span class="step-detail">Calibrated Temperature</span>
         <span class="step-detail">Locks Pliability</span>
         <span class="step-detail">Reduces Cook Time</span>
+        <span class="step-detail">20% Cooked</span>
         <span class="step-detail">Fresh Finish</span>
       </div>
     </div>
     <div class="step-visual">
       <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="80" cy="80" r="72" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
-        <!-- Gas burner base ring -->
-        <ellipse cx="80" cy="126" rx="28" ry="6" fill="rgba(28,20,8,0.3)" stroke="rgba(28,20,8,0.5)" stroke-width="1.5"/>
+        <circle cx="80" cy="80" r="78" fill="rgba(28,20,8,0.08)"/>
+        <!-- Burner ring -->
+        <ellipse cx="80" cy="130" rx="30" ry="7" fill="rgba(28,20,8,0.35)" stroke="rgba(28,20,8,0.5)" stroke-width="1.5"/>
         <!-- Burner spokes -->
-        <line x1="80" y1="120" x2="80" y2="132" stroke="rgba(50,50,50,0.4)" stroke-width="2"/>
-        <line x1="68" y1="123" x2="92" y2="129" stroke="rgba(50,50,50,0.4)" stroke-width="2"/>
-        <line x1="68" y1="129" x2="92" y2="123" stroke="rgba(50,50,50,0.4)" stroke-width="2"/>
-        <!-- Gas flames — small, low heat for 20% cook -->
-        <path d="M62 121 Q60 114 64 110 Q66 116 68 112 Q70 118 65 121Z" fill="rgba(255,140,0,0.7)"/>
-        <path d="M74 120 Q72 113 76 109 Q78 115 80 111 Q82 117 77 120Z" fill="rgba(255,160,0,0.75)"/>
-        <path d="M86 120 Q84 113 88 109 Q90 115 92 111 Q94 117 89 120Z" fill="rgba(255,140,0,0.7)"/>
-        <path d="M98 121 Q96 114 100 110 Q102 116 104 112 Q106 118 101 121Z" fill="rgba(255,120,0,0.65)"/>
-        <!-- Flame tips — blue inner -->
-        <path d="M66 118 Q64 113 67 110 Q69 114 68 118Z" fill="rgba(100,160,255,0.5)"/>
-        <path d="M78 117 Q76 112 79 109 Q81 113 80 117Z" fill="rgba(100,160,255,0.5)"/>
-        <path d="M90 117 Q88 112 91 109 Q93 113 92 117Z" fill="rgba(100,160,255,0.5)"/>
-        <!-- Tawa / griddle — flat, wide -->
-        <ellipse cx="80" cy="112" rx="54" ry="9" fill="rgba(28,20,8,0.45)" stroke="rgba(28,20,8,0.6)" stroke-width="2"/>
-        <ellipse cx="80" cy="108" rx="54" ry="9" fill="rgba(40,30,12,0.55)" stroke="rgba(107,76,30,0.45)" stroke-width="2"/>
-        <!-- Tawa handle left -->
-        <path d="M26 108 L14 106 Q10 106 10 109 Q10 112 14 112 L26 112 Z" fill="rgba(28,20,8,0.5)" stroke="rgba(28,20,8,0.6)" stroke-width="1.5"/>
-        <!-- Chapati on tawa — nearly raw, just slightly touched -->
-        <ellipse cx="80" cy="100" rx="40" ry="8" fill="rgba(245,239,224,0.93)" stroke="rgba(107,76,30,0.22)" stroke-width="1.5"/>
-        <!-- Very subtle 20% browning — just one small section bottom right -->
-        <path d="M100 100 Q118 98 120 104 Q110 108 96 106 Z" fill="rgba(180,120,40,0.18)" opacity="0.7"/>
-        <!-- Chapati texture rings — raw dough look -->
-        <ellipse cx="80" cy="100" rx="30" ry="6" fill="none" stroke="rgba(107,76,30,0.08)" stroke-width="1"/>
-        <ellipse cx="80" cy="100" rx="18" ry="4" fill="none" stroke="rgba(107,76,30,0.07)" stroke-width="1"/>
-        <!-- Tiny steam wisps — just starting -->
-        <path d="M58 90 Q60 85 58 80" stroke="rgba(200,200,200,0.35)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-        <path d="M80 87 Q82 82 80 77" stroke="rgba(200,200,200,0.4)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-        <path d="M102 90 Q104 85 102 80" stroke="rgba(200,200,200,0.35)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-        <!-- 20% badge — simple pill -->
-        <rect x="118" y="46" width="32" height="22" rx="6" fill="rgba(196,98,45,0.15)" stroke="rgba(196,98,45,0.4)" stroke-width="1.5"/>
-        <text x="134" y="58" text-anchor="middle" font-family="Jost,sans-serif" font-size="10" font-weight="500" fill="rgba(196,98,45,0.9)">20%</text>
-        <text x="134" y="66" text-anchor="middle" font-family="Jost,sans-serif" font-size="5.5" fill="rgba(196,98,45,0.6)" letter-spacing="0.3">cooked</text>
+        <line x1="80" y1="123" x2="80" y2="137" stroke="rgba(60,60,60,0.5)" stroke-width="2.5"/>
+        <line x1="65" y1="126" x2="95" y2="134" stroke="rgba(60,60,60,0.5)" stroke-width="2.5"/>
+        <line x1="65" y1="134" x2="95" y2="126" stroke="rgba(60,60,60,0.5)" stroke-width="2.5"/>
+        <!-- Gas flames -->
+        <path d="M56 122 Q54 114 58 109 Q61 115 63 110 Q66 116 60 122Z" fill="rgba(255,140,0,0.85)"/>
+        <path d="M70 121 Q68 113 72 108 Q75 114 77 110 Q79 116 73 121Z" fill="rgba(255,165,0,0.9)"/>
+        <path d="M83 121 Q81 113 85 108 Q88 114 90 110 Q92 116 86 121Z" fill="rgba(255,140,0,0.85)"/>
+        <path d="M97 122 Q95 114 99 109 Q102 115 104 110 Q107 116 101 122Z" fill="rgba(255,120,0,0.8)"/>
+        <!-- Blue flame cores -->
+        <path d="M59 119 Q57 113 60 109 Q62 113 61 119Z" fill="rgba(120,180,255,0.6)"/>
+        <path d="M73 118 Q71 112 74 108 Q76 112 75 118Z" fill="rgba(120,180,255,0.6)"/>
+        <path d="M86 118 Q84 112 87 108 Q89 112 88 118Z" fill="rgba(120,180,255,0.6)"/>
+        <!-- Tawa -->
+        <ellipse cx="80" cy="114" rx="58" ry="10" fill="rgba(20,14,4,0.5)" stroke="rgba(20,14,4,0.6)" stroke-width="2"/>
+        <ellipse cx="80" cy="110" rx="58" ry="10" fill="rgba(35,24,8,0.65)" stroke="rgba(107,76,30,0.5)" stroke-width="2"/>
+        <!-- Tawa handle -->
+        <path d="M22 110 L8 108 Q4 108 4 111 Q4 114 8 114 L22 114Z" fill="rgba(20,14,4,0.6)" stroke="rgba(20,14,4,0.7)" stroke-width="1.5"/>
+        <!-- Chapati on tawa — fresh/raw look, 20% brown only on one small edge -->
+        <ellipse cx="80" cy="102" rx="44" ry="9" fill="rgba(242,230,200,0.95)" stroke="rgba(107,76,30,0.2)" stroke-width="1.5"/>
+        <!-- 20% browning — subtle, only right side -->
+        <path d="M110 100 Q124 98 124 106 Q114 110 100 108 Z" fill="rgba(160,100,30,0.2)"/>
+        <!-- Chapati rings -->
+        <ellipse cx="80" cy="102" rx="33" ry="6.5" fill="none" stroke="rgba(107,76,30,0.09)" stroke-width="1"/>
+        <ellipse cx="80" cy="102" rx="20" ry="4" fill="none" stroke="rgba(107,76,30,0.07)" stroke-width="1"/>
+        <!-- Tiny steam wisps -->
+        <path d="M54 90 Q56 84 54 78" stroke="rgba(200,200,200,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M80 86 Q82 80 80 74" stroke="rgba(200,200,200,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M106 90 Q108 84 106 78" stroke="rgba(200,200,200,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <!-- 20% badge -->
+        <rect x="108" y="38" width="40" height="26" rx="7" fill="rgba(196,98,45,0.2)" stroke="rgba(196,98,45,0.5)" stroke-width="1.5"/>
+        <text x="128" y="53" text-anchor="middle" font-family="Jost,sans-serif" font-size="12" font-weight="500" fill="rgba(196,98,45,0.95)">20%</text>
+        <text x="128" y="62" text-anchor="middle" font-family="Jost,sans-serif" font-size="6" fill="rgba(196,98,45,0.65)" letter-spacing="0.3">cooked</text>
         <!-- Label -->
-        <rect x="42" y="136" width="76" height="13" rx="6.5" fill="rgba(107,76,30,0.12)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
-        <text x="80" y="146" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" fill="rgba(107,76,30,0.7)" letter-spacing="0.8">HALF BAKED</text>
+        <rect x="34" y="138" width="92" height="15" rx="7.5" fill="rgba(107,76,30,0.15)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
+        <text x="80" y="149" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(107,76,30,0.75)" letter-spacing="0.8">HALF BAKED</text>
       </svg>
-    </div>
     </div>
   </div>
 
+  <!-- STEP 05 -->
   <div class="step-block">
     <div class="step-left">
       <span class="step-number">05</span>
@@ -205,58 +384,56 @@
     </div>
     <div class="step-visual">
       <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Dark icy background -->
-        <circle cx="80" cy="80" r="72" fill="rgba(14,42,60,0.15)" stroke="rgba(212,169,106,0.25)" stroke-width="1.5"/>
-        <!-- Big dominant snowflake — THE hero of this slide -->
-        <g transform="translate(80,72)" opacity="0.22">
-          <line x1="0" y1="-44" x2="0" y2="44" stroke="rgba(180,220,255,1)" stroke-width="4"/>
-          <line x1="-44" y1="0" x2="44" y2="0" stroke="rgba(180,220,255,1)" stroke-width="4"/>
-          <line x1="-31" y1="-31" x2="31" y2="31" stroke="rgba(180,220,255,1)" stroke-width="3"/>
-          <line x1="31" y1="-31" x2="-31" y2="31" stroke="rgba(180,220,255,1)" stroke-width="3"/>
-          <!-- Branch ticks on main cross -->
-          <line x1="-10" y1="-26" x2="10" y2="-26" stroke="rgba(180,220,255,1)" stroke-width="2.5"/>
-          <line x1="-10" y1="26" x2="10" y2="26" stroke="rgba(180,220,255,1)" stroke-width="2.5"/>
-          <line x1="-26" y1="-10" x2="-26" y2="10" stroke="rgba(180,220,255,1)" stroke-width="2.5"/>
-          <line x1="26" y1="-10" x2="26" y2="10" stroke="rgba(180,220,255,1)" stroke-width="2.5"/>
+        <!-- Icy blue-dark background -->
+        <circle cx="80" cy="80" r="78" fill="rgba(10,28,50,0.25)"/>
+        <!-- Big snowflake watermark -->
+        <g transform="translate(80,80)" opacity="0.15">
+          <line x1="0" y1="-52" x2="0" y2="52" stroke="rgba(160,210,255,1)" stroke-width="5"/>
+          <line x1="-52" y1="0" x2="52" y2="0" stroke="rgba(160,210,255,1)" stroke-width="5"/>
+          <line x1="-37" y1="-37" x2="37" y2="37" stroke="rgba(160,210,255,1)" stroke-width="3.5"/>
+          <line x1="37" y1="-37" x2="-37" y2="37" stroke="rgba(160,210,255,1)" stroke-width="3.5"/>
+          <line x1="-12" y1="-30" x2="12" y2="-30" stroke="rgba(160,210,255,1)" stroke-width="3"/>
+          <line x1="-12" y1="30" x2="12" y2="30" stroke="rgba(160,210,255,1)" stroke-width="3"/>
+          <line x1="-30" y1="-12" x2="-30" y2="12" stroke="rgba(160,210,255,1)" stroke-width="3"/>
+          <line x1="30" y1="-12" x2="30" y2="12" stroke="rgba(160,210,255,1)" stroke-width="3"/>
         </g>
-        <!-- Stack of 3 chapati discs — bottom to top -->
-        <!-- Bottom chapati -->
-        <ellipse cx="80" cy="106" rx="44" ry="8" fill="rgba(220,200,160,0.7)" stroke="rgba(107,76,30,0.3)" stroke-width="1.2"/>
-        <!-- Middle chapati -->
-        <ellipse cx="80" cy="100" rx="44" ry="8" fill="rgba(235,215,175,0.85)" stroke="rgba(107,76,30,0.32)" stroke-width="1.2"/>
-        <!-- Top chapati — most visible, slight brown spots -->
-        <ellipse cx="80" cy="94" rx="44" ry="8" fill="rgba(245,232,195,0.95)" stroke="rgba(107,76,30,0.35)" stroke-width="1.5"/>
-        <ellipse cx="80" cy="94" rx="32" ry="5.5" fill="none" stroke="rgba(107,76,30,0.1)" stroke-width="1"/>
-        <ellipse cx="80" cy="94" rx="18" ry="3" fill="none" stroke="rgba(107,76,30,0.08)" stroke-width="1"/>
-        <circle cx="68" cy="93" r="2.5" fill="rgba(107,76,30,0.12)"/>
-        <circle cx="88" cy="91" r="2" fill="rgba(107,76,30,0.1)"/>
-        <!-- Stack thickness lines showing multiple chapatis -->
-        <line x1="36" y1="94" x2="36" y2="106" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
-        <line x1="124" y1="94" x2="124" y2="106" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
-        <!-- Open packet mouth above the stack -->
+        <!-- Stack of 3 chapatis — bottom to top -->
+        <ellipse cx="80" cy="108" rx="46" ry="8" fill="rgba(210,190,150,0.7)" stroke="rgba(107,76,30,0.28)" stroke-width="1"/>
+        <ellipse cx="80" cy="101" rx="46" ry="8" fill="rgba(228,210,168,0.85)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
+        <ellipse cx="80" cy="94" rx="46" ry="8" fill="rgba(242,228,195,0.95)" stroke="rgba(107,76,30,0.35)" stroke-width="1.5"/>
+        <!-- Top chapati detail -->
+        <ellipse cx="80" cy="94" rx="34" ry="6" fill="none" stroke="rgba(107,76,30,0.1)" stroke-width="1"/>
+        <ellipse cx="80" cy="94" rx="20" ry="3.5" fill="none" stroke="rgba(107,76,30,0.08)" stroke-width="1"/>
+        <circle cx="68" cy="93" r="2.5" fill="rgba(107,76,30,0.1)"/>
+        <circle cx="90" cy="91" r="2" fill="rgba(107,76,30,0.08)"/>
+        <!-- Stack side lines -->
+        <line x1="34" y1="94" x2="34" y2="108" stroke="rgba(107,76,30,0.18)" stroke-width="1"/>
+        <line x1="126" y1="94" x2="126" y2="108" stroke="rgba(107,76,30,0.18)" stroke-width="1"/>
+        <!-- Open packet mouth wrapping stack -->
         <!-- Left flap -->
-        <path d="M44 86 Q44 72 50 68 L80 66 L80 86 Z" fill="rgba(212,169,106,0.3)" stroke="rgba(107,76,30,0.45)" stroke-width="1.5"/>
+        <path d="M40 88 Q38 72 46 67 L80 65 L80 88 Z" fill="rgba(212,169,106,0.35)" stroke="rgba(107,76,30,0.5)" stroke-width="1.5"/>
         <!-- Right flap -->
-        <path d="M116 86 Q116 72 110 68 L80 66 L80 86 Z" fill="rgba(212,169,106,0.25)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/>
-        <!-- Packet label strip across flaps -->
-        <rect x="52" y="70" width="56" height="12" rx="2" fill="rgba(245,239,224,0.5)" stroke="rgba(107,76,30,0.2)" stroke-width="0.8"/>
-        <text x="80" y="79" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" font-weight="600" fill="rgba(28,20,8,0.75)" letter-spacing="0.3">Ethical Delights®</text>
-        <!-- Serrated zip-lock top of packet -->
-        <path d="M44 86 L48 82 L52 86 L56 82 L60 86 L64 82 L68 86 L72 82 L76 86 L80 82 L84 86 L88 82 L92 86 L96 82 L100 86 L104 82 L108 86 L112 82 L116 86" stroke="rgba(107,76,30,0.4)" stroke-width="1.2" fill="none"/>
-        <!-- –18°C badge — clear and prominent -->
-        <circle cx="80" cy="34" r="22" fill="rgba(14,42,60,0.55)" stroke="rgba(180,220,255,0.45)" stroke-width="2"/>
-        <text x="80" y="30" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" font-weight="500" fill="rgba(180,220,255,0.95)">–18°</text>
-        <text x="80" y="42" text-anchor="middle" font-family="Jost,sans-serif" font-size="6" fill="rgba(180,220,255,0.6)" letter-spacing="0.5">CELSIUS</text>
+        <path d="M120 88 Q122 72 114 67 L80 65 L80 88 Z" fill="rgba(212,169,106,0.28)" stroke="rgba(107,76,30,0.45)" stroke-width="1.5"/>
+        <!-- Label across -->
+        <rect x="50" y="69" width="60" height="13" rx="2" fill="rgba(245,239,224,0.55)" stroke="rgba(107,76,30,0.2)" stroke-width="0.8"/>
+        <text x="80" y="79" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7.5" font-weight="600" fill="rgba(28,20,8,0.8)" letter-spacing="0.3">Ethical Delights®</text>
+        <!-- Serrated zip top -->
+        <path d="M40 88 L44 84 L48 88 L52 84 L56 88 L60 84 L64 88 L68 84 L72 88 L76 84 L80 88 L84 84 L88 88 L92 84 L96 88 L100 84 L104 88 L108 84 L112 88 L116 84 L120 88" stroke="rgba(107,76,30,0.45)" stroke-width="1.2" fill="none"/>
+        <!-- –18°C circle badge — top centre, clear -->
+        <circle cx="80" cy="36" r="24" fill="rgba(10,28,50,0.65)" stroke="rgba(160,210,255,0.5)" stroke-width="2"/>
+        <text x="80" y="31" text-anchor="middle" font-family="Jost,sans-serif" font-size="12" font-weight="500" fill="rgba(160,210,255,1)">–18°</text>
+        <text x="80" y="43" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" fill="rgba(160,210,255,0.65)" letter-spacing="0.5">CELSIUS</text>
         <!-- Label -->
-        <rect x="28" y="118" width="104" height="14" rx="7" fill="rgba(14,42,60,0.2)" stroke="rgba(212,169,106,0.3)" stroke-width="1"/>
-        <text x="80" y="128" text-anchor="middle" font-family="Jost,sans-serif" font-size="6.5" fill="rgba(107,76,30,0.8)" letter-spacing="0.8">PACKED &amp; FLASH FROZEN</text>
+        <rect x="18" y="120" width="124" height="15" rx="7.5" fill="rgba(10,28,50,0.25)" stroke="rgba(212,169,106,0.35)" stroke-width="1"/>
+        <text x="80" y="131" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.85)" letter-spacing="0.8">PACKED &amp; FLASH FROZEN</text>
       </svg>
     </div>
+  </div>
 </section>
 
 <!-- TECHNOLOGY -->
 <section id="tech">
-  <div class="section-label tech-label">Technology & Innovation</div>
+  <div class="section-label tech-label">Technology &amp; Innovation</div>
   <h2 class="section-heading tech-heading">Built for <em>Scale,</em><br>Designed for Quality</h2>
   <div class="tech-grid">
     <div class="tech-card fade-up">
@@ -286,39 +463,26 @@
     <div class="quality-points">
       <div class="quality-point fade-up">
         <span class="q-icon">✓</span>
-        <div>
-          <div class="q-title">Zero Preservatives, Every Batch</div>
-          <div class="q-desc">We test every production run to confirm the complete absence of artificial preservatives. This is not aspirational — it is our baseline.</div>
-        </div>
+        <div><div class="q-title">Zero Preservatives, Every Batch</div><div class="q-desc">We test every production run to confirm the complete absence of artificial preservatives. This is not aspirational — it is our baseline.</div></div>
       </div>
       <div class="quality-point fade-up">
         <span class="q-icon">✓</span>
-        <div>
-          <div class="q-title">Consistent Weight & Dimension</div>
-          <div class="q-desc">Each flatbread is checked against specification. Any piece that doesn't meet our standards doesn't leave our facility.</div>
-        </div>
+        <div><div class="q-title">Consistent Weight &amp; Dimension</div><div class="q-desc">Each flatbread is checked against specification. Any piece that doesn't meet our standards doesn't leave our facility.</div></div>
       </div>
       <div class="quality-point fade-up">
         <span class="q-icon">✓</span>
-        <div>
-          <div class="q-title">Hygienic Production Environment</div>
-          <div class="q-desc">Our facility maintains food-safe conditions throughout production, with regular audits and strict hygiene protocols for all staff and equipment.</div>
-        </div>
+        <div><div class="q-title">Hygienic Production Environment</div><div class="q-desc">Our facility maintains food-safe conditions throughout production, with regular audits and strict hygiene protocols for all staff and equipment.</div></div>
       </div>
       <div class="quality-point fade-up">
         <span class="q-icon">✓</span>
-        <div>
-          <div class="q-title">Cold Chain Maintained to Delivery</div>
-          <div class="q-desc">The frozen chain is never broken from our facility to your kitchen. We partner only with cold-chain logistics providers who meet our temperature standards.</div>
-        </div>
+        <div><div class="q-title">Cold Chain Maintained to Delivery</div><div class="q-desc">The frozen chain is never broken from our facility to your kitchen. We partner only with cold-chain logistics providers who meet our temperature standards.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="foot-logo">Ethical <em>Delights</em>®</div>
+  <div class="foot-logo"><img src="logo-green.png" alt="Ethical Delights"></div>
   <div class="foot-links">
     <a href="index.html">Home</a>
     <a href="process.html">Process</a>
@@ -329,12 +493,12 @@
 
 <script>
   const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
   const obs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.step-block, .fade-up').forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 3) * 0.1}s`;
+    el.style.transitionDelay = (i % 3) * 0.1 + 's';
     obs.observe(el);
   });
 </script>
