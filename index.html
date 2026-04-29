@@ -664,6 +664,129 @@
     #hero-banners { height: auto; min-height: 100svh; }
   }
 
+
+  /* USP RIBBON */
+  #usp-ribbon {
+    background: var(--pale);
+    border-bottom: 1px solid rgba(212,169,106,0.2);
+    padding: 0;
+    overflow: hidden;
+  }
+  .usp-ribbon-inner {
+    display: flex; align-items: stretch;
+    border-top: 2px solid rgba(212,169,106,0.15);
+  }
+  .usp-pill {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 1.1rem 0.8rem; gap: 0.35rem;
+    border-right: 1px solid rgba(212,169,106,0.18);
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .usp-pill:last-child { border-right: none; }
+  .usp-pill:hover { background: var(--cream); }
+  .usp-pill-icon { font-size: 1.2rem; line-height: 1; }
+  .usp-pill-label {
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; color: var(--earth); line-height: 1.3;
+  }
+  .usp-pill-sub {
+    font-size: 0.56rem; color: rgba(107,76,30,0.5);
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  @media(max-width:900px) {
+    .usp-ribbon-inner { flex-wrap: wrap; }
+    .usp-pill { flex: 1 1 33%; border-bottom: 1px solid rgba(212,169,106,0.15); }
+  }
+
+  /* CHALLENGE CAMPAIGN */
+  #challenge {
+    background: var(--deep); padding: 7rem 7vw;
+  }
+  .challenge-header { text-align: center; margin-bottom: 4rem; }
+  .challenge-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--wheat); font-weight: 500; margin-bottom: 1.2rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+  }
+  .challenge-eyebrow::before, .challenge-eyebrow::after {
+    content: ''; flex: 1; max-width: 3rem; height: 1px; background: var(--wheat);
+  }
+  .challenge-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+    font-weight: 300; color: var(--cream); line-height: 1.1;
+  }
+  .challenge-h2 em { font-style: italic; color: var(--wheat); }
+  .challenge-sub {
+    font-size: 1rem; font-weight: 300; color: rgba(245,239,224,0.55);
+    max-width: 55ch; margin: 1.2rem auto 0; line-height: 1.8;
+  }
+
+  /* Segment tabs */
+  .seg-tabs {
+    display: flex; justify-content: center; gap: 0;
+    border: 1px solid rgba(212,169,106,0.2);
+    width: fit-content; margin: 0 auto 3rem;
+  }
+  .seg-tab {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 500; padding: 0.7rem 1.6rem;
+    border: none; background: transparent; color: rgba(245,239,224,0.4);
+    cursor: pointer; transition: all 0.3s; border-right: 1px solid rgba(212,169,106,0.2);
+  }
+  .seg-tab:last-child { border-right: none; }
+  .seg-tab.active { background: var(--rust); color: #fff; }
+  .seg-tab:hover:not(.active) { color: var(--wheat); }
+
+  /* Challenge panels */
+  .seg-panel { display: none; }
+  .seg-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+  .pain-list { display: flex; flex-direction: column; gap: 1rem; }
+  .pain-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.1rem 1.3rem;
+    border: 1px solid rgba(196,98,45,0.2);
+    background: rgba(196,98,45,0.05);
+    transition: border-color 0.3s;
+  }
+  .pain-item:hover { border-color: rgba(196,98,45,0.5); }
+  .pain-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .pain-text strong { display: block; font-size: 0.85rem; font-weight: 500; color: var(--cream); margin-bottom: 0.2rem; }
+  .pain-text span { font-size: 0.78rem; font-weight: 300; color: rgba(245,239,224,0.5); line-height: 1.6; }
+
+  /* Answer column */
+  .challenge-answer {}
+  .answer-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wheat); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+  .answer-label::before { content:''; width:1.2rem; height:1px; background:var(--wheat); }
+  .answer-h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 300; color: var(--cream); line-height: 1.12; margin-bottom: 1.2rem; }
+  .answer-h3 em { font-style: italic; color: var(--wheat); }
+  .answer-body { font-size: 0.92rem; font-weight: 300; color: rgba(245,239,224,0.62); line-height: 1.85; }
+  .answer-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .answer-pill {
+    font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px solid rgba(212,169,106,0.25); padding: 0.3rem 0.8rem;
+    color: var(--wheat);
+  }
+  .answer-cta { margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.8rem; background: var(--rust); color: #fff; padding: 0.85rem 2rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.3s; }
+  .answer-cta:hover { background: var(--earth); }
+
+  /* SOCIAL PROOF STRIP */
+  #social-proof {
+    background: var(--earth); padding: 3rem 7vw;
+    display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .sp-stat { text-align: center; }
+  .sp-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1; }
+  .sp-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,239,224,0.6); font-weight: 500; margin-top: 0.3rem; }
+  .sp-divider { width: 1px; height: 4rem; background: rgba(245,239,224,0.2); }
+  .sp-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 300; font-style: italic; color: var(--cream); max-width: 50ch; line-height: 1.5; }
+  .sp-quote em { font-style: normal; color: var(--wheat); font-weight: 400; }
+  @media(max-width:900px) { #challenge .seg-panel.active { grid-template-columns: 1fr; } .sp-divider { display:none; } }
+
 </style>
 </head>
 <body>
@@ -981,6 +1104,54 @@
   </div>
 </div>
 
+
+<!-- USP RIBBON -->
+<div id="usp-ribbon">
+  <div class="usp-ribbon-inner">
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🌾</div>
+      <div class="usp-pill-label">No Maida</div>
+      <div class="usp-pill-sub">100% Whole Wheat</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🚫</div>
+      <div class="usp-pill-label">No Palm Oil</div>
+      <div class="usp-pill-sub">Honest Fats Only</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🏷️</div>
+      <div class="usp-pill-label">Clean Label</div>
+      <div class="usp-pill-sub">Nothing Hidden</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🌿</div>
+      <div class="usp-pill-label">No Preservatives</div>
+      <div class="usp-pill-sub">100% Satvik</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🔥</div>
+      <div class="usp-pill-label">Ready to Cook</div>
+      <div class="usp-pill-sub">Bake or Fry in 60s</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">❄️</div>
+      <div class="usp-pill-label">Flash Frozen</div>
+      <div class="usp-pill-sub">–18°C · 1 Year Life</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">📐</div>
+      <div class="usp-pill-label">Precision Made</div>
+      <div class="usp-pill-sub">Uniform Every Time</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">♾️</div>
+      <div class="usp-pill-label">Zero Waste</div>
+      <div class="usp-pill-sub">Cook Only What You Need</div>
+    </div>
+  </div>
+</div>
+
+
 <!-- WHY CHOOSE US -->
 <section id="why">
   <div class="section-label">Why Choose Us</div>
@@ -1247,6 +1418,148 @@
 
   </div>
 </section>
+
+
+<!-- CHALLENGE CAMPAIGN -->
+<section id="challenge">
+  <div class="challenge-header">
+    <div class="challenge-eyebrow">For Commercial Kitchens</div>
+    <h2 class="challenge-h2">Are These Challenges<br><em>Slowing You Down?</em></h2>
+    <p class="challenge-sub">We've seen these challenges firsthand across kitchens in Pune — and built Ethical Delights to solve every one of them.</p>
+  </div>
+
+  <div class="seg-tabs">
+    <button class="seg-tab active" onclick="switchSeg('caterers', this)">Caterers</button>
+    <button class="seg-tab" onclick="switchSeg('horeca', this)">HoReCa</button>
+    <button class="seg-tab" onclick="switchSeg('industrial', this)">Industrial Kitchens</button>
+  </div>
+
+  <!-- CATERERS -->
+  <div class="seg-panel active" id="seg-caterers">
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pain-icon">👷</div>
+        <div class="pain-text"><strong>Labor Dependency</strong><span>Your entire service depends on one skilled roti maker showing up. When they don't, everything falls apart.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">⏱️</div>
+        <div class="pain-text"><strong>Excessive Prep Time</strong><span>Hours lost every morning to kneading, rolling, and cooking — before a single guest is served.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">📉</div>
+        <div class="pain-text"><strong>Inconsistent Quality</strong><span>Every batch looks different. Every event feels like a gamble. Guests notice.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🗑️</div>
+        <div class="pain-text"><strong>Wastage from Bulk Prep</strong><span>Overestimate and waste. Underestimate and run short. There's no middle ground with fresh dough.</span></div>
+      </div>
+    </div>
+    <div class="challenge-answer">
+      <div class="answer-label">The Ethical Delights Solution</div>
+      <h3 class="answer-h3">Scale Any Event<br><em>Without the Chaos</em></h3>
+      <p class="answer-body">Ethical Delights gives caterers a plug-and-play flatbread solution. No skilled labor, no daily prep, no wastage. Cook exactly what you need, when you need it — with guaranteed consistency across every plate, every event.</p>
+      <div class="answer-pills">
+        <span class="answer-pill">No Skilled Roti Maker Needed</span>
+        <span class="answer-pill">Cook as Needed</span>
+        <span class="answer-pill">Zero Wastage</span>
+        <span class="answer-pill">Consistent Every Batch</span>
+      </div>
+      <a href="#contact-strip" class="answer-cta">Talk to Us →</a>
+    </div>
+  </div>
+
+  <!-- HORECA -->
+  <div class="seg-panel" id="seg-horeca">
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pain-icon">💸</div>
+        <div class="pain-text"><strong>Rising Overheads</strong><span>Skilled kitchen staff costs keep climbing. Flatbread prep is labor-intensive and eats into your margins every single service.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🎯</div>
+        <div class="pain-text"><strong>Guest Experience Inconsistency</strong><span>Table 4 gets a perfect chapati. Table 12 gets something different. Guests compare, and you can't control it.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🧹</div>
+        <div class="pain-text"><strong>Kitchen Hygiene Challenges</strong><span>Flour dust, open dough prep, and manual handling create hygiene risks that are hard to manage at scale.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🔄</div>
+        <div class="pain-text"><strong>Supply Chain Complexity</strong><span>Managing fresh ingredients daily — flour, storage, spoilage — adds operational complexity you shouldn't have to deal with.</span></div>
+      </div>
+    </div>
+    <div class="challenge-answer">
+      <div class="answer-label">The Ethical Delights Solution</div>
+      <h3 class="answer-h3">Elevate Every<br><em>Guest Experience</em></h3>
+      <p class="answer-body">From boutique hotels to multi-outlet restaurant chains, Ethical Delights delivers hygienic, consistent, Satvik flatbreads that your team can serve in under 60 seconds — with zero flour mess, zero prep dependency, and zero compromise on quality.</p>
+      <div class="answer-pills">
+        <span class="answer-pill">100% Hygienic Production</span>
+        <span class="answer-pill">60-Second Finish</span>
+        <span class="answer-pill">Satvik Certified</span>
+        <span class="answer-pill">Multi-Outlet Ready</span>
+      </div>
+      <a href="#contact-strip" class="answer-cta">Talk to Us →</a>
+    </div>
+  </div>
+
+  <!-- INDUSTRIAL -->
+  <div class="seg-panel" id="seg-industrial">
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pain-icon">📦</div>
+        <div class="pain-text"><strong>Volume Consistency at Scale</strong><span>Producing 2,000 chapatis a day that all look and taste the same is nearly impossible with manual prep.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">👩‍🍳</div>
+        <div class="pain-text"><strong>High Labor Dependency</strong><span>Large teams of skilled staff just for flatbread prep — expensive, unpredictable, and hard to retain.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">📋</div>
+        <div class="pain-text"><strong>Compliance & Hygiene Audits</strong><span>Open prep areas, manual handling, and flour dust create recurring compliance headaches during inspections.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🏭</div>
+        <div class="pain-text"><strong>Scaling Bottlenecks</strong><span>When demand spikes, your flatbread prep can't keep up. Manual processes simply don't scale reliably.</span></div>
+      </div>
+    </div>
+    <div class="challenge-answer">
+      <div class="answer-label">The Ethical Delights Solution</div>
+      <h3 class="answer-h3">Built for<br><em>Industrial Scale</em></h3>
+      <p class="answer-body">Whether it's 1,000 chapatis a day or 10,000 and beyond — our automated production line and flash-frozen supply model gives industrial kitchens a reliable, hygienic, scale-ready flatbread solution. Engineered for volume, built for consistency.</p>
+      <div class="answer-pills">
+        <span class="answer-pill">1,000–10,000+ Daily</span>
+        <span class="answer-pill">Audit-Ready Hygiene</span>
+        <span class="answer-pill">Automated Production</span>
+        <span class="answer-pill">Scale on Demand</span>
+      </div>
+      <a href="#contact-strip" class="answer-cta">Talk to Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div id="social-proof">
+  <div class="sp-stat">
+    <div class="sp-num">600+</div>
+    <div class="sp-label">Families Trusted</div>
+  </div>
+  <div class="sp-divider"></div>
+  <div class="sp-stat">
+    <div class="sp-num">8</div>
+    <div class="sp-label">Months R&amp;D</div>
+  </div>
+  <div class="sp-divider"></div>
+  <div class="sp-stat">
+    <div class="sp-num">5</div>
+    <div class="sp-label">Step Process</div>
+  </div>
+  <div class="sp-divider"></div>
+  <div class="sp-quote">
+    <em>"Fresh, Satvik, and scalable<br>can co-exist."</em><br>
+    <span style="font-size:0.75rem;font-style:normal;color:rgba(245,239,224,0.5);letter-spacing:0.1em;text-transform:uppercase;font-family:'Jost',sans-serif;">— Amit &amp; Nishant, Founders</span>
+  </div>
+</div>
+
 
 <!-- PROMISE -->
 <section id="promise">
@@ -1588,6 +1901,15 @@
     startProgress();
     advTimer = setTimeout(() => goTo(1), SLIDE_MS);
   })();
+
+
+  // Segment tabs
+  window.switchSeg = function(id, btn) {
+    document.querySelectorAll('.seg-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.seg-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('seg-' + id).classList.add('active');
+  };
 
 </script>
 </body>

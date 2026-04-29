@@ -132,7 +132,7 @@
   .fade-up.visible{opacity:1;transform:translateY(0);}
 
   @media(max-width:900px){
-    #intro,.steps-header,.tech-grid,.quality-inner{grid-template-columns:1fr;gap:2.5rem;}
+    #intro,.steps-header,.tech-grid,.quality-inner,#tech .machine-layout{grid-template-columns:1fr;gap:2.5rem;}
     .step-block{grid-template-columns:1fr;gap:1rem;}
     .step-left{text-align:left;width:auto;}
     .step-number{font-size:3rem;}
@@ -434,7 +434,36 @@
 <!-- TECHNOLOGY -->
 <section id="tech">
   <div class="section-label tech-label">Technology &amp; Innovation</div>
-  <h2 class="section-heading tech-heading">Built for <em>Scale,</em><br>Designed for Quality</h2>
+  <h2 class="section-heading tech-heading">Cutting-Edge <em>Technology</em><br>at the Heart of Every Batch</h2>
+
+  <!-- Machine photo + description -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4rem;margin-bottom:4rem;">
+    <div style="overflow:hidden;border:1px solid rgba(212,169,106,0.2);">
+      <img src="machine.png" alt="Ethical Delights automated chapati production line"
+        style="width:100%;display:block;object-fit:contain;background:#0a0a0a;padding:1rem;">
+    </div>
+    <div>
+      <div style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem;">
+        <span style="display:inline-block;width:1.2rem;height:1px;background:var(--wheat);"></span>
+        Our Production Facility
+      </div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:1.2rem;">
+        Scale-Ready.<br><em style="font-style:italic;color:var(--wheat);">Demand-Ready.</em>
+      </h3>
+      <p style="font-size:0.92rem;font-weight:300;color:rgba(245,239,224,0.62);line-height:1.85;margin-bottom:1.2rem;">
+        Our production facility is equipped with a custom-built, automated chapati line designed to streamline every step — from dough ball formation to precision rolling, half-cooking, cooling, and packaging.
+      </p>
+      <p style="font-size:0.92rem;font-weight:300;color:rgba(245,239,224,0.62);line-height:1.85;margin-bottom:1.8rem;">
+        High-throughput automation meets handcrafted quality. Designed to fulfil large orders with zero compromise on freshness — whether it's 1,000 chapatis a day or 10,000 and beyond.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.8rem;">
+        <span style="font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(212,169,106,0.25);padding:0.3rem 0.8rem;color:var(--wheat);">1,000–10,000+ Daily</span>
+        <span style="font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(212,169,106,0.25);padding:0.3rem 0.8rem;color:var(--wheat);">Zero Compromise</span>
+        <span style="font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(212,169,106,0.25);padding:0.3rem 0.8rem;color:var(--wheat);">Pan-India Ready</span>
+      </div>
+    </div>
+  </div>
+
   <div class="tech-grid">
     <div class="tech-card fade-up">
       <span class="tech-icon">🤖</span>
