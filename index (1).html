@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethical Delights® — Homestyle Flatbreads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --cream:#F5EFE0; --wheat:#D4A96A; --deep:#1C1408; --earth:#6B4C1E; --rust:#C4622D; --pale:#FAF6EE; --mid:#EDE5D0; }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Jost',sans-serif;background:var(--pale);color:var(--deep);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 6vw;background:rgba(250,246,238,0.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,169,106,0.2);transition:padding 0.3s;}
+  nav.scrolled{padding:0.8rem 6vw;box-shadow:0 4px 30px rgba(28,20,8,0.08);}
+  .nav-logo{display:inline-flex;align-items:center;text-decoration:none;height:2.8rem;}
+  .nav-logo img{height:100%;width:auto;object-fit:contain;mix-blend-mode:multiply;filter:saturate(1.1);}
+  
+  .nav-links{display:flex;gap:2.5rem;align-items:center;}
+  .nav-links a{font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--deep);text-decoration:none;font-weight:500;position:relative;padding-bottom:3px;transition:color 0.3s;}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--rust);transform:scaleX(0);transform-origin:left;transition:transform 0.35s cubic-bezier(.4,0,.2,1);}
+  .nav-links a:hover,.nav-links a.active{color:var(--rust);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-cta{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:0.55rem 1.3rem;text-decoration:none;font-weight:500;transition:background 0.3s;}
+  .nav-cta:hover{background:var(--earth);}
+
+  /* HERO */
+  #hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden;padding-top:4.5rem;}
+  .hero-left{display:flex;flex-direction:column;justify-content:center;padding:7vw 4vw 7vw 7vw;position:relative;z-index:2;}
+  .hero-eyebrow{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:2rem;display:flex;align-items:center;gap:0.9rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
+  .hero-eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--rust);}
+  .hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,5.8vw,6rem);font-weight:300;line-height:1.05;color:var(--deep);margin-bottom:1.8rem;opacity:0;animation:fadeUp 0.9s 0.35s forwards;}
+  .hero-h1 em{font-style:italic;color:var(--earth);}
+  .hero-h1 strong{font-weight:600;}
+  .hero-sub{font-size:1rem;font-weight:300;line-height:1.8;color:#5a4a2e;max-width:42ch;margin-bottom:3rem;opacity:0;animation:fadeUp 0.9s 0.5s forwards;}
+  .hero-actions{display:flex;gap:1.2rem;align-items:center;opacity:0;animation:fadeUp 0.9s 0.65s forwards;}
+  .btn-primary{display:inline-flex;align-items:center;gap:0.8rem;background:var(--rust);color:#fff;padding:0.9rem 2.2rem;font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.3s,transform 0.2s;}
+  .btn-primary:hover{background:var(--earth);transform:translateY(-2px);}
+  .btn-ghost{font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--earth);text-decoration:none;font-weight:500;border-bottom:1px solid var(--wheat);padding-bottom:2px;transition:color 0.3s,border-color 0.3s;}
+  .btn-ghost:hover{color:var(--rust);border-color:var(--rust);}
+  /* HERO RIGHT — symmetrical 3x3 grid */
+  .hero-right{position:relative;background:var(--cream);display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr;overflow:hidden;}
+  .hero-right::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(212,169,106,0.18) 0%,transparent 65%);z-index:0;}
+  .hr-tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.45rem;padding:1rem 0.6rem;border:1px solid rgba(212,169,106,0.22);background:rgba(245,239,224,0.55);text-align:center;z-index:1;opacity:0;animation:tileIn 0.5s ease forwards;overflow:hidden;}
+  .hr-tile::after{content:'';position:absolute;top:0;left:15%;right:15%;height:2px;background:linear-gradient(to right,transparent,var(--wheat),transparent);}
+  @keyframes tileIn{from{opacity:0;transform:scale(0.9);}to{opacity:1;transform:scale(1);}}
+  .hr-tile:nth-child(1){animation-delay:0.15s;}
+  .hr-tile:nth-child(2){animation-delay:0.05s;}
+  .hr-tile:nth-child(3){animation-delay:0.20s;}
+  .hr-tile:nth-child(4){animation-delay:0.25s;}
+  .hr-tile:nth-child(6){animation-delay:0.10s;}
+  .hr-tile:nth-child(7){animation-delay:0.30s;}
+  .hr-tile:nth-child(8){animation-delay:0.08s;}
+  .hr-tile:nth-child(9){animation-delay:0.35s;}
+  .hr-tile svg{width:clamp(1.6rem,2.8vw,2.2rem);height:clamp(1.6rem,2.8vw,2.2rem);flex-shrink:0;}
+  .hr-tile-label{font-size:clamp(0.52rem,0.75vw,0.68rem);letter-spacing:0.09em;text-transform:uppercase;font-weight:600;color:var(--earth);line-height:1.35;}
+  .hr-tile-sub{font-size:clamp(0.45rem,0.6vw,0.58rem);color:rgba(107,76,30,0.5);letter-spacing:0.06em;text-transform:uppercase;line-height:1.3;}
+  .hr-center{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem;background:var(--cream);border:1px solid rgba(212,169,106,0.15);padding:0.8rem;}
+  .hr-monogram{width:clamp(7rem,13vw,11rem);object-fit:contain;animation:monoPulse 4s ease-in-out infinite;filter:drop-shadow(0 6px 28px rgba(107,76,30,0.22));}
+  @keyframes monoPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+
+  .hero-bg-text{display:none;}
+
+  /* MARQUEE */
+  .marquee-strip{background:var(--deep);overflow:hidden;padding:0.85rem 0;}
+  .marquee-inner{display:inline-flex;animation:marquee 26s linear infinite;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee-item{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--wheat);display:inline-flex;align-items:center;padding:0 2.2rem;}
+  .marquee-sep{color:var(--rust);}
+
+  /* SECTION SHARED */
+  section{padding:7rem 7vw;}
+  .section-label{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;}
+  .section-label::before{content:'';width:1.8rem;height:1px;background:var(--rust);}
+  .section-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,4rem);font-weight:300;line-height:1.1;color:var(--deep);}
+  .section-heading em{font-style:italic;color:var(--earth);}
+
+  /* WHY */
+  #why{background:var(--cream);}
+  .why-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;margin-top:4rem;align-items:start;}
+  .why-intro{font-size:1rem;font-weight:300;line-height:1.85;color:#5a4a2e;}
+  .why-intro p+p{margin-top:1.2rem;}
+  .pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+  .pillar{padding:1.6rem 1.4rem;border:1px solid rgba(212,169,106,0.35);background:var(--pale);transition:border-color 0.3s,transform 0.35s,box-shadow 0.35s;}
+  .pillar:hover{border-color:var(--rust);transform:translateY(-4px);box-shadow:0 16px 40px rgba(100,60,10,0.1);}
+  .pillar-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(212,169,106,0.3);line-height:1;margin-bottom:0.6rem;}
+  .pillar-title{font-size:0.85rem;font-weight:500;margin-bottom:0.5rem;color:var(--deep);}
+  .pillar-desc{font-size:0.8rem;font-weight:300;color:#6b5a3a;line-height:1.7;}
+
+  /* FROZEN */
+  #frozen{background:var(--deep);}
+  .frozen-layout{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center;}
+  .frozen-visual{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1;}
+  .frozen-circle{width:85%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(212,169,106,0.2);display:flex;align-items:center;justify-content:center;position:relative;}
+  .frozen-circle::before{content:'';position:absolute;inset:15%;border-radius:50%;border:1px solid rgba(212,169,106,0.1);}
+  .frozen-glyph{font-size:clamp(5rem,12vw,10rem);color:var(--wheat);opacity:0.15;user-select:none;animation:pulse 4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:0.15;}50%{opacity:0.3;}}
+  .temp-badge{position:absolute;top:10%;right:10%;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--wheat);}
+  .frozen-text .section-label::before{background:var(--wheat);}
+  .frozen-text .section-label{color:var(--wheat);}
+  .frozen-text .section-heading{color:var(--cream);}
+  .frozen-text .section-heading em{color:var(--wheat);}
+  .frozen-body{font-size:0.95rem;font-weight:300;line-height:1.85;color:rgba(245,239,224,0.65);margin-top:1.5rem;}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem;}
+  .stat-item{padding:1.4rem 1rem;border:1px solid rgba(212,169,106,0.15);text-align:center;}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--wheat);line-height:1;}
+  .stat-lbl{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(212,169,106,0.5);margin-top:0.4rem;}
+
+  /* PRODUCTS */
+  #products{background:var(--pale);}
+  .products-intro{max-width:50ch;margin-top:0.5rem;font-size:0.95rem;font-weight:300;line-height:1.8;color:#5a4a2e;}
+  .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
+  .product-card{background:var(--cream);border:1px solid rgba(212,169,106,0.3);overflow:hidden;transition:transform 0.4s cubic-bezier(.4,0,.2,1),box-shadow 0.4s;}
+  .product-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(100,60,10,0.14);}
+
+  /* Card carousel */
+  .card-carousel{position:relative;height:16rem;overflow:hidden;background:var(--mid);}
+  .carousel-track{display:flex;height:100%;transition:transform 0.6s cubic-bezier(.4,0,.2,1);}
+  .carousel-slide{min-width:100%;height:100%;flex-shrink:0;overflow:hidden;}
+  .carousel-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+  .carousel-slide.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--mid);gap:0.5rem;}
+  .placeholder-icon{font-size:2.8rem;opacity:0.25;}
+  .placeholder-text{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--earth);opacity:0.45;font-weight:500;}
+  .placeholder-hint{font-size:0.65rem;color:var(--earth);opacity:0.3;}
+  .carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);width:2rem;height:2rem;background:rgba(28,20,8,0.5);color:var(--wheat);border:none;cursor:pointer;font-size:0.85rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s;z-index:10;backdrop-filter:blur(4px);}
+  .carousel-prev{left:0.6rem;}
+  .carousel-next{right:0.6rem;}
+  .carousel-prev:hover,.carousel-next:hover{background:rgba(196,98,45,0.85);}
+  .carousel-dots{position:absolute;bottom:0.6rem;left:0;right:0;display:flex;justify-content:center;gap:0.35rem;}
+  .carousel-dot{width:5px;height:5px;border-radius:50%;background:rgba(245,239,224,0.35);border:none;cursor:pointer;padding:0;transition:background 0.3s,transform 0.3s;}
+  .carousel-dot.active{background:var(--wheat);transform:scale(1.3);}
+  .carousel-counter{position:absolute;top:0.6rem;right:0.6rem;background:rgba(28,20,8,0.55);color:var(--wheat);font-size:0.6rem;letter-spacing:0.1em;padding:0.2rem 0.55rem;backdrop-filter:blur(4px);}
+
+  .product-body{padding:1.8rem 1.6rem;}
+  .product-tag{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);font-weight:500;display:block;margin-bottom:0.5rem;}
+  .product-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;margin-bottom:0.7rem;color:var(--deep);}
+  .product-desc{font-size:0.83rem;font-weight:300;line-height:1.75;color:#5a4a2e;}
+  .product-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.2rem;}
+  .tag{font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(107,76,30,0.28);padding:0.25rem 0.65rem;color:var(--earth);}
+
+  /* PROMISE */
+  #promise{background:var(--earth);padding:5rem 7vw;display:grid;grid-template-columns:1fr 3fr;gap:5rem;align-items:center;}
+  .promise-lead{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--cream);line-height:1.15;}
+  .promise-lead em{font-style:italic;color:var(--wheat);}
+  .promise-items{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+  .promise-item{border-left:1px solid rgba(245,239,224,0.2);padding-left:1.2rem;}
+  .promise-icon{font-size:1.4rem;margin-bottom:0.6rem;display:block;}
+  .promise-title{font-size:0.82rem;font-weight:500;color:var(--cream);margin-bottom:0.35rem;}
+  .promise-desc{font-size:0.75rem;font-weight:300;color:rgba(245,239,224,0.6);line-height:1.65;}
+
+  /* MEDIA SHOWCASE */
+  #media-showcase{background:var(--deep);padding:7rem 0;}
+  .media-header{padding:0 7vw 3.5rem;display:flex;align-items:flex-end;justify-content:space-between;}
+  .media-label::before{background:var(--wheat);}
+  .media-label{color:var(--wheat);}
+  .media-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,4rem);font-weight:300;line-height:1.1;color:var(--cream);}
+  .media-heading em{color:var(--wheat);}
+  .media-nav-btns{display:flex;gap:0.7rem;}
+  .media-nav-btn{width:3rem;height:3rem;background:rgba(212,169,106,0.1);border:1px solid rgba(212,169,106,0.2);color:var(--wheat);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background 0.3s,border-color 0.3s;}
+  .media-nav-btn:hover{background:rgba(196,98,45,0.5);border-color:var(--rust);}
+  .media-carousel-wrap{position:relative;overflow:hidden;}
+  .media-carousel-track{display:flex;transition:transform 0.7s cubic-bezier(.4,0,.2,1);}
+  .media-slide{min-width:100%;}
+  .media-slide-inner{height:68vh;min-height:380px;max-height:680px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#0d0a04;}
+  .media-slide-inner img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.88;}
+  .media-slide-inner video{width:100%;height:100%;object-fit:cover;display:block;opacity:0.88;}
+  .media-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:linear-gradient(135deg,#1a1005 0%,#0d0a04 100%);}
+  .media-placeholder-icon{font-size:4rem;opacity:0.12;}
+  .media-placeholder-label{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(212,169,106,0.3);font-weight:500;}
+  .media-placeholder-hint{font-size:0.72rem;color:rgba(212,169,106,0.18);}
+  .media-caption{position:absolute;bottom:0;left:0;right:0;padding:4rem 7vw 2.5rem;background:linear-gradient(to top,rgba(14,10,4,0.88) 0%,transparent 100%);}
+  .media-caption-tag{font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:0.4rem;display:flex;align-items:center;gap:0.6rem;}
+  .media-caption-tag::before{content:'';width:1.2rem;height:1px;background:var(--wheat);}
+  .media-caption-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.6rem);font-weight:300;color:var(--cream);}
+  .media-progress{height:2px;background:rgba(212,169,106,0.12);margin:0 7vw;}
+  .media-progress-fill{height:100%;background:var(--wheat);width:0%;transition:width 12s linear;}
+  .media-dots{display:flex;justify-content:center;gap:0.5rem;padding:1.5rem 7vw 0;}
+  .media-dot{width:7px;height:7px;border-radius:50%;background:rgba(212,169,106,0.2);border:none;cursor:pointer;padding:0;transition:background 0.3s,transform 0.3s;}
+  .media-dot.active{background:var(--wheat);transform:scale(1.3);}
+  .media-upload-hint{display:inline-flex;align-items:center;gap:0.5rem;margin:1.5rem 0 0 7vw;padding:0.45rem 1rem;border:1px dashed rgba(212,169,106,0.25);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(212,169,106,0.35);}
+
+  /* CONTACT */
+  #contact-strip{background:var(--deep);padding:6rem 7vw;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+  .contact-left .section-label::before{background:var(--wheat);}
+  .contact-left .section-label{color:var(--wheat);}
+  .contact-left .section-heading{color:var(--cream);}
+  .contact-left .section-heading em{color:var(--wheat);}
+  .contact-tagline{font-size:0.95rem;font-weight:300;color:rgba(245,239,224,0.6);line-height:1.8;margin-top:1.2rem;}
+  .contact-items{display:flex;flex-direction:column;gap:1rem;}
+  .contact-row{display:flex;gap:1.2rem;align-items:center;padding:1rem 1.2rem;border:1px solid rgba(212,169,106,0.15);transition:border-color 0.3s;}
+  .contact-row:hover{border-color:rgba(212,169,106,0.5);}
+  .c-icon{font-size:1rem;flex-shrink:0;}
+  .c-label{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--wheat);font-weight:500;display:block;margin-bottom:0.2rem;}
+  .c-val{font-size:0.88rem;font-weight:300;color:rgba(245,239,224,0.75);text-decoration:none;}
+  .c-val:hover{color:var(--wheat);}
+
+  /* FOOTER */
+  footer{background:#0d0a04;padding:1.8rem 7vw;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(212,169,106,0.08);}
+  .foot-logo{display:inline-flex;align-items:center;height:2rem;}
+  .foot-logo img{height:100%;width:auto;object-fit:contain;filter:brightness(0) invert(1) sepia(1) saturate(0.5) hue-rotate(5deg);opacity:0.7;}
+  .foot-links{display:flex;gap:2rem;}
+  .foot-links a{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(212,169,106,0.4);text-decoration:none;transition:color 0.3s;}
+  .foot-links a:hover{color:var(--wheat);}
+  .foot-copy{font-size:0.68rem;color:rgba(212,169,106,0.25);}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    #hero{grid-template-columns:1fr;}
+    .hero-right{min-height:55vw;}
+    .why-layout,.frozen-layout,#contact-strip{grid-template-columns:1fr;gap:2.5rem;}
+    .product-grid{grid-template-columns:1fr;}
+    .pillar-grid{grid-template-columns:1fr;}
+    .stat-row{grid-template-columns:1fr 1fr;}
+    #promise{grid-template-columns:1fr;gap:2.5rem;}
+    .promise-items{grid-template-columns:1fr 1fr;}
+    nav .nav-links{display:none;}
+    .media-header{flex-direction:column;align-items:flex-start;gap:1.5rem;}
+    .media-slide-inner{height:50vw;min-height:260px;}
+  }
+
+  /* ── SPECIALTIES SECTION ── */
+  #specialties { background: var(--cream); padding: 7rem 7vw; }
+
+  .spec-tabs { display: flex; gap: 0; margin-top: 3rem; border-bottom: 1px solid rgba(212,169,106,0.3); }
+  .spec-tab {
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+    padding: 0.8rem 2rem; border: none; background: transparent; cursor: pointer;
+    color: rgba(107,76,30,0.45); position: relative; transition: color 0.3s;
+  }
+  .spec-tab::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
+    background: var(--rust); transform: scaleX(0); transition: transform 0.3s;
+  }
+  .spec-tab.active { color: var(--rust); }
+  .spec-tab.active::after { transform: scaleX(1); }
+
+  .spec-panels { margin-top: 0; }
+  .spec-panel { display: none; }
+  .spec-panel.active { display: block; }
+
+  /* Variant rotator */
+  .var-rotator { position: relative; overflow: hidden; }
+  .var-track { display: flex; transition: transform 0.6s cubic-bezier(.4,0,.2,1); }
+  .var-slide {
+    min-width: 100%; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 0;
+    min-height: 26rem;
+  }
+  .var-img {
+    overflow: hidden; position: relative;
+  }
+  .var-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s; }
+  .var-slide:hover .var-img img { transform: scale(1.04); }
+
+  .var-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 3rem 3.5rem;
+    background: var(--pale);
+    border: 1px solid rgba(212,169,106,0.2);
+    border-left: none;
+  }
+  .var-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(212,169,106,0.18); line-height: 1; margin-bottom: 0.5rem; }
+  .var-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); font-weight: 500; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.6rem; }
+  .var-tag::before { content: ''; width: 1.2rem; height: 1px; background: var(--rust); }
+  .var-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--deep); line-height: 1.1; margin-bottom: 1rem; }
+  .var-name em { font-style: italic; color: var(--earth); }
+  .var-desc { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: #5a4a2e; max-width: 38ch; }
+  .var-attrs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.4rem; }
+  .var-attr { font-size: 0.63rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(107,76,30,0.25); padding: 0.25rem 0.65rem; color: var(--earth); }
+  .var-note { font-size: 0.75rem; font-weight: 300; color: rgba(107,76,30,0.5); margin-top: 1rem; font-style: italic; }
+
+  /* Nav controls */
+  .var-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; }
+  .var-dots-wrap { display: flex; gap: 0.5rem; }
+  .var-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(212,169,106,0.25); border: none; cursor: pointer; padding: 0; transition: background 0.3s, transform 0.3s; }
+  .var-dot.active { background: var(--rust); transform: scale(1.3); }
+  .var-arrows { display: flex; gap: 0.5rem; }
+  .var-arrow { width: 2.4rem; height: 2.4rem; border: 1px solid rgba(212,169,106,0.35); background: transparent; color: var(--earth); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; }
+  .var-arrow:hover { background: var(--rust); border-color: var(--rust); color: #fff; }
+
+  .spec-intro { font-size: 0.95rem; font-weight: 300; line-height: 1.8; color: #5a4a2e; max-width: 60ch; margin-top: 0.6rem; }
+
+  @media(max-width:900px) {
+    .var-slide { grid-template-columns: 1fr; min-height: auto; }
+    .var-img { height: 55vw; }
+    .var-content { border-left: 1px solid rgba(212,169,106,0.2); border-top: none; padding: 2rem 1.5rem; }
+  }
+
+  /* ══════════════════════════════════════════
+     HERO BANNER CAROUSEL
+  ══════════════════════════════════════════ */
+  #hero-banners {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 580px;
+    max-height: 900px;
+    overflow: hidden;
+    margin-top: 4.5rem; /* nav height */
+  }
+
+  .hb-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.9s cubic-bezier(0.77,0,0.175,1);
+  }
+
+  /* ── Individual banner ── */
+  .hb-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* ── Banner 1: Manifesto — dark editorial ── */
+  .hb-slide.b1 { background: var(--deep); }
+  .hb-slide.b1 .hb-bg-text {
+    position: absolute; right: -2vw; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(8rem, 18vw, 18rem);
+    font-weight: 600; line-height: 0.85;
+    color: rgba(212,169,106,0.06);
+    pointer-events: none; user-select: none;
+    white-space: nowrap;
+  }
+  .hb-slide.b1 .hb-content {
+    padding: 0 8vw;
+    position: relative; z-index: 2;
+    max-width: 75ch;
+  }
+  .hb-slide.b1 .hb-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--wheat); font-weight: 500; margin-bottom: 1.8rem;
+    display: flex; align-items: center; gap: 0.8rem;
+    opacity: 0; animation: hbFadeUp 0.8s 0.3s forwards;
+  }
+  .hb-slide.b1 .hb-eyebrow::before { content:''; width:2rem; height:1px; background:var(--wheat); }
+  .hb-slide.b1 h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6.5vw, 7rem);
+    font-weight: 300; line-height: 1.02; color: var(--cream);
+    margin-bottom: 1.8rem;
+    opacity: 0; animation: hbFadeUp 0.9s 0.5s forwards;
+  }
+  .hb-slide.b1 h1 em { font-style: italic; color: var(--wheat); }
+  .hb-slide.b1 p {
+    font-size: clamp(0.9rem, 1.4vw, 1.1rem); font-weight: 300; line-height: 1.8;
+    color: rgba(245,239,224,0.65); max-width: 48ch; margin-bottom: 2.5rem;
+    opacity: 0; animation: hbFadeUp 0.9s 0.7s forwards;
+  }
+  .hb-slide.b1 .hb-actions {
+    display: flex; gap: 1.2rem; align-items: center;
+    opacity: 0; animation: hbFadeUp 0.9s 0.9s forwards;
+  }
+  /* floating monogram on right */
+  .hb-slide.b1 .hb-mono {
+    position: absolute; right: 6vw; top: 50%; transform: translateY(-50%);
+    width: clamp(12rem, 22vw, 20rem);
+    opacity: 0.18;
+    animation: hbMonoPulse 4s ease-in-out infinite;
+    z-index: 1;
+  }
+  @keyframes hbMonoPulse { 0%,100%{transform:translateY(-50%) scale(1);} 50%{transform:translateY(-50%) scale(1.06);} }
+
+  /* decorative gold line left */
+  .hb-slide.b1::before {
+    content:''; position:absolute; left:0; top:15%; bottom:15%;
+    width:3px;
+    background: linear-gradient(to bottom, transparent, var(--wheat), transparent);
+    z-index:2;
+  }
+
+  /* ── Banner 2: Freezer to Table — warm cream ── */
+  .hb-slide.b2 { background: var(--cream); }
+  .hb-slide.b2 .hb-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    width: 100%; height: 100%; align-items: center;
+    padding: 0 8vw; gap: 4vw;
+  }
+  .hb-slide.b2 .hb-text-col {}
+  .hb-slide.b2 .hb-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--rust); font-weight: 500; margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hb-slide.b2 .hb-eyebrow::before { content:''; width:1.5rem; height:1px; background:var(--rust); }
+  .hb-slide.b2 h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.05; color: var(--deep);
+    margin-bottom: 1.4rem;
+  }
+  .hb-slide.b2 h2 em { font-style: italic; color: var(--earth); }
+  .hb-slide.b2 p {
+    font-size: clamp(0.85rem, 1.2vw, 1rem); font-weight: 300; line-height: 1.8;
+    color: #5a4a2e; max-width: 40ch; margin-bottom: 2rem;
+  }
+
+  /* Step flow graphic */
+  .hb-step-flow {
+    display: flex; align-items: center; gap: 0;
+    background: var(--pale); border: 1px solid rgba(212,169,106,0.3);
+    padding: 1.5rem 2rem; position: relative;
+  }
+  .hb-step {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.5rem; flex: 1; text-align: center;
+  }
+  .hb-step-icon {
+    width: 3.2rem; height: 3.2rem; border-radius: 50%;
+    background: var(--deep); color: var(--wheat);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .hb-step-label {
+    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--earth); font-weight: 500; line-height: 1.3;
+  }
+  .hb-step-arrow {
+    font-size: 1rem; color: var(--wheat); flex-shrink: 0; padding: 0 0.2rem;
+    padding-bottom: 1.2rem;
+  }
+
+  /* Visual col — big illustrated freezer pack */
+  .hb-visual-col {
+    display: flex; align-items: center; justify-content: center;
+    height: 100%; position: relative;
+  }
+  .hb-pack-wrap {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .hb-pack {
+    width: clamp(10rem, 18vw, 16rem);
+    background: linear-gradient(145deg, #c8a55a 0%, #8a6030 100%);
+    border-radius: 1rem 1rem 0.5rem 0.5rem;
+    padding: 1.5rem 1rem 2rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    box-shadow: 0 20px 60px rgba(107,76,30,0.25);
+    position: relative;
+  }
+  .hb-pack::before {
+    content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 8px;
+    background: rgba(255,255,255,0.3); border-radius: 0 0 4px 4px;
+  }
+  .hb-pack-logo { font-family: 'Cormorant Garamond',serif; font-size: 0.7rem; color: rgba(255,255,255,0.8); letter-spacing: 0.1em; text-transform: uppercase; }
+  .hb-pack-name { font-family: 'Cormorant Garamond',serif; font-size: 1.5rem; font-weight: 600; color: #fff; text-align: center; line-height: 1.1; }
+  .hb-pack-sub { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+  .hb-pack-badge {
+    width: 2.5rem; height: 2.5rem; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.45rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #fff; text-align: center; line-height: 1.4; font-weight: 500;
+    margin-top: 0.5rem;
+  }
+  /* floating snowflake behind pack */
+  .hb-snowflake {
+    position: absolute; font-size: 8rem; color: rgba(212,169,106,0.1);
+    z-index: 0; animation: hbSpin 20s linear infinite; user-select:none;
+  }
+  @keyframes hbSpin { to { transform: rotate(360deg); } }
+
+  /* ── Banner 3: Process steps — dark green ── */
+  .hb-slide.b3 { background: #0e2a1e; }
+  .hb-slide.b3 .hb-layout {
+    width: 100%; padding: 0 8vw;
+    display: flex; flex-direction: column; justify-content: center; gap: 2.5rem;
+  }
+  .hb-slide.b3 .hb-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--wheat); font-weight: 500;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hb-slide.b3 .hb-eyebrow::before { content:''; width:1.5rem; height:1px; background:var(--wheat); }
+  .hb-slide.b3 h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 300; color: var(--cream); line-height: 1.05;
+  }
+  .hb-slide.b3 h2 em { font-style: italic; color: var(--wheat); }
+
+  /* Big horizontal process steps */
+  .hb-process-steps {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;
+  }
+  .hb-pstep {
+    position: relative;
+    padding: 1.5rem 1rem;
+    border: 1px solid rgba(212,169,106,0.15);
+    background: rgba(212,169,106,0.04);
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .hb-pstep::after {
+    content: '→'; position: absolute; right: -0.9rem; top: 50%;
+    transform: translateY(-50%);
+    color: rgba(212,169,106,0.4); font-size: 1.1rem; z-index:2;
+  }
+  .hb-pstep:last-child::after { display: none; }
+  .hb-pstep-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300; color: rgba(212,169,106,0.2); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .hb-pstep-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+  .hb-pstep-title {
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--cream); font-weight: 500; margin-bottom: 0.35rem; line-height: 1.3;
+  }
+  .hb-pstep-desc {
+    font-size: 0.65rem; font-weight: 300; color: rgba(245,239,224,0.45); line-height: 1.55;
+  }
+
+  /* ── Banner 4: Business value — rust/earth ── */
+  .hb-slide.b4 { background: var(--earth); }
+  .hb-slide.b4 .hb-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    width: 100%; height: 100%; align-items: center;
+    padding: 0 8vw; gap: 5vw;
+  }
+  .hb-slide.b4 .hb-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--wheat); font-weight: 500; margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hb-slide.b4 .hb-eyebrow::before { content:''; width:1.5rem; height:1px; background:var(--wheat); }
+  .hb-slide.b4 h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.05; color: var(--cream); margin-bottom: 1.4rem;
+  }
+  .hb-slide.b4 h2 em { font-style: italic; color: var(--wheat); }
+  .hb-slide.b4 p {
+    font-size: clamp(0.85rem, 1.2vw, 1rem); font-weight: 300; line-height: 1.8;
+    color: rgba(245,239,224,0.7); max-width: 40ch; margin-bottom: 2rem;
+  }
+
+  /* Business benefit pills */
+  .hb-benefits { display: flex; flex-direction: column; gap: 0.9rem; }
+  .hb-benefit {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 1.2rem;
+    background: rgba(28,20,8,0.2);
+    border: 1px solid rgba(245,239,224,0.12);
+  }
+  .hb-benefit-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .hb-benefit-text strong {
+    display: block; font-size: 0.82rem; font-weight: 500; color: var(--cream); margin-bottom: 0.1rem;
+  }
+  .hb-benefit-text span {
+    font-size: 0.72rem; font-weight: 300; color: rgba(245,239,224,0.55);
+  }
+
+  /* Right visual col for b4 — placeholder + contrast graphic */
+  .hb-contrast {
+    display: grid; grid-template-rows: 1fr 1fr; height: 70%; gap: 1rem;
+  }
+  .hb-contrast-old, .hb-contrast-new {
+    padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end;
+    position: relative; overflow: hidden; border-radius: 0.25rem;
+  }
+  .hb-contrast-old {
+    background: rgba(28,20,8,0.35);
+    border: 1px solid rgba(245,239,224,0.08);
+  }
+  .hb-contrast-old .hb-photo-placeholder {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.5rem;
+  }
+  .hb-contrast-old .hb-photo-placeholder span {
+    font-size: 2.5rem; opacity: 0.2;
+  }
+  .hb-contrast-old .hb-photo-placeholder p {
+    font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(245,239,224,0.25); text-align: center; margin: 0; max-width: 20ch;
+  }
+  .hb-contrast-new {
+    background: linear-gradient(135deg, rgba(212,169,106,0.15) 0%, rgba(28,20,8,0.3) 100%);
+    border: 1px solid rgba(212,169,106,0.2);
+  }
+  .hb-contrast-label {
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 500; margin-bottom: 0.3rem;
+  }
+  .hb-contrast-old .hb-contrast-label { color: rgba(245,239,224,0.3); }
+  .hb-contrast-new .hb-contrast-label { color: var(--wheat); }
+  .hb-contrast-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 300;
+  }
+  .hb-contrast-old .hb-contrast-value { color: rgba(245,239,224,0.4); }
+  .hb-contrast-new .hb-contrast-value { color: var(--cream); }
+
+  /* ── Shared banner controls ── */
+  .hb-controls {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 1rem; z-index: 10;
+  }
+  .hb-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(245,239,224,0.3); border: none; cursor: pointer; padding: 0;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .hb-dot.active { background: var(--wheat); transform: scale(1.35); }
+
+  .hb-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 3rem; height: 3rem; z-index: 10;
+    background: rgba(28,20,8,0.4); backdrop-filter: blur(8px);
+    border: 1px solid rgba(245,239,224,0.15);
+    color: var(--wheat); font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.3s;
+  }
+  .hb-arrow:hover { background: rgba(196,98,45,0.6); }
+  .hb-arrow.prev { left: 2rem; }
+  .hb-arrow.next { right: 2rem; }
+
+  /* Progress bar along bottom */
+  .hb-progress {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: rgba(245,239,224,0.1); z-index: 10;
+  }
+  .hb-progress-fill {
+    height: 100%; background: var(--wheat);
+    width: 0%; transition: width 7s linear;
+  }
+
+  /* ── Banner entrance animations ── */
+  @keyframes hbFadeUp {
+    from { opacity:0; transform:translateY(22px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .hb-slide .hb-animate {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+  }
+  .hb-slide.hb-active .hb-animate { opacity: 1; transform: translateY(0); }
+  .hb-slide.hb-active .hb-animate:nth-child(1) { transition-delay: 0.2s; }
+  .hb-slide.hb-active .hb-animate:nth-child(2) { transition-delay: 0.4s; }
+  .hb-slide.hb-active .hb-animate:nth-child(3) { transition-delay: 0.6s; }
+  .hb-slide.hb-active .hb-animate:nth-child(4) { transition-delay: 0.8s; }
+
+  /* ── Remove old hero styles (keep for other uses) ── */
+  #hero { display: none; }
+
+  /* ── Responsive ── */
+  @media(max-width:900px) {
+    .hb-slide.b2 .hb-layout,
+    .hb-slide.b4 .hb-layout { grid-template-columns: 1fr; }
+    .hb-visual-col, .hb-contrast { display: none; }
+    .hb-process-steps { grid-template-columns: 1fr 1fr; }
+    .hb-slide.b1 .hb-mono { display: none; }
+    #hero-banners { height: auto; min-height: 100svh; }
+  }
+
+
+  /* USP RIBBON */
+  #usp-ribbon {
+    background: var(--pale);
+    border-bottom: 1px solid rgba(212,169,106,0.2);
+    padding: 0;
+    overflow: hidden;
+  }
+  .usp-ribbon-inner {
+    display: flex; align-items: stretch;
+    border-top: 2px solid rgba(212,169,106,0.15);
+  }
+  .usp-pill {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 1.1rem 0.8rem; gap: 0.35rem;
+    border-right: 1px solid rgba(212,169,106,0.18);
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .usp-pill:last-child { border-right: none; }
+  .usp-pill:hover { background: var(--cream); }
+  .usp-pill-icon { font-size: 1.2rem; line-height: 1; }
+  .usp-pill-label {
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; color: var(--earth); line-height: 1.3;
+  }
+  .usp-pill-sub {
+    font-size: 0.56rem; color: rgba(107,76,30,0.5);
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  @media(max-width:900px) {
+    .usp-ribbon-inner { flex-wrap: wrap; }
+    .usp-pill { flex: 1 1 33%; border-bottom: 1px solid rgba(212,169,106,0.15); }
+  }
+
+  /* CHALLENGE CAMPAIGN */
+  #challenge {
+    background: var(--deep); padding: 7rem 7vw;
+  }
+  .challenge-header { text-align: center; margin-bottom: 4rem; }
+  .challenge-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--wheat); font-weight: 500; margin-bottom: 1.2rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+  }
+  .challenge-eyebrow::before, .challenge-eyebrow::after {
+    content: ''; flex: 1; max-width: 3rem; height: 1px; background: var(--wheat);
+  }
+  .challenge-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+    font-weight: 300; color: var(--cream); line-height: 1.1;
+  }
+  .challenge-h2 em { font-style: italic; color: var(--wheat); }
+  .challenge-sub {
+    font-size: 1rem; font-weight: 300; color: rgba(245,239,224,0.55);
+    max-width: 55ch; margin: 1.2rem auto 0; line-height: 1.8;
+  }
+
+  /* Segment tabs */
+  .seg-tabs {
+    display: flex; justify-content: center; gap: 0;
+    border: 1px solid rgba(212,169,106,0.2);
+    width: fit-content; margin: 0 auto 3rem;
+  }
+  .seg-tab {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 500; padding: 0.7rem 1.6rem;
+    border: none; background: transparent; color: rgba(245,239,224,0.4);
+    cursor: pointer; transition: all 0.3s; border-right: 1px solid rgba(212,169,106,0.2);
+  }
+  .seg-tab:last-child { border-right: none; }
+  .seg-tab.active { background: var(--rust); color: #fff; }
+  .seg-tab:hover:not(.active) { color: var(--wheat); }
+
+  /* Challenge panels */
+  .seg-panel { display: none; }
+  .seg-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+  .pain-list { display: flex; flex-direction: column; gap: 1rem; }
+  .pain-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.1rem 1.3rem;
+    border: 1px solid rgba(196,98,45,0.2);
+    background: rgba(196,98,45,0.05);
+    transition: border-color 0.3s;
+  }
+  .pain-item:hover { border-color: rgba(196,98,45,0.5); }
+  .pain-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .pain-text strong { display: block; font-size: 0.85rem; font-weight: 500; color: var(--cream); margin-bottom: 0.2rem; }
+  .pain-text span { font-size: 0.78rem; font-weight: 300; color: rgba(245,239,224,0.5); line-height: 1.6; }
+
+  /* Answer column */
+  .challenge-answer {}
+  .answer-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wheat); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+  .answer-label::before { content:''; width:1.2rem; height:1px; background:var(--wheat); }
+  .answer-h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 300; color: var(--cream); line-height: 1.12; margin-bottom: 1.2rem; }
+  .answer-h3 em { font-style: italic; color: var(--wheat); }
+  .answer-body { font-size: 0.92rem; font-weight: 300; color: rgba(245,239,224,0.62); line-height: 1.85; }
+  .answer-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .answer-pill {
+    font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px solid rgba(212,169,106,0.25); padding: 0.3rem 0.8rem;
+    color: var(--wheat);
+  }
+  .answer-cta { margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.8rem; background: var(--rust); color: #fff; padding: 0.85rem 2rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.3s; }
+  .answer-cta:hover { background: var(--earth); }
+
+  /* SOCIAL PROOF STRIP */
+  #social-proof {
+    background: var(--earth); padding: 3rem 7vw;
+    display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .sp-stat { text-align: center; }
+  .sp-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1; }
+  .sp-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,239,224,0.6); font-weight: 500; margin-top: 0.3rem; }
+  .sp-divider { width: 1px; height: 4rem; background: rgba(245,239,224,0.2); }
+  .sp-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 300; font-style: italic; color: var(--cream); max-width: 50ch; line-height: 1.5; }
+  .sp-quote em { font-style: normal; color: var(--wheat); font-weight: 400; }
+  @media(max-width:900px) { #challenge .seg-panel.active { grid-template-columns: 1fr; } .sp-divider { display:none; } }
+
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="logo-green.png" alt="Ethical Delights"></a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="process.html">Our Process</a>
+    <a href="about.html">About Us</a>
+    <a href="#contact-strip" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Satvik · Preservative-Free · Homestyle</div>
+    <h1 class="hero-h1">Bringing<br><em>Respect</em> Back<br>to <strong>Indian</strong><br>Flatbreads</h1>
+    <p class="hero-sub">Preservative-free, homestyle chapatis, puris, and wraps — crafted for consistency, scale, and savings. Frozen right. Served perfect.</p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Explore Products →</a>
+      <a href="about.html" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Row 1 -->
+    <div class="hr-tile">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="16" stroke="#6B4C1E" stroke-width="1.5" fill="none"/>
+        <path d="M20 10 Q26 16 20 22 Q14 16 20 10Z" fill="#6B4C1E" opacity="0.7"/>
+        <path d="M20 20 Q26 26 20 32 Q14 26 20 20Z" fill="#6B4C1E" opacity="0.4"/>
+      </svg>
+      <div class="hr-tile-label">100% Satvik</div>
+      <div class="hr-tile-sub">Pure & Ethical</div>
+    </div>
+    <div class="hr-tile">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="14" width="24" height="16" rx="2" stroke="#6B4C1E" stroke-width="1.5" fill="none"/>
+        <path d="M14 14 V10 Q20 6 26 10 V14" stroke="#6B4C1E" stroke-width="1.5" fill="none"/>
+        <path d="M15 22 L19 26 L26 19" stroke="#C4622D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="hr-tile-label">Clean Label</div>
+      <div class="hr-tile-sub">Nothing Hidden</div>
+    </div>
+    <div class="hr-tile">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 8 C20 8 30 18 30 26 A10 10 0 0 1 10 26 C10 18 20 8 20 8Z" stroke="#6B4C1E" stroke-width="1.5" fill="none"/>
+        <path d="M14 26 Q20 22 26 26" stroke="#6B4C1E" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="20" y1="14" x2="20" y2="28" stroke="#C4622D" stroke-width="1.2" stroke-dasharray="2 2"/>
+      </svg>
+      <div class="hr-tile-label">No Palm Oil</div>
+      <div class="hr-tile-sub">Honest Fats</div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="hr-tile">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 28 Q16 16 20 12 Q24 16 28 28" stroke="#6B4C1E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <circle cx="20" cy="10" r="3" fill="#6B4C1E" opacity="0.6"/>
+        <line x1="10" y1="28" x2="30" y2="28" stroke="#6B4C1E" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="14" y1="26" x2="14" y2="31" stroke="#C4622D" stroke-width="1.5"/>
+        <line x1="26" y1="26" x2="26" y2="31" stroke="#C4622D" stroke-width="1.5"/>
+      </svg>
+      <div class="hr-tile-label">No Maida</div>
+      <div class="hr-tile-sub">Whole Wheat Only</div>
+    </div>
+
+    <!-- Centre cell — monogram only -->
+    <div class="hr-center">
+      <img src="monogram.png" class="hr-monogram" alt="Ethical Delights monogram">
+    </div>
+
+    <div class="hr-tile">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="20" height="22" rx="2" stroke="#6B4C1E" stroke-width="1.5" fill="none"/>
+        <path d="M15 18 L20 14 L25 18" stroke="#6B4C1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="14" y1="22" x2="26" y2="22" stroke="#6B4C1E" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="14" y1="26" x2="22" y2="26" stroke="#6B4C1E" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M24 27 L28 31 M28 27 L24 31" stroke="#C4622D" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="hr-tile-label">No Preservatives</div>
+      <div class="hr-tile-sub">Frozen Fresh</div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="hr-tile">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="18" r="9" stroke="#6B4C1E" stroke-width="1.5" fill="none"/>
+        <path d="M20 12 L20 18 L24 22" stroke="#C4622D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 30 Q16 26 20 28 Q24 26 28 30" stroke="#6B4C1E" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      </svg>
+      <div class="hr-tile-label">Half Baked</div>
+      <div class="hr-tile-sub">Finish to Order</div>
+    </div>
+    <div class="hr-tile">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 22 Q14 14 20 12 Q26 14 30 22" stroke="#6B4C1E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="20" cy="24" rx="10" ry="5" stroke="#6B4C1E" stroke-width="1.5" fill="none"/>
+        <path d="M14 27 Q20 32 26 27" stroke="#C4622D" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      </svg>
+      <div class="hr-tile-label">Ready to Cook</div>
+      <div class="hr-tile-sub">Bake or Fry</div>
+    </div>
+    <div class="hr-tile">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 8 L22 14 L28 14 L23 18 L25 24 L20 20 L15 24 L17 18 L12 14 L18 14 Z" stroke="#6B4C1E" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+        <circle cx="20" cy="16" r="2" fill="#C4622D" opacity="0.7"/>
+        <path d="M14 30 Q20 26 26 30" stroke="#6B4C1E" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <text x="20" y="35" text-anchor="middle" font-size="5" fill="#6B4C1E" font-family="Jost,sans-serif" letter-spacing="0.5" opacity="0.7">SATVIK</text>
+      </svg>
+      <div class="hr-tile-label">Homestyle</div>
+      <div class="hr-tile-sub">Taste & Soul</div>
+    </div>
+  </div>
+</section>
+
+<!-- HERO BANNER CAROUSEL -->
+<div id="hero-banners">
+  <div class="hb-track" id="hb-track">
+
+    <!-- ═══ BANNER 1: Brand Manifesto ═══ -->
+    <div class="hb-slide b1 hb-active">
+      <div class="hb-bg-text">Chapati</div>
+      <img src="monogram.png" class="hb-mono" alt="">
+      <div class="hb-content">
+        <div class="hb-eyebrow">Since 2024 · Pune, India</div>
+        <h1>Bringing <em>Respect</em><br>Back to Indian<br>Flatbreads</h1>
+        <p>Preservative-free, homestyle chapatis, puris, and wraps — crafted for consistency, scale, and savings. Frozen right. Served perfect. Every single time.</p>
+        <div class="hb-actions">
+          <a href="#products" class="btn-primary">Explore Products →</a>
+          <a href="about.html" class="btn-ghost" style="color:rgba(245,239,224,0.7);border-color:rgba(212,169,106,0.4);">Our Story</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BANNER 2: Freezer to Table ═══ -->
+    <div class="hb-slide b2">
+      <div class="hb-layout">
+        <div class="hb-text-col">
+          <div class="hb-eyebrow hb-animate">Ready When You Are</div>
+          <h2 class="hb-animate">From <em>Freezer</em><br>to Table<br>in Minutes</h2>
+          <p class="hb-animate">No kneading. No rolling. No prep stress. Our flatbreads are half-cooked, flash-frozen, and ready to finish in your kitchen — consistently perfect, every single time.</p>
+          <div class="hb-step-flow hb-animate">
+            <div class="hb-step">
+              <div class="hb-step-icon">🧊</div>
+              <div class="hb-step-label">Open<br>Freezer</div>
+            </div>
+            <div class="hb-step-arrow">→</div>
+            <div class="hb-step">
+              <div class="hb-step-icon">📦</div>
+              <div class="hb-step-label">Take<br>Packet</div>
+            </div>
+            <div class="hb-step-arrow">→</div>
+            <div class="hb-step">
+              <div class="hb-step-icon">⏱</div>
+              <div class="hb-step-label">Thaw<br>Briefly</div>
+            </div>
+            <div class="hb-step-arrow">→</div>
+            <div class="hb-step">
+              <div class="hb-step-icon">🔥</div>
+              <div class="hb-step-label">Bake<br>or Fry</div>
+            </div>
+            <div class="hb-step-arrow">→</div>
+            <div class="hb-step">
+              <div class="hb-step-icon">✅</div>
+              <div class="hb-step-label">Serve<br>Perfect</div>
+            </div>
+          </div>
+        </div>
+        <div class="hb-visual-col">
+          <div class="hb-pack-wrap">
+            <div class="hb-snowflake">❄</div>
+            <div class="hb-pack" style="z-index:1;">
+              <div class="hb-pack-logo">Ethical Delights®</div>
+              <div class="hb-pack-name">Satvik<br>Chapati</div>
+              <div class="hb-pack-sub">Half Baked · Ready to Cook</div>
+              <div style="width:100%;height:1px;background:rgba(255,255,255,0.2);margin:0.5rem 0;"></div>
+              <div class="hb-pack-badge">100%<br>Whole<br>Wheat</div>
+              <div style="font-size:0.5rem;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.5rem;">No Preservatives · No Maida</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BANNER 3: Our Process ═══ -->
+    <div class="hb-slide b3">
+      <div class="hb-layout">
+        <div class="hb-eyebrow hb-animate">The Ethical Delights Process</div>
+        <h2 class="hb-animate">Made Right.<br>Frozen <em>Fresh.</em><br>Served Perfect.</h2>
+        <div class="hb-process-steps hb-animate">
+          <div class="hb-pstep">
+            <div class="hb-pstep-num">01</div>
+            <div class="hb-pstep-icon">🌾</div>
+            <div class="hb-pstep-title">Freshly Ground Flour</div>
+            <div class="hb-pstep-desc">Whole wheat milled fresh for every batch — no stored flour</div>
+          </div>
+          <div class="hb-pstep">
+            <div class="hb-pstep-num">02</div>
+            <div class="hb-pstep-icon">🫙</div>
+            <div class="hb-pstep-title">Kneaded with Care</div>
+            <div class="hb-pstep-desc">Precise hydration and resting — the secret to softness</div>
+          </div>
+          <div class="hb-pstep">
+            <div class="hb-pstep-num">03</div>
+            <div class="hb-pstep-icon">⚙️</div>
+            <div class="hb-pstep-title">Precision Rolling</div>
+            <div class="hb-pstep-desc">Automated line — uniform size, thickness and weight every time</div>
+          </div>
+          <div class="hb-pstep">
+            <div class="hb-pstep-num">04</div>
+            <div class="hb-pstep-icon">🔥</div>
+            <div class="hb-pstep-title">Half Cooked</div>
+            <div class="hb-pstep-desc">Calibrated tawa — locks pliability, cuts your kitchen time</div>
+          </div>
+          <div class="hb-pstep">
+            <div class="hb-pstep-num">05</div>
+            <div class="hb-pstep-icon">❄️</div>
+            <div class="hb-pstep-title">Flash Frozen</div>
+            <div class="hb-pstep-desc">–18°C in seconds — peak quality locked, 1 year shelf life</div>
+          </div>
+        </div>
+        <div class="hb-animate">
+          <a href="process.html" class="btn-primary">See Full Process →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BANNER 4: Business Value ═══ -->
+    <div class="hb-slide b4">
+      <div class="hb-layout">
+        <div>
+          <div class="hb-eyebrow hb-animate">For Commercial Kitchens</div>
+          <h2 class="hb-animate">Your Kitchen.<br><em>Reimagined.</em></h2>
+          <p class="hb-animate">Ditch the daily dough drama. Ethical Delights gives your kitchen team consistency, hygiene, and freedom — so they can focus on what actually matters.</p>
+          <div class="hb-benefits hb-animate">
+            <div class="hb-benefit">
+              <div class="hb-benefit-icon">👩‍🍳</div>
+              <div class="hb-benefit-text">
+                <strong>Zero Labour Cost on Flatbreads</strong>
+                <span>No skilled roti maker needed — any team member can finish our flatbreads in 60 seconds</span>
+              </div>
+            </div>
+            <div class="hb-benefit">
+              <div class="hb-benefit-icon">🗑️</div>
+              <div class="hb-benefit-text">
+                <strong>Zero Wastage</strong>
+                <span>Frozen format means no daily spoilage, no over-preparation, no end-of-service write-offs</span>
+              </div>
+            </div>
+            <div class="hb-benefit">
+              <div class="hb-benefit-icon">✨</div>
+              <div class="hb-benefit-text">
+                <strong>100% Hygienic Production</strong>
+                <span>Machine-made in a food-safe facility — no open-air kneading, no cross-contamination</span>
+              </div>
+            </div>
+            <div class="hb-benefit">
+              <div class="hb-benefit-icon">📐</div>
+              <div class="hb-benefit-text">
+                <strong>Perfect Consistency, Every Plate</strong>
+                <span>Same size, same weight, same cook time — your guests get the same experience every time</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hb-contrast hb-animate">
+          <div class="hb-contrast-old">
+            <div class="hb-photo-placeholder">
+              <span>👩</span>
+              <p>Add your photo here — women hand-kneading in open kitchen conditions</p>
+            </div>
+            <div class="hb-contrast-label">The Old Way</div>
+            <div class="hb-contrast-value">Labour-intensive · Inconsistent · Unhygienic</div>
+          </div>
+          <div class="hb-contrast-new">
+            <div class="hb-contrast-label">The Ethical Delights Way</div>
+            <div class="hb-contrast-value">Machine-precise · Hygienic · Consistently perfect</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end hb-track -->
+
+  <!-- Controls -->
+  <button class="hb-arrow prev" onclick="hbMove(-1)">&#8592;</button>
+  <button class="hb-arrow next" onclick="hbMove(1)">&#8594;</button>
+  <div class="hb-controls" id="hb-dots"></div>
+  <div class="hb-progress"><div class="hb-progress-fill" id="hb-fill"></div></div>
+
+</div><!-- end hero-banners -->
+
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Preservative-Free <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">100% Satvik <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Frozen at –18°C <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">1 Year Shelf Life <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Zero Waste <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Consistency at Scale <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Labor Reduction <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Cost Savings <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Preservative-Free <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">100% Satvik <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Frozen at –18°C <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">1 Year Shelf Life <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Zero Waste <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Consistency at Scale <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Labor Reduction <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+    <span class="marquee-item">Cost Savings <span class="marquee-sep">✦</span>&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+
+<!-- USP RIBBON -->
+<div id="usp-ribbon">
+  <div class="usp-ribbon-inner">
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🌾</div>
+      <div class="usp-pill-label">No Maida</div>
+      <div class="usp-pill-sub">100% Whole Wheat</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🚫</div>
+      <div class="usp-pill-label">No Palm Oil</div>
+      <div class="usp-pill-sub">Honest Fats Only</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🏷️</div>
+      <div class="usp-pill-label">Clean Label</div>
+      <div class="usp-pill-sub">Nothing Hidden</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🌿</div>
+      <div class="usp-pill-label">No Preservatives</div>
+      <div class="usp-pill-sub">100% Satvik</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">🔥</div>
+      <div class="usp-pill-label">Ready to Cook</div>
+      <div class="usp-pill-sub">Bake or Fry in 60s</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">❄️</div>
+      <div class="usp-pill-label">Flash Frozen</div>
+      <div class="usp-pill-sub">–18°C · 1 Year Life</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">📐</div>
+      <div class="usp-pill-label">Precision Made</div>
+      <div class="usp-pill-sub">Uniform Every Time</div>
+    </div>
+    <div class="usp-pill">
+      <div class="usp-pill-icon">♾️</div>
+      <div class="usp-pill-label">Zero Waste</div>
+      <div class="usp-pill-sub">Cook Only What You Need</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section-label">Why Choose Us</div>
+  <div class="why-layout">
+    <div>
+      <h2 class="section-heading">Every Flatbread,<br><em>a Promise Kept</em></h2>
+      <div class="why-intro" style="margin-top:1.8rem;">
+        <p>We believe commercial kitchens deserve the same quality that home cooks have enjoyed for generations — clean ingredients, no shortcuts, and deep respect for India's flatbread traditions.</p>
+        <p>From cloud kitchens to large catering operations, Ethical Delights delivers consistency you can count on — meal after meal.</p>
+      </div>
+      <a href="about.html" class="btn-ghost" style="display:inline-block;margin-top:2rem;">Learn our story →</a>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar fade-up"><div class="pillar-num">01</div><div class="pillar-title">Cost Savings</div><div class="pillar-desc">Eliminate wastage and reduce procurement costs without compromising on quality.</div></div>
+      <div class="pillar fade-up"><div class="pillar-num">02</div><div class="pillar-title">Labor Reduction</div><div class="pillar-desc">Ready-to-cook formats free your kitchen team for higher-value work, every service.</div></div>
+      <div class="pillar fade-up"><div class="pillar-num">03</div><div class="pillar-title">100% Satvik</div><div class="pillar-desc">No onion, no garlic, no preservatives. Pure, clean ingredients every batch.</div></div>
+      <div class="pillar fade-up"><div class="pillar-num">04</div><div class="pillar-title">Zero Waste</div><div class="pillar-desc">Frozen format means no daily spoilage, no over-ordering, no discards at end of service.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY FROZEN -->
+<section id="frozen">
+  <div class="frozen-layout">
+    <div class="frozen-visual">
+      <div class="frozen-circle">
+        <div class="frozen-glyph">❄</div>
+        <div class="temp-badge">–18°C</div>
+      </div>
+    </div>
+    <div class="frozen-text">
+      <div class="section-label">The Science of Freshness</div>
+      <h2 class="section-heading">Why <em>Frozen</em><br>is Smarter</h2>
+      <p class="frozen-body">Freezing at –18°C halts all microbial activity instantly, locking in nutrients and taste at their absolute peak. This isn't convenience food — it's preservation science in service of homestyle quality.</p>
+      <p class="frozen-body" style="margin-top:1rem;">Simply thaw and bake or fry as needed — no prep time, no guesswork, perfect results every time.</p>
+      <div class="stat-row">
+        <div class="stat-item fade-up"><div class="stat-num">–18°</div><div class="stat-lbl">Flash frozen</div></div>
+        <div class="stat-item fade-up"><div class="stat-num">1yr</div><div class="stat-lbl">Shelf life</div></div>
+        <div class="stat-item fade-up"><div class="stat-num">0</div><div class="stat-lbl">Preservatives</div></div>
+      </div>
+      <a href="process.html" class="btn-primary" style="margin-top:2rem;display:inline-flex;">See Our Process →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-label">Our Products</div>
+  <h2 class="section-heading">Three Flatbreads,<br><em>Infinite Possibilities</em></h2>
+  <p class="products-intro">Each product crafted with the same clean-label promise. Each one ready to transform your kitchen's output.</p>
+  <div class="product-grid">
+
+    <!-- CHAPATI -->
+    <div class="product-card fade-up">
+      <div class="card-carousel">
+        <div class="carousel-track" id="track-chapati">
+          <div class="carousel-slide"><img src="chapati.png" alt="Classic Satvik Chapati"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Spinach Chapati"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Beetroot Chapati"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Khapli Chapati"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Satvik Chapati variants"></div>
+        </div>
+        <button class="carousel-prev" onclick="moveCard('chapati',-1)">&#8592;</button>
+        <button class="carousel-next" onclick="moveCard('chapati',1)">&#8594;</button>
+        <div class="carousel-counter" id="counter-chapati">1 / 5</div>
+        <div class="carousel-dots" id="dots-chapati"></div>
+      </div>
+      <div class="product-body">
+        <span class="product-tag">Signature</span>
+        <div class="product-name">Satvik Chapatis</div>
+        <p class="product-desc">Whole wheat, hand-recipe precision. Available in multiple variants and formats for every kitchen scale — from cloud kitchens to large catering operations.</p>
+        <div class="product-tags"><span class="tag">Whole Wheat</span><span class="tag">Multiple Sizes</span><span class="tag">Half-Cooked</span><span class="tag">Preservative-Free</span></div>
+      </div>
+    </div>
+
+    <!-- PURI -->
+    <div class="product-card fade-up">
+      <div class="card-carousel">
+        <div class="carousel-track" id="track-puri">
+          <div class="carousel-slide"><img src="puri.png" alt="Classic Satvik Puri"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Masala Puri"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Tri-Color Puri"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Aloo Puri"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Satvik Puri variants"></div>
+        </div>
+        <button class="carousel-prev" onclick="moveCard('puri',-1)">&#8592;</button>
+        <button class="carousel-next" onclick="moveCard('puri',1)">&#8594;</button>
+        <div class="carousel-counter" id="counter-puri">1 / 5</div>
+        <div class="carousel-dots" id="dots-puri"></div>
+      </div>
+      <div class="product-body">
+        <span class="product-tag">Traditional</span>
+        <div class="product-name">Satvik Puris</div>
+        <p class="product-desc">The beloved deep-fried bread, frozen at its finest. Consistent diameter and thickness for predictable frying times and uniform golden results, every single time.</p>
+        <div class="product-tags"><span class="tag">Uniform Size</span><span class="tag">Quick-Fry</span><span class="tag">1-Year Shelf Life</span><span class="tag">Satvik</span></div>
+      </div>
+    </div>
+
+    <!-- WRAPS -->
+    <div class="product-card fade-up">
+      <div class="card-carousel">
+        <div class="carousel-track" id="track-wrap">
+          <div class="carousel-slide"><img src="wrap1.jpg" alt="Spinach Wrap"></div>
+          <div class="carousel-slide"><img src="wrap2.jpg" alt="Tri-Color Wrap on conveyor"></div>
+          <div class="carousel-slide"><img src="wrap3.jpg" alt="Beetroot and Spinach Wraps"></div>
+          <div class="carousel-slide"><img src="wrap4.jpg" alt="Beetroot Wrap closeup"></div>
+          <div class="carousel-slide"><img src="wrap5.jpg" alt="Spinach Wraps — wide shot"></div>
+        </div>
+        <button class="carousel-prev" onclick="moveCard('wrap',-1)">&#8592;</button>
+        <button class="carousel-next" onclick="moveCard('wrap',1)">&#8594;</button>
+        <div class="carousel-counter" id="counter-wrap">1 / 5</div>
+        <div class="carousel-dots" id="dots-wrap"></div>
+      </div>
+      <div class="product-body">
+        <span class="product-tag">Versatile</span>
+        <div class="product-name">Wraps</div>
+        <p class="product-desc">Flexible, hygienic, and fully customizable. The perfect canvas for your fillings — soft enough to fold cleanly, sturdy enough to hold every serving.</p>
+        <div class="product-tags"><span class="tag">Flexible</span><span class="tag">Hygienic</span><span class="tag">Customizable</span><span class="tag">High-Yield</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- SPECIALTIES -->
+<section id="specialties">
+  <div class="section-label">Our Homestyle Specialties</div>
+  <h2 class="section-heading">Satvik Puris,<br><em>Four Variants</em></h2>
+  <p class="spec-intro">Four distinct puris — each half-baked, preservative-free, and ready to fry in seconds. Naturally coloured, naturally delicious.</p>
+
+  <div class="spec-panels">
+
+    <!-- PURI PANEL — always visible, no tabs needed -->
+    <div class="spec-panel active" id="panel-puris">
+      <div class="var-rotator">
+        <div class="var-track" id="vtrack-puris">
+
+          <div class="var-slide">
+            <div class="var-img"><img src="puri.png" alt="Classic Plain Puri"></div>
+            <div class="var-content">
+              <div class="var-num">01</div>
+              <div class="var-tag">Classic</div>
+              <div class="var-name">Plain<br><em>Puri</em></div>
+              <p class="var-desc">Classic, golden, and fluffy. Our signature puri — half-baked and ready to fry in seconds. Consistent diameter, predictable frying time, perfect puff every time.</p>
+              <div class="var-attrs"><span class="var-attr">Whole Wheat</span><span class="var-attr">Half Baked</span><span class="var-attr">Ready to Fry</span><span class="var-attr">No Maida</span></div>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="puri.png" alt="Masala Puri"></div>
+            <div class="var-content">
+              <div class="var-num">02</div>
+              <div class="var-tag">Spiced</div>
+              <div class="var-name">Masala<br><em>Puri</em></div>
+              <p class="var-desc">Spiced with a flavorful blend of whole spices for a zesty, aromatic twist. Pairs beautifully with sabzi, chutneys, or as a standalone street-food style snack.</p>
+              <div class="var-attrs"><span class="var-attr">Whole Spices</span><span class="var-attr">No Artificial Flavour</span><span class="var-attr">Half Baked</span></div>
+              <p class="var-note">Photo coming soon.</p>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="puri.png" alt="Tri-Color Puri"></div>
+            <div class="var-content">
+              <div class="var-num">03</div>
+              <div class="var-tag">Our New Invention</div>
+              <div class="var-name">Tri-Color<br><em>Puri</em></div>
+              <p class="var-desc">Vibrant and healthy — naturally coloured with spinach (green), beetroot (red), and turmeric (yellow). Zero artificial colours. Our proudest innovation, inspired by the Indian tricolour.</p>
+              <div class="var-attrs"><span class="var-attr">Spinach</span><span class="var-attr">Beetroot</span><span class="var-attr">Turmeric</span><span class="var-attr">No Artificial Colour</span></div>
+              <p class="var-note">A visual delight — photo coming soon.</p>
+            </div>
+          </div>
+
+          <div class="var-slide">
+            <div class="var-img"><img src="puri.png" alt="Aloo Puri"></div>
+            <div class="var-content">
+              <div class="var-num">04</div>
+              <div class="var-tag">Stuffed</div>
+              <div class="var-name">Aloo<br><em>Puri</em></div>
+              <p class="var-desc">Stuffed with seasoned potato for a hearty, satisfying delight. A classic combination loved across India — now available frozen, consistently portioned, and ready to fry.</p>
+              <div class="var-attrs"><span class="var-attr">Potato-Stuffed</span><span class="var-attr">Seasoned</span><span class="var-attr">Hearty</span><span class="var-attr">Ready to Fry</span></div>
+              <p class="var-note">Photo coming soon.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="var-controls">
+          <div class="var-dots-wrap" id="vdots-puris"></div>
+          <div class="var-arrows">
+            <button class="var-arrow" onclick="moveVar('puris',-1)">&#8592;</button>
+            <button class="var-arrow" onclick="moveVar('puris',1)">&#8594;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CHALLENGE CAMPAIGN -->
+<section id="challenge">
+  <div class="challenge-header">
+    <div class="challenge-eyebrow">For Commercial Kitchens</div>
+    <h2 class="challenge-h2">Are These Challenges<br><em>Slowing You Down?</em></h2>
+    <p class="challenge-sub">We've seen these challenges firsthand across kitchens in Pune — and built Ethical Delights to solve every one of them.</p>
+  </div>
+
+  <div class="seg-tabs">
+    <button class="seg-tab active" onclick="switchSeg('caterers', this)">Caterers</button>
+    <button class="seg-tab" onclick="switchSeg('horeca', this)">HoReCa</button>
+    <button class="seg-tab" onclick="switchSeg('industrial', this)">Industrial Kitchens</button>
+  </div>
+
+  <!-- CATERERS -->
+  <div class="seg-panel active" id="seg-caterers">
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pain-icon">👷</div>
+        <div class="pain-text"><strong>Labor Dependency</strong><span>Your entire service depends on one skilled roti maker showing up. When they don't, everything falls apart.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">⏱️</div>
+        <div class="pain-text"><strong>Excessive Prep Time</strong><span>Hours lost every morning to kneading, rolling, and cooking — before a single guest is served.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">📉</div>
+        <div class="pain-text"><strong>Inconsistent Quality</strong><span>Every batch looks different. Every event feels like a gamble. Guests notice.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🗑️</div>
+        <div class="pain-text"><strong>Wastage from Bulk Prep</strong><span>Overestimate and waste. Underestimate and run short. There's no middle ground with fresh dough.</span></div>
+      </div>
+    </div>
+    <div class="challenge-answer">
+      <div class="answer-label">The Ethical Delights Solution</div>
+      <h3 class="answer-h3">Scale Any Event<br><em>Without the Chaos</em></h3>
+      <p class="answer-body">Ethical Delights gives caterers a plug-and-play flatbread solution. No skilled labor, no daily prep, no wastage. Cook exactly what you need, when you need it — with guaranteed consistency across every plate, every event.</p>
+      <div class="answer-pills">
+        <span class="answer-pill">No Skilled Roti Maker Needed</span>
+        <span class="answer-pill">Cook as Needed</span>
+        <span class="answer-pill">Zero Wastage</span>
+        <span class="answer-pill">Consistent Every Batch</span>
+      </div>
+      <a href="#contact-strip" class="answer-cta">Talk to Us →</a>
+    </div>
+  </div>
+
+  <!-- HORECA -->
+  <div class="seg-panel" id="seg-horeca">
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pain-icon">💸</div>
+        <div class="pain-text"><strong>Rising Overheads</strong><span>Skilled kitchen staff costs keep climbing. Flatbread prep is labor-intensive and eats into your margins every single service.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🎯</div>
+        <div class="pain-text"><strong>Guest Experience Inconsistency</strong><span>Table 4 gets a perfect chapati. Table 12 gets something different. Guests compare, and you can't control it.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🧹</div>
+        <div class="pain-text"><strong>Kitchen Hygiene Challenges</strong><span>Flour dust, open dough prep, and manual handling create hygiene risks that are hard to manage at scale.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🔄</div>
+        <div class="pain-text"><strong>Supply Chain Complexity</strong><span>Managing fresh ingredients daily — flour, storage, spoilage — adds operational complexity you shouldn't have to deal with.</span></div>
+      </div>
+    </div>
+    <div class="challenge-answer">
+      <div class="answer-label">The Ethical Delights Solution</div>
+      <h3 class="answer-h3">Elevate Every<br><em>Guest Experience</em></h3>
+      <p class="answer-body">From boutique hotels to multi-outlet restaurant chains, Ethical Delights delivers hygienic, consistent, Satvik flatbreads that your team can serve in under 60 seconds — with zero flour mess, zero prep dependency, and zero compromise on quality.</p>
+      <div class="answer-pills">
+        <span class="answer-pill">100% Hygienic Production</span>
+        <span class="answer-pill">60-Second Finish</span>
+        <span class="answer-pill">Satvik Certified</span>
+        <span class="answer-pill">Multi-Outlet Ready</span>
+      </div>
+      <a href="#contact-strip" class="answer-cta">Talk to Us →</a>
+    </div>
+  </div>
+
+  <!-- INDUSTRIAL -->
+  <div class="seg-panel" id="seg-industrial">
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pain-icon">📦</div>
+        <div class="pain-text"><strong>Volume Consistency at Scale</strong><span>Producing 2,000 chapatis a day that all look and taste the same is nearly impossible with manual prep.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">👩‍🍳</div>
+        <div class="pain-text"><strong>High Labor Dependency</strong><span>Large teams of skilled staff just for flatbread prep — expensive, unpredictable, and hard to retain.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">📋</div>
+        <div class="pain-text"><strong>Compliance & Hygiene Audits</strong><span>Open prep areas, manual handling, and flour dust create recurring compliance headaches during inspections.</span></div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🏭</div>
+        <div class="pain-text"><strong>Scaling Bottlenecks</strong><span>When demand spikes, your flatbread prep can't keep up. Manual processes simply don't scale reliably.</span></div>
+      </div>
+    </div>
+    <div class="challenge-answer">
+      <div class="answer-label">The Ethical Delights Solution</div>
+      <h3 class="answer-h3">Built for<br><em>Industrial Scale</em></h3>
+      <p class="answer-body">Whether it's 1,000 chapatis a day or 10,000 and beyond — our automated production line and flash-frozen supply model gives industrial kitchens a reliable, hygienic, scale-ready flatbread solution. Engineered for volume, built for consistency.</p>
+      <div class="answer-pills">
+        <span class="answer-pill">1,000–10,000+ Daily</span>
+        <span class="answer-pill">Audit-Ready Hygiene</span>
+        <span class="answer-pill">Automated Production</span>
+        <span class="answer-pill">Scale on Demand</span>
+      </div>
+      <a href="#contact-strip" class="answer-cta">Talk to Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div id="social-proof">
+  <div class="sp-stat">
+    <div class="sp-num">600+</div>
+    <div class="sp-label">Families Trusted</div>
+  </div>
+  <div class="sp-divider"></div>
+  <div class="sp-stat">
+    <div class="sp-num">8</div>
+    <div class="sp-label">Months R&amp;D</div>
+  </div>
+  <div class="sp-divider"></div>
+  <div class="sp-stat">
+    <div class="sp-num">5</div>
+    <div class="sp-label">Step Process</div>
+  </div>
+  <div class="sp-divider"></div>
+  <div class="sp-quote">
+    <em>"Fresh, Satvik, and scalable<br>can co-exist."</em><br>
+    <span style="font-size:0.75rem;font-style:normal;color:rgba(245,239,224,0.5);letter-spacing:0.1em;text-transform:uppercase;font-family:'Jost',sans-serif;">— Amit &amp; Nishant, Founders</span>
+  </div>
+</div>
+
+
+<!-- PROMISE -->
+<section id="promise">
+  <div class="promise-lead">Our<br><em>Four</em><br>Promises</div>
+  <div class="promise-items">
+    <div class="promise-item fade-up"><span class="promise-icon">🌿</span><div class="promise-title">Preservative-Free</div><div class="promise-desc">Clean ingredients, every single batch — exactly what it sounds like, nothing hidden.</div></div>
+    <div class="promise-item fade-up"><span class="promise-icon">🤝</span><div class="promise-title">Ethically Sourced</div><div class="promise-desc">Transparent supply chain from farm to freezer — always traceable, always honest.</div></div>
+    <div class="promise-item fade-up"><span class="promise-icon">❄️</span><div class="promise-title">Frozen Right</div><div class="promise-desc">–18°C flash-freezing at peak quality — not just for shelf life, but for genuine taste.</div></div>
+    <div class="promise-item fade-up"><span class="promise-icon">🏡</span><div class="promise-title">Homestyle Taste</div><div class="promise-desc">8 months of recipe development to taste exactly like home — every single time.</div></div>
+  </div>
+</section>
+
+<!-- MEDIA SHOWCASE -->
+<section id="media-showcase">
+  <div class="media-header">
+    <div>
+      <div class="section-label media-label">Behind the Brand</div>
+      <h2 class="media-heading">See Ethical <em>Delights</em><br>in Action</h2>
+    </div>
+    <div class="media-nav-btns">
+      <button class="media-nav-btn" onclick="moveMedia(-1)">&#8592;</button>
+      <button class="media-nav-btn" onclick="moveMedia(1)">&#8594;</button>
+    </div>
+  </div>
+  <div class="media-carousel-wrap">
+    <div class="media-carousel-track" id="media-track">
+
+      <div class="media-slide">
+        <div class="media-slide-inner">
+          <img src="chapati.png" alt="Satvik Chapati">
+          <div class="media-caption"><div class="media-caption-tag">Our Products</div><div class="media-caption-title">Satvik Chapati — crafted with care, every batch</div></div>
+        </div>
+      </div>
+
+      <div class="media-slide">
+        <div class="media-slide-inner">
+          <img src="puri.png" alt="Satvik Puri">
+          <div class="media-caption"><div class="media-caption-tag">Our Products</div><div class="media-caption-title">Satvik Puri — golden, consistent, ready to fry</div></div>
+        </div>
+      </div>
+
+      <div class="media-slide">
+        <div class="media-slide-inner">
+          <video muted loop playsinline preload="metadata">
+            <source src="video1.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Behind the Scenes</div><div class="media-caption-title">Inside the Ethical Delights kitchen</div></div>
+        </div>
+      </div>
+
+      <div class="media-slide">
+        <div class="media-slide-inner">
+          <video muted loop playsinline preload="metadata">
+            <source src="video2.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Our Process</div><div class="media-caption-title">Precision rolling — uniform, consistent, every time</div></div>
+        </div>
+      </div>
+
+      <div class="media-slide">
+        <div class="media-slide-inner">
+          <video muted loop playsinline preload="metadata">
+            <source src="video3.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Crafted with Care</div><div class="media-caption-title">Homestyle quality at commercial scale</div></div>
+        </div>
+      </div>
+
+      <div class="media-slide">
+        <div class="media-slide-inner">
+          <video muted loop playsinline preload="metadata">
+            <source src="video4.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Natural Colours</div><div class="media-caption-title">No artificial dyes — nature does it better</div></div>
+        </div>
+      </div>
+
+      <div class="media-slide">
+        <div class="media-slide-inner">
+          <video muted loop playsinline preload="metadata">
+            <source src="video5.mp4" type="video/mp4">
+          </video>
+          <div class="media-caption"><div class="media-caption-tag">Frozen Right</div><div class="media-caption-title">Flash-frozen at –18°C — peak freshness, preserved</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="media-progress"><div class="media-progress-fill" id="media-progress-fill"></div></div>
+  <div class="media-dots" id="media-dots"></div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact-strip">
+  <div class="contact-left">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-heading">Let's Talk<br><em>Flatbreads</em></h2>
+    <p class="contact-tagline">Whether you run a cloud kitchen, restaurant, or catering service — we'd love to discuss how Ethical Delights can serve your kitchen.</p>
+  </div>
+  <div class="contact-items">
+    <div class="contact-row"><span class="c-icon">📞</span><div><span class="c-label">Phone</span><a href="tel:+919822635254" class="c-val">+91-9822635254 &nbsp;/&nbsp; +91-9923065960</a></div></div>
+    <div class="contact-row"><span class="c-icon">💬</span><div><span class="c-label">WhatsApp</span><a href="https://wa.me/919970702853" class="c-val">+91-99707-02853</a></div></div>
+    <div class="contact-row"><span class="c-icon">✉️</span><div><span class="c-label">Email</span><a href="mailto:theethicalkitchen@gmail.com" class="c-val">theethicalkitchen@gmail.com</a></div></div>
+    <div class="contact-row"><span class="c-icon">🌐</span><div><span class="c-label">Website</span><a href="https://www.ethicaldelights.in" target="_blank" class="c-val">www.ethicaldelights.in</a></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo"><img src="logo-green.png" alt="Ethical Delights"></div>
+  <div class="foot-links"><a href="index.html">Home</a><a href="process.html">Process</a><a href="about.html">About Us</a></div>
+  <div class="foot-copy">© 2025 Ethical Delights®. Less Prep. More Consistency.</div>
+</footer>
+
+<script>
+  // NAV
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Hero right uses CSS grid — no JS needed
+
+  // FADE-UP
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.1 + 's';
+    obs.observe(el);
+  });
+
+  // ── PRODUCT CARD CAROUSELS ──
+  const cardState = {};
+
+  function initCard(id, total) {
+    cardState[id] = { current: 0, total, timer: null };
+    const dotsEl = document.getElementById('dots-' + id);
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goCard(id, i);
+      dotsEl.appendChild(d);
+    }
+    startCardAuto(id);
+  }
+
+  function goCard(id, idx) {
+    const s = cardState[id];
+    s.current = ((idx % s.total) + s.total) % s.total;
+    document.getElementById('track-' + id).style.transform = 'translateX(-' + (s.current * 100) + '%)';
+    document.getElementById('counter-' + id).textContent = (s.current + 1) + ' / ' + s.total;
+    document.querySelectorAll('#dots-' + id + ' .carousel-dot').forEach((d, i) => d.classList.toggle('active', i === s.current));
+    clearInterval(s.timer);
+    startCardAuto(id);
+  }
+
+  function moveCard(id, dir) { goCard(id, cardState[id].current + dir); }
+
+  function startCardAuto(id) {
+    cardState[id].timer = setInterval(() => moveCard(id, 1), 5000);
+  }
+
+  initCard('chapati', 5);
+  initCard('puri', 5);
+  initCard('wrap', 5);
+
+  // ── MEDIA CAROUSEL — simple & bulletproof ──
+  (function() {
+    const slides   = Array.from(document.querySelectorAll('.media-slide'));
+    const total    = slides.length;
+    const track    = document.getElementById('media-track');
+    const fill     = document.getElementById('media-progress-fill');
+    const dotsWrap = document.getElementById('media-dots');
+    const SLIDE_MS = 12000; // 12 seconds per slide
+
+    let cur = 0;
+    let progressTimer  = null;  // setInterval for progress bar
+    let advanceTimer   = null;  // setTimeout to move to next slide
+    let progressStart  = null;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'media-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
+
+    function updateDots() {
+      document.querySelectorAll('.media-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === cur));
+    }
+
+    function manageVideos() {
+      slides.forEach((slide, i) => {
+        const vid = slide.querySelector('video');
+        if (!vid) return;
+        if (i === cur) {
+          vid.currentTime = 0;
+          vid.play().catch(() => {});
+        } else {
+          vid.pause();
+          vid.currentTime = 0;
+        }
+      });
+    }
+
+    function startProgress() {
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      // Force reflow so transition resets
+      fill.offsetWidth;
+      fill.style.transition = 'width ' + SLIDE_MS + 'ms linear';
+      fill.style.width = '100%';
+    }
+
+    function stopTimers() {
+      clearTimeout(advanceTimer);
+      clearInterval(progressTimer);
+    }
+
+    function goTo(idx) {
+      stopTimers();
+      cur = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      updateDots();
+      manageVideos();
+      startProgress();
+      advanceTimer = setTimeout(() => goTo(cur + 1), SLIDE_MS);
+    }
+
+    // Expose for prev/next buttons
+    window.moveMedia = function(dir) { goTo(cur + dir); };
+
+    // Start after page load
+    window.addEventListener('load', () => goTo(0));
+  })();
+
+  // ── VARIANT ROTATORS ──
+  const varState = {};
+
+  function initVar(id, total) {
+    varState[id] = { current: 0, total, timer: null };
+    const dotsEl = document.getElementById('vdots-' + id);
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('button');
+      d.className = 'var-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goVar(id, i);
+      dotsEl.appendChild(d);
+    }
+    varState[id].timer = setInterval(() => moveVar(id, 1), 4000);
+  }
+
+  function goVar(id, idx) {
+    const s = varState[id];
+    s.current = ((idx % s.total) + s.total) % s.total;
+    document.getElementById('vtrack-' + id).style.transform = 'translateX(-' + (s.current * 100) + '%)';
+    document.querySelectorAll('#vdots-' + id + ' .var-dot').forEach((d, i) => d.classList.toggle('active', i === s.current));
+    clearInterval(s.timer);
+    varState[id].timer = setInterval(() => moveVar(id, 1), 4000);
+  }
+
+  function moveVar(id, dir) { goVar(id, varState[id].current + dir); }
+
+
+
+  initVar('puris', 4);
+
+
+  // ══ HERO BANNER CAROUSEL ══
+  (function() {
+    const slides  = Array.from(document.querySelectorAll('.hb-slide'));
+    const total   = slides.length;
+    const track   = document.getElementById('hb-track');
+    const fill    = document.getElementById('hb-fill');
+    const dotsWrap= document.getElementById('hb-dots');
+    const SLIDE_MS = 7000;
+    let cur = 0, advTimer = null;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'hb-dot' + (i===0?' active':'');
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
+
+    function updateDots() {
+      document.querySelectorAll('.hb-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+    }
+
+    function activateSlide() {
+      slides.forEach((s,i) => {
+        s.classList.toggle('hb-active', i===cur);
+        // reset animations on non-active
+        if (i !== cur) {
+          s.querySelectorAll('.hb-animate').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(22px)';
+          });
+        }
+      });
+      // trigger animations on active slide
+      const active = slides[cur];
+      active.querySelectorAll('.hb-animate').forEach((el, i) => {
+        el.style.transition = 'opacity 0.8s ' + (0.2 + i*0.15) + 's, transform 0.8s ' + (0.2 + i*0.15) + 's';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    }
+
+    function startProgress() {
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      fill.offsetWidth; // reflow
+      fill.style.transition = 'width ' + SLIDE_MS + 'ms linear';
+      fill.style.width = '100%';
+    }
+
+    function goTo(idx) {
+      clearTimeout(advTimer);
+      cur = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      updateDots();
+      activateSlide();
+      startProgress();
+      advTimer = setTimeout(() => goTo(cur + 1), SLIDE_MS);
+    }
+
+    window.hbMove = function(dir) { goTo(cur + dir); };
+
+    // Init
+    activateSlide();
+    startProgress();
+    advTimer = setTimeout(() => goTo(1), SLIDE_MS);
+  })();
+
+
+  // Segment tabs
+  window.switchSeg = function(id, btn) {
+    document.querySelectorAll('.seg-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.seg-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('seg-' + id).classList.add('active');
+  };
+
+</script>
+</body>
+</html>
