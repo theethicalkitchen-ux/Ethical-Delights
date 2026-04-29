@@ -1280,81 +1280,13 @@
 <!-- SPECIALTIES -->
 <section id="specialties">
   <div class="section-label">Our Homestyle Specialties</div>
-  <h2 class="section-heading">Authentic Taste,<br><em>Eight Variants</em></h2>
-  <p class="spec-intro">We bring the authentic taste of Maharashtrian kitchens straight to your plate — crafted from whole wheat, coloured with nature, and frozen at their freshest.</p>
-
-  <!-- Tabs -->
-  <div class="spec-tabs">
-    <button class="spec-tab active" onclick="switchTab('chapatis')">🫓 &nbsp;Satvik Chapatis</button>
-    <button class="spec-tab" onclick="switchTab('puris')">🫔 &nbsp;Satvik Puris</button>
-  </div>
+  <h2 class="section-heading">Satvik Puris,<br><em>Four Variants</em></h2>
+  <p class="spec-intro">Four distinct puris — each half-baked, preservative-free, and ready to fry in seconds. Naturally coloured, naturally delicious.</p>
 
   <div class="spec-panels">
 
-    <!-- CHAPATI PANEL -->
-    <div class="spec-panel active" id="panel-chapatis">
-      <div class="var-rotator">
-        <div class="var-track" id="vtrack-chapatis">
-
-          <div class="var-slide">
-            <div class="var-img"><img src="chapati.png" alt="Classic Satvik Chapati"></div>
-            <div class="var-content">
-              <div class="var-num">01</div>
-              <div class="var-tag">Classic</div>
-              <div class="var-name">Whole Wheat<br><em>Chapati</em></div>
-              <p class="var-desc">Soft, wholesome, and made in true Maharashtrian homestyle tradition. Our signature — rolled thin, half-cooked, and frozen at peak freshness. The everyday flatbread, perfected.</p>
-              <div class="var-attrs"><span class="var-attr">Whole Wheat</span><span class="var-attr">Half-Cooked</span><span class="var-attr">Ready to Cook</span><span class="var-attr">No Preservatives</span></div>
-            </div>
-          </div>
-
-          <div class="var-slide">
-            <div class="var-img"><img src="chapati.png" alt="Spinach Chapati"></div>
-            <div class="var-content">
-              <div class="var-num">02</div>
-              <div class="var-tag">Variety</div>
-              <div class="var-name">Spinach<br><em>Chapati</em></div>
-              <p class="var-desc">Kneaded with fresh spinach for a vibrant green hue and a gentle earthy flavour. Naturally coloured — no dyes, no additives. A wholesome twist on the classic.</p>
-              <div class="var-attrs"><span class="var-attr">Real Spinach</span><span class="var-attr">Natural Colour</span><span class="var-attr">No Artificial Dye</span></div>
-              <p class="var-note">Photo coming soon — this one's as beautiful as it is nutritious.</p>
-            </div>
-          </div>
-
-          <div class="var-slide">
-            <div class="var-img"><img src="chapati.png" alt="Beetroot Chapati"></div>
-            <div class="var-content">
-              <div class="var-num">03</div>
-              <div class="var-tag">Variety</div>
-              <div class="var-name">Beetroot<br><em>Chapati</em></div>
-              <p class="var-desc">Deep rose-pink from real beetroot — naturally sweet, rich in antioxidants, and absolutely stunning on the plate. A feast for the eyes and the body.</p>
-              <div class="var-attrs"><span class="var-attr">Real Beetroot</span><span class="var-attr">Natural Colour</span><span class="var-attr">Antioxidant-Rich</span></div>
-              <p class="var-note">Photo coming soon — the colour alone is worth the wait.</p>
-            </div>
-          </div>
-
-          <div class="var-slide">
-            <div class="var-img"><img src="chapati.png" alt="Khapli Wheat Chapati"></div>
-            <div class="var-content">
-              <div class="var-num">04</div>
-              <div class="var-tag">Premium</div>
-              <div class="var-name">Khapli Wheat<br><em>Chapati</em></div>
-              <p class="var-desc">Made from ancient Khapli (Emmer) wheat — naturally low glycaemic index, easier to digest, and richer in fibre and protein. The smart choice for health-conscious kitchens.</p>
-              <div class="var-attrs"><span class="var-attr">Khapli / Emmer Wheat</span><span class="var-attr">Low GI</span><span class="var-attr">High Fibre</span><span class="var-attr">Diabetic-Friendly</span></div>
-            </div>
-          </div>
-
-        </div>
-        <div class="var-controls">
-          <div class="var-dots-wrap" id="vdots-chapatis"></div>
-          <div class="var-arrows">
-            <button class="var-arrow" onclick="moveVar('chapatis',-1)">&#8592;</button>
-            <button class="var-arrow" onclick="moveVar('chapatis',1)">&#8594;</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PURI PANEL -->
-    <div class="spec-panel" id="panel-puris">
+    <!-- PURI PANEL — always visible, no tabs needed -->
+    <div class="spec-panel active" id="panel-puris">
       <div class="var-rotator">
         <div class="var-track" id="vtrack-puris">
 
@@ -1823,14 +1755,8 @@
 
   function moveVar(id, dir) { goVar(id, varState[id].current + dir); }
 
-  function switchTab(id) {
-    document.querySelectorAll('.spec-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.spec-panel').forEach(p => p.classList.remove('active'));
-    event.currentTarget.classList.add('active');
-    document.getElementById('panel-' + id).classList.add('active');
-  }
 
-  initVar('chapatis', 4);
+
   initVar('puris', 4);
 
 
