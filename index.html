@@ -175,7 +175,7 @@
   .media-caption-tag::before{content:'';width:1.2rem;height:1px;background:var(--wheat);}
   .media-caption-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.6rem);font-weight:300;color:var(--cream);}
   .media-progress{height:2px;background:rgba(212,169,106,0.12);margin:0 7vw;}
-  .media-progress-fill{height:100%;background:var(--wheat);width:0%;}
+  .media-progress-fill{height:100%;background:var(--wheat);width:0%;transition:width 12s linear;}
   .media-dots{display:flex;justify-content:center;gap:0.5rem;padding:1.5rem 7vw 0;}
   .media-dot{width:7px;height:7px;border-radius:50%;background:rgba(212,169,106,0.2);border:none;cursor:pointer;padding:0;transition:background 0.3s,transform 0.3s;}
   .media-dot.active{background:var(--wheat);transform:scale(1.3);}
@@ -861,79 +861,77 @@
   initCard('puri', 5);
   initCard('wrap', 5);
 
-  // ── MEDIA CAROUSEL ──
-  const MEDIA_TOTAL = document.querySelectorAll('.media-slide').length;
-  let mediaCur = 0, mediaTimer = null, mediaRaf = null, mediaStart = null;
+  // ── MEDIA CAROUSEL — simple & bulletproof ──
+  (function() {
+    const slides   = Array.from(document.querySelectorAll('.media-slide'));
+    const total    = slides.length;
+    const track    = document.getElementById('media-track');
+    const fill     = document.getElementById('media-progress-fill');
+    const dotsWrap = document.getElementById('media-dots');
+    const SLIDE_MS = 12000; // 12 seconds per slide
 
-  const mediaTrack = document.getElementById('media-track');
-  const mediaFill = document.getElementById('media-progress-fill');
-  const mediaDotsEl = document.getElementById('media-dots');
-  const mediaVideos = document.querySelectorAll('.media-slide-inner video');
+    let cur = 0;
+    let progressTimer  = null;  // setInterval for progress bar
+    let advanceTimer   = null;  // setTimeout to move to next slide
+    let progressStart  = null;
 
-  for (let i = 0; i < MEDIA_TOTAL; i++) {
-    const d = document.createElement('button');
-    d.className = 'media-dot' + (i === 0 ? ' active' : '');
-    d.onclick = () => goMedia(i);
-    mediaDotsEl.appendChild(d);
-  }
-
-  // Duration per slide — 12s for video slides, 5s for image slides
-  function getMediaDuration() {
-    const slides = document.querySelectorAll('.media-slide');
-    const currentSlide = slides[mediaCur];
-    const vid = currentSlide ? currentSlide.querySelector('video') : null;
-    return vid ? 12000 : 5000;
-  }
-
-  function playCurrentVideo() {
-    const slides = document.querySelectorAll('.media-slide');
-    slides.forEach((slide, i) => {
-      const vid = slide.querySelector('video');
-      if (!vid) return;
-      if (i === mediaCur) {
-        vid.currentTime = 0;
-        const p = vid.play();
-        if (p !== undefined) p.catch(() => {});
-      } else {
-        vid.pause();
-        vid.currentTime = 0;
-      }
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'media-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
     });
-  }
 
-  function goMedia(idx) {
-    mediaCur = ((idx % MEDIA_TOTAL) + MEDIA_TOTAL) % MEDIA_TOTAL;
-    mediaTrack.style.transform = 'translateX(-' + (mediaCur * 100) + '%)';
-    document.querySelectorAll('.media-dot').forEach((d, i) => d.classList.toggle('active', i === mediaCur));
-    playCurrentVideo();
-    clearTimeout(mediaTimer);
-    cancelAnimationFrame(mediaRaf);
-    startMediaAuto();
-  }
+    function updateDots() {
+      document.querySelectorAll('.media-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === cur));
+    }
 
-  function moveMedia(dir) { goMedia(mediaCur + dir); }
+    function manageVideos() {
+      slides.forEach((slide, i) => {
+        const vid = slide.querySelector('video');
+        if (!vid) return;
+        if (i === cur) {
+          vid.currentTime = 0;
+          vid.play().catch(() => {});
+        } else {
+          vid.pause();
+          vid.currentTime = 0;
+        }
+      });
+    }
 
-  function animateMediaProgress(ts) {
-    if (!mediaStart) mediaStart = ts;
-    const dur = getMediaDuration();
-    const pct = Math.min(((ts - mediaStart) / dur) * 100, 100);
-    mediaFill.style.width = pct + '%';
-    if (pct < 100) mediaRaf = requestAnimationFrame(animateMediaProgress);
-  }
+    function startProgress() {
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      // Force reflow so transition resets
+      fill.offsetWidth;
+      fill.style.transition = 'width ' + SLIDE_MS + 'ms linear';
+      fill.style.width = '100%';
+    }
 
-  function startMediaAuto() {
-    mediaStart = null;
-    mediaFill.style.width = '0%';
-    const dur = getMediaDuration();
-    mediaRaf = requestAnimationFrame(animateMediaProgress);
-    mediaTimer = setTimeout(() => moveMedia(1), dur);
-  }
+    function stopTimers() {
+      clearTimeout(advanceTimer);
+      clearInterval(progressTimer);
+    }
 
-  // Wait for page load then initialise
-  window.addEventListener('load', () => {
-    playCurrentVideo();
-    startMediaAuto();
-  });
+    function goTo(idx) {
+      stopTimers();
+      cur = ((idx % total) + total) % total;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      updateDots();
+      manageVideos();
+      startProgress();
+      advanceTimer = setTimeout(() => goTo(cur + 1), SLIDE_MS);
+    }
+
+    // Expose for prev/next buttons
+    window.moveMedia = function(dir) { goTo(cur + dir); };
+
+    // Start after page load
+    window.addEventListener('load', () => goTo(0));
+  })();
 
   // ── VARIANT ROTATORS ──
   const varState = {};
