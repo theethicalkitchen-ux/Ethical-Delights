@@ -739,7 +739,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video muted loop playsinline preload="auto">
+          <video muted loop playsinline preload="metadata">
             <source src="video1.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Behind the Scenes</div><div class="media-caption-title">Inside the Ethical Delights kitchen</div></div>
@@ -748,7 +748,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video muted loop playsinline preload="auto">
+          <video muted loop playsinline preload="metadata">
             <source src="video2.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Our Process</div><div class="media-caption-title">Precision rolling — uniform, consistent, every time</div></div>
@@ -757,7 +757,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video muted loop playsinline preload="auto">
+          <video muted loop playsinline preload="metadata">
             <source src="video3.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Crafted with Care</div><div class="media-caption-title">Homestyle quality at commercial scale</div></div>
@@ -766,7 +766,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video muted loop playsinline preload="auto">
+          <video muted loop playsinline preload="metadata">
             <source src="video4.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Natural Colours</div><div class="media-caption-title">No artificial dyes — nature does it better</div></div>
@@ -775,7 +775,7 @@
 
       <div class="media-slide">
         <div class="media-slide-inner">
-          <video muted loop playsinline preload="auto">
+          <video muted loop playsinline preload="metadata">
             <source src="video5.mp4" type="video/mp4">
           </video>
           <div class="media-caption"><div class="media-caption-tag">Frozen Right</div><div class="media-caption-title">Flash-frozen at –18°C — peak freshness, preserved</div></div>
@@ -877,17 +877,12 @@
     mediaDotsEl.appendChild(d);
   }
 
-  // Get duration of current slide — video duration or 5s for images
+  // Duration per slide — 12s for video slides, 5s for image slides
   function getMediaDuration() {
-    const vids = document.querySelectorAll('.media-slide-inner video');
-    // find video in current slide (offset by slide index)
     const slides = document.querySelectorAll('.media-slide');
     const currentSlide = slides[mediaCur];
     const vid = currentSlide ? currentSlide.querySelector('video') : null;
-    if (vid && vid.duration && isFinite(vid.duration)) {
-      return vid.duration * 1000;
-    }
-    return 5000;
+    return vid ? 12000 : 5000;
   }
 
   function playCurrentVideo() {
@@ -934,16 +929,10 @@
     mediaTimer = setTimeout(() => moveMedia(1), dur);
   }
 
-  // Wait for page load then initialise — ensures videos have metadata
+  // Wait for page load then initialise
   window.addEventListener('load', () => {
     playCurrentVideo();
     startMediaAuto();
-    // When first video ends, advance
-    document.querySelectorAll('.media-slide-inner video').forEach((vid, i) => {
-      vid.addEventListener('ended', () => {
-        if (i === mediaCur) moveMedia(1);
-      });
-    });
   });
 
   // ── VARIANT ROTATORS ──
