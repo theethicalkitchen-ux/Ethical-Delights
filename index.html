@@ -439,84 +439,80 @@
   }
   .b4-h2 em { font-style:italic; color:var(--wheat); }
 
-  /* 3-column grid table */
+  /* 3-column grid: metric | before | after */
   .b4-table {
     display:grid;
-    grid-template-columns:1fr auto 1fr;
+    grid-template-columns:auto 1fr 1fr;
     gap:0;
     width:100%;
     max-width:900px;
-    border:1px solid rgba(212,169,106,0.12);
+    border:1px solid rgba(212,169,106,0.15);
+    border-radius:0.25rem;
+    overflow:hidden;
   }
 
   /* Column headers */
   .b4-col-hd {
-    padding:0.6rem 1rem;
-    font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase;
-    font-weight:600; border-bottom:1px solid rgba(212,169,106,0.15);
+    padding:0.65rem 1rem;
+    font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase;
+    font-weight:600; border-bottom:2px solid rgba(212,169,106,0.2);
+  }
+  .b4-col-metric-hd {
+    background:rgba(212,169,106,0.06);
+    color:rgba(212,169,106,0.55);
+    border-right:1px solid rgba(212,169,106,0.12);
+    min-width:7rem;
   }
   .b4-col-before {
-    color:rgba(196,98,45,0.8); background:rgba(196,98,45,0.06);
-    text-align:right;
-  }
-  .b4-col-metric {
-    background:rgba(212,169,106,0.04);
-    border-left:1px solid rgba(212,169,106,0.1);
-    border-right:1px solid rgba(212,169,106,0.1);
+    color:rgba(196,98,45,0.85);
+    background:rgba(196,98,45,0.07);
+    border-right:1px solid rgba(212,169,106,0.12);
+    border-left:1px solid rgba(212,169,106,0.12);
   }
   .b4-col-after {
-    color:rgba(212,169,106,0.9); background:rgba(107,76,30,0.1);
-    text-align:left;
+    color:var(--wheat);
+    background:rgba(107,76,30,0.12);
   }
-  .b4-col-x { margin-right:0.4rem; }
-  .b4-col-tick { margin-right:0.4rem; }
+
+  /* Metric label cells — left anchor */
+  .b4-metric {
+    display:flex; align-items:center;
+    padding:0.85rem 1rem;
+    border-bottom:1px solid rgba(212,169,106,0.08);
+    background:rgba(212,169,106,0.04);
+    border-right:1px solid rgba(212,169,106,0.1);
+  }
+  .b4-metric-label {
+    font-size:clamp(0.58rem,0.9vw,0.72rem);
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:rgba(212,169,106,0.55); font-weight:600;
+    white-space:nowrap;
+  }
 
   /* Data cells */
   .b4-cell {
-    padding:0.9rem 1.2rem;
+    padding:0.85rem 1rem;
     border-bottom:1px solid rgba(212,169,106,0.08);
-    display:flex; flex-direction:column; gap:0.15rem;
+    display:flex; flex-direction:column; gap:0.2rem;
   }
   .b4-before {
     background:rgba(196,98,45,0.04);
-    text-align:right; align-items:flex-end;
+    border-right:1px solid rgba(212,169,106,0.1);
   }
   .b4-after {
-    background:rgba(107,76,30,0.06);
-    text-align:left; align-items:flex-start;
+    background:rgba(107,76,30,0.07);
   }
   .b4-val {
     font-family:'Cormorant Garamond',serif;
-    font-size:clamp(1.3rem,2.2vw,1.9rem);
+    font-size:clamp(1.2rem,2vw,1.8rem);
     font-weight:600; line-height:1;
   }
-  .b4-val-bad { color:rgba(196,98,45,0.7); }
+  .b4-val-bad { color:rgba(196,98,45,0.75); }
   .b4-val-good { color:var(--wheat); }
   .b4-unit {
-    font-size:clamp(0.55rem,0.8vw,0.68rem);
-    font-weight:300; color:rgba(245,239,224,0.35);
-    letter-spacing:0.04em; line-height:1.3;
-  }
-
-  /* Centre metric column */
-  .b4-metric {
-    display:flex; flex-direction:column; align-items:center;
-    justify-content:center; gap:0.3rem;
-    padding:0.9rem 0.6rem;
-    border-bottom:1px solid rgba(212,169,106,0.08);
-    border-left:1px solid rgba(212,169,106,0.1);
-    border-right:1px solid rgba(212,169,106,0.1);
-    background:rgba(212,169,106,0.03);
-  }
-  .b4-metric-label {
-    font-size:clamp(0.55rem,0.85vw,0.7rem);
-    letter-spacing:0.1em; text-transform:uppercase;
-    color:rgba(212,169,106,0.5); font-weight:500;
-    text-align:center; white-space:nowrap;
-  }
-  .b4-metric-line {
-    width:1px; height:0.6rem;
-    background:rgba(212,169,106,0.2);
+    font-size:clamp(0.52rem,0.75vw,0.65rem);
+    font-weight:300; color:rgba(245,239,224,0.32);
+    letter-spacing:0.03em; line-height:1.3;
   }
 
   /* CTA */
@@ -716,16 +712,17 @@
     .b3-step-title { font-size:0.56rem; }
     .b3-step-desc { display:none; }
 
-    /* BANNER 4 — mobile before/after table */
+    /* BANNER 4 — mobile */
     .b4-inner { padding:1.5rem 4vw; gap:1rem; }
-    .b4-h2 { font-size:clamp(1.6rem,6vw,2.4rem); }
-    .b4-table { max-width:100%; }
-    .b4-col-hd { padding:0.5rem 0.6rem; font-size:0.55rem; }
-    .b4-cell { padding:0.65rem 0.6rem; }
+    .b4-h2 { font-size:clamp(1.6rem,6vw,2.2rem); }
+    .b4-table { max-width:100%; grid-template-columns:auto 1fr 1fr; }
+    .b4-col-hd { padding:0.45rem 0.5rem; font-size:0.5rem; letter-spacing:0.08em; }
+    .b4-col-metric-hd { min-width:4.5rem; }
+    .b4-metric { padding:0.7rem 0.5rem; }
+    .b4-metric-label { font-size:0.5rem; letter-spacing:0.06em; }
+    .b4-cell { padding:0.7rem 0.5rem; }
     .b4-val { font-size:clamp(1rem,4.5vw,1.4rem); }
-    .b4-unit { font-size:0.5rem; }
-    .b4-metric { padding:0.65rem 0.3rem; }
-    .b4-metric-label { font-size:0.48rem; letter-spacing:0.05em; }
+    .b4-unit { font-size:0.48rem; }
     .b4-cta { display:none; }
 
     /* Banner arrows */
@@ -1253,92 +1250,38 @@
           <h2 class="b4-h2">Your Kitchen. <em>Reimagined.</em></h2>
         </div>
 
-        <!-- Comparison rows -->
+        <!-- Comparison table: Metric | Before | After -->
         <div class="b4-table hb-animate">
 
-          <!-- Column headers -->
-          <div class="b4-col-hd b4-col-before">
-            <span class="b4-col-x">✕</span> Before
-          </div>
-          <div class="b4-col-hd b4-col-metric"></div>
-          <div class="b4-col-hd b4-col-after">
-            <span class="b4-col-tick">✓</span> After
-          </div>
+          <!-- Header row -->
+          <div class="b4-col-hd b4-col-metric-hd">What Changes</div>
+          <div class="b4-col-hd b4-col-before">✕ &nbsp;Old Way</div>
+          <div class="b4-col-hd b4-col-after">✓ &nbsp;Our Way</div>
 
           <!-- Row 1 -->
-          <div class="b4-cell b4-before">
-            <div class="b4-val b4-val-bad">3 hrs</div>
-            <div class="b4-unit">daily prep</div>
-          </div>
-          <div class="b4-metric">
-            <div class="b4-metric-line"></div>
-            <div class="b4-metric-label">Prep Time</div>
-            <div class="b4-metric-line"></div>
-          </div>
-          <div class="b4-cell b4-after">
-            <div class="b4-val b4-val-good">0 min</div>
-            <div class="b4-unit">open &amp; cook</div>
-          </div>
+          <div class="b4-metric"><div class="b4-metric-label">Prep Time</div></div>
+          <div class="b4-cell b4-before"><div class="b4-val b4-val-bad">3 hrs</div><div class="b4-unit">kneading &amp; rolling</div></div>
+          <div class="b4-cell b4-after"><div class="b4-val b4-val-good">0 min</div><div class="b4-unit">open &amp; cook</div></div>
 
           <!-- Row 2 -->
-          <div class="b4-cell b4-before">
-            <div class="b4-val b4-val-bad">Daily</div>
-            <div class="b4-unit">skilled labor needed</div>
-          </div>
-          <div class="b4-metric">
-            <div class="b4-metric-line"></div>
-            <div class="b4-metric-label">Labor</div>
-            <div class="b4-metric-line"></div>
-          </div>
-          <div class="b4-cell b4-after">
-            <div class="b4-val b4-val-good">Anyone</div>
-            <div class="b4-unit">can finish in 60s</div>
-          </div>
+          <div class="b4-metric"><div class="b4-metric-label">Labor</div></div>
+          <div class="b4-cell b4-before"><div class="b4-val b4-val-bad">Skilled</div><div class="b4-unit">daily dependency</div></div>
+          <div class="b4-cell b4-after"><div class="b4-val b4-val-good">Anyone</div><div class="b4-unit">done in 60 seconds</div></div>
 
           <!-- Row 3 -->
-          <div class="b4-cell b4-before">
-            <div class="b4-val b4-val-bad">~30%</div>
-            <div class="b4-unit">end-of-day wastage</div>
-          </div>
-          <div class="b4-metric">
-            <div class="b4-metric-line"></div>
-            <div class="b4-metric-label">Wastage</div>
-            <div class="b4-metric-line"></div>
-          </div>
-          <div class="b4-cell b4-after">
-            <div class="b4-val b4-val-good">Zero</div>
-            <div class="b4-unit">cook only what you need</div>
-          </div>
+          <div class="b4-metric"><div class="b4-metric-label">Wastage</div></div>
+          <div class="b4-cell b4-before"><div class="b4-val b4-val-bad">~30%</div><div class="b4-unit">daily spoilage</div></div>
+          <div class="b4-cell b4-after"><div class="b4-val b4-val-good">Zero</div><div class="b4-unit">cook only what you need</div></div>
 
           <!-- Row 4 -->
-          <div class="b4-cell b4-before">
-            <div class="b4-val b4-val-bad">Varies</div>
-            <div class="b4-unit">every batch different</div>
-          </div>
-          <div class="b4-metric">
-            <div class="b4-metric-line"></div>
-            <div class="b4-metric-label">Consistency</div>
-            <div class="b4-metric-line"></div>
-          </div>
-          <div class="b4-cell b4-after">
-            <div class="b4-val b4-val-good">Perfect</div>
-            <div class="b4-unit">every plate, every time</div>
-          </div>
+          <div class="b4-metric"><div class="b4-metric-label">Consistency</div></div>
+          <div class="b4-cell b4-before"><div class="b4-val b4-val-bad">Varies</div><div class="b4-unit">every batch differs</div></div>
+          <div class="b4-cell b4-after"><div class="b4-val b4-val-good">Perfect</div><div class="b4-unit">every plate, every time</div></div>
 
           <!-- Row 5 -->
-          <div class="b4-cell b4-before">
-            <div class="b4-val b4-val-bad">Open</div>
-            <div class="b4-unit">flour dust, hygiene risk</div>
-          </div>
-          <div class="b4-metric">
-            <div class="b4-metric-line"></div>
-            <div class="b4-metric-label">Hygiene</div>
-            <div class="b4-metric-line"></div>
-          </div>
-          <div class="b4-cell b4-after">
-            <div class="b4-val b4-val-good">Sealed</div>
-            <div class="b4-unit">machine-made, audit-ready</div>
-          </div>
+          <div class="b4-metric"><div class="b4-metric-label">Hygiene</div></div>
+          <div class="b4-cell b4-before"><div class="b4-val b4-val-bad">Open</div><div class="b4-unit">flour dust &amp; risk</div></div>
+          <div class="b4-cell b4-after"><div class="b4-val b4-val-good">Sealed</div><div class="b4-unit">machine-made, audit-ready</div></div>
 
         </div><!-- end b4-table -->
 
