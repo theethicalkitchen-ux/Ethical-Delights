@@ -417,9 +417,10 @@
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    padding:2.5rem 7vw;
-    gap:1.8rem;
+    padding:1.8rem 7vw;
+    gap:1.2rem;
     text-align:center;
+    overflow:hidden;
   }
 
   /* Headline */
@@ -434,7 +435,7 @@
   }
   .b4-h2 {
     font-family:'Cormorant Garamond',serif;
-    font-size:clamp(2rem,4vw,4rem);
+    font-size:clamp(1.8rem,3.2vw,3.2rem);
     font-weight:300; color:var(--cream); line-height:1.05;
   }
   .b4-h2 em { font-style:italic; color:var(--wheat); }
@@ -477,7 +478,7 @@
   /* Metric label cells — left anchor */
   .b4-metric {
     display:flex; align-items:center;
-    padding:0.85rem 1rem;
+    padding:0.65rem 1rem;
     border-bottom:1px solid rgba(212,169,106,0.08);
     background:rgba(212,169,106,0.04);
     border-right:1px solid rgba(212,169,106,0.1);
@@ -491,9 +492,9 @@
 
   /* Data cells */
   .b4-cell {
-    padding:0.85rem 1rem;
+    padding:0.65rem 1rem;
     border-bottom:1px solid rgba(212,169,106,0.08);
-    display:flex; flex-direction:column; gap:0.2rem;
+    display:flex; flex-direction:column; gap:0.15rem;
   }
   .b4-before {
     background:rgba(196,98,45,0.04);
@@ -516,7 +517,7 @@
   }
 
   /* CTA */
-  .b4-cta { margin-top:0.5rem; }
+  .b4-cta { display:none; }
 
   /* hide old hero */
   #hero { display:none; }
@@ -879,6 +880,34 @@
     box-shadow:5px 0 0 var(--wheat);
   }
   #hero-banners.hb-paused .hb-pause-icon { opacity:1; }
+
+
+  /* Play/Pause button */
+  .hb-playpause {
+    position:absolute;
+    bottom:2.8rem;
+    right:2rem;
+    width:2.2rem; height:2.2rem;
+    border-radius:50%;
+    background:rgba(28,20,8,0.55);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(212,169,106,0.35);
+    color:var(--wheat);
+    font-size:0.55rem;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    z-index:10;
+    transition:background 0.3s, border-color 0.3s;
+    letter-spacing:0.05em;
+  }
+  .hb-playpause:hover {
+    background:rgba(196,98,45,0.6);
+    border-color:var(--rust);
+  }
+  #hero-banners.hb-paused .hb-playpause {
+    background:rgba(196,98,45,0.4);
+    border-color:rgba(196,98,45,0.6);
+  }
 
 </style>
 </head>
@@ -1295,10 +1324,13 @@
 
   </div><!-- end hb-track -->
 
-  <div class="hb-pause-icon"></div>
   <!-- Controls -->
   <button class="hb-arrow prev" onclick="hbMove(-1)">&#8592;</button>
   <button class="hb-arrow next" onclick="hbMove(1)">&#8594;</button>
+  <button class="hb-playpause" id="hb-playpause" onclick="hbTogglePause()" title="Pause/Play">
+    <span class="hb-pause-bars">❙❙</span>
+    <span class="hb-play-icon" style="display:none;">▶</span>
+  </button>
   <div class="hb-controls" id="hb-dots"></div>
   <div class="hb-progress"><div class="hb-progress-fill" id="hb-fill"></div></div>
 
@@ -2055,14 +2087,21 @@
       }
     }
 
+    function updatePlayPauseBtn() {
+      const btn = document.getElementById('hb-playpause');
+      if (!btn) return;
+      btn.querySelector('.hb-pause-bars').style.display = paused ? 'none' : 'inline';
+      btn.querySelector('.hb-play-icon').style.display = paused ? 'inline' : 'none';
+    }
+
     function pause() {
       if (paused) return;
       paused = true;
       pauseStart = Date.now();
       clearTimeout(advTimer);
       pauseProgress();
-      // Show pause indicator
       bannerEl.classList.add('hb-paused');
+      updatePlayPauseBtn();
     }
 
     function resume() {
@@ -2073,7 +2112,12 @@
       bannerEl.classList.remove('hb-paused');
       startProgress(remaining);
       advTimer = setTimeout(() => goTo(cur + 1), remaining);
+      updatePlayPauseBtn();
     }
+
+    window.hbTogglePause = function() {
+      paused ? resume() : pause();
+    };
 
     // Desktop: pause on hover
     bannerEl.addEventListener('mouseenter', pause);
