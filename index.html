@@ -843,6 +843,28 @@
   }
 
 
+
+  /* Pause indicator */
+  #hero-banners.hb-paused .hb-progress-fill {
+    transition: none !important;
+  }
+  .hb-pause-icon {
+    position:absolute; top:1.2rem; right:5rem;
+    width:2rem; height:2rem; border-radius:50%;
+    background:rgba(28,20,8,0.5); backdrop-filter:blur(6px);
+    border:1px solid rgba(212,169,106,0.3);
+    display:flex; align-items:center; justify-content:center;
+    z-index:10; opacity:0; transition:opacity 0.3s;
+    pointer-events:none;
+  }
+  .hb-pause-icon::before {
+    content:''; display:block;
+    width:3px; height:10px;
+    background:var(--wheat);
+    box-shadow:5px 0 0 var(--wheat);
+  }
+  #hero-banners.hb-paused .hb-pause-icon { opacity:1; }
+
 </style>
 </head>
 <body>
@@ -1312,6 +1334,7 @@
 
   </div><!-- end hb-track -->
 
+  <div class="hb-pause-icon"></div>
   <!-- Controls -->
   <button class="hb-arrow prev" onclick="hbMove(-1)">&#8592;</button>
   <button class="hb-arrow next" onclick="hbMove(1)">&#8594;</button>
@@ -2006,8 +2029,9 @@
     const track   = document.getElementById('hb-track');
     const fill    = document.getElementById('hb-fill');
     const dotsWrap= document.getElementById('hb-dots');
+    const bannerEl= document.getElementById('hero-banners');
     const SLIDE_MS = 7000;
-    let cur = 0, advTimer = null;
+    let cur = 0, advTimer = null, paused = false, pauseStart = null, elapsed = 0;
 
     // Build dots
     slides.forEach((_, i) => {
@@ -2041,25 +2065,72 @@
       });
     }
 
-    function startProgress() {
+    function startProgress(remaining) {
+      const ms = remaining || SLIDE_MS;
       fill.style.transition = 'none';
-      fill.style.width = '0%';
-      fill.offsetWidth; // reflow
-      fill.style.transition = 'width ' + SLIDE_MS + 'ms linear';
+      fill.style.width = remaining ? ((1 - remaining/SLIDE_MS)*100) + '%' : '0%';
+      fill.offsetWidth;
+      fill.style.transition = 'width ' + ms + 'ms linear';
       fill.style.width = '100%';
+    }
+
+    function pauseProgress() {
+      const computed = getComputedStyle(fill).width;
+      const pct = parseFloat(computed) / bannerEl.offsetWidth * 100;
+      fill.style.transition = 'none';
+      fill.style.width = pct + '%';
     }
 
     function goTo(idx) {
       clearTimeout(advTimer);
+      elapsed = 0;
       cur = ((idx % total) + total) % total;
       track.style.transform = 'translateX(-' + (cur * 100) + '%)';
       updateDots();
       activateSlide();
-      startProgress();
-      advTimer = setTimeout(() => goTo(cur + 1), SLIDE_MS);
+      if (!paused) {
+        startProgress();
+        advTimer = setTimeout(() => goTo(cur + 1), SLIDE_MS);
+      }
     }
 
-    window.hbMove = function(dir) { goTo(cur + dir); };
+    function pause() {
+      if (paused) return;
+      paused = true;
+      pauseStart = Date.now();
+      clearTimeout(advTimer);
+      pauseProgress();
+      // Show pause indicator
+      bannerEl.classList.add('hb-paused');
+    }
+
+    function resume() {
+      if (!paused) return;
+      paused = false;
+      const spent = Date.now() - pauseStart;
+      const remaining = Math.max(SLIDE_MS - spent, 800);
+      bannerEl.classList.remove('hb-paused');
+      startProgress(remaining);
+      advTimer = setTimeout(() => goTo(cur + 1), remaining);
+    }
+
+    // Desktop: pause on hover
+    bannerEl.addEventListener('mouseenter', pause);
+    bannerEl.addEventListener('mouseleave', resume);
+
+    // Mobile: pause on touch, resume after 4s or on next touch
+    let touchTimer = null;
+    bannerEl.addEventListener('touchstart', () => {
+      pause();
+      clearTimeout(touchTimer);
+      touchTimer = setTimeout(resume, 4000);
+    }, { passive: true });
+
+    window.hbMove = function(dir) {
+      paused = false;
+      bannerEl.classList.remove('hb-paused');
+      goTo(cur + dir);
+    };
 
     // Init
     activateSlide();
