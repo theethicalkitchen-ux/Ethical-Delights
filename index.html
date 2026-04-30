@@ -85,7 +85,14 @@
   .pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
   .pillar{padding:1.6rem 1.4rem;border:1px solid rgba(212,169,106,0.35);background:var(--pale);transition:border-color 0.3s,transform 0.35s,box-shadow 0.35s;}
   .pillar:hover{border-color:var(--rust);transform:translateY(-4px);box-shadow:0 16px 40px rgba(100,60,10,0.1);}
-  .pillar-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(212,169,106,0.3);line-height:1;margin-bottom:0.6rem;}
+  .pillar-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:2.6rem;height:2.6rem;border-radius:50%;
+    background:var(--deep);border:2px solid var(--wheat);
+    font-family:'Cormorant Garamond',serif;font-size:1.1rem;
+    font-weight:600;color:var(--wheat);line-height:1;
+    margin-bottom:0.8rem;flex-shrink:0;
+  }
   .pillar-title{font-size:0.85rem;font-weight:500;margin-bottom:0.5rem;color:var(--deep);}
   .pillar-desc{font-size:0.8rem;font-weight:300;color:#6b5a3a;line-height:1.7;}
 
@@ -253,7 +260,14 @@
     border: 1px solid rgba(212,169,106,0.2);
     border-left: none;
   }
-  .var-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(212,169,106,0.18); line-height: 1; margin-bottom: 0.5rem; }
+  .var-num {
+    display:inline-flex;align-items:center;justify-content:center;
+    width:3rem;height:3rem;border-radius:50%;
+    background:var(--deep);border:2px solid var(--wheat);
+    font-family:'Cormorant Garamond',serif;font-size:1.2rem;
+    font-weight:600;color:var(--wheat);line-height:1;
+    margin-bottom:0.8rem;flex-shrink:0;
+  }
   .var-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); font-weight: 500; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.6rem; }
   .var-tag::before { content: ''; width: 1.2rem; height: 1px; background: var(--rust); }
   .var-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; color: var(--deep); line-height: 1.1; margin-bottom: 1rem; }
@@ -379,9 +393,12 @@
     line-height:1;
   }
   .b3-step-num {
-    font-family:'Cormorant Garamond',serif;
-    font-size:1.4rem; font-weight:300;
-    color:rgba(212,169,106,0.25); line-height:1;
+    display:inline-flex;align-items:center;justify-content:center;
+    width:1.8rem;height:1.8rem;border-radius:50%;
+    background:rgba(28,20,8,0.6);border:1.5px solid rgba(212,169,106,0.5);
+    font-family:'Cormorant Garamond',serif;font-size:0.75rem;
+    font-weight:600;color:var(--wheat);line-height:1;
+    flex-shrink:0;margin:0 auto 0.4rem;
   }
   .b3-step-icon { font-size:1.8rem; }
   .b3-step-title {
@@ -731,7 +748,7 @@
     .why-layout { grid-template-columns:1fr; gap:2rem; }
     .pillar-grid { grid-template-columns:1fr 1fr; gap:0.8rem; }
     .pillar { padding:1rem 0.8rem; }
-    .pillar-num { font-size:1.6rem; }
+    .pillar-num { width:2.2rem; height:2.2rem; font-size:0.95rem; }
     .section-heading { font-size:clamp(2rem,7vw,3rem); }
 
     /* ── FROZEN ── */
@@ -761,6 +778,7 @@
     .var-slide { grid-template-columns:1fr; }
     .var-img { height:55vw; min-height:200px; }
     .var-content { border-left:none; border-top:1px solid rgba(212,169,106,0.2); padding:1.2rem 0; }
+    .var-num { width:2.4rem; height:2.4rem; font-size:1rem; margin-bottom:0.6rem; }
     .var-name { font-size:1.3rem; }
 
     /* ── PROMISE ── */
