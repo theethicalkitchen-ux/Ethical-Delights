@@ -471,10 +471,10 @@
     display:flex; flex:1; overflow:hidden;
   }
   .b4-chaos,.b4-benefits-visual {
-    flex:1; padding:1.2rem 1.5rem; overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
+    flex:1; padding:1rem 1.2rem; overflow:hidden;
+    display:flex; align-items:stretch; justify-content:stretch;
   }
-  .b4-svg { width:100%; height:100%; max-height:320px; object-fit:contain; }
+  .b4-svg { width:100%; height:100%; display:block; }
   .b4-vs {
     display:flex; flex-direction:column; align-items:center;
     justify-content:center; width:3rem; flex-shrink:0; gap:0.6rem;
@@ -1050,48 +1050,43 @@
         <div class="b4-new">
           <div class="b4-side-label b4-new-label">The Ethical Delights Way</div>
           <div class="b4-benefits-visual">
-            <svg viewBox="0 0 340 320" fill="none" class="b4-svg">
-              <rect width="340" height="320" fill="rgba(107,76,30,0.08)" rx="4"/>
-              <!-- Clean grid lines suggest order -->
-              <line x1="0" y1="64" x2="340" y2="64" stroke="rgba(212,169,106,0.08)" stroke-width="1"/>
-              <line x1="0" y1="128" x2="340" y2="128" stroke="rgba(212,169,106,0.08)" stroke-width="1"/>
-              <line x1="0" y1="192" x2="340" y2="192" stroke="rgba(212,169,106,0.08)" stroke-width="1"/>
-              <line x1="0" y1="256" x2="340" y2="256" stroke="rgba(212,169,106,0.08)" stroke-width="1"/>
-              <!-- 4 benefit cards arranged cleanly -->
-              <rect x="16" y="16" width="148" height="90" rx="6" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.25)" stroke-width="1"/>
-              <text x="90" y="46" text-anchor="middle" font-size="22">👩‍🍳</text>
-              <text x="90" y="66" text-anchor="middle" font-family="Jost,sans-serif" font-size="8.5" fill="rgba(245,239,224,0.9)" font-weight="500" letter-spacing="0.3">ZERO LABOR</text>
-              <text x="90" y="78" text-anchor="middle" font-family="Jost,sans-serif" font-size="7.5" fill="rgba(212,169,106,0.6)" letter-spacing="0.2">No skilled roti maker needed</text>
-              <!-- checkmark -->
-              <circle cx="148" cy="24" r="10" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/>
-              <path d="M143 24 L147 28 L154 20" stroke="#D4A96A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <svg viewBox="0 0 400 380" fill="none" class="b4-svg" preserveAspectRatio="xMidYMid meet">
+              <!-- 4 benefit cards in 2x2 grid — large and readable -->
+              <!-- Card 1: Less Labor -->
+              <rect x="8" y="8" width="186" height="168" rx="6" fill="rgba(212,169,106,0.07)" stroke="rgba(212,169,106,0.3)" stroke-width="1.5"/>
+              <text x="100" y="60" text-anchor="middle" font-size="36">👩‍🍳</text>
+              <text x="100" y="100" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" fill="rgba(245,239,224,0.95)" font-weight="600" letter-spacing="0.5">LESS LABOR</text>
+              <text x="100" y="120" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">Skip the prep. Just</text>
+              <text x="100" y="136" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">bake and serve.</text>
+              <circle cx="178" cy="24" r="13" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
+              <path d="M171 24 L176 29 L185 18" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 
-              <rect x="176" y="16" width="148" height="90" rx="6" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.25)" stroke-width="1"/>
-              <text x="250" y="46" text-anchor="middle" font-size="22">📐</text>
-              <text x="250" y="66" text-anchor="middle" font-family="Jost,sans-serif" font-size="8.5" fill="rgba(245,239,224,0.9)" font-weight="500" letter-spacing="0.3">CONSISTENT</text>
-              <text x="250" y="78" text-anchor="middle" font-family="Jost,sans-serif" font-size="7.5" fill="rgba(212,169,106,0.6)" letter-spacing="0.2">Same every plate, every time</text>
-              <circle cx="308" cy="24" r="10" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/>
-              <path d="M303 24 L307 28 L314 20" stroke="#D4A96A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <!-- Card 2: Consistent -->
+              <rect x="206" y="8" width="186" height="168" rx="6" fill="rgba(212,169,106,0.07)" stroke="rgba(212,169,106,0.3)" stroke-width="1.5"/>
+              <text x="299" y="60" text-anchor="middle" font-size="36">📐</text>
+              <text x="299" y="100" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" fill="rgba(245,239,224,0.95)" font-weight="600" letter-spacing="0.5">CONSISTENT</text>
+              <text x="299" y="120" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">Same every plate,</text>
+              <text x="299" y="136" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">every single time</text>
+              <circle cx="376" cy="24" r="13" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
+              <path d="M369 24 L374 29 L383 18" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 
-              <rect x="16" y="118" width="148" height="90" rx="6" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.25)" stroke-width="1"/>
-              <text x="90" y="148" text-anchor="middle" font-size="22">✨</text>
-              <text x="90" y="168" text-anchor="middle" font-family="Jost,sans-serif" font-size="8.5" fill="rgba(245,239,224,0.9)" font-weight="500" letter-spacing="0.3">HYGIENIC</text>
-              <text x="90" y="180" text-anchor="middle" font-family="Jost,sans-serif" font-size="7.5" fill="rgba(212,169,106,0.6)" letter-spacing="0.2">No open prep, no flour mess</text>
-              <circle cx="148" cy="126" r="10" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/>
-              <path d="M143 126 L147 130 L154 122" stroke="#D4A96A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <!-- Card 3: Hygienic -->
+              <rect x="8" y="188" width="186" height="168" rx="6" fill="rgba(212,169,106,0.07)" stroke="rgba(212,169,106,0.3)" stroke-width="1.5"/>
+              <text x="100" y="240" text-anchor="middle" font-size="36">✨</text>
+              <text x="100" y="280" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" fill="rgba(245,239,224,0.95)" font-weight="600" letter-spacing="0.5">HYGIENIC</text>
+              <text x="100" y="300" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">No open prep,</text>
+              <text x="100" y="316" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">no flour mess</text>
+              <circle cx="178" cy="204" r="13" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
+              <path d="M171 204 L176 209 L185 198" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 
-              <rect x="176" y="118" width="148" height="90" rx="6" fill="rgba(212,169,106,0.08)" stroke="rgba(212,169,106,0.25)" stroke-width="1"/>
-              <text x="250" y="148" text-anchor="middle" font-size="22">🗑️</text>
-              <text x="250" y="168" text-anchor="middle" font-family="Jost,sans-serif" font-size="8.5" fill="rgba(245,239,224,0.9)" font-weight="500" letter-spacing="0.3">ZERO WASTE</text>
-              <text x="250" y="180" text-anchor="middle" font-family="Jost,sans-serif" font-size="7.5" fill="rgba(212,169,106,0.6)" letter-spacing="0.2">Cook only what you need</text>
-              <circle cx="308" cy="126" r="10" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/>
-              <path d="M303 126 L307 130 L314 122" stroke="#D4A96A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-              <!-- Bottom CTA area -->
-              <rect x="16" y="224" width="308" height="80" rx="6" fill="rgba(28,20,8,0.3)" stroke="rgba(212,169,106,0.2)" stroke-width="1"/>
-              <text x="170" y="258" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="18" fill="rgba(245,239,224,0.9)" font-weight="300" font-style="italic">"Because fresh, Satvik, and</text>
-              <text x="170" y="278" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="18" fill="#D4A96A" font-weight="400" font-style="italic">scalable can co-exist."</text>
-              <text x="170" y="293" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.45)" letter-spacing="1">— AMIT &amp; NISHANT, FOUNDERS</text>
+              <!-- Card 4: Zero Waste -->
+              <rect x="206" y="188" width="186" height="168" rx="6" fill="rgba(212,169,106,0.07)" stroke="rgba(212,169,106,0.3)" stroke-width="1.5"/>
+              <text x="299" y="240" text-anchor="middle" font-size="36">🗑️</text>
+              <text x="299" y="280" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" fill="rgba(245,239,224,0.95)" font-weight="600" letter-spacing="0.5">ZERO WASTE</text>
+              <text x="299" y="300" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">Cook only</text>
+              <text x="299" y="316" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">what you need</text>
+              <circle cx="376" cy="204" r="13" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
+              <path d="M369 204 L374 209 L383 198" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </div>
         </div>
