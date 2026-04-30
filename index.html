@@ -820,6 +820,26 @@
     .nav-hamburger { display:flex; }
   }
 
+
+  /* ── WRAP CAROUSEL — full image, no cropping ever ── */
+  #track-wrap { height:auto !important; }
+  #track-wrap .carousel-slide {
+    height:auto !important;
+    min-width:100%;
+    display:block;
+  }
+  #track-wrap .carousel-slide img {
+    width:100% !important;
+    height:auto !important;
+    object-fit:unset !important;
+    object-position:unset !important;
+    display:block;
+  }
+  /* Match the wrap card-carousel height to content */
+  .product-card:has(#track-wrap) .card-carousel {
+    height:auto !important;
+  }
+
 </style>
 </head>
 <body>
@@ -1476,8 +1496,8 @@
 
     <!-- WRAPS -->
     <div class="product-card fade-up">
-      <div class="card-carousel">
-        <div class="carousel-track" id="track-wrap">
+      <div class="card-carousel" style="height:auto !important;">
+        <div class="carousel-track" id="track-wrap" style="height:auto !important;">
           <div class="carousel-slide"><img src="wrap1.jpg" alt="Spinach Wrap"></div>
           <div class="carousel-slide"><img src="wrap2.jpg" alt="Tri-Color Wrap on conveyor"></div>
           <div class="carousel-slide"><img src="wrap3.jpg" alt="Beetroot and Spinach Wraps"></div>
