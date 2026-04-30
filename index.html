@@ -116,7 +116,7 @@
   .product-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(100,60,10,0.14);}
 
   /* Card carousel */
-  .card-carousel{position:relative;height:16rem;overflow:hidden;background:var(--mid);}
+  .card-carousel{position:relative;height:26rem;overflow:hidden;background:var(--mid);}
   .carousel-track{display:flex;height:100%;transition:transform 0.6s cubic-bezier(.4,0,.2,1);}
   .carousel-slide{min-width:100%;height:100%;flex-shrink:0;overflow:hidden;}
   .carousel-slide img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -701,30 +701,24 @@
 
     /* ── PRODUCTS — match media showcase style ── */
     #products { padding:3.5rem 5vw; }
-    .product-grid { grid-template-columns:1fr; gap:1.5rem; }
-    /* Product card — no floating card, full bleed like media showcase */
-    .product-card {
-      border:none;
-      border-radius:0;
-      box-shadow:none;
-      background:transparent;
-    }
+    .product-grid { grid-template-columns:1fr; gap:2rem; }
+    .product-card { border:1px solid rgba(212,169,106,0.25); box-shadow:none; background:var(--cream); }
     .product-card:hover { transform:none; box-shadow:none; }
-    /* Carousel fills full width, taller like media showcase */
+    /* Carousel — tall enough to show portrait images clearly */
     .card-carousel {
-      height:60vw;
-      min-height:220px;
-      max-height:320px;
-      border-radius:0.25rem;
-      overflow:hidden;
+      height:75vw;
+      min-height:260px;
+      max-height:420px;
     }
-    .carousel-slide img {
-      width:100%; height:100%; object-fit:cover;
-      object-position:center;
-    }
-    /* Caption style below image */
-    .product-body { padding:1rem 0 0; background:transparent; }
-    .product-name { font-size:1.4rem; }
+    /* Chapati — food is in middle of portrait, position accordingly */
+    #track-chapati .carousel-slide img { object-position:center 42% !important; }
+    /* Puri — landscape, show bottom half where puris are */
+    #track-puri .carousel-slide img { object-position:center 60% !important; }
+    /* Wraps — landscape, centre is fine */
+    #track-wrap .carousel-slide img { object-position:center center; }
+    .carousel-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+    .product-body { padding:1.2rem 1rem; }
+    .product-name { font-size:1.5rem; }
     .product-desc { font-size:0.82rem; }
 
     /* ── SPECIALTIES ── */
@@ -1436,11 +1430,11 @@
     <div class="product-card fade-up">
       <div class="card-carousel">
         <div class="carousel-track" id="track-chapati">
-          <div class="carousel-slide"><img src="chapati.png" alt="Classic Satvik Chapati"></div>
-          <div class="carousel-slide"><img src="chapati.png" alt="Spinach Chapati"></div>
-          <div class="carousel-slide"><img src="chapati.png" alt="Beetroot Chapati"></div>
-          <div class="carousel-slide"><img src="chapati.png" alt="Khapli Chapati"></div>
-          <div class="carousel-slide"><img src="chapati.png" alt="Satvik Chapati variants"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Classic Satvik Chapati" style="object-position:center 68%;"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Spinach Chapati" style="object-position:center 68%;"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Beetroot Chapati" style="object-position:center 68%;"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Khapli Chapati" style="object-position:center 68%;"></div>
+          <div class="carousel-slide"><img src="chapati.png" alt="Satvik Chapati variants" style="object-position:center 68%;"></div>
         </div>
         <button class="carousel-prev" onclick="moveCard('chapati',-1)">&#8592;</button>
         <button class="carousel-next" onclick="moveCard('chapati',1)">&#8594;</button>
@@ -1459,11 +1453,11 @@
     <div class="product-card fade-up">
       <div class="card-carousel">
         <div class="carousel-track" id="track-puri">
-          <div class="carousel-slide"><img src="puri.png" alt="Classic Satvik Puri"></div>
-          <div class="carousel-slide"><img src="puri.png" alt="Masala Puri"></div>
-          <div class="carousel-slide"><img src="puri.png" alt="Tri-Color Puri"></div>
-          <div class="carousel-slide"><img src="puri.png" alt="Aloo Puri"></div>
-          <div class="carousel-slide"><img src="puri.png" alt="Satvik Puri variants"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Classic Satvik Puri" style="object-position:center 80%;"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Masala Puri" style="object-position:center 80%;"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Tri-Color Puri" style="object-position:center 80%;"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Aloo Puri" style="object-position:center 80%;"></div>
+          <div class="carousel-slide"><img src="puri.png" alt="Satvik Puri variants" style="object-position:center 80%;"></div>
         </div>
         <button class="carousel-prev" onclick="moveCard('puri',-1)">&#8592;</button>
         <button class="carousel-next" onclick="moveCard('puri',1)">&#8594;</button>
