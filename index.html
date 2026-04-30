@@ -704,12 +704,21 @@
     .product-grid { grid-template-columns:1fr; gap:2rem; }
     .product-card { box-shadow:none; background:var(--cream); }
     .product-card:hover { transform:none; }
-    /* All product images now 4:3, use cover with fixed height */
-    .card-carousel { height:72vw; min-height:240px; max-height:360px; }
-    .carousel-slide img { width:100%; height:100%; object-fit:cover; object-position:center center; display:block; }
-    #track-chapati .carousel-slide img { object-position:center 68%; }
-    #track-puri .carousel-slide img { object-position:center 80%; }
-    #track-wrap .carousel-slide img { object-position:center 45%; }
+    /* Key fix: use contain so the FULL image is always visible, no cropping ever */
+    .card-carousel { height:auto !important; aspect-ratio:unset !important; }
+    .carousel-track { height:auto !important; }
+    .carousel-slide {
+      min-width:100%;
+      height:auto !important;
+      flex-shrink:0;
+    }
+    .carousel-slide img {
+      width:100% !important;
+      height:auto !important;
+      object-fit:unset !important;
+      object-position:unset !important;
+      display:block;
+    }
     .product-body { padding:1.2rem 1rem; }
     .product-name { font-size:1.5rem; }
     .product-desc { font-size:0.82rem; }
@@ -811,6 +820,25 @@
     .nav-hamburger { display:flex; }
   }
 
+
+  /* ── WRAP CAROUSEL — full image, no cropping ever ── */
+  #track-wrap { height:auto !important; }
+  #track-wrap .carousel-slide {
+    height:auto !important;
+    min-width:100%;
+    display:block;
+  }
+  #track-wrap .carousel-slide img {
+    width:100% !important;
+    height:auto !important;
+    object-fit:unset !important;
+    object-position:unset !important;
+    display:block;
+  }
+  /* Match the wrap card-carousel height to content */
+  .product-card:has(#track-wrap) .card-carousel {
+    height:auto !important;
+  }
 
 </style>
 </head>
@@ -1468,8 +1496,8 @@
 
     <!-- WRAPS -->
     <div class="product-card fade-up">
-      <div class="card-carousel">
-        <div class="carousel-track" id="track-wrap">
+      <div class="card-carousel" style="height:auto !important;">
+        <div class="carousel-track" id="track-wrap" style="height:auto !important;">
           <div class="carousel-slide"><img src="wrap1.jpg" alt="Spinach Wrap"></div>
           <div class="carousel-slide"><img src="wrap2.jpg" alt="Tri-Color Wrap on conveyor"></div>
           <div class="carousel-slide"><img src="wrap3.jpg" alt="Beetroot and Spinach Wraps"></div>
