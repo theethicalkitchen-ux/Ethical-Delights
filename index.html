@@ -442,7 +442,8 @@
     display:flex; align-items:center; justify-content:space-between;
     border-bottom:1px solid rgba(212,169,106,0.1);
     flex-shrink:0;
-    background:rgba(28,20,8,0.4);
+    background:rgba(28,20,8,0.6);
+    backdrop-filter:blur(4px);
   }
   .b4-h2 {
     font-family:'Cormorant Garamond',serif;
@@ -660,18 +661,30 @@
     .b3-step-title { font-size:0.56rem; }
     .b3-step-desc { display:none; }
 
-    /* BANNER 4 — headline top bar, show ONLY new way on mobile (old way hidden) */
+    /* BANNER 4 — mobile: full width single column layout */
     .b4 .hb-slide-inner { flex-direction:column; height:100%; overflow:hidden; }
-    .b4-top { padding:1.2rem 5vw; flex-direction:row; align-items:center; justify-content:space-between; flex-shrink:0; }
-    .b4-top .btn-primary { font-size:0.62rem; padding:0.55rem 1rem; white-space:nowrap; }
-    .b4-h2 { font-size:clamp(1.4rem,5vw,2rem); }
-    .b4-cols { flex:1; overflow:hidden; flex-direction:row; }
+    .b4-top {
+      padding:1.2rem 5vw;
+      flex-direction:row; align-items:center;
+      justify-content:space-between; flex-shrink:0;
+      /* Ensure top bar clears the nav bar */
+      padding-top:1rem;
+    }
+    .b4-top .btn-primary { display:none; }
+    .b4-h2 { font-size:clamp(1.4rem,5.5vw,2.2rem); }
+    .b4-cols { flex:1; overflow:hidden; }
     .b4-old { display:none; }
     .b4-vs { display:none; }
-    .b4-new { flex:1; display:flex; flex-direction:column; overflow:hidden; }
-    .b4-col-header { padding:0.8rem 1.2rem; flex-shrink:0; }
-    .b4-benefits-visual { flex:1; padding:0.5rem 1rem; display:flex; align-items:center; justify-content:center; }
-    .b4-svg { width:100%; height:100%; max-height:none; }
+    .b4-new {
+      flex:1; display:flex; flex-direction:column;
+      overflow:hidden; background:var(--deep);
+    }
+    .b4-col-header { padding:0.7rem 1.2rem; flex-shrink:0; }
+    .b4-benefits-visual {
+      flex:1; padding:0.5rem 1rem;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .b4-svg { width:100%; height:100%; }
 
     /* Banner arrows */
     .hb-arrow { width:2rem; height:2rem; font-size:0.8rem; }
@@ -817,7 +830,19 @@
     <a href="about.html">About Us</a>
     <a href="#contact-strip" class="nav-cta">Get in Touch</a>
   </div>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile-menu" id="mobile-menu">
+  <button class="nav-hamburger open" onclick="toggleMenu()" style="position:absolute;top:1.2rem;right:5vw;" aria-label="Close menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="process.html" onclick="toggleMenu()">Our Process</a>
+  <a href="about.html" onclick="toggleMenu()">About Us</a>
+  <a href="#contact-strip" class="mob-cta" onclick="toggleMenu()">Get in Touch</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
