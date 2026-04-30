@@ -394,78 +394,66 @@
     color:rgba(245,239,224,0.4); line-height:1.5; text-align:center;
   }
 
-  /* ── BANNER 4: Business ── */
+  /* ── BANNER 4: Toggle Switch ── */
   .b4 { background:var(--deep); }
-  /* Two-column layout: left=old way, right=new way. Headline is part of left column */
-  .b4-inner {
-    height:100%;
-    padding:0;
-    gap:0;
-    align-items:stretch;
-  }
-  /* Left side — dark red tint */
-  .b4-old {
-    flex:1;
-    display:flex; flex-direction:column;
-    background:rgba(196,98,45,0.06);
-    border-right:1px solid rgba(196,98,45,0.2);
-    overflow:hidden;
-  }
-  /* Right side */
-  .b4-new {
-    flex:1;
-    display:flex; flex-direction:column;
-    overflow:hidden;
-  }
-  /* Column header bars */
-  .b4-col-header {
-    padding:1.2rem 2rem;
-    display:flex; align-items:center; gap:0.8rem;
-    border-bottom:1px solid rgba(212,169,106,0.1);
-    flex-shrink:0;
-  }
-  .b4-old .b4-col-header { border-bottom-color:rgba(196,98,45,0.2); }
-  .b4-col-dot {
-    width:8px; height:8px; border-radius:50%; flex-shrink:0;
-  }
-  .b4-old .b4-col-dot { background:rgba(196,98,45,0.6); }
-  .b4-new .b4-col-dot { background:rgba(212,169,106,0.6); }
-  .b4-side-label {
-    font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:500;
-  }
-  .b4-old .b4-side-label { color:rgba(196,98,45,0.7); }
-  .b4-new-label { color:rgba(212,169,106,0.8); }
-  /* Headline sits in its own row above the two columns */
-  .b4-top {
-    width:100%;
-    padding:2.2rem 8vw 1.5rem;
-    display:flex; align-items:center; justify-content:space-between;
-    border-bottom:1px solid rgba(212,169,106,0.1);
-    flex-shrink:0;
-    background:rgba(28,20,8,0.6);
-    backdrop-filter:blur(4px);
-  }
-  .b4-h2 {
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(2rem,3.8vw,3.8rem);
-    font-weight:300; color:var(--cream); line-height:1.05;
-  }
+  .b4-inner { padding:0 8vw; gap:5vw; align-items:center; }
+
+  /* Left column */
+  .b4-left { flex:0 0 38%; display:flex; flex-direction:column; gap:1rem; }
+  .b4-eyebrow { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--wheat); font-weight:500; display:flex; align-items:center; gap:0.7rem; }
+  .b4-eyebrow::before { content:''; width:1.5rem; height:1px; background:var(--wheat); }
+  .b4-h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,4.5vw,5rem); font-weight:300; color:var(--cream); line-height:1.05; }
   .b4-h2 em { font-style:italic; color:var(--wheat); }
-  /* The two-column area below the headline */
-  .b4-cols {
-    display:flex; flex:1; overflow:hidden;
+  .b4-sub { font-size:0.9rem; font-weight:300; color:rgba(245,239,224,0.55); line-height:1.7; }
+
+  /* Toggle buttons */
+  .b4-toggle { display:flex; gap:0; border:1px solid rgba(212,169,106,0.25); width:fit-content; }
+  .b4-toggle-btn {
+    padding:0.65rem 1.4rem; font-size:0.72rem; letter-spacing:0.1em;
+    text-transform:uppercase; font-weight:500; font-family:'Jost',sans-serif;
+    border:none; cursor:pointer; transition:all 0.3s;
+    background:transparent; color:rgba(245,239,224,0.4);
   }
-  .b4-chaos,.b4-benefits-visual {
-    flex:1; padding:1rem 1.2rem; overflow:hidden;
-    display:flex; align-items:stretch; justify-content:stretch;
+  .b4-toggle-btn.active { background:var(--rust); color:#fff; }
+  .b4-toggle-btn:not(.active):hover { color:var(--wheat); }
+
+  /* Right panel */
+  .b4-panel-wrap { flex:1; position:relative; min-height:340px; }
+  .b4-panel {
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; gap:0;
+    padding:1.5rem;
+    border:1px solid rgba(212,169,106,0.15);
+    opacity:0; pointer-events:none;
+    transition:opacity 0.4s ease;
   }
-  .b4-svg { width:100%; height:100%; display:block; }
-  .b4-vs {
-    display:flex; flex-direction:column; align-items:center;
-    justify-content:center; width:3rem; flex-shrink:0; gap:0.6rem;
+  .b4-panel.active { opacity:1; pointer-events:all; }
+  .b4-panel-old { background:rgba(196,98,45,0.06); border-color:rgba(196,98,45,0.2); }
+  .b4-panel-new { background:rgba(107,76,30,0.12); border-color:rgba(212,169,106,0.25); }
+  .b4-panel-label {
+    font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase;
+    font-weight:600; margin-bottom:1.2rem; padding-bottom:0.8rem;
+    border-bottom:1px solid rgba(212,169,106,0.1);
   }
-  .b4-vs-line { flex:1; width:1px; background:linear-gradient(to bottom,transparent,rgba(212,169,106,0.25),transparent); }
-  .b4-vs-text { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; color:rgba(212,169,106,0.4); }
+  .b4-panel-label-old { color:rgba(196,98,45,0.7); }
+  .b4-panel-label-new { color:var(--wheat); }
+
+  /* Items */
+  .b4-items { display:flex; flex-direction:column; gap:0; }
+  .b4-item {
+    display:flex; gap:1rem; align-items:flex-start;
+    padding:0.75rem 0; border-bottom:1px solid rgba(212,169,106,0.07);
+  }
+  .b4-item:last-child { border-bottom:none; }
+  .b4-item-icon { font-size:1.1rem; flex-shrink:0; margin-top:0.1rem; width:1.6rem; text-align:center; }
+  .b4-item-text strong { display:block; font-size:0.8rem; font-weight:500; margin-bottom:0.15rem; }
+  .b4-item-text span { font-size:0.72rem; font-weight:300; line-height:1.5; }
+  .b4-item-bad .b4-item-text strong { color:rgba(245,239,224,0.7); }
+  .b4-item-bad .b4-item-text span { color:rgba(245,239,224,0.38); }
+  .b4-item-good .b4-item-text strong { color:var(--cream); }
+  .b4-item-good .b4-item-text span { color:rgba(212,169,106,0.65); }
+
+  /* ── B4 MOBILE ── */
 
   /* hide old hero */
   #hero { display:none; }
@@ -661,21 +649,20 @@
     .b3-step-title { font-size:0.56rem; }
     .b3-step-desc { display:none; }
 
-    /* BANNER 4 — mobile: stack vertically, both columns visible */
-    .b4 { height:auto !important; min-height:100svh; }
-    .b4 .hb-slide-inner { flex-direction:column; height:auto; min-height:100svh; overflow:visible; }
-    .b4-top { padding:1rem 5vw; flex-direction:column; align-items:flex-start; gap:0.4rem; flex-shrink:0; }
-    .b4-top .btn-primary { display:none; }
-    .b4-h2 { font-size:clamp(1.5rem,6vw,2.2rem); }
-    /* Stack cols vertically */
-    .b4-cols { flex-direction:column; flex:none; width:100%; }
-    .b4-old { display:flex; flex:none; border-right:none; border-bottom:1px solid rgba(196,98,45,0.25); }
-    .b4-new { flex:none; }
-    .b4-vs { display:none; }
-    .b4-col-header { padding:0.7rem 1.2rem; flex-shrink:0; }
-    .b4-chaos { padding:0.4rem 0.8rem; }
-    .b4-benefits-visual { padding:0.4rem 0.8rem; }
-    .b4-svg { width:100%; height:auto; max-height:200px; }
+    /* BANNER 4 — mobile toggle */
+    .b4-inner { flex-direction:column; padding:2rem 5vw; gap:1.5rem; justify-content:center; }
+    .b4-left { flex:none; width:100%; }
+    .b4-h2 { font-size:clamp(1.8rem,7vw,2.8rem); }
+    .b4-sub { display:none; }
+    .b4-toggle { width:100%; }
+    .b4-toggle-btn { flex:1; padding:0.7rem 0.5rem; font-size:0.65rem; }
+    .b4-left .btn-primary { display:none; }
+    .b4-panel-wrap { position:relative; width:100%; min-height:300px; flex:none; }
+    .b4-panel { position:absolute; inset:0; padding:1rem; }
+    .b4-item { padding:0.55rem 0; gap:0.7rem; }
+    .b4-item-icon { font-size:0.95rem; width:1.2rem; }
+    .b4-item-text strong { font-size:0.75rem; }
+    .b4-item-text span { font-size:0.68rem; }
 
     /* Banner arrows */
     .hb-arrow { width:2rem; height:2rem; font-size:0.8rem; }
@@ -1169,130 +1156,117 @@
       </div>
     </div>
 
-    <!-- ═══ BANNER 4: Business Value ═══ -->
+    <!-- ═══ BANNER 4: Your Kitchen Reimagined — Toggle Switch ═══ -->
     <div class="hb-slide b4">
-      <div class="hb-slide-inner" style="flex-direction:column;height:100%;">
-        <!-- TOP: Headline row -->
-        <div class="b4-top">
+      <div class="hb-slide-inner b4-inner">
+
+        <!-- Left: Headline + toggle -->
+        <div class="b4-left">
+          <div class="b4-eyebrow hb-animate">For Commercial Kitchens</div>
           <h2 class="b4-h2 hb-animate">Your Kitchen.<br><em>Reimagined.</em></h2>
-          <a href="#challenge" class="btn-primary hb-animate">See How It Works →</a>
-        </div>
-        <!-- BOTTOM: Two columns -->
-        <div class="b4-cols">
-        <!-- LEFT: The Old Way -->
-        <div class="b4-old">
-          <div class="b4-col-header">
-            <div class="b4-col-dot"></div>
-            <div class="b4-side-label">The Old Way</div>
+          <p class="b4-sub hb-animate">See what changes when you switch to Ethical Delights.</p>
+
+          <!-- Toggle switch -->
+          <div class="b4-toggle hb-animate">
+            <button class="b4-toggle-btn active" id="b4-old-btn" onclick="b4Switch('old')">
+              ✗ &nbsp;The Old Way
+            </button>
+            <button class="b4-toggle-btn" id="b4-new-btn" onclick="b4Switch('new')">
+              ✓ &nbsp;Our Way
+            </button>
           </div>
-          <div class="b4-chaos">
-            <!-- Illustrated chaos scene using SVG -->
-            <svg viewBox="0 0 340 320" fill="none" class="b4-svg">
-              <!-- Background -->
-              <rect width="340" height="320" fill="rgba(28,20,8,0.4)" rx="4"/>
-              <!-- Flour dust clouds -->
-              <circle cx="80" cy="60" r="35" fill="rgba(245,239,224,0.06)"/>
-              <circle cx="120" cy="45" r="28" fill="rgba(245,239,224,0.05)"/>
-              <circle cx="55" cy="40" r="22" fill="rgba(245,239,224,0.04)"/>
-              <circle cx="260" cy="55" r="30" fill="rgba(245,239,224,0.05)"/>
-              <circle cx="290" cy="35" r="20" fill="rgba(245,239,224,0.04)"/>
-              <!-- Messy work surface -->
-              <rect x="20" y="200" width="300" height="8" rx="2" fill="rgba(107,76,30,0.2)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
-              <!-- Flour scattered on surface -->
-              <circle cx="60" cy="200" r="3" fill="rgba(245,239,224,0.2)"/>
-              <circle cx="90" cy="198" r="2" fill="rgba(245,239,224,0.18)"/>
-              <circle cx="130" cy="200" r="2.5" fill="rgba(245,239,224,0.15)"/>
-              <circle cx="200" cy="198" r="2" fill="rgba(245,239,224,0.2)"/>
-              <circle cx="250" cy="200" r="3" fill="rgba(245,239,224,0.15)"/>
-              <circle cx="290" cy="199" r="2" fill="rgba(245,239,224,0.18)"/>
-              <!-- Rolling pin on table -->
-              <rect x="40" y="170" width="160" height="18" rx="9" fill="rgba(170,108,40,0.3)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/>
-              <rect x="30" y="173" width="12" height="12" rx="4" fill="rgba(70,38,8,0.5)" stroke="rgba(107,76,30,0.4)" stroke-width="1"/>
-              <rect x="200" y="173" width="12" height="12" rx="4" fill="rgba(70,38,8,0.5)" stroke="rgba(107,76,30,0.4)" stroke-width="1"/>
-              <!-- Messy dough globs -->
-              <ellipse cx="240" cy="180" rx="28" ry="18" fill="rgba(240,220,180,0.3)" stroke="rgba(107,76,30,0.2)" stroke-width="1"/>
-              <ellipse cx="280" cy="188" rx="18" ry="12" fill="rgba(240,220,180,0.2)" stroke="rgba(107,76,30,0.15)" stroke-width="1"/>
-              <!-- Pain point labels scattered chaotically -->
-              <g transform="translate(50,100) rotate(-8)">
-                <rect x="-45" y="-14" width="90" height="28" rx="4" fill="rgba(196,98,45,0.2)" stroke="rgba(196,98,45,0.4)" stroke-width="1"/>
-                <text x="0" y="4" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(196,98,45,0.9)" letter-spacing="0.3">LABOR DEPENDENT</text>
-              </g>
-              <g transform="translate(220,90) rotate(6)">
-                <rect x="-42" y="-14" width="84" height="28" rx="4" fill="rgba(196,98,45,0.2)" stroke="rgba(196,98,45,0.4)" stroke-width="1"/>
-                <text x="0" y="4" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(196,98,45,0.9)" letter-spacing="0.3">INCONSISTENT</text>
-              </g>
-              <g transform="translate(130,140) rotate(-4)">
-                <rect x="-38" y="-14" width="76" height="28" rx="4" fill="rgba(196,98,45,0.2)" stroke="rgba(196,98,45,0.4)" stroke-width="1"/>
-                <text x="0" y="4" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(196,98,45,0.9)" letter-spacing="0.3">WASTAGE</text>
-              </g>
-              <g transform="translate(60,235) rotate(3)">
-                <rect x="-44" y="-13" width="88" height="26" rx="4" fill="rgba(196,98,45,0.18)" stroke="rgba(196,98,45,0.35)" stroke-width="1"/>
-                <text x="0" y="4" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(196,98,45,0.85)" letter-spacing="0.3">FLOUR DUST</text>
-              </g>
-              <g transform="translate(240,245) rotate(-5)">
-                <rect x="-46" y="-13" width="92" height="26" rx="4" fill="rgba(196,98,45,0.18)" stroke="rgba(196,98,45,0.35)" stroke-width="1"/>
-                <text x="0" y="4" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(196,98,45,0.85)" letter-spacing="0.3">RISING COSTS</text>
-              </g>
-              <g transform="translate(170,280) rotate(2)">
-                <rect x="-40" y="-13" width="80" height="26" rx="4" fill="rgba(196,98,45,0.15)" stroke="rgba(196,98,45,0.3)" stroke-width="1"/>
-                <text x="0" y="4" text-anchor="middle" font-family="Jost,sans-serif" font-size="9" fill="rgba(196,98,45,0.8)" letter-spacing="0.3">DAILY PREP</text>
-              </g>
-            </svg>
+
+          <a href="#challenge" class="btn-primary hb-animate" style="margin-top:2rem;display:inline-flex;">See How It Works →</a>
+        </div>
+
+        <!-- Right: Animated content panel -->
+        <div class="b4-panel-wrap">
+
+          <!-- OLD WAY panel -->
+          <div class="b4-panel b4-panel-old active" id="b4-panel-old">
+            <div class="b4-panel-label b4-panel-label-old">✗ The Old Way</div>
+            <div class="b4-items">
+              <div class="b4-item b4-item-bad">
+                <div class="b4-item-icon">👷</div>
+                <div class="b4-item-text">
+                  <strong>Skilled labor every day</strong>
+                  <span>One absent roti maker shuts down service</span>
+                </div>
+              </div>
+              <div class="b4-item b4-item-bad">
+                <div class="b4-item-icon">⏱</div>
+                <div class="b4-item-text">
+                  <strong>Hours of daily prep</strong>
+                  <span>Kneading, rolling, dusting — before service even starts</span>
+                </div>
+              </div>
+              <div class="b4-item b4-item-bad">
+                <div class="b4-item-icon">📉</div>
+                <div class="b4-item-text">
+                  <strong>Inconsistent every batch</strong>
+                  <span>Different size, thickness, taste — every single service</span>
+                </div>
+              </div>
+              <div class="b4-item b4-item-bad">
+                <div class="b4-item-icon">🗑</div>
+                <div class="b4-item-text">
+                  <strong>Daily wastage</strong>
+                  <span>Overprep spoils, underprep means shortage</span>
+                </div>
+              </div>
+              <div class="b4-item b4-item-bad">
+                <div class="b4-item-icon">🧹</div>
+                <div class="b4-item-text">
+                  <strong>Flour dust everywhere</strong>
+                  <span>Hygiene risk, cleaning overhead, audit headaches</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- DIVIDER with VS -->
-        <div class="b4-vs">
-          <div class="b4-vs-line"></div>
-          <div class="b4-vs-text">VS</div>
-          <div class="b4-vs-line"></div>
-        </div>
-
-        <!-- RIGHT: The Ethical Delights Way -->
-        <div class="b4-new">
-          <div class="b4-side-label b4-new-label">The Ethical Delights Way</div>
-          <div class="b4-benefits-visual">
-            <svg viewBox="0 0 400 380" fill="none" class="b4-svg" preserveAspectRatio="xMidYMid meet">
-              <!-- 4 benefit cards in 2x2 grid — large and readable -->
-              <!-- Card 1: Less Labor -->
-              <rect x="8" y="8" width="186" height="168" rx="6" fill="rgba(212,169,106,0.07)" stroke="rgba(212,169,106,0.3)" stroke-width="1.5"/>
-              <text x="100" y="60" text-anchor="middle" font-size="36">👩‍🍳</text>
-              <text x="100" y="100" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" fill="rgba(245,239,224,0.95)" font-weight="600" letter-spacing="0.5">LESS LABOR</text>
-              <text x="100" y="120" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">Skip the prep. Just</text>
-              <text x="100" y="136" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">bake and serve.</text>
-              <circle cx="178" cy="24" r="13" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
-              <path d="M171 24 L176 29 L185 18" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-              <!-- Card 2: Consistent -->
-              <rect x="206" y="8" width="186" height="168" rx="6" fill="rgba(212,169,106,0.07)" stroke="rgba(212,169,106,0.3)" stroke-width="1.5"/>
-              <text x="299" y="60" text-anchor="middle" font-size="36">📐</text>
-              <text x="299" y="100" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" fill="rgba(245,239,224,0.95)" font-weight="600" letter-spacing="0.5">CONSISTENT</text>
-              <text x="299" y="120" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">Same every plate,</text>
-              <text x="299" y="136" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">every single time</text>
-              <circle cx="376" cy="24" r="13" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
-              <path d="M369 24 L374 29 L383 18" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-              <!-- Card 3: Hygienic -->
-              <rect x="8" y="188" width="186" height="168" rx="6" fill="rgba(212,169,106,0.07)" stroke="rgba(212,169,106,0.3)" stroke-width="1.5"/>
-              <text x="100" y="240" text-anchor="middle" font-size="36">✨</text>
-              <text x="100" y="280" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" fill="rgba(245,239,224,0.95)" font-weight="600" letter-spacing="0.5">HYGIENIC</text>
-              <text x="100" y="300" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">No open prep,</text>
-              <text x="100" y="316" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">no flour mess</text>
-              <circle cx="178" cy="204" r="13" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
-              <path d="M171 204 L176 209 L185 198" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-              <!-- Card 4: Zero Waste -->
-              <rect x="206" y="188" width="186" height="168" rx="6" fill="rgba(212,169,106,0.07)" stroke="rgba(212,169,106,0.3)" stroke-width="1.5"/>
-              <text x="299" y="240" text-anchor="middle" font-size="36">🗑️</text>
-              <text x="299" y="280" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" fill="rgba(245,239,224,0.95)" font-weight="600" letter-spacing="0.5">ZERO WASTE</text>
-              <text x="299" y="300" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">Cook only</text>
-              <text x="299" y="316" text-anchor="middle" font-family="Jost,sans-serif" font-size="11" fill="rgba(212,169,106,0.7)" letter-spacing="0.2">what you need</text>
-              <circle cx="376" cy="204" r="13" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
-              <path d="M369 204 L374 209 L383 198" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
+          <!-- OUR WAY panel -->
+          <div class="b4-panel b4-panel-new" id="b4-panel-new">
+            <div class="b4-panel-label b4-panel-label-new">✓ The Ethical Delights Way</div>
+            <div class="b4-items">
+              <div class="b4-item b4-item-good">
+                <div class="b4-item-icon">👩‍🍳</div>
+                <div class="b4-item-text">
+                  <strong>Less labor dependency</strong>
+                  <span>Any team member can finish chapatis in 60 seconds</span>
+                </div>
+              </div>
+              <div class="b4-item b4-item-good">
+                <div class="b4-item-icon">⚡</div>
+                <div class="b4-item-text">
+                  <strong>Zero prep time</strong>
+                  <span>Open freezer, take packet, bake or fry — done</span>
+                </div>
+              </div>
+              <div class="b4-item b4-item-good">
+                <div class="b4-item-icon">📐</div>
+                <div class="b4-item-text">
+                  <strong>Consistent every plate</strong>
+                  <span>Same size, thickness, taste — every service, every outlet</span>
+                </div>
+              </div>
+              <div class="b4-item b4-item-good">
+                <div class="b4-item-icon">♾️</div>
+                <div class="b4-item-text">
+                  <strong>Zero wastage</strong>
+                  <span>Cook exactly what you need, freeze the rest</span>
+                </div>
+              </div>
+              <div class="b4-item b4-item-good">
+                <div class="b4-item-icon">✨</div>
+                <div class="b4-item-text">
+                  <strong>100% hygienic</strong>
+                  <span>Machine-made, sealed, no open prep or flour mess</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        </div><!-- end b4-cols -->
+
+        </div><!-- end b4-panel-wrap -->
       </div><!-- end slide-inner -->
     </div>
 
@@ -2070,6 +2044,22 @@
     h.classList.toggle('open');
     m.classList.toggle('open');
     document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  };
+
+
+  // ── BANNER 4 TOGGLE ──
+  window.b4Switch = function(mode) {
+    const oldBtn = document.getElementById('b4-old-btn');
+    const newBtn = document.getElementById('b4-new-btn');
+    const oldPanel = document.getElementById('b4-panel-old');
+    const newPanel = document.getElementById('b4-panel-new');
+    if (mode === 'old') {
+      oldBtn.classList.add('active'); newBtn.classList.remove('active');
+      oldPanel.classList.add('active'); newPanel.classList.remove('active');
+    } else {
+      newBtn.classList.add('active'); oldBtn.classList.remove('active');
+      newPanel.classList.add('active'); oldPanel.classList.remove('active');
+    }
   };
 
 </script>
