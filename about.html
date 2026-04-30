@@ -22,8 +22,8 @@
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 6vw; background: rgba(250,246,238,0.9); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(212,169,106,0.2); transition: padding 0.3s; }
   nav.scrolled { padding: 0.8rem 6vw; box-shadow: 0 4px 30px rgba(28,20,8,0.08); }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--earth); text-decoration: none; }
-  .nav-logo em { font-style: italic; color: var(--rust); }
+  .nav-logo { display:inline-flex; align-items:center; text-decoration:none; height:2.8rem; }
+  .nav-logo img { height:100%; width:auto; object-fit:contain; }
   .nav-links { display: flex; gap: 2.5rem; align-items: center; }
   .nav-links a { font-size: 0.75rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--deep); text-decoration: none; font-weight: 500; position: relative; padding-bottom: 3px; transition: color 0.3s; }
   .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
@@ -207,8 +207,8 @@
 
   /* FOOTER */
   footer { background: #0d0a04; padding: 1.8rem 7vw; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(212,169,106,0.08); }
-  .foot-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--wheat); }
-  .foot-logo em { font-style: italic; }
+  .foot-logo { display:inline-flex; align-items:center; height:2rem; }
+  .foot-logo img { height:100%; width:auto; object-fit:contain; opacity:0.85; }
   .foot-links { display: flex; gap: 2rem; }
   .foot-links a { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(212,169,106,0.4); text-decoration: none; transition: color 0.3s; }
   .foot-links a:hover { color: var(--wheat); }
@@ -287,7 +287,7 @@
 <body>
 
 <nav id="navbar">
-  <a href="index.html" class="nav-logo">Ethical <em>Delights</em>®</a>
+  <a href="index.html" class="nav-logo"><img src="logo-transparent.png" alt="Ethical Delights"></a>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="process.html">Our Process</a>
@@ -576,7 +576,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="foot-logo">Ethical <em>Delights</em>®</div>
+  <div class="foot-logo"><img src="logo-white.png" alt="Ethical Delights"></div>
   <div class="foot-links">
     <a href="index.html">Home</a>
     <a href="process.html">Process</a>
