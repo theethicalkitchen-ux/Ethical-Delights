@@ -699,24 +699,26 @@
     .stat-num { font-size:1.6rem; }
     .stat-lbl { font-size:0.55rem; }
 
-    /* ── PRODUCTS — match media showcase style ── */
+    /* ── PRODUCTS ── */
     #products { padding:3.5rem 5vw; }
     .product-grid { grid-template-columns:1fr; gap:2rem; }
-    .product-card { border:1px solid rgba(212,169,106,0.25); box-shadow:none; background:var(--cream); }
-    .product-card:hover { transform:none; box-shadow:none; }
-    /* Carousel — tall enough to show portrait images clearly */
-    .card-carousel {
-      height:75vw;
-      min-height:260px;
-      max-height:420px;
+    .product-card { box-shadow:none; background:var(--cream); }
+    .product-card:hover { transform:none; }
+    /* Key fix: use contain so the FULL image is always visible, no cropping ever */
+    .card-carousel { height:auto !important; aspect-ratio:unset !important; }
+    .carousel-track { height:auto !important; }
+    .carousel-slide {
+      min-width:100%;
+      height:auto !important;
+      flex-shrink:0;
     }
-    /* Chapati — food is in middle of portrait, position accordingly */
-    #track-chapati .carousel-slide img { object-position:center 42% !important; }
-    /* Puri — landscape, show bottom half where puris are */
-    #track-puri .carousel-slide img { object-position:center 60% !important; }
-    /* Wraps — landscape, centre is fine */
-    #track-wrap .carousel-slide img { object-position:center center; }
-    .carousel-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+    .carousel-slide img {
+      width:100% !important;
+      height:auto !important;
+      object-fit:unset !important;
+      object-position:unset !important;
+      display:block;
+    }
     .product-body { padding:1.2rem 1rem; }
     .product-name { font-size:1.5rem; }
     .product-desc { font-size:0.82rem; }
