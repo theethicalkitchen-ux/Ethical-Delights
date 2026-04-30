@@ -131,14 +131,69 @@
   .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);}
   .fade-up.visible{opacity:1;transform:translateY(0);}
 
-  @media(max-width:900px){
-    #intro,.steps-header,.tech-grid,.quality-inner,#tech .machine-layout{grid-template-columns:1fr;gap:2.5rem;}
-    .step-block{grid-template-columns:1fr;gap:1rem;}
-    .step-left{text-align:left;width:auto;}
-    .step-number{font-size:3rem;}
-    .step-visual{width:8rem;height:8rem;margin:0 auto;}
-    nav .nav-links{display:none;}
+  @media(max-width:768px){
+    nav { padding:0.9rem 5vw; }
+    nav .nav-links { display:none; }
+    .page-hero { min-height:70svh; padding:5rem 5vw 3rem; }
+    .page-hero-h1 { font-size:clamp(2.8rem,10vw,4.5rem); }
+    #intro { grid-template-columns:1fr; gap:2rem; padding:3.5rem 5vw; }
+    .intro-quote { font-size:clamp(1.3rem,5vw,1.8rem); padding-left:1.2rem; }
+    #steps { padding:3.5rem 5vw; }
+    .steps-header { grid-template-columns:1fr; gap:1.5rem; margin-bottom:3rem; }
+    .step-block { grid-template-columns:1fr; gap:0.8rem; padding:2rem 0; }
+    .step-left { text-align:left; width:auto; display:flex; gap:1rem; align-items:baseline; }
+    .step-number { font-size:2.5rem; }
+    .step-right { padding-right:0; }
+    .step-title { font-size:clamp(1.5rem,5vw,2rem); }
+    .step-desc { font-size:0.85rem; }
+    .step-visual { width:7rem; height:7rem; margin:0 auto; position:static; transform:none; }
+    .step-details { gap:0.4rem; }
+    #tech { padding:3.5rem 5vw; }
+    #tech > div[style] { grid-template-columns:1fr !important; gap:2rem !important; }
+    .tech-grid { grid-template-columns:1fr; gap:1rem; margin-top:2rem; }
+    .tech-card { padding:1.4rem; }
+    #quality { padding:3.5rem 5vw; }
+    .quality-inner { grid-template-columns:1fr; gap:2.5rem; }
+    .quality-heading { font-size:clamp(2rem,7vw,3rem); }
+    footer { flex-direction:column; align-items:center; gap:1rem; padding:1.5rem 5vw; text-align:center; }
+    .foot-links { gap:1.2rem; }
   }
+
+  /* ── HAMBURGER MENU ── */
+  .nav-hamburger {
+    display:none; flex-direction:column; gap:5px; cursor:pointer;
+    padding:4px; background:none; border:none;
+  }
+  .nav-hamburger span {
+    display:block; width:22px; height:2px; background:var(--earth);
+    transition:all 0.3s; transform-origin:center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity:0; }
+  .nav-hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  .nav-mobile-menu {
+    display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+    background:rgba(250,246,238,0.97); backdrop-filter:blur(16px);
+    z-index:199; flex-direction:column;
+    align-items:center; justify-content:center; gap:2rem;
+  }
+  .nav-mobile-menu.open { display:flex; }
+  .nav-mobile-menu a {
+    font-size:1.8rem; font-family:'Cormorant Garamond',serif; font-weight:300;
+    color:var(--deep); text-decoration:none; letter-spacing:0.04em;
+    transition:color 0.3s;
+  }
+  .nav-mobile-menu a:hover { color:var(--rust); }
+  .nav-mobile-menu .mob-cta {
+    margin-top:1rem; background:var(--rust); color:#fff;
+    padding:0.9rem 2.5rem; font-size:0.85rem; letter-spacing:0.12em;
+    text-transform:uppercase; font-family:'Jost',sans-serif; font-weight:500;
+  }
+  @media(max-width:768px) {
+    .nav-hamburger { display:flex; }
+  }
+
 </style>
 </head>
 <body>
@@ -151,7 +206,16 @@
     <a href="about.html">About Us</a>
     <a href="index.html#contact-strip" class="nav-cta">Get in Touch</a>
   </div>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="process.html" onclick="toggleMenu()">Our Process</a>
+  <a href="about.html" onclick="toggleMenu()">About Us</a>
+  <a href="index.html#contact-strip" class="mob-cta" onclick="toggleMenu()">Get in Touch</a>
+</div>
 
 <div class="page-hero">
   <div class="page-hero-bg"></div>
@@ -530,6 +594,16 @@
     el.style.transitionDelay = (i % 3) * 0.1 + 's';
     obs.observe(el);
   });
+
+  // Hamburger menu
+  window.toggleMenu = function() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobile-menu');
+    h.classList.toggle('open');
+    m.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  };
+
 </script>
 </body>
 </html>
