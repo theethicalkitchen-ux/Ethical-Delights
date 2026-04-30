@@ -68,8 +68,23 @@
   .step-block:last-child{border-bottom:1px solid rgba(212,169,106,0.25);}
 
   .step-left{text-align:right;width:8rem;flex-shrink:0;}
-  .step-number{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;line-height:1;color:rgba(212,169,106,0.2);display:block;}
-  .step-tag{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);font-weight:500;}
+  /* Step number — styled badge */
+  .step-number-wrap{
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    width:3.2rem;height:3.2rem;
+    border-radius:50%;
+    background:var(--deep);
+    border:2px solid var(--wheat);
+    float:right;
+    margin-bottom:0.4rem;
+  }
+  .step-number{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.3rem;font-weight:600;line-height:1;
+    color:var(--wheat);display:block;
+  }
+  .step-tag{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);font-weight:500;clear:both;display:block;}
 
   .step-right{padding-top:0.5rem;}
   .step-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--deep);margin-bottom:1rem;}
@@ -138,20 +153,60 @@
     .page-hero-h1 { font-size:clamp(2.8rem,10vw,4.5rem); }
     #intro { grid-template-columns:1fr; gap:2rem; padding:3.5rem 5vw; }
     .intro-quote { font-size:clamp(1.3rem,5vw,1.8rem); padding-left:1.2rem; }
-    #steps { padding:3.5rem 5vw; }
-    .steps-header { grid-template-columns:1fr; gap:1.5rem; margin-bottom:3rem; }
-    .step-block { grid-template-columns:1fr; gap:0.8rem; padding:2rem 0; }
-    .step-left { text-align:left; width:auto; display:flex; gap:1rem; align-items:baseline; }
-    .step-number { font-size:2.5rem; }
-    .step-right { padding-right:0; }
-    .step-title { font-size:clamp(1.5rem,5vw,2rem); }
-    .step-desc { font-size:0.85rem; }
-    .step-visual { width:7rem; height:7rem; margin:0 auto; position:static; transform:none; }
-    .step-details { gap:0.4rem; }
+    #steps { padding:3rem 5vw; }
+    .steps-header { grid-template-columns:1fr; gap:1.5rem; margin-bottom:2.5rem; }
+    /* Stack: number left, content right, visual BELOW content — no overlap */
+    .step-block {
+      display:grid;
+      grid-template-columns:4rem 1fr;
+      grid-template-rows:auto auto;
+      gap:0.5rem 1rem;
+      padding:1.8rem 0;
+    }
+    /* Number badge — top left */
+    .step-left {
+      text-align:center;
+      width:auto;
+      grid-column:1;
+      grid-row:1;
+      display:flex;
+      justify-content:flex-start;
+    }
+    .step-number-wrap {
+      width:2.8rem;
+      height:2.8rem;
+      float:none;
+      margin:0;
+    }
+    .step-number { font-size:1.1rem; }
+    .step-tag { display:none; }
+    /* Content — top right */
+    .step-right {
+      grid-column:2;
+      grid-row:1;
+      padding-right:0;
+      padding-top:0;
+    }
+    .step-title { font-size:clamp(1.4rem,5vw,1.8rem); margin-bottom:0.6rem; }
+    .step-desc { font-size:0.83rem; }
+    .step-details { gap:0.35rem; margin-top:1rem; }
+    .step-detail { font-size:0.62rem; padding:0.2rem 0.6rem; }
+    /* Visual circle — below, spanning both columns, centred */
+    .step-visual {
+      grid-column:1 / -1;
+      grid-row:2;
+      width:8rem;
+      height:8rem;
+      margin:0.8rem auto 0;
+      position:static;
+      transform:none;
+    }
+    /* Tech */
     #tech { padding:3.5rem 5vw; }
     #tech > div[style] { grid-template-columns:1fr !important; gap:2rem !important; }
     .tech-grid { grid-template-columns:1fr; gap:1rem; margin-top:2rem; }
     .tech-card { padding:1.4rem; }
+    /* Quality */
     #quality { padding:3.5rem 5vw; }
     .quality-inner { grid-template-columns:1fr; gap:2.5rem; }
     .quality-heading { font-size:clamp(2rem,7vw,3rem); }
@@ -247,7 +302,7 @@
   <!-- STEP 01 -->
   <div class="step-block">
     <div class="step-left">
-      <span class="step-number">01</span>
+      <div class="step-number-wrap"><span class="step-number">01</span></div>
       <span class="step-tag">Foundation</span>
     </div>
     <div class="step-right">
@@ -270,7 +325,7 @@
   <!-- STEP 02 -->
   <div class="step-block">
     <div class="step-left">
-      <span class="step-number">02</span>
+      <div class="step-number-wrap"><span class="step-number">02</span></div>
       <span class="step-tag">Texture</span>
     </div>
     <div class="step-right">
@@ -319,7 +374,7 @@
   <!-- STEP 03 -->
   <div class="step-block">
     <div class="step-left">
-      <span class="step-number">03</span>
+      <div class="step-number-wrap"><span class="step-number">03</span></div>
       <span class="step-tag">Consistency</span>
     </div>
     <div class="step-right">
@@ -372,7 +427,7 @@
   <!-- STEP 04 -->
   <div class="step-block">
     <div class="step-left">
-      <span class="step-number">04</span>
+      <div class="step-number-wrap"><span class="step-number">04</span></div>
       <span class="step-tag">Quality Lock</span>
     </div>
     <div class="step-right">
@@ -433,7 +488,7 @@
   <!-- STEP 05 -->
   <div class="step-block">
     <div class="step-left">
-      <span class="step-number">05</span>
+      <div class="step-number-wrap"><span class="step-number">05</span></div>
       <span class="step-tag">Preservation</span>
     </div>
     <div class="step-right">
