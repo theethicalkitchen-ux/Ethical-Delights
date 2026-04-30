@@ -105,10 +105,60 @@
   .founder-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
   .f-tag { font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(212,169,106,0.2); padding: 0.25rem 0.7rem; color: rgba(212,169,106,0.5); }
 
-  .founders-together { margin-top: 4rem; padding: 2.5rem; border: 1px solid rgba(212,169,106,0.2); display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center; }
-  .together-icon { font-size: 3rem; }
-  .together-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; font-style: italic; color: rgba(245,239,224,0.7); line-height: 1.5; }
-  .together-text strong { font-style: normal; font-weight: 600; color: var(--wheat); }
+  /* ── TOGETHER SECTION ── */
+  #together-block {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:1px solid rgba(212,169,106,0.2);
+    overflow:hidden;
+    margin-top:4rem;
+  }
+  .together-photo {
+    overflow:hidden;
+    min-height:22rem;
+    max-height:32rem;
+  }
+  .together-photo img {
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center 20%;
+    display:block;
+    transition:transform 0.5s;
+  }
+  #together-block:hover .together-photo img { transform:scale(1.03); }
+  .together-text-block {
+    padding:3rem;
+    display:flex; flex-direction:column; justify-content:center;
+    background:var(--deep);
+  }
+  .together-eyebrow {
+    font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--wheat); font-weight:500; margin-bottom:1.2rem;
+    display:flex; align-items:center; gap:0.6rem;
+  }
+  .together-eyebrow span {
+    display:inline-block; width:1.2rem; height:1px; background:var(--wheat);
+  }
+  .together-heading {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.6rem,2.5vw,2.2rem);
+    font-weight:300; color:var(--cream); line-height:1.2; margin-bottom:1.2rem;
+  }
+  .together-body {
+    font-size:0.92rem; font-weight:300;
+    color:rgba(245,239,224,0.65); line-height:1.85; margin-bottom:1.4rem;
+  }
+  .together-quote {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.2rem; font-style:italic; color:var(--wheat);
+    line-height:1.5; border-left:2px solid var(--wheat); padding-left:1.2rem;
+  }
+  .together-attribution {
+    font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:rgba(212,169,106,0.5); margin-top:0.8rem;
+  }
+
 
   /* PHILOSOPHY */
   #philosophy { padding: 7rem 7vw; background: var(--cream); }
@@ -171,7 +221,14 @@
     .ph-right { min-height: 50vw; }
     .story-layout, .philosophy-layout, .founders-grid, #contact-strip { grid-template-columns: 1fr; gap: 3rem; }
     .values-grid { grid-template-columns: 1fr; }
-    .founders-together { grid-template-columns: 1fr; }
+    /* Together */
+    #together-block { grid-template-columns:1fr; }
+    .together-photo { min-height:70vw; max-height:80vw; }
+    .together-photo img { object-position:center 25%; }
+    .together-text-block { padding:2rem 1.5rem; }
+    .together-heading { font-size:1.6rem; }
+    .together-body { font-size:0.85rem; }
+    .together-quote { font-size:1rem; }
     nav .nav-links { display: none; }
   }
 
@@ -370,28 +427,24 @@
       <p class="founder-bio" style="margin-top:1rem;">That's how his journey with Ethical Delights began — with the belief that real food shouldn't be a luxury. It should just be normal.</p>
     </div>
   </div>
-  <div class="founders-together fade-up" style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(212,169,106,0.2);overflow:hidden;">
-    <!-- Photo left -->
-    <div style="overflow:hidden;max-height:28rem;">
-      <img src="founders2.jpg" alt="Amit and Nishant together"
-        style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform 0.5s;">
+  <div class="founders-together fade-up" id="together-block">
+    <!-- Photo -->
+    <div class="together-photo">
+      <img src="founders2.jpg" alt="Amit and Nishant together">
     </div>
-    <!-- Text right -->
-    <div style="padding:3rem;display:flex;flex-direction:column;justify-content:center;background:var(--deep);">
-      <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;">
-        <span style="display:inline-block;width:1.2rem;height:1px;background:var(--wheat);"></span>
-        Together
+    <!-- Text -->
+    <div class="together-text-block">
+      <div class="together-eyebrow">
+        <span></span>Together
       </div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:1.4rem;">
-        Our Shared Purpose
-      </div>
-      <div style="font-size:0.92rem;font-weight:300;color:rgba(245,239,224,0.65);line-height:1.85;margin-bottom:1.4rem;">
+      <div class="together-heading">Our Shared Purpose</div>
+      <div class="together-body">
         To help kitchens run smoother — with less chaos, more consistency, and truly fresh food. Eight months of recipe development produced a system neither of us could have built alone.
       </div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--wheat);line-height:1.5;border-left:2px solid var(--wheat);padding-left:1.2rem;">
+      <div class="together-quote">
         "Fresh, Satvik, and scalable can co-exist."
       </div>
-      <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(212,169,106,0.5);margin-top:0.8rem;">— Amit &amp; Nishant</div>
+      <div class="together-attribution">— Amit &amp; Nishant</div>
     </div>
   </div>
 </section>
