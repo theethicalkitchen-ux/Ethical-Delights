@@ -425,7 +425,7 @@
   /* Steps: horizontal row of 5 cards */
   .b3-steps {
     display:grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(5,1fr);
     gap:0.8rem;
     width:100%;
   }
@@ -730,9 +730,10 @@
     .hb-slide { min-width:100%; height:100svh; overflow:hidden; }
     .hb-track { height:100%; }
 
-    /* Hide prev arrow on mobile always — avoids table overlap */
-    .hb-arrow.prev { display:none !important; }
-    .hb-arrow.next { right:0.5rem; }
+    /* Arrows — small, tucked at bottom so they don't overlap content */
+    .hb-arrow { width:2rem; height:2rem; top:auto; bottom:3.5rem; transform:none; font-size:0.8rem; }
+    .hb-arrow.prev { left:1rem; }
+    .hb-arrow.next { right:1rem; }
 
     /* ── BANNER 1 — full width centred, no overlap ── */
     .b1 .hb-slide-inner { flex-direction:column; justify-content:center; align-items:center; padding:5rem 6vw 3rem; text-align:center; }
@@ -777,7 +778,9 @@
     }
     .b3-h2 em { color:var(--cream); }
     .b3-eyebrow { font-family:'Jost',sans-serif; font-size:0.6rem; color:var(--wheat); }
-    .b3-steps { grid-template-columns:1fr 1fr 1fr; gap:0.4rem; }
+    /* B3 mobile: 3 top row + 2 bottom centred */
+    .b3-steps { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; }
+    .b3-step { flex:0 0 calc(33.33% - 0.4rem); min-width:0; }
     .b3-step { padding:0.8rem 0.5rem; }
     .b3-step::after { display:none; }
     .b3-step-num { font-family:'Cormorant Garamond',serif; font-size:0.9rem; color:var(--wheat); }
@@ -789,7 +792,7 @@
     .b3-step-desc { display:none; }
 
     /* ── BANNER 4 — table, no left arrow overlap ── */
-    .b4-inner { padding:1.2rem 4vw 1rem 5vw; gap:0.8rem; }
+    .b4-inner { padding:1.5rem 5vw 4rem; gap:0.8rem; }
     .b4-h2 {
       font-size:clamp(1.4rem,5.5vw,2rem);
       color:var(--wheat);
@@ -817,11 +820,28 @@
     .hb-controls { bottom:1rem; }
 
     /* ── USP RIBBON ── */
+    /* USP ribbon mobile — 4 per row, icon + label always visible */
     .usp-ribbon-inner { flex-wrap:wrap; }
-    .usp-pill { flex:1 1 25%; border-bottom:1px solid rgba(212,169,106,0.2); border-right:1px solid rgba(212,169,106,0.15); padding:0.6rem 0.2rem; }
-    .usp-pill-icon { font-size:1rem; }
-    .usp-pill-label { font-size:0.48rem; color:var(--cream); display:block !important; letter-spacing:0.06em; }
-    .usp-pill-sub { display:none; }
+    .usp-pill {
+      flex:1 1 25%;
+      border-bottom:1px solid rgba(212,169,106,0.2);
+      border-right:1px solid rgba(212,169,106,0.15);
+      padding:0.7rem 0.3rem;
+      min-width:0;
+    }
+    .usp-pill-icon { font-size:1.1rem; }
+    .usp-pill-label {
+      font-size:0.5rem !important;
+      color:var(--cream) !important;
+      display:block !important;
+      visibility:visible !important;
+      opacity:1 !important;
+      letter-spacing:0.04em;
+      line-height:1.3;
+      margin-top:0.2rem;
+      word-break:break-word;
+    }
+    .usp-pill-sub { display:none !important; }
 
     /* ── SECTIONS ── */
     section { padding:3.5rem 5vw; }
@@ -974,13 +994,13 @@
   }
 
 
-  /* ── CUSTOMER STRIP ── */
+  /* ── CUSTOMER STRIP — cream bg, warm contrasting theme ── */
   #customers {
-    background:var(--deep);
+    background:var(--cream);
     padding:4rem 0;
     overflow:hidden;
-    border-top:1px solid rgba(212,169,106,0.1);
-    border-bottom:1px solid rgba(212,169,106,0.1);
+    border-top:3px solid var(--rust);
+    border-bottom:3px solid var(--rust);
   }
   .customer-header {
     text-align:center;
@@ -988,21 +1008,21 @@
   }
   .customer-eyebrow {
     font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;
-    color:var(--wheat);font-weight:500;margin-bottom:0.8rem;
+    color:var(--rust);font-weight:600;margin-bottom:0.8rem;
     display:flex;align-items:center;justify-content:center;gap:0.8rem;
   }
   .customer-eyebrow::before,.customer-eyebrow::after {
-    content:'';flex:1;max-width:3rem;height:1px;background:var(--wheat);
+    content:'';flex:1;max-width:3rem;height:1px;background:var(--rust);
   }
   .customer-headline {
     font-family:'Cormorant Garamond',serif;
     font-size:clamp(1.8rem,3.5vw,3rem);
-    font-weight:300;color:var(--cream);line-height:1.1;
+    font-weight:300;color:var(--deep);line-height:1.1;
   }
-  .customer-headline em { font-style:italic;color:var(--wheat); }
+  .customer-headline em { font-style:italic;color:var(--rust); }
   .customer-sub {
     font-size:0.85rem;font-weight:300;
-    color:rgba(245,239,224,0.45);margin-top:0.6rem;
+    color:rgba(28,20,8,0.45);margin-top:0.6rem;
   }
   /* Marquee */
   .customer-marquee-wrap {
@@ -1014,10 +1034,10 @@
     content:'';position:absolute;top:0;bottom:0;width:8rem;z-index:2;pointer-events:none;
   }
   .customer-marquee-wrap::before {
-    left:0;background:linear-gradient(to right,var(--deep),transparent);
+    left:0;background:linear-gradient(to right,var(--cream),transparent);
   }
   .customer-marquee-wrap::after {
-    right:0;background:linear-gradient(to left,var(--deep),transparent);
+    right:0;background:linear-gradient(to left,var(--cream),transparent);
   }
   .customer-marquee {
     display:flex;gap:0;
@@ -1030,18 +1050,19 @@
     flex-shrink:0;
   }
   .customer-name {
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(1.1rem,2vw,1.5rem);
-    font-weight:300;color:rgba(245,239,224,0.75);
-    padding:0 2.2rem;white-space:nowrap;
-    transition:color 0.3s;letter-spacing:0.02em;
+    font-family:'Jost',sans-serif;
+    font-size:clamp(0.75rem,1.3vw,0.95rem);
+    font-weight:600;color:var(--earth);
+    padding:0 2rem;white-space:nowrap;
+    transition:color 0.3s;letter-spacing:0.12em;
+    text-transform:uppercase;
   }
   .customer-marquee:hover .customer-name:hover {
-    color:var(--wheat);
+    color:var(--rust);
   }
   .customer-dot {
-    width:4px;height:4px;border-radius:50%;
-    background:rgba(212,169,106,0.3);flex-shrink:0;
+    width:5px;height:5px;border-radius:50%;
+    background:var(--rust);opacity:0.5;flex-shrink:0;
   }
   /* Stats row below marquee */
   .customer-stats {
@@ -1053,15 +1074,15 @@
   }
   .customer-stat-num {
     font-family:'Cormorant Garamond',serif;
-    font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--wheat);line-height:1;
+    font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--rust);line-height:1;
   }
   .customer-stat-label {
     font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;
-    color:rgba(245,239,224,0.4);text-align:center;
+    color:rgba(28,20,8,0.45);text-align:center;
   }
   .customer-stat-div {
     width:1px;height:2.5rem;
-    background:rgba(212,169,106,0.15);
+    background:rgba(107,76,30,0.2);
   }
   @keyframes marquee {
     0% { transform:translateX(0); }
@@ -1333,103 +1354,41 @@
         <div class="b2-flow hb-animate">
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><rect x="15" y="10" width="50" height="60" rx="6" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><rect x="22" y="24" width="18" height="26" rx="2" stroke="rgba(212,169,106,0.5)" stroke-width="1.5" fill="rgba(212,169,106,0.08)"/><rect x="44" y="24" width="14" height="26" rx="2" stroke="rgba(212,169,106,0.4)" stroke-width="1.5" fill="rgba(212,169,106,0.06)"/><text x="40" y="80" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">FREEZER</text>
-              <!-- snowflake -->
-              <line x1="40" y1="55" x2="40" y2="67" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="34" y1="61" x2="46" y2="61" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="36" y1="57" x2="44" y2="65" stroke="rgba(160,210,255,0.5)" stroke-width="1"/><line x1="44" y1="57" x2="36" y2="65" stroke="rgba(160,210,255,0.5)" stroke-width="1"/>
-              </svg>
+              <svg viewBox="0 0 80 80" fill="none"><rect x="15" y="10" width="50" height="60" rx="6" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><rect x="22" y="24" width="18" height="26" rx="2" stroke="rgba(212,169,106,0.5)" stroke-width="1.5" fill="rgba(212,169,106,0.08)"/><rect x="44" y="24" width="14" height="26" rx="2" stroke="rgba(212,169,106,0.4)" stroke-width="1.5" fill="rgba(212,169,106,0.06)"/><line x1="40" y1="55" x2="40" y2="67" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="34" y1="61" x2="46" y2="61" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="36" y1="57" x2="44" y2="65" stroke="rgba(160,210,255,0.5)" stroke-width="1"/><line x1="44" y1="57" x2="36" y2="65" stroke="rgba(160,210,255,0.5)" stroke-width="1"/></svg>
             </div>
             <div class="b2-step-label">Open<br>Freezer</div>
           </div>
-          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><rect x="18" y="14" width="44" height="52" rx="4" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><path d="M22 14 L24 10 L26 14 L28 10 L30 14 L32 10 L34 14 L36 10 L38 14 L40 10 L42 14 L44 10 L46 14 L48 10 L50 14 L52 10 L54 14 L56 10 L58 14 L60 10 L62 14" stroke="rgba(212,169,106,0.4)" stroke-width="1" fill="none"/><rect x="26" y="22" width="28" height="34" rx="2" fill="rgba(245,239,224,0.1)" stroke="rgba(212,169,106,0.35)" stroke-width="1"/><text x="40" y="34" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(245,239,224,0.7)" font-style="italic">Ethical</text><text x="40" y="43" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(245,239,224,0.7)" font-style="italic">Delights</text><text x="40" y="80" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">PACKET</text></svg>
+              <svg viewBox="0 0 80 80" fill="none"><rect x="18" y="14" width="44" height="52" rx="4" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><path d="M22 14 L24 10 L26 14 L28 10 L30 14 L32 10 L34 14 L36 10 L38 14 L40 10 L42 14 L44 10 L46 14 L48 10 L50 14 L52 10 L54 14 L56 10 L58 14 L60 10 L62 14" stroke="rgba(212,169,106,0.4)" stroke-width="1" fill="none"/><rect x="26" y="22" width="28" height="34" rx="2" fill="rgba(245,239,224,0.1)" stroke="rgba(212,169,106,0.35)" stroke-width="1"/><text x="40" y="34" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(245,239,224,0.7)" font-style="italic">Ethical</text><text x="40" y="43" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(245,239,224,0.7)" font-style="italic">Delights</text></svg>
             </div>
             <div class="b2-step-label">Take<br>Packet</div>
           </div>
-          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="36" r="22" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><path d="M40 18 L40 36 L52 36" stroke="rgba(196,98,45,0.9)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="36" r="3" fill="rgba(196,98,45,0.8)"/><text x="40" y="76" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">THAW</text></svg>
+              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="36" r="22" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><path d="M40 18 L40 36 L52 36" stroke="rgba(196,98,45,0.9)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="36" r="3" fill="rgba(196,98,45,0.8)"/></svg>
             </div>
             <div class="b2-step-label">Thaw<br>Briefly</div>
           </div>
-          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none">
-                <!-- Tawa -->
-                <ellipse cx="40" cy="52" rx="28" ry="7" fill="rgba(30,20,8,0.5)" stroke="rgba(107,76,30,0.6)" stroke-width="1.5"/>
-                <ellipse cx="40" cy="48" rx="28" ry="7" fill="rgba(40,28,10,0.6)" stroke="rgba(107,76,30,0.5)" stroke-width="1.5"/>
-                <!-- Chapati -->
-                <ellipse cx="40" cy="43" rx="20" ry="6" fill="rgba(240,220,175,0.9)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
-                <!-- Flames -->
-                <path d="M26 56 Q24 50 27 46 Q29 51 31 47 Q33 52 28 56Z" fill="rgba(255,140,0,0.8)"/>
-                <path d="M38 54 Q36 48 39 44 Q41 49 43 45 Q45 50 40 54Z" fill="rgba(255,160,0,0.85)"/>
-                <path d="M52 56 Q50 50 53 46 Q55 51 57 47 Q59 52 54 56Z" fill="rgba(255,140,0,0.8)"/>
-                <text x="40" y="78" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">COOK</text>
-              </svg>
+              <svg viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="52" rx="28" ry="7" fill="rgba(30,20,8,0.5)" stroke="rgba(107,76,30,0.6)" stroke-width="1.5"/><ellipse cx="40" cy="48" rx="28" ry="7" fill="rgba(40,28,10,0.6)" stroke="rgba(107,76,30,0.5)" stroke-width="1.5"/><ellipse cx="40" cy="43" rx="20" ry="6" fill="rgba(240,220,175,0.9)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/><path d="M26 56 Q24 50 27 46 Q29 51 31 47 Q33 52 28 56Z" fill="rgba(255,140,0,0.8)"/><path d="M38 54 Q36 48 39 44 Q41 49 43 45 Q45 50 40 54Z" fill="rgba(255,160,0,0.85)"/><path d="M52 56 Q50 50 53 46 Q55 51 57 47 Q59 52 54 56Z" fill="rgba(255,140,0,0.8)"/></svg>
             </div>
             <div class="b2-step-label">Bake<br>or Fry</div>
           </div>
-          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none">
-                <circle cx="40" cy="44" r="24" fill="rgba(245,239,224,0.12)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
-                <circle cx="40" cy="44" r="18" fill="rgba(245,239,224,0.08)" stroke="rgba(212,169,106,0.3)" stroke-width="1"/>
-                <ellipse cx="40" cy="50" rx="14" ry="4" fill="rgba(220,195,148,0.7)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
-                <ellipse cx="40" cy="46" rx="14" ry="4" fill="rgba(232,210,165,0.85)" stroke="rgba(107,76,30,0.28)" stroke-width="1"/>
-                <ellipse cx="40" cy="42" rx="14" ry="4" fill="rgba(242,225,185,0.95)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
-                <circle cx="56" cy="24" r="10" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1"/>
-                <path d="M50 24 L54 28 L62 20" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                <text x="40" y="76" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">SERVE</text>
-              </svg>
+              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="44" r="24" fill="rgba(245,239,224,0.12)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/><ellipse cx="40" cy="50" rx="14" ry="4" fill="rgba(220,195,148,0.7)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/><ellipse cx="40" cy="46" rx="14" ry="4" fill="rgba(232,210,165,0.85)" stroke="rgba(107,76,30,0.28)" stroke-width="1"/><ellipse cx="40" cy="42" rx="14" ry="4" fill="rgba(242,225,185,0.95)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/><circle cx="56" cy="24" r="10" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1"/><path d="M50 24 L54 28 L62 20" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
             </div>
             <div class="b2-step-label">Serve<br>Hot &amp; Fresh</div>
           </div>
-          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none">
-                <!-- Smiling face / enjoy icon -->
-                <circle cx="40" cy="36" r="22" stroke="rgba(212,169,106,0.7)" stroke-width="2" fill="rgba(212,169,106,0.08)"/>
-                <!-- smile -->
-                <path d="M28 40 Q40 52 52 40" stroke="rgba(212,169,106,0.9)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                <!-- eyes -->
-                <circle cx="32" cy="30" r="3" fill="rgba(245,239,224,0.8)"/>
-                <circle cx="48" cy="30" r="3" fill="rgba(245,239,224,0.8)"/>
-                <!-- steam lines above -->
-                <path d="M32 12 Q34 8 32 4" stroke="rgba(212,169,106,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                <path d="M40 10 Q42 6 40 2" stroke="rgba(212,169,106,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                <path d="M48 12 Q50 8 48 4" stroke="rgba(212,169,106,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-                <text x="40" y="76" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">ENJOY</text>
-              </svg>
-            </div>
-            <div class="b2-step-label">Enjoy<br>Every Bite</div>
-          </div>
-          <div class="b2-arrow">→</div>
-          <div class="b2-step">
-            <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none">
-                <!-- Freezer box -->
-                <rect x="15" y="10" width="50" height="60" rx="6" stroke="rgba(245,239,224,0.7)" stroke-width="2" fill="rgba(245,239,224,0.04)"/>
-                <rect x="22" y="24" width="18" height="26" rx="2" stroke="rgba(160,210,255,0.5)" stroke-width="1.5" fill="rgba(160,210,255,0.06)"/>
-                <rect x="44" y="24" width="14" height="26" rx="2" stroke="rgba(160,210,255,0.4)" stroke-width="1.5" fill="rgba(160,210,255,0.04)"/>
-                <!-- back arrow showing return -->
-                <path d="M28 6 Q40 2 52 6" stroke="rgba(196,98,45,0.7)" stroke-width="2" stroke-linecap="round" fill="none"/>
-                <path d="M24 8 L28 4 L32 8" stroke="rgba(196,98,45,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                <!-- snowflake -->
-                <line x1="40" y1="50" x2="40" y2="62" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/>
-                <line x1="34" y1="56" x2="46" y2="56" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/>
-                <line x1="36" y1="52" x2="44" y2="60" stroke="rgba(160,210,255,0.4)" stroke-width="1"/>
-                <line x1="44" y1="52" x2="36" y2="60" stroke="rgba(160,210,255,0.4)" stroke-width="1"/>
-                <text x="40" y="80" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(160,210,255,0.6)" letter-spacing="0.5">STORE BACK</text>
-              </svg>
+              <svg viewBox="0 0 80 80" fill="none"><rect x="15" y="10" width="50" height="60" rx="6" stroke="rgba(245,239,224,0.7)" stroke-width="2" fill="rgba(245,239,224,0.04)"/><rect x="22" y="24" width="18" height="26" rx="2" stroke="rgba(160,210,255,0.5)" stroke-width="1.5" fill="rgba(160,210,255,0.06)"/><rect x="44" y="24" width="14" height="26" rx="2" stroke="rgba(160,210,255,0.4)" stroke-width="1.5" fill="rgba(160,210,255,0.04)"/><path d="M28 6 Q40 2 52 6" stroke="rgba(196,98,45,0.7)" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M24 8 L28 4 L32 8" stroke="rgba(196,98,45,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="40" y1="50" x2="40" y2="62" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="34" y1="56" x2="46" y2="56" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/></svg>
             </div>
             <div class="b2-step-label">Store Back<br>in Freezer</div>
           </div>
-        </div>
+        </div></div>
         <p class="b2-sub hb-animate">No kneading. No rolling. No prep stress. Our flatbreads go from freezer to table in under 2 minutes — consistently perfect, every single time.</p>
         <a href="products.html" class="btn-primary hb-animate" style="align-self:center;margin-top:0.5rem;">Explore Products →</a>
       </div>
