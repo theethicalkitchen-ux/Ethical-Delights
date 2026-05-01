@@ -919,6 +919,108 @@
     border-color:rgba(196,98,45,0.6);
   }
 
+
+  /* ── CUSTOMER STRIP ── */
+  #customers {
+    background:var(--deep);
+    padding:4rem 0;
+    overflow:hidden;
+    border-top:1px solid rgba(212,169,106,0.1);
+    border-bottom:1px solid rgba(212,169,106,0.1);
+  }
+  .customer-header {
+    text-align:center;
+    padding:0 7vw 2.5rem;
+  }
+  .customer-eyebrow {
+    font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--wheat);font-weight:500;margin-bottom:0.8rem;
+    display:flex;align-items:center;justify-content:center;gap:0.8rem;
+  }
+  .customer-eyebrow::before,.customer-eyebrow::after {
+    content:'';flex:1;max-width:3rem;height:1px;background:var(--wheat);
+  }
+  .customer-headline {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.8rem,3.5vw,3rem);
+    font-weight:300;color:var(--cream);line-height:1.1;
+  }
+  .customer-headline em { font-style:italic;color:var(--wheat); }
+  .customer-sub {
+    font-size:0.85rem;font-weight:300;
+    color:rgba(245,239,224,0.45);margin-top:0.6rem;
+  }
+  /* Marquee */
+  .customer-marquee-wrap {
+    position:relative;overflow:hidden;
+    /* fade edges */
+  }
+  .customer-marquee-wrap::before,
+  .customer-marquee-wrap::after {
+    content:'';position:absolute;top:0;bottom:0;width:8rem;z-index:2;pointer-events:none;
+  }
+  .customer-marquee-wrap::before {
+    left:0;background:linear-gradient(to right,var(--deep),transparent);
+  }
+  .customer-marquee-wrap::after {
+    right:0;background:linear-gradient(to left,var(--deep),transparent);
+  }
+  .customer-marquee {
+    display:flex;gap:0;
+    animation:marquee 30s linear infinite;
+    width:max-content;
+  }
+  .customer-marquee:hover { animation-play-state:paused; }
+  .customer-item {
+    display:flex;align-items:center;gap:0;
+    flex-shrink:0;
+  }
+  .customer-name {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.1rem,2vw,1.5rem);
+    font-weight:300;color:rgba(245,239,224,0.75);
+    padding:0 2.2rem;white-space:nowrap;
+    transition:color 0.3s;letter-spacing:0.02em;
+  }
+  .customer-marquee:hover .customer-name:hover {
+    color:var(--wheat);
+  }
+  .customer-dot {
+    width:4px;height:4px;border-radius:50%;
+    background:rgba(212,169,106,0.3);flex-shrink:0;
+  }
+  /* Stats row below marquee */
+  .customer-stats {
+    display:flex;align-items:center;justify-content:center;
+    gap:3rem;margin-top:2.5rem;padding:0 7vw;flex-wrap:wrap;
+  }
+  .customer-stat {
+    display:flex;flex-direction:column;align-items:center;gap:0.2rem;
+  }
+  .customer-stat-num {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--wheat);line-height:1;
+  }
+  .customer-stat-label {
+    font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;
+    color:rgba(245,239,224,0.4);text-align:center;
+  }
+  .customer-stat-div {
+    width:1px;height:2.5rem;
+    background:rgba(212,169,106,0.15);
+  }
+  @keyframes marquee {
+    0% { transform:translateX(0); }
+    100% { transform:translateX(-50%); }
+  }
+  @media(max-width:768px) {
+    #customers { padding:3rem 0; }
+    .customer-name { font-size:1rem;padding:0 1.5rem; }
+    .customer-stats { gap:1.5rem; }
+    .customer-stat-div { display:none; }
+    .customer-marquee-wrap::before,.customer-marquee-wrap::after { width:4rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -1621,6 +1723,140 @@
   </div>
 </section>
 
+
+
+<!-- CUSTOMER STRIP -->
+<section id="customers">
+  <div class="customer-header fade-up">
+    <div class="customer-eyebrow">Proud Suppliers To</div>
+    <h2 class="customer-headline">Trusted by <em>20+ Commercial Kitchens</em><br>and Counting</h2>
+    <p class="customer-sub">Hover to pause</p>
+  </div>
+
+  <div class="customer-marquee-wrap">
+    <div class="customer-marquee" id="customer-marquee">
+
+          <div class="customer-item">
+            <span class="customer-name">Chitale</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Dorabjee</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">TSR Catering</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Green Signal Catering</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Manohar Caterers</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Bakul Caterers</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Hotel Lakshman</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Mehfil Caterers</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Janaseva Dining Hall</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">GMK Caterers</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Nandus Parathas</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Wet & Joy Water Park</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Chitale</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Dorabjee</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">TSR Catering</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Green Signal Catering</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Manohar Caterers</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Bakul Caterers</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Hotel Lakshman</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Mehfil Caterers</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Janaseva Dining Hall</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">GMK Caterers</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Nandus Parathas</span>
+            <span class="customer-dot"></span>
+          </div>
+          <div class="customer-item">
+            <span class="customer-name">Wet & Joy Water Park</span>
+            <span class="customer-dot"></span>
+          </div>
+    </div>
+  </div>
+
+  <div class="customer-stats fade-up">
+    <div class="customer-stat">
+      <div class="customer-stat-num">20+</div>
+      <div class="customer-stat-label">Commercial Kitchens<br>Across Pune</div>
+    </div>
+    <div class="customer-stat-div"></div>
+    <div class="customer-stat">
+      <div class="customer-stat-num">600+</div>
+      <div class="customer-stat-label">Families Across<br>Pune</div>
+    </div>
+    <div class="customer-stat-div"></div>
+    <div class="customer-stat">
+      <div class="customer-stat-num">8</div>
+      <div class="customer-stat-label">Months of R&amp;D<br>Before Launch</div>
+    </div>
+    <div class="customer-stat-div"></div>
+    <div class="customer-stat">
+      <div class="customer-stat-num">0</div>
+      <div class="customer-stat-label">Preservatives.<br>Ever.</div>
+    </div>
+  </div>
+</section>
 
 <!-- CHALLENGE CAMPAIGN -->
 <section id="challenge">
