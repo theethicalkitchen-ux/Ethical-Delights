@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Businesses — Ethical Delights®</title>
+<meta name="description" content="Ready-to-Cook Satvik Chapatis and Puris for commercial kitchens — caterers, hotels, canteens, QSRs, water parks, institutions, airlines and exports.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#F5EFE0; --wheat:#D4A96A; --deep:#1C1408; --earth:#6B4C1E;
+    --rust:#C4622D; --pale:#FAF6EE; --green:#2d5a27;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Jost',sans-serif;background:var(--pale);color:var(--deep);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 6vw;background:rgba(250,246,238,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,169,106,0.2);transition:padding 0.3s;}
+  nav.scrolled{padding:0.8rem 6vw;box-shadow:0 4px 30px rgba(28,20,8,0.08);}
+  .nav-logo{display:inline-flex;align-items:center;gap:0.8rem;text-decoration:none;height:2.8rem;}
+  .nav-logo img{height:100%;width:auto;object-fit:contain;}
+  .nav-tagline{font-family:'Cormorant Garamond',serif;font-size:0.72rem;font-style:italic;font-weight:300;color:var(--earth);letter-spacing:0.04em;border-left:1px solid rgba(107,76,30,0.25);padding-left:0.8rem;line-height:1.3;white-space:nowrap;}
+  .nav-links{display:flex;gap:2rem;align-items:center;}
+  .nav-links a{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--deep);text-decoration:none;font-weight:500;transition:color 0.3s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--rust);}
+  .nav-cta{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:0.55rem 1.2rem;text-decoration:none;font-weight:500;}
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:201;}
+  .nav-hamburger span{display:block;width:24px;height:2px;background:var(--earth);transition:all 0.3s;transform-origin:center;}
+  .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-hamburger.open span:nth-child(2){opacity:0;}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-mobile-menu{display:none;position:fixed;inset:0;background:rgba(250,246,238,0.98);backdrop-filter:blur(16px);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+  .nav-mobile-menu.open{display:flex;}
+  .nav-mobile-menu a{font-size:1.6rem;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--deep);text-decoration:none;}
+  .nav-mobile-menu .mob-cta{font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:0.85rem 2rem;font-family:'Jost',sans-serif;font-weight:500;}
+  @media(max-width:1100px){.nav-tagline{display:none;}}
+
+  /* HERO */
+  .biz-hero{
+    min-height:80vh;background:var(--deep);
+    display:grid;grid-template-columns:1fr 1fr;
+    margin-top:4.5rem;overflow:hidden;
+  }
+  .biz-hero-left{
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:6rem 5vw 5rem 7vw;position:relative;
+  }
+  .biz-hero-left::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 30% 70%,rgba(107,76,30,0.35) 0%,transparent 65%);
+  }
+  .biz-hero-eyebrow{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.8rem;position:relative;z-index:1;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
+  .biz-hero-eyebrow::before{content:'';width:2rem;height:1px;background:var(--wheat);}
+  .biz-hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,6rem);font-weight:300;color:var(--cream);line-height:1.02;position:relative;z-index:1;opacity:0;animation:fadeUp 0.9s 0.35s forwards;}
+  .biz-hero-h1 em{font-style:italic;color:var(--wheat);}
+  .biz-hero-sub{font-size:1rem;font-weight:300;color:rgba(245,239,224,0.6);max-width:45ch;margin-top:1.5rem;line-height:1.8;position:relative;z-index:1;opacity:0;animation:fadeUp 0.9s 0.5s forwards;}
+  .biz-hero-pills{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.8rem;position:relative;z-index:1;opacity:0;animation:fadeUp 0.9s 0.65s forwards;}
+  .biz-hero-pill{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(212,169,106,0.35);padding:0.3rem 0.8rem;color:var(--wheat);font-weight:500;}
+  .biz-hero-cta{display:flex;gap:1rem;align-items:center;margin-top:2rem;position:relative;z-index:1;opacity:0;animation:fadeUp 0.9s 0.8s forwards;}
+  .btn-primary{display:inline-flex;align-items:center;gap:0.6rem;background:var(--rust);color:#fff;padding:0.85rem 2rem;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.3s;}
+  .btn-primary:hover{background:var(--earth);}
+  .btn-ghost{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,224,0.6);text-decoration:none;border-bottom:1px solid rgba(212,169,106,0.3);padding-bottom:2px;transition:color 0.3s;}
+  .btn-ghost:hover{color:var(--wheat);}
+
+  /* Hero right — channel icons preview */
+  .biz-hero-right{
+    background:rgba(28,20,8,0.5);
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:0;
+  }
+  .hero-channel-tile{
+    padding:2rem 1.5rem;
+    border-right:1px solid rgba(212,169,106,0.08);
+    border-bottom:1px solid rgba(212,169,106,0.08);
+    display:flex;flex-direction:column;gap:0.5rem;
+    transition:background 0.3s;cursor:default;
+    opacity:0;animation:fadeUp 0.7s forwards;
+  }
+  .hero-channel-tile:hover{background:rgba(212,169,106,0.05);}
+  .hero-channel-icon{font-size:1.8rem;line-height:1;}
+  .hero-channel-name{font-size:0.75rem;font-weight:500;color:var(--cream);letter-spacing:0.04em;}
+  .hero-channel-tag{font-size:0.65rem;font-weight:300;color:rgba(245,239,224,0.4);line-height:1.4;}
+
+  /* WHY PARTNER */
+  #why{padding:6rem 7vw;background:var(--cream);}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+  .why-left{}
+  .section-label{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
+  .section-label::before{content:'';width:1.5rem;height:1px;background:var(--rust);}
+  .section-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;color:var(--deep);line-height:1.08;margin-bottom:1.2rem;}
+  .section-h2 em{font-style:italic;color:var(--earth);}
+  .why-desc{font-size:0.95rem;font-weight:300;line-height:1.85;color:#5a4a2e;margin-bottom:2rem;}
+  .why-advantages{display:flex;flex-direction:column;gap:0;}
+  .why-adv{display:flex;gap:1.2rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid rgba(212,169,106,0.15);}
+  .why-adv:last-child{border-bottom:none;}
+  .why-adv-icon{
+    width:2.4rem;height:2.4rem;border-radius:50%;
+    background:var(--deep);border:1.5px solid var(--wheat);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;flex-shrink:0;
+  }
+  .why-adv-text strong{display:block;font-size:0.85rem;font-weight:500;color:var(--deep);margin-bottom:0.15rem;}
+  .why-adv-text span{font-size:0.78rem;font-weight:300;color:var(--earth);line-height:1.6;}
+
+  /* Stats right */
+  .why-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(212,169,106,0.2);}
+  .why-stat{background:var(--pale);padding:2rem 1.5rem;display:flex;flex-direction:column;gap:0.3rem;}
+  .why-stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:var(--rust);line-height:1;}
+  .why-stat-label{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--earth);font-weight:500;line-height:1.4;}
+  .why-stat-sub{font-size:0.7rem;font-weight:300;color:rgba(107,76,30,0.5);}
+
+  /* CHANNELS */
+  #channels{padding:6rem 7vw;background:var(--pale);}
+  .channels-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem;}
+  .channels-desc{font-size:0.95rem;font-weight:300;line-height:1.85;color:#5a4a2e;}
+  .channels-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+
+  .channel-card{
+    border:1px solid rgba(212,169,106,0.2);
+    background:var(--cream);overflow:hidden;
+    cursor:pointer;transition:all 0.3s;
+    display:flex;flex-direction:column;
+  }
+  .channel-card:hover{border-color:var(--rust);transform:translateY(-4px);box-shadow:0 12px 40px rgba(107,76,30,0.12);}
+  .channel-card.active{border-color:var(--rust);background:var(--deep);}
+  .channel-card-top{padding:1.5rem;display:flex;flex-direction:column;gap:0.8rem;}
+  .channel-icon{font-size:2rem;line-height:1;}
+  .channel-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--deep);line-height:1.2;transition:color 0.3s;}
+  .channel-card.active .channel-name{color:var(--cream);}
+  .channel-tagline{font-size:0.72rem;font-weight:300;color:var(--earth);line-height:1.5;transition:color 0.3s;}
+  .channel-card.active .channel-tagline{color:rgba(245,239,224,0.6);}
+  .channel-card-bottom{
+    padding:1rem 1.5rem;
+    border-top:1px solid rgba(212,169,106,0.15);
+    font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--rust);font-weight:500;
+    display:flex;align-items:center;justify-content:space-between;
+    transition:all 0.3s;
+  }
+  .channel-card.active .channel-card-bottom{border-top-color:rgba(212,169,106,0.1);color:var(--wheat);}
+
+  /* Channel detail panel */
+  .channel-detail{
+    display:none;
+    grid-column:1/-1;
+    background:var(--deep);
+    border:1px solid rgba(212,169,106,0.2);
+    padding:3rem;margin-top:1rem;
+    animation:slideDown 0.35s ease;
+  }
+  .channel-detail.open{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+  .cd-eyebrow{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+  .cd-eyebrow::before{content:'';width:1rem;height:1px;background:var(--wheat);}
+  .cd-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:1rem;}
+  .cd-heading em{font-style:italic;color:var(--wheat);}
+  .cd-desc{font-size:0.9rem;font-weight:300;color:rgba(245,239,224,0.65);line-height:1.85;margin-bottom:1.5rem;}
+  .cd-benefits{display:flex;flex-direction:column;gap:0.7rem;}
+  .cd-benefit{display:flex;gap:0.8rem;align-items:flex-start;}
+  .cd-tick{color:var(--wheat);font-size:0.9rem;flex-shrink:0;margin-top:0.1rem;}
+  .cd-benefit-text{font-size:0.82rem;font-weight:300;color:rgba(245,239,224,0.7);line-height:1.6;}
+  .cd-benefit-text strong{color:var(--cream);font-weight:500;}
+  .cd-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(212,169,106,0.1);}
+  .cd-metric{background:rgba(28,20,8,0.4);padding:1.2rem;display:flex;flex-direction:column;gap:0.2rem;}
+  .cd-metric-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--wheat);line-height:1;}
+  .cd-metric-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,224,0.4);}
+  .cd-cta{margin-top:1.5rem;}
+
+  /* HOW IT WORKS */
+  #how{padding:6rem 7vw;background:var(--deep);}
+  .how-label{color:var(--wheat);}
+  .how-label::before{background:var(--wheat);}
+  .how-h2{color:var(--cream);}
+  .how-h2 em{color:var(--wheat);}
+  .how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:4rem;border:1px solid rgba(212,169,106,0.15);}
+  .how-step{padding:3rem 2.5rem;border-right:1px solid rgba(212,169,106,0.1);position:relative;}
+  .how-step:last-child{border-right:none;}
+  .how-step-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:3rem;height:3rem;border-radius:50%;
+    background:rgba(212,169,106,0.1);border:1.5px solid var(--wheat);
+    font-family:'Cormorant Garamond',serif;font-size:1.2rem;
+    font-weight:600;color:var(--wheat);margin-bottom:1.5rem;
+  }
+  .how-step-icon{font-size:2.5rem;margin-bottom:1rem;display:block;}
+  .how-step-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--cream);margin-bottom:0.8rem;}
+  .how-step-title em{font-style:italic;color:var(--wheat);}
+  .how-step-desc{font-size:0.85rem;font-weight:300;color:rgba(245,239,224,0.55);line-height:1.8;}
+  .how-step-time{margin-top:1.2rem;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--rust);font-weight:500;}
+  /* Arrow between steps */
+  .how-step::after{
+    content:'→';position:absolute;right:-0.9rem;top:50%;transform:translateY(-50%);
+    font-size:1.2rem;color:rgba(212,169,106,0.3);z-index:2;
+  }
+  .how-step:last-child::after{display:none;}
+
+  /* ROI CALCULATOR */
+  #roi{padding:6rem 7vw;background:var(--cream);}
+  .roi-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+  .roi-left{}
+  .roi-desc{font-size:0.95rem;font-weight:300;line-height:1.85;color:#5a4a2e;margin-bottom:2rem;}
+
+  .roi-calculator{background:var(--pale);border:1px solid rgba(212,169,106,0.2);padding:2.5rem;}
+  .roi-calc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--deep);margin-bottom:0.5rem;}
+  .roi-calc-sub{font-size:0.78rem;font-weight:300;color:var(--earth);margin-bottom:2rem;}
+  .roi-field{margin-bottom:1.5rem;}
+  .roi-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--earth);margin-bottom:0.5rem;display:block;}
+  .roi-input{
+    width:100%;padding:0.75rem 1rem;
+    border:1px solid rgba(107,76,30,0.25);background:var(--cream);
+    font-family:'Jost',sans-serif;font-size:1rem;font-weight:300;color:var(--deep);
+    outline:none;transition:border-color 0.3s;
+  }
+  .roi-input:focus{border-color:var(--wheat);}
+  .roi-slider{width:100%;accent-color:var(--rust);margin-top:0.5rem;}
+  .roi-slider-val{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--rust);}
+
+  /* Results */
+  .roi-results{background:var(--deep);padding:2.5rem;border:1px solid rgba(212,169,106,0.15);}
+  .roi-results-title{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;}
+  .roi-results-title::before{content:'';width:1rem;height:1px;background:var(--wheat);}
+  .roi-result-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.75rem 0;border-bottom:1px solid rgba(212,169,106,0.08);}
+  .roi-result-row:last-child{border-bottom:none;}
+  .roi-result-label{font-size:0.78rem;font-weight:300;color:rgba(245,239,224,0.55);}
+  .roi-result-val{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--wheat);line-height:1;}
+  .roi-result-val.big{font-size:2.2rem;color:#4caf50;}
+  .roi-disclaimer{font-size:0.65rem;font-weight:300;color:rgba(245,239,224,0.3);margin-top:1rem;line-height:1.6;font-style:italic;}
+
+  /* CERTIFICATIONS */
+  #certs{padding:4rem 7vw;background:var(--deep);border-top:1px solid rgba(212,169,106,0.1);}
+  .certs-inner{display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap;}
+  .certs-label{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,239,224,0.4);font-weight:500;flex-shrink:0;}
+  .certs-list{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;}
+  .cert-badge{
+    display:flex;align-items:center;gap:0.6rem;
+    padding:0.5rem 1.1rem;
+    border:1px solid rgba(212,169,106,0.2);
+    background:rgba(212,169,106,0.05);
+    font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+    font-weight:500;color:rgba(245,239,224,0.7);
+    transition:border-color 0.3s;
+  }
+  .cert-badge:hover{border-color:var(--wheat);color:var(--wheat);}
+  .cert-icon{font-size:1.1rem;}
+
+  /* CTA STRIP */
+  #biz-cta{
+    padding:7rem 7vw;background:var(--earth);
+    display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+  }
+  .biz-cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:var(--cream);line-height:1.05;}
+  .biz-cta-h2 em{font-style:italic;color:var(--wheat);}
+  .biz-cta-right{display:flex;flex-direction:column;gap:1.5rem;}
+  .biz-cta-desc{font-size:0.95rem;font-weight:300;color:rgba(245,239,224,0.7);line-height:1.85;}
+  .contact-item{display:flex;align-items:center;gap:1rem;}
+  .contact-icon{font-size:1.2rem;}
+  .contact-text{font-size:0.85rem;font-weight:300;color:rgba(245,239,224,0.8);}
+  .contact-text a{color:var(--wheat);text-decoration:none;}
+
+  /* FOOTER */
+  footer{background:#0d0a04;padding:1.8rem 7vw;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(212,169,106,0.08);}
+  .foot-logo{display:inline-flex;align-items:center;height:2rem;}
+  .foot-logo img{height:100%;width:auto;object-fit:contain;opacity:0.85;}
+  .foot-links{display:flex;gap:2rem;}
+  .foot-links a{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(212,169,106,0.4);text-decoration:none;transition:color 0.3s;}
+  .foot-links a:hover{color:var(--wheat);}
+  .foot-copy{font-size:0.68rem;color:rgba(212,169,106,0.25);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+
+  /* MOBILE */
+  @media(max-width:768px){
+    nav{padding:0.9rem 5vw;}
+    nav .nav-links,.nav-cta{display:none;}
+    .nav-hamburger{display:flex;}
+    .biz-hero{grid-template-columns:1fr;min-height:auto;}
+    .biz-hero-left{padding:5rem 5vw 3rem;}
+    .biz-hero-right{grid-template-columns:1fr 1fr;}
+    .hero-channel-tile{padding:1.2rem 1rem;}
+    .hero-channel-icon{font-size:1.4rem;}
+    .hero-channel-name{font-size:0.7rem;}
+    .hero-channel-tag{display:none;}
+    .why-grid{grid-template-columns:1fr;gap:2.5rem;}
+    .channels-intro{grid-template-columns:1fr;gap:1rem;}
+    .channels-grid{grid-template-columns:1fr 1fr;gap:0.8rem;}
+    .channel-detail.open{grid-template-columns:1fr;}
+    .how-steps{grid-template-columns:1fr;}
+    .how-step{border-right:none;border-bottom:1px solid rgba(212,169,106,0.1);}
+    .how-step::after{content:'↓';right:auto;left:50%;top:auto;bottom:-0.9rem;transform:translateX(-50%);}
+    .how-step:last-child::after{display:none;}
+    .roi-inner{grid-template-columns:1fr;}
+    #biz-cta{grid-template-columns:1fr;gap:2.5rem;}
+    #certs{padding:3rem 5vw;}
+    .certs-inner{flex-direction:column;align-items:flex-start;}
+    footer{flex-direction:column;align-items:center;gap:1rem;text-align:center;}
+    .foot-links{gap:1rem;}
+    .why-stats{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo-transparent.png" alt="Ethical Delights">
+    <span class="nav-tagline">Where Homestyle<br>Meets Scale</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Our Products</a>
+    <a href="business.html" class="active">For Businesses</a>
+    <a href="process.html">Our Process</a>
+    <a href="about.html">About Us</a>
+    <a href="#biz-cta" class="nav-cta">Partner With Us</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="mobile-menu">
+  <button class="nav-hamburger open" onclick="toggleMenu()" style="position:absolute;top:1.2rem;right:5vw;">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="index.html" onclick="toggleMenu()">Home</a>
+  <a href="products.html" onclick="toggleMenu()">Our Products</a>
+  <a href="business.html" onclick="toggleMenu()">For Businesses</a>
+  <a href="process.html" onclick="toggleMenu()">Our Process</a>
+  <a href="about.html" onclick="toggleMenu()">About Us</a>
+  <a href="#biz-cta" class="mob-cta" onclick="toggleMenu()">Partner With Us</a>
+</div>
+
+<!-- HERO -->
+<div class="biz-hero">
+  <div class="biz-hero-left">
+    <div class="biz-hero-eyebrow">Ethical Delights For Businesses</div>
+    <h1 class="biz-hero-h1">Preservative-Free.<br>Satvik. Scalable.<br><em>Ready to Cook.</em></h1>
+    <p class="biz-hero-sub">We help food businesses deliver authentic Indian flatbreads — without the operational chaos. Our RTC Chapatis, Puris, and Wraps combine tradition, hygiene, and efficiency, enabling kitchens to scale with confidence.</p>
+    <div class="biz-hero-pills">
+      <span class="biz-hero-pill">60-Second Prep</span>
+      <span class="biz-hero-pill">Zero Wastage</span>
+      <span class="biz-hero-pill">Audit-Ready</span>
+      <span class="biz-hero-pill">Uniform Quality</span>
+      <span class="biz-hero-pill">FSSAI Certified</span>
+    </div>
+    <div class="biz-hero-cta">
+      <a href="#roi" class="btn-primary">Calculate Your Savings →</a>
+      <a href="#channels" class="btn-ghost">See All Channels</a>
+    </div>
+  </div>
+  <div class="biz-hero-right">
+    <div class="hero-channel-tile" style="animation-delay:0.3s;">
+      <div class="hero-channel-icon">👨‍🍳</div>
+      <div class="hero-channel-name">Caterers</div>
+      <div class="hero-channel-tag">Scale events effortlessly</div>
+    </div>
+    <div class="hero-channel-tile" style="animation-delay:0.4s;">
+      <div class="hero-channel-icon">🍽️</div>
+      <div class="hero-channel-name">HoReCa</div>
+      <div class="hero-channel-tag">Uniform quality across outlets</div>
+    </div>
+    <div class="hero-channel-tile" style="animation-delay:0.5s;">
+      <div class="hero-channel-icon">🏫</div>
+      <div class="hero-channel-name">Canteens</div>
+      <div class="hero-channel-tag">Smart kitchens for institutions</div>
+    </div>
+    <div class="hero-channel-tile" style="animation-delay:0.6s;">
+      <div class="hero-channel-icon">🍔</div>
+      <div class="hero-channel-name">QSRs & Cloud Kitchens</div>
+      <div class="hero-channel-tag">Speed meets authenticity</div>
+    </div>
+    <div class="hero-channel-tile" style="animation-delay:0.7s;">
+      <div class="hero-channel-icon">🏖️</div>
+      <div class="hero-channel-name">Water Parks</div>
+      <div class="hero-channel-tag">Serve freshness at scale</div>
+    </div>
+    <div class="hero-channel-tile" style="animation-delay:0.8s;">
+      <div class="hero-channel-icon">🏭</div>
+      <div class="hero-channel-name">Institutional</div>
+      <div class="hero-channel-tag">Simplify large-scale production</div>
+    </div>
+    <div class="hero-channel-tile" style="animation-delay:0.9s;">
+      <div class="hero-channel-icon">✈️</div>
+      <div class="hero-channel-name">Airlines & Railways</div>
+      <div class="hero-channel-tag">Travel catering made simple</div>
+    </div>
+    <div class="hero-channel-tile" style="animation-delay:1s;">
+      <div class="hero-channel-icon">🚢</div>
+      <div class="hero-channel-name">Exports</div>
+      <div class="hero-channel-tag">Taking Indian tradition global</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY PARTNER -->
+<section id="why">
+  <div class="why-grid">
+    <div class="why-left fade-up">
+      <div class="section-label">Why Partner With Us</div>
+      <h2 class="section-h2">The Operational Edge<br>Your Kitchen <em>Deserves</em></h2>
+      <p class="why-desc">Every kitchen we work with faces the same bottleneck — skilled labor, daily prep, inconsistency, and wastage. We built Ethical Delights to solve all four, simultaneously.</p>
+      <div class="why-advantages">
+        <div class="why-adv">
+          <div class="why-adv-icon">⚡</div>
+          <div class="why-adv-text">
+            <strong>60-Second Prep Time</strong>
+            <span>From freezer to plate in under a minute. No flour, no kneading, no rolling — any team member can do it.</span>
+          </div>
+        </div>
+        <div class="why-adv">
+          <div class="why-adv-icon">📐</div>
+          <div class="why-adv-text">
+            <strong>Uniform Quality, Every Batch</strong>
+            <span>Machine-rolled to identical size, thickness, and weight. The first chapati and the thousandth are indistinguishable.</span>
+          </div>
+        </div>
+        <div class="why-adv">
+          <div class="why-adv-icon">♾️</div>
+          <div class="why-adv-text">
+            <strong>Zero Wastage</strong>
+            <span>Cook exactly what you need, freeze the rest. Flash-frozen at –18°C means no spoilage, no over-prep.</span>
+          </div>
+        </div>
+        <div class="why-adv">
+          <div class="why-adv-icon">✨</div>
+          <div class="why-adv-text">
+            <strong>Audit-Ready Hygiene</strong>
+            <span>Machine-made, individually sealed. No open prep, no flour dust, no manual handling — hygiene compliance built in.</span>
+          </div>
+        </div>
+        <div class="why-adv">
+          <div class="why-adv-icon">🌿</div>
+          <div class="why-adv-text">
+            <strong>100% Satvik, Clean Label</strong>
+            <span>No maida, no palm oil, no preservatives. Every ingredient on the label. Safe for all dietary requirements.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-stats fade-up">
+      <div class="why-stat">
+        <div class="why-stat-num">60s</div>
+        <div class="why-stat-label">Prep Time</div>
+        <div class="why-stat-sub">Freezer to plate</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">0</div>
+        <div class="why-stat-label">Preservatives</div>
+        <div class="why-stat-sub">In every batch, guaranteed</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">1 <span style="font-size:0.55em;font-weight:300;">YR</span></div>
+        <div class="why-stat-label">Shelf Life</div>
+        <div class="why-stat-sub">At –18°C, frozen</div>
+      </div>
+      <div class="why-stat">
+        <div class="why-stat-num">20+</div>
+        <div class="why-stat-label">Commercial Kitchens</div>
+        <div class="why-stat-sub">Across Pune & growing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section id="channels">
+  <div class="channels-intro">
+    <div>
+      <div class="section-label">Business Channels</div>
+      <h2 class="section-h2">We Serve<br><em>Every Kitchen</em></h2>
+    </div>
+    <p class="channels-desc">From intimate wedding caterers to large institutional kitchens — our products are designed for every scale of food service. Click any channel to see how we fit your operation.</p>
+  </div>
+
+  <div class="channels-grid" id="channels-grid">
+
+    <div class="channel-card fade-up" onclick="openChannel('caterers',this)">
+      <div class="channel-card-top">
+        <div class="channel-icon">👨‍🍳</div>
+        <div class="channel-name">Caterers</div>
+        <div class="channel-tagline">"Scale any event without chaos."</div>
+      </div>
+      <div class="channel-card-bottom">Learn More <span>→</span></div>
+    </div>
+
+    <div class="channel-card fade-up" onclick="openChannel('horeca',this)">
+      <div class="channel-card-top">
+        <div class="channel-icon">🍽️</div>
+        <div class="channel-name">HoReCa</div>
+        <div class="channel-tagline">"Uniform quality across every outlet."</div>
+      </div>
+      <div class="channel-card-bottom">Learn More <span>→</span></div>
+    </div>
+
+    <div class="channel-card fade-up" onclick="openChannel('canteens',this)">
+      <div class="channel-card-top">
+        <div class="channel-icon">🏫</div>
+        <div class="channel-name">Canteens & Cafeterias</div>
+        <div class="channel-tagline">"Smart kitchens for institutions."</div>
+      </div>
+      <div class="channel-card-bottom">Learn More <span>→</span></div>
+    </div>
+
+    <div class="channel-card fade-up" onclick="openChannel('qsr',this)">
+      <div class="channel-card-top">
+        <div class="channel-icon">🍔</div>
+        <div class="channel-name">QSRs & Cloud Kitchens</div>
+        <div class="channel-tagline">"Speed meets authenticity."</div>
+      </div>
+      <div class="channel-card-bottom">Learn More <span>→</span></div>
+    </div>
+
+    <div class="channel-card fade-up" onclick="openChannel('waterparks',this)">
+      <div class="channel-card-top">
+        <div class="channel-icon">🏖️</div>
+        <div class="channel-name">Water Parks & Resorts</div>
+        <div class="channel-tagline">"Serve freshness at scale."</div>
+      </div>
+      <div class="channel-card-bottom">Learn More <span>→</span></div>
+    </div>
+
+    <div class="channel-card fade-up" onclick="openChannel('institutional',this)">
+      <div class="channel-card-top">
+        <div class="channel-icon">🏭</div>
+        <div class="channel-name">Institutional Sales</div>
+        <div class="channel-tagline">"Simplify large-scale production."</div>
+      </div>
+      <div class="channel-card-bottom">Learn More <span>→</span></div>
+    </div>
+
+    <div class="channel-card fade-up" onclick="openChannel('airlines',this)">
+      <div class="channel-card-top">
+        <div class="channel-icon">✈️</div>
+        <div class="channel-name">Airlines & Railways</div>
+        <div class="channel-tagline">"Travel catering made simple."</div>
+      </div>
+      <div class="channel-card-bottom">Learn More <span>→</span></div>
+    </div>
+
+    <div class="channel-card fade-up" onclick="openChannel('exports',this)">
+      <div class="channel-card-top">
+        <div class="channel-icon">🚢</div>
+        <div class="channel-name">Exports</div>
+        <div class="channel-tagline">"Taking Indian tradition global."</div>
+      </div>
+      <div class="channel-card-bottom">Learn More <span>→</span></div>
+    </div>
+
+    <!-- Detail panel — injected by JS -->
+    <div class="channel-detail" id="channel-detail"></div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label how-label fade-up">Operational Simplicity</div>
+  <h2 class="section-h2 how-h2 fade-up">Freezer to Table<br>in <em>Three Steps</em></h2>
+  <div class="how-steps fade-up">
+    <div class="how-step">
+      <div class="how-step-num">01</div>
+      <span class="how-step-icon">❄️</span>
+      <div class="how-step-title"><em>Thaw</em></div>
+      <p class="how-step-desc">Remove from the deep freezer. For chapatis, thaw on a dry cloth for a few minutes. For puris and bhaturas, go straight to the oil — no thaw needed.</p>
+      <div class="how-step-time">2–5 minutes · No skill required</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">02</div>
+      <span class="how-step-icon">🔥</span>
+      <div class="how-step-title"><em>Heat</em></div>
+      <p class="how-step-desc">Chapatis: 60 seconds on a hot tawa — any team member can do it. Puris and Bhaturas: 10–15 seconds in hot oil. Perfectly golden, perfectly puffed, every time.</p>
+      <div class="how-step-time">60 seconds · Any team member</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">03</div>
+      <span class="how-step-icon">✅</span>
+      <div class="how-step-title"><em>Serve</em></div>
+      <p class="how-step-desc">Soft, aromatic, and fresh-tasting. Your guests can't tell the difference from freshly made. Cook only what you need — put the rest back in the freezer. Zero wastage.</p>
+      <div class="how-step-time">Serve immediately · Zero wastage</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section id="roi">
+  <div class="roi-inner">
+    <div class="roi-left fade-up">
+      <div class="section-label">ROI Calculator</div>
+      <h2 class="section-h2">See Your<br><em>Savings</em></h2>
+      <p class="roi-desc">Most commercial kitchens don't realise how much daily chapati prep is costing them — in labor hours, wastage, and inconsistency. This calculator gives you a rough estimate of what switching to Ethical Delights could save.</p>
+      <div class="roi-calculator">
+        <div class="roi-calc-title">Your Kitchen Details</div>
+        <div class="roi-calc-sub">Adjust the sliders to match your operation</div>
+
+        <div class="roi-field">
+          <label class="roi-label">Daily Chapatis / Puris Served</label>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.3rem;">
+            <span style="font-size:0.75rem;color:var(--earth);">Quantity per day</span>
+            <span class="roi-slider-val" id="qty-val">500</span>
+          </div>
+          <input type="range" class="roi-slider" id="qty" min="100" max="5000" step="50" value="500" oninput="calcROI()">
+          <div style="display:flex;justify-content:space-between;font-size:0.62rem;color:rgba(107,76,30,0.4);margin-top:0.2rem;"><span>100</span><span>5,000</span></div>
+        </div>
+
+        <div class="roi-field">
+          <label class="roi-label">Roti Makers on Staff</label>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.3rem;">
+            <span style="font-size:0.75rem;color:var(--earth);">Dedicated staff</span>
+            <span class="roi-slider-val" id="staff-val">2</span>
+          </div>
+          <input type="range" class="roi-slider" id="staff" min="1" max="10" step="1" value="2" oninput="calcROI()">
+          <div style="display:flex;justify-content:space-between;font-size:0.62rem;color:rgba(107,76,30,0.4);margin-top:0.2rem;"><span>1</span><span>10</span></div>
+        </div>
+
+        <div class="roi-field">
+          <label class="roi-label">Average Staff Cost (₹/month)</label>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.3rem;">
+            <span style="font-size:0.75rem;color:var(--earth);">Per roti maker</span>
+            <span class="roi-slider-val" id="cost-val">₹15,000</span>
+          </div>
+          <input type="range" class="roi-slider" id="cost" min="8000" max="40000" step="1000" value="15000" oninput="calcROI()">
+          <div style="display:flex;justify-content:space-between;font-size:0.62rem;color:rgba(107,76,30,0.4);margin-top:0.2rem;"><span>₹8k</span><span>₹40k</span></div>
+        </div>
+
+        <div class="roi-field">
+          <label class="roi-label">Estimated Daily Wastage (%)</label>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.3rem;">
+            <span style="font-size:0.75rem;color:var(--earth);">Of daily quantity</span>
+            <span class="roi-slider-val" id="waste-val">20%</span>
+          </div>
+          <input type="range" class="roi-slider" id="waste" min="5" max="40" step="1" value="20" oninput="calcROI()">
+          <div style="display:flex;justify-content:space-between;font-size:0.62rem;color:rgba(107,76,30,0.4);margin-top:0.2rem;"><span>5%</span><span>40%</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="fade-up" style="padding-top:4rem;">
+      <div class="roi-results">
+        <div class="roi-results-title">Your Estimated Monthly Savings</div>
+
+        <div class="roi-result-row">
+          <span class="roi-result-label">Labor Cost (current)</span>
+          <span class="roi-result-val" id="r-labor">₹30,000</span>
+        </div>
+        <div class="roi-result-row">
+          <span class="roi-result-label">Wastage Cost (current)</span>
+          <span class="roi-result-val" id="r-waste">₹9,000</span>
+        </div>
+        <div class="roi-result-row">
+          <span class="roi-result-label">Prep Time Saved</span>
+          <span class="roi-result-val" id="r-time">60 hrs/mo</span>
+        </div>
+        <div class="roi-result-row" style="border-top:1px solid rgba(212,169,106,0.2);padding-top:1rem;margin-top:0.5rem;">
+          <span class="roi-result-label" style="font-size:0.85rem;color:rgba(245,239,224,0.8);">Estimated Total Savings</span>
+          <span class="roi-result-val big" id="r-total">₹39,000</span>
+        </div>
+
+        <p class="roi-disclaimer">* Estimates based on typical industry figures. Actual savings vary by operation size, local labor rates, and product mix. Contact us for a detailed cost analysis tailored to your kitchen.</p>
+      </div>
+
+      <div style="margin-top:1.5rem;padding:1.5rem;background:var(--deep);border:1px solid rgba(212,169,106,0.15);">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--wheat);margin-bottom:0.5rem;">"These numbers surprised us."</div>
+        <div style="font-size:0.8rem;font-weight:300;color:rgba(245,239,224,0.55);line-height:1.7;">Most kitchens realise within the first month that the savings easily offset the product cost — and that's before accounting for consistency and hygiene improvements.</div>
+        <a href="#biz-cta" style="display:inline-flex;margin-top:1rem;background:var(--rust);color:#fff;padding:0.65rem 1.5rem;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;text-decoration:none;">Get a Custom Quote →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="certs-inner">
+    <div class="certs-label">Certifications & Trust</div>
+    <div class="certs-list">
+      <div class="cert-badge"><span class="cert-icon">🏛️</span> FSSAI Licensed</div>
+      <div class="cert-badge"><span class="cert-icon">🌿</span> 100% Vegetarian</div>
+      <div class="cert-badge"><span class="cert-icon">🕉️</span> Satvik Certified</div>
+      <div class="cert-badge"><span class="cert-icon">🏷️</span> Clean Label</div>
+      <div class="cert-badge"><span class="cert-icon">❄️</span> Cold Chain Assured</div>
+      <div class="cert-badge"><span class="cert-icon">✅</span> Audit-Ready Hygiene</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="biz-cta">
+  <div class="fade-up">
+    <div class="section-label" style="color:rgba(245,239,224,0.5);">
+      <span style="display:inline-block;width:1.5rem;height:1px;background:rgba(245,239,224,0.3);margin-right:0.8rem;"></span>
+      Let's Build Together
+    </div>
+    <h2 class="biz-cta-h2">Ready to Transform<br>Your Kitchen<br><em>Operations?</em></h2>
+  </div>
+  <div class="biz-cta-right fade-up">
+    <p class="biz-cta-desc">Whether you're serving 200 meals a day or 20,000 — we have the product, the process, and the supply chain to support your growth. Let's talk about how Ethical Delights fits your operation.</p>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div class="contact-text"><a href="tel:+919822635254">+91 98226 35254</a> &nbsp;|&nbsp; <a href="tel:+919923065960">+91 99230 65960</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">💬</div>
+      <div class="contact-text">WhatsApp 'Hi' to <a href="https://wa.me/919970702853">+91 99707 02853</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-text"><a href="mailto:theethicalkitchen@gmail.com">theethicalkitchen@gmail.com</a></div>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:0.5rem;">
+      <a href="https://wa.me/919970702853" class="btn-primary">WhatsApp Us →</a>
+      <a href="products.html" class="btn-ghost" style="color:rgba(245,239,224,0.6);">View Products</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo"><img src="logo-white.png" alt="Ethical Delights"></div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="business.html">For Businesses</a>
+    <a href="process.html">Process</a>
+    <a href="about.html">About Us</a>
+  </div>
+  <div class="foot-copy">© 2025 Ethical Delights®. Homestyle Quality. Commercial Scale.</div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Hamburger
+  window.toggleMenu = function() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobile-menu');
+    h.classList.toggle('open');
+    m.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  };
+
+  // Fade-up
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+    fadeObs.observe(el);
+  });
+
+  // Channel data
+  const channels = {
+    caterers: {
+      icon:'👨‍🍳', name:'Caterers', eyebrow:'For Catering Businesses',
+      heading:'Scale Any Event<br><em>Without the Chaos</em>',
+      desc:'Large events demand consistency, speed, and zero margin for error. Whether you\'re serving 500 plates at a wedding or 5,000 at a corporate event — our RTC flatbreads give your team the reliability they need without the prep overhead.',
+      benefits:[
+        {title:'No Skilled Roti Maker Needed', desc:'Any team member can finish chapatis in 60 seconds. No training required.'},
+        {title:'Consistent Across Every Plate', desc:'Machine-rolled to identical size and thickness — the 500th plate looks like the first.'},
+        {title:'Zero Pre-Event Wastage', desc:'Cook as you go. Freeze leftovers. No overnight dough prep, no morning stress.'},
+        {title:'Scales Instantly', desc:'From 200 plates to 2,000 — just add packs. No extra staff, no extra equipment.'},
+      ],
+      metrics:[{num:'2,000+',label:'Chapatis/Day'},{num:'0',label:'Skilled Staff Needed'},{num:'60s',label:'Per Batch'},{num:'Zero',label:'Wastage'}]
+    },
+    horeca: {
+      icon:'🍽️', name:'Hotels & Restaurants', eyebrow:'For HoReCa',
+      heading:'Elevate the<br><em>Guest Experience</em>',
+      desc:'Multi-outlet chains, boutique hotels, and fine dining restaurants — all face the same challenge: delivering homestyle freshness with industrial precision, service after service. Our flatbreads make that possible.',
+      benefits:[
+        {title:'Uniform Quality Across Outlets', desc:'Same recipe, same size, same taste — whether it\'s your flagship or your fifth outlet.'},
+        {title:'No Flour Dust in Your Kitchen', desc:'Sealed, machine-made flatbreads mean hygiene compliance without effort.'},
+        {title:'Reduces Skilled Chef Dependency', desc:'Free up your skilled team for higher-value work. Flatbread prep is now unskilled.'},
+        {title:'Perfect for Satvik & Jain Menus', desc:'100% Satvik, no garlic, no onion variants available on request.'},
+      ],
+      metrics:[{num:'60s',label:'Table Ready'},{num:'100%',label:'Satvik'},{num:'0',label:'Preservatives'},{num:'1 yr',label:'Shelf Life'}]
+    },
+    canteens: {
+      icon:'🏫', name:'Canteens & Cafeterias', eyebrow:'For Institutions',
+      heading:'Smart Kitchens<br><em>For Institutions</em>',
+      desc:'Corporate, school, and hospital canteens serve hundreds of meals daily under tight budgets and tighter hygiene standards. Our flatbreads reduce labor costs, eliminate prep complexity, and ensure consistent quality at every meal.',
+      benefits:[
+        {title:'Dramatically Reduces Labor Costs', desc:'One person can manage flatbread service for 500 meals. No dedicated roti station needed.'},
+        {title:'Hygienic for Sensitive Environments', desc:'Sealed packaging and machine production — ideal for hospital and school kitchens.'},
+        {title:'Cost-Predictable', desc:'Fixed price per unit means accurate meal costing and zero budget surprises.'},
+        {title:'Menu Flexibility', desc:'Regular, Spinach, Beetroot, and Khapli variants let you rotate menus easily.'},
+      ],
+      metrics:[{num:'₹0',label:'Flour & Mess'},{num:'3',label:'Hrs Saved/Day'},{num:'100%',label:'Hygienic'},{num:'500+',label:'Meals/Person'}]
+    },
+    qsr: {
+      icon:'🍔', name:'QSRs & Cloud Kitchens', eyebrow:'For Quick Service',
+      heading:'Speed Meets<br><em>Authenticity</em>',
+      desc:'Fast food chains and cloud kitchens need flatbreads that hit the pass in seconds and look great in every photo. Our wraps, puris, and chapatis fit seamlessly into high-speed kitchen workflows.',
+      benefits:[
+        {title:'Sub-60-Second Finish Time', desc:'Perfect for high-order-volume operations. No bottlenecks at the flatbread station.'},
+        {title:'Photo-Ready Every Time', desc:'Uniform size, consistent colour, perfect shape — every single piece.'},
+        {title:'Custom Variants Available', desc:'Spinach wraps, beetroot wraps, masala puris — differentiate your menu with natural colours.'},
+        {title:'Minimal Kitchen Footprint', desc:'No flour station, no dough prep area — frees up critical kitchen space.'},
+      ],
+      metrics:[{num:'<60s',label:'Order to Plate'},{num:'3',label:'Wrap Variants'},{num:'4',label:'Chapati Variants'},{num:'0',label:'Prep Staff'}]
+    },
+    waterparks: {
+      icon:'🏖️', name:'Water Parks & Resorts', eyebrow:'For High-Footfall Venues',
+      heading:'Serve Freshness<br><em>At Scale</em>',
+      desc:'High footfall, peak service windows, and guests who want quality food fast. Water parks and resorts need flatbread solutions that never fail during rush hours — and never compromise on taste.',
+      benefits:[
+        {title:'Handles Surge Demand Instantly', desc:'Stock more packs, serve more guests — no prep time, no staff bottleneck.'},
+        {title:'Consistent Quality During Peak Hours', desc:'The 200th chapati of the afternoon tastes as good as the first of the morning.'},
+        {title:'Reduces Kitchen Complexity', desc:'No flour, no dough, no mess — simplifies kitchen operations significantly.'},
+        {title:'Guest Delight', desc:'Fresh, soft chapatis and crispy puris that feel homemade — a genuine differentiator.'},
+      ],
+      metrics:[{num:'Peak',label:'Ready Always'},{num:'60s',label:'Per Serve'},{num:'0',label:'Wastage'},{num:'∞',label:'Scalable'}]
+    },
+    institutional: {
+      icon:'🏭', name:'Institutional Kitchens', eyebrow:'For Large-Scale Operations',
+      heading:'Built for<br><em>Industrial Scale</em>',
+      desc:'Whether it\'s 1,000 or 10,000 chapatis a day — our automated production line and flash-frozen supply model gives industrial kitchens a reliable, hygienic, scale-ready flatbread solution.',
+      benefits:[
+        {title:'1,000 to 10,000+ Daily', desc:'Our production capacity scales with your demand. No minimum order limits.'},
+        {title:'Audit-Ready Documentation', desc:'FSSAI licensed, full ingredient traceability, sealed packaging — passes any food safety audit.'},
+        {title:'Cold Chain Supply Guarantee', desc:'Maintained at –18°C from our facility to your kitchen. Zero break in cold chain.'},
+        {title:'Custom Pack Sizes Available', desc:'Bulk packing, custom quantity per pack — we work with your procurement requirements.'},
+      ],
+      metrics:[{num:'10,000+',label:'Daily Capacity'},{num:'FSSAI',label:'Licensed'},{num:'-18°C',label:'Cold Chain'},{num:'100%',label:'Traceable'}]
+    },
+    airlines: {
+      icon:'✈️', name:'Airlines & Railways', eyebrow:'For Travel Catering',
+      heading:'Travel Catering<br><em>Made Simple</em>',
+      desc:'Pre-portioned, frozen, and designed for easy reheating — our flatbreads are ideal for onboard meal preparation and transit kitchen operations. Consistent quality regardless of altitude or geography.',
+      benefits:[
+        {title:'Pre-Portioned for Tray Service', desc:'Individual packs designed for single-serve reheating. No portioning required onboard.'},
+        {title:'Long Shelf Life for Logistics', desc:'1-year frozen shelf life means reliable supply chain management.'},
+        {title:'Reheats in Seconds', desc:'Microwave or tawa-ready in under 90 seconds from thaw. Ideal for galley kitchens.'},
+        {title:'Clean Label for Diverse Passengers', desc:'No preservatives, allergens clearly labelled — safe for most dietary needs.'},
+      ],
+      metrics:[{num:'1 yr',label:'Shelf Life'},{num:'90s',label:'Reheat Time'},{num:'Pre',label:'Portioned'},{num:'Clean',label:'Label'}]
+    },
+    exports: {
+      icon:'🚢', name:'Exports', eyebrow:'For Global Markets',
+      heading:'Taking Indian<br><em>Tradition Global</em>',
+      desc:'The Indian diaspora across the UK, USA, Canada, UAE, and beyond craves authentic homestyle flatbreads. Our frozen RTC chapatis and puris travel beautifully — authentic taste, clean label, and 1-year shelf life.',
+      benefits:[
+        {title:'Designed for Frozen Export Logistics', desc:'Flash-frozen at –18°C, optimised for long-haul cold chain from India to any market.'},
+        {title:'Authentic Taste for Diaspora Markets', desc:'Made in the traditional homestyle method — tastes like home, wherever home is.'},
+        {title:'Clean Label for International Compliance', desc:'No artificial additives, FSSAI licensed — easier import compliance in most markets.'},
+        {title:'Scalable for Retail & Wholesale', desc:'Custom private-label packaging available for international retail partners.'},
+      ],
+      metrics:[{num:'Global',label:'Reach'},{num:'1 yr',label:'Shelf Life'},{num:'FSSAI',label:'Certified'},{num:'OEM',label:'Available'}]
+    }
+  };
+
+  let activeChannel = null;
+
+  window.openChannel = function(id, card) {
+    const detail = document.getElementById('channel-detail');
+    const allCards = document.querySelectorAll('.channel-card');
+
+    if (activeChannel === id) {
+      // Close
+      detail.classList.remove('open');
+      card.classList.remove('active');
+      activeChannel = null;
+      return;
+    }
+
+    // Mark active
+    allCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    activeChannel = id;
+
+    const d = channels[id];
+    const benefitsHTML = d.benefits.map(b =>
+      `<div class="cd-benefit"><span class="cd-tick">✓</span><div class="cd-benefit-text"><strong>${b.title}</strong> — ${b.desc}</div></div>`
+    ).join('');
+    const metricsHTML = d.metrics.map(m =>
+      `<div class="cd-metric"><div class="cd-metric-num">${m.num}</div><div class="cd-metric-label">${m.label}</div></div>`
+    ).join('');
+
+    detail.innerHTML = `
+      <div>
+        <div class="cd-eyebrow">${d.icon} ${d.eyebrow}</div>
+        <div class="cd-heading">${d.heading}</div>
+        <p class="cd-desc">${d.desc}</p>
+        <div class="cd-benefits">${benefitsHTML}</div>
+        <div class="cd-cta" style="margin-top:1.5rem;">
+          <a href="#biz-cta" class="btn-primary">Partner With Us →</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;">
+          <span style="display:inline-block;width:1rem;height:1px;background:var(--wheat);"></span>
+          Key Metrics
+        </div>
+        <div class="cd-metrics">${metricsHTML}</div>
+      </div>`;
+
+    detail.classList.add('open');
+
+    // Scroll detail into view
+    setTimeout(() => detail.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+  };
+
+  // ROI Calculator
+  function calcROI() {
+    const qty = parseInt(document.getElementById('qty').value);
+    const staff = parseInt(document.getElementById('staff').value);
+    const cost = parseInt(document.getElementById('cost').value);
+    const waste = parseInt(document.getElementById('waste').value);
+
+    document.getElementById('qty-val').textContent = qty.toLocaleString('en-IN');
+    document.getElementById('staff-val').textContent = staff;
+    document.getElementById('cost-val').textContent = '₹' + cost.toLocaleString('en-IN');
+    document.getElementById('waste-val').textContent = waste + '%';
+
+    const laborMonthly = staff * cost;
+    // Wastage: assume ₹5 per chapati as raw material cost
+    const wasteMonthly = Math.round((qty * waste / 100) * 5 * 26);
+    // Prep time: 1 person makes ~100 chapatis/hr → staff hours saved per month
+    const hoursSaved = Math.round((qty / 100) * 26);
+    const total = laborMonthly + wasteMonthly;
+
+    document.getElementById('r-labor').textContent = '₹' + laborMonthly.toLocaleString('en-IN');
+    document.getElementById('r-waste').textContent = '₹' + wasteMonthly.toLocaleString('en-IN');
+    document.getElementById('r-time').textContent = hoursSaved + ' hrs/mo';
+    document.getElementById('r-total').textContent = '₹' + total.toLocaleString('en-IN');
+  }
+  calcROI();
+</script>
+</body>
+</html>
