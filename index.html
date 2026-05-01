@@ -117,11 +117,10 @@
   .hero-bg-text{display:none;}
 
   /* MARQUEE */
-  .marquee-strip{background:var(--deep);overflow:hidden;padding:0.85rem 0;}
-  .marquee-inner{display:inline-flex;animation:marquee 26s linear infinite;}
-  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .marquee-item{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--wheat);display:inline-flex;align-items:center;padding:0 2.2rem;}
-  .marquee-sep{color:var(--rust);}
+  .marquee-strip { background:var(--rust); overflow:hidden; padding:0.65rem 0; border:none; }
+  .marquee-inner { display:flex; animation:marqueeScroll 25s linear infinite; width:max-content; white-space:nowrap; }
+  .marquee-item { font-family:'Jost',sans-serif; font-size:0.65rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.92); white-space:nowrap; padding:0 0.5rem; }
+  .marquee-sep { color:rgba(255,255,255,0.4); margin:0 0.8rem; }
 
   /* SECTION SHARED */
   section{padding:7rem 7vw;}
@@ -350,13 +349,13 @@
   .hb-slide-inner { width:100%; height:100%; display:flex; align-items:center; }
 
   /* ── Controls (shared) ── */
-  .hb-controls { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:1rem; z-index:10; }
+  .hb-controls { position:absolute; bottom:1.2rem; left:calc(50% + 2rem); transform:translateX(-50%); display:flex; align-items:center; gap:0.6rem; z-index:10; }
   .hb-dot { width:8px; height:8px; border-radius:50%; background:rgba(245,239,224,0.3); border:none; cursor:pointer; padding:0; transition:background 0.3s,transform 0.3s; }
   .hb-dot.active { background:var(--wheat); transform:scale(1.35); }
-  .hb-arrow { position:absolute; top:50%; transform:translateY(-50%); width:3rem; height:3rem; z-index:10; background:rgba(28,20,8,0.4); backdrop-filter:blur(8px); border:1px solid rgba(245,239,224,0.15); color:var(--wheat); font-size:1.1rem; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.3s; }
+  .hb-arrow { position:absolute; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; z-index:10; background:rgba(28,20,8,0.5); backdrop-filter:blur(8px); border:1px solid rgba(245,239,224,0.15); color:var(--wheat); font-size:1rem; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.3s; }
   .hb-arrow:hover { background:rgba(196,98,45,0.6); }
-  .hb-arrow.prev { left:2rem; }
-  .hb-arrow.next { right:2rem; }
+  .hb-arrow.prev { left:1.5rem; }
+  .hb-arrow.next { right:1.5rem; }
   .hb-progress { position:absolute; bottom:0; left:0; right:0; height:3px; background:rgba(245,239,224,0.1); z-index:10; }
   .hb-progress-fill { height:100%; background:var(--wheat); width:0%; transition:width 7s linear; }
   .hb-animate { opacity:0; transform:translateY(22px); transition:opacity 0.8s cubic-bezier(.4,0,.2,1),transform 0.8s cubic-bezier(.4,0,.2,1); }
@@ -579,21 +578,14 @@
   #hero { display:none; }
 
 
-  /* ── Responsive ── */
-  @media(max-width:900px) {
-    .hb-slide.b2 .hb-layout,
-    .hb-slide.b4 .hb-layout { grid-template-columns: 1fr; }
-    .hb-visual-col, .hb-contrast { display: none; }
-    .hb-process-steps { grid-template-columns: 1fr 1fr; }
-    .hb-slide.b1 .hb-mono { display: none; }
-    #hero-banners { height: auto; min-height: 100svh; }
-  }
+  /* old responsive rules removed */
 
 
   /* USP RIBBON */
   #usp-ribbon {
-    background: var(--pale);
-    border-bottom: 1px solid rgba(212,169,106,0.2);
+    background: var(--earth);
+    border-top: 2px solid rgba(212,169,106,0.4);
+    border-bottom: 2px solid rgba(212,169,106,0.4);
     padding: 0;
     overflow: hidden;
   }
@@ -613,11 +605,11 @@
   .usp-pill:hover { background: var(--cream); }
   .usp-pill-icon { font-size: 1.2rem; line-height: 1; }
   .usp-pill-label {
-    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-    font-weight: 600; color: var(--earth); line-height: 1.3;
+    font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+    font-weight: 700; color: #fff; line-height: 1.3;
   }
   .usp-pill-sub {
-    font-size: 0.56rem; color: rgba(107,76,30,0.5);
+    font-size: 0.54rem; color: rgba(245,239,224,0.6);
     letter-spacing: 0.05em; text-transform: uppercase;
   }
 
@@ -730,118 +722,20 @@
     .hb-slide { min-width:100%; height:100svh; overflow:hidden; }
     .hb-track { height:100%; }
 
-    /* Arrows — small, tucked at bottom so they don't overlap content */
-    .hb-arrow { width:2rem; height:2rem; top:auto; bottom:3.5rem; transform:none; font-size:0.8rem; }
-    .hb-arrow.prev { left:1rem; }
-    .hb-arrow.next { right:1rem; }
-
-    /* ── BANNER 1 — full width centred, no overlap ── */
-    .b1 .hb-slide-inner { flex-direction:column; justify-content:center; align-items:center; padding:5rem 6vw 3rem; text-align:center; }
-    .b1-text { padding:0; flex:none; width:100%; position:relative; z-index:2; }
-    .b1-text::before { display:none; }
-    /* Gold emboss headline on mobile */
-    .b1-h1 {
-      font-size:clamp(2.6rem,10vw,4rem); margin-bottom:1rem; line-height:1.05;
-      font-family:'Cormorant Garamond',serif; font-weight:300;
-      color:var(--wheat);
-      text-shadow: 0 1px 0 rgba(255,255,255,0.15), 0 -1px 0 rgba(0,0,0,0.3);
-    }
-    .b1-h1 em { color:var(--cream); font-style:italic; }
-    .b1-sub { font-size:0.85rem; max-width:100%; margin-bottom:1.5rem; color:rgba(245,239,224,0.7); }
-    .b1-actions { flex-direction:column; align-items:center; gap:0.8rem; }
-    .b1-art { display:none; }
-    .hb-eyebrow { font-size:0.6rem; margin-bottom:1rem; font-family:'Jost',sans-serif; color:var(--wheat); }
-
-    /* ── BANNER 2 — 3x2 grid of steps ── */
-    .b2-inner { padding:1.5rem 5vw 1rem; gap:0.7rem; justify-content:center; }
-    .b2-h2 { font-size:clamp(1.6rem,6vw,2.4rem); font-family:'Cormorant Garamond',serif; color:var(--wheat); text-shadow:0 1px 0 rgba(255,255,255,0.1),0 -1px 0 rgba(0,0,0,0.3); }
-    .b2-h2 em { color:var(--cream); }
-    /* 6 steps in 3x2 grid — even, no lonely icon */
-    .b2-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; width:100%; }
-    .b2-step { flex:none; }
-    .b2-step-visual { width:46px; height:46px; margin:0 auto; }
-    .b2-step-label {
-      font-size:0.5rem; letter-spacing:0.03em; text-align:center;
-      font-family:'Jost',sans-serif; color:rgba(245,239,224,0.75);
-      margin-top:0.25rem;
-    }
-    .b2-arrow { display:none; }
-    .b2-sub { font-size:0.78rem; color:rgba(245,239,224,0.6); }
-    .b2-eyebrow { font-family:'Jost',sans-serif; color:var(--wheat); font-size:0.62rem; }
-
-    /* ── BANNER 3 — headline centred + 2x3 step grid ── */
-    .b3-inner { padding:1.5rem 5vw 1rem; gap:0.8rem; justify-content:center; }
-    .b3-h2 {
-      font-size:clamp(1.6rem,6vw,2.4rem);
-      color:var(--wheat);
-      text-shadow:0 1px 0 rgba(255,255,255,0.1),0 -1px 0 rgba(0,0,0,0.35);
-    }
-    .b3-h2 em { color:var(--cream); }
-    .b3-eyebrow { font-family:'Jost',sans-serif; font-size:0.6rem; color:var(--wheat); }
-    /* B3 mobile: 3 top row + 2 bottom centred */
-    .b3-steps { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; }
-    .b3-step { flex:0 0 calc(33.33% - 0.4rem); min-width:0; }
-    .b3-step { padding:0.8rem 0.5rem; }
-    .b3-step::after { display:none; }
-    .b3-step-num { font-family:'Cormorant Garamond',serif; font-size:0.9rem; color:var(--wheat); }
-    .b3-step-icon { font-size:1.2rem; }
-    .b3-step-title {
-      font-size:0.56rem; color:rgba(245,239,224,0.9); font-family:'Jost',sans-serif;
-      font-weight:600; text-transform:uppercase; letter-spacing:0.06em;
-    }
-    .b3-step-desc { display:none; }
-
-    /* ── BANNER 4 — table, no left arrow overlap ── */
-    .b4-inner { padding:1.5rem 5vw 4rem; gap:0.8rem; }
-    .b4-h2 {
-      font-size:clamp(1.4rem,5.5vw,2rem);
-      color:var(--wheat);
-      text-shadow:0 1px 0 rgba(255,255,255,0.1),0 -1px 0 rgba(0,0,0,0.3);
-    }
-    .b4-h2 em { color:var(--cream); }
-    /* Table — push right to clear any arrow remnants */
-    .b4-table { max-width:100%; grid-template-columns:auto 1fr 1fr; margin:0; }
-    .b4-col-hd { padding:0.4rem 0.5rem; font-size:0.5rem; letter-spacing:0.06em; }
-    .b4-col-metric-hd { min-width:4.5rem; }
-    .b4-metric { padding:0.6rem 0.5rem; }
-    .b4-metric-label { font-size:0.48rem; letter-spacing:0.04em; font-family:'Jost',sans-serif; }
-    .b4-cell { padding:0.6rem 0.5rem; }
-    .b4-val { font-size:clamp(0.95rem,4vw,1.3rem); font-family:'Cormorant Garamond',serif; }
-    .b4-val-bad { color:rgba(196,98,45,0.85); }
-    .b4-val-good { color:var(--wheat); }
-    .b4-unit { font-size:0.46rem; }
-    .b4-cta { display:none; }
-    .b4-eyebrow { font-size:0.6rem; color:var(--wheat); font-family:'Jost',sans-serif; }
-
-    /* Banner controls */
-    .hb-arrow { width:2rem; height:2rem; font-size:0.8rem; }
-    .hb-arrow.next { right:0.5rem; }
-    .hb-playpause { bottom:2.2rem; right:0.5rem; width:1.8rem; height:1.8rem; font-size:0.5rem; }
+    /* Arrows — sides, small and clear */
+    .hb-arrow { width:1.8rem; height:1.8rem; top:50%; transform:translateY(-50%); font-size:0.75rem; }
+    .hb-arrow.prev { left:0.4rem; }
+    .hb-arrow.next { right:0.4rem; }
+    .hb-playpause { bottom:0.8rem; left:50%; transform:translateX(-50%); width:1.6rem; height:1.6rem; font-size:0.5rem; }
     .hb-controls { bottom:1rem; }
 
     /* ── USP RIBBON ── */
-    /* USP ribbon mobile — 4 per row, icon + label always visible */
+    /* USP ribbon mobile — 4 per row, icon + label always showing */
     .usp-ribbon-inner { flex-wrap:wrap; }
-    .usp-pill {
-      flex:1 1 25%;
-      border-bottom:1px solid rgba(212,169,106,0.2);
-      border-right:1px solid rgba(212,169,106,0.15);
-      padding:0.7rem 0.3rem;
-      min-width:0;
-    }
+    .usp-pill { flex:0 0 25%; max-width:25%; padding:0.65rem 0.15rem; border-bottom:1px solid rgba(245,239,224,0.1); }
     .usp-pill-icon { font-size:1.1rem; }
-    .usp-pill-label {
-      font-size:0.5rem !important;
-      color:var(--cream) !important;
-      display:block !important;
-      visibility:visible !important;
-      opacity:1 !important;
-      letter-spacing:0.04em;
-      line-height:1.3;
-      margin-top:0.2rem;
-      word-break:break-word;
-    }
-    .usp-pill-sub { display:none !important; }
+    .usp-pill-label { font-size:0.45rem; color:#fff; font-weight:700; display:block; word-break:break-word; letter-spacing:0.03em; }
+    .usp-pill-sub { display:none; }
 
     /* ── SECTIONS ── */
     section { padding:3.5rem 5vw; }
@@ -966,38 +860,32 @@
   #hero-banners.hb-paused .hb-pause-icon { opacity:1; }
 
 
-  /* Play/Pause button */
+  /* Play/Pause button — sits at bottom centre, away from arrows */
   .hb-playpause {
     position:absolute;
-    bottom:2.8rem;
-    right:2rem;
+    bottom:1.2rem;
+    left:50%;
+    transform:translateX(-50%);
     width:2.2rem; height:2.2rem;
     border-radius:50%;
     background:rgba(28,20,8,0.55);
     backdrop-filter:blur(8px);
     border:1px solid rgba(212,169,106,0.35);
     color:var(--wheat);
-    font-size:0.55rem;
+    font-size:0.6rem;
     cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     z-index:10;
     transition:background 0.3s, border-color 0.3s;
-    letter-spacing:0.05em;
   }
-  .hb-playpause:hover {
-    background:rgba(196,98,45,0.6);
-    border-color:var(--rust);
-  }
-  #hero-banners.hb-paused .hb-playpause {
-    background:rgba(196,98,45,0.4);
-    border-color:rgba(196,98,45,0.6);
-  }
+  .hb-playpause:hover { background:rgba(196,98,45,0.6); border-color:var(--rust); }
+  #hero-banners.hb-paused .hb-playpause { background:rgba(196,98,45,0.4); border-color:rgba(196,98,45,0.6); }
 
 
   /* ── CUSTOMER STRIP — cream bg, warm contrasting theme ── */
   #customers {
     background:var(--cream);
-    padding:4rem 0;
+    padding:2.5rem 0;
     overflow:hidden;
     border-top:3px solid var(--rust);
     border-bottom:3px solid var(--rust);
@@ -1016,7 +904,7 @@
   }
   .customer-headline {
     font-family:'Cormorant Garamond',serif;
-    font-size:clamp(1.8rem,3.5vw,3rem);
+    font-size:clamp(1.4rem,2.5vw,2.2rem);
     font-weight:300;color:var(--deep);line-height:1.1;
   }
   .customer-headline em { font-style:italic;color:var(--rust); }
@@ -2393,12 +2281,7 @@
       track.style.transform = 'translateX(-' + (cur * 100) + '%)';
       updateDots();
       activateSlide();
-      // Show/hide prev arrow based on slide index
-      if (cur === 0) {
-        bannerEl.classList.remove('show-prev');
-      } else {
-        bannerEl.classList.add('show-prev');
-      }
+
       if (!paused) {
         startProgress();
         advTimer = setTimeout(() => goTo(cur + 1), SLIDE_MS);
