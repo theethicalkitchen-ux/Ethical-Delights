@@ -345,7 +345,7 @@
   /* ══ HERO BANNER CAROUSEL ══ */
   #hero-banners { position:relative; width:100%; height:calc(100vh - 4.5rem); min-height:520px; max-height:860px; overflow:hidden; margin-top:4.5rem; }
   .hb-track { display:flex; height:100%; transition:transform 0.9s cubic-bezier(0.77,0,0.175,1); }
-  .hb-slide { min-width:100%; height:100%; position:relative; overflow:hidden; }
+  .hb-slide { min-width:100%; width:100%; height:100%; position:relative; overflow:hidden; flex-shrink:0; }
   .hb-slide-inner { width:100%; height:100%; display:flex; align-items:center; }
 
   /* ── Controls (shared) ── */
@@ -383,7 +383,7 @@
 
   /* ── BANNER 2: Freezer to Table ── */
   .b2 { background:var(--deep); }
-  .b2-inner { flex-direction:column; justify-content:center; align-items:center; gap:1rem; padding:2rem 8vw 1.5rem; text-align:center; overflow:hidden; }
+  .b2-inner { flex-direction:column; justify-content:center; align-items:center; gap:1rem; padding:2rem 8vw 1.5rem; text-align:center; }
   .b2-eyebrow { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--wheat); font-weight:500; display:flex; align-items:center; gap:0.8rem; }
   .b2-eyebrow::before,.b2-eyebrow::after { content:''; flex:1; max-width:3rem; height:1px; background:var(--wheat); }
   .b2-h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4.5vw,4.2rem); font-weight:300; color:var(--cream); line-height:1.08; }
@@ -406,7 +406,6 @@
     padding: 1.8rem 7vw 1.5rem;
     gap: 1.5rem;
     text-align: center;
-    overflow: hidden;
   }
   .b3-left { display:flex; flex-direction:column; align-items:center; gap:0.8rem; }
   .b3-eyebrow {
@@ -2278,20 +2277,12 @@
     function activateSlide() {
       slides.forEach((s,i) => {
         s.classList.toggle('hb-active', i===cur);
-        // reset animations on non-active
-        if (i !== cur) {
-          s.querySelectorAll('.hb-animate').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(22px)';
-          });
-        }
-      });
-      // trigger animations on active slide
-      const active = slides[cur];
-      active.querySelectorAll('.hb-animate').forEach((el, i) => {
-        el.style.transition = 'opacity 0.8s ' + (0.2 + i*0.15) + 's, transform 0.8s ' + (0.2 + i*0.15) + 's';
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
+        // Clear any inline styles so CSS class takes over
+        s.querySelectorAll('.hb-animate').forEach(el => {
+          el.style.opacity = '';
+          el.style.transform = '';
+          el.style.transition = '';
+        });
       });
     }
 
