@@ -9,13 +9,13 @@
 <style>
   :root {
     --cream:#F5EFE0; --wheat:#D4A96A; --deep:#1C1408; --earth:#6B4C1E;
-    --rust:#C4622D; --pale:#FAF6EE; --green:#2d5a27; --orange:#c96a10;
+    --rust:#C4622D; --pale:#FAF6EE;
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{font-family:'Jost',sans-serif;background:var(--pale);color:var(--deep);overflow-x:hidden;}
 
-  /* ── NAV ── */
+  /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 6vw;background:rgba(250,246,238,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,169,106,0.2);transition:padding 0.3s;}
   nav.scrolled{padding:0.8rem 6vw;box-shadow:0 4px 30px rgba(28,20,8,0.08);}
   .nav-logo{display:inline-flex;align-items:center;height:2.8rem;text-decoration:none;}
@@ -23,8 +23,7 @@
   .nav-links{display:flex;gap:2.5rem;align-items:center;}
   .nav-links a{font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--deep);text-decoration:none;font-weight:500;transition:color 0.3s;}
   .nav-links a:hover,.nav-links a.active{color:var(--rust);}
-  .nav-cta{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:0.55rem 1.3rem;text-decoration:none;font-weight:500;transition:background 0.3s;}
-  .nav-cta:hover{background:var(--earth);}
+  .nav-cta{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:0.55rem 1.3rem;text-decoration:none;font-weight:500;}
   .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:201;}
   .nav-hamburger span{display:block;width:24px;height:2px;background:var(--earth);transition:all 0.3s;transform-origin:center;}
   .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -32,16 +31,11 @@
   .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   .nav-mobile-menu{display:none;position:fixed;inset:0;background:rgba(250,246,238,0.98);backdrop-filter:blur(16px);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
   .nav-mobile-menu.open{display:flex;}
-  .nav-mobile-menu a{font-size:1.8rem;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--deep);text-decoration:none;transition:color 0.3s;}
-  .nav-mobile-menu a:hover{color:var(--rust);}
+  .nav-mobile-menu a{font-size:1.8rem;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--deep);text-decoration:none;}
   .nav-mobile-menu .mob-cta{font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:0.9rem 2.5rem;font-family:'Jost',sans-serif;font-weight:500;}
 
-  /* ── PAGE HERO ── */
-  .prod-hero{
-    min-height:50vh;background:var(--deep);
-    display:flex;flex-direction:column;justify-content:flex-end;
-    padding:7rem 7vw 4rem;position:relative;overflow:hidden;margin-top:4.5rem;
-  }
+  /* PAGE HERO */
+  .prod-hero{min-height:48vh;background:var(--deep);display:flex;flex-direction:column;justify-content:flex-end;padding:7rem 7vw 4rem;position:relative;overflow:hidden;margin-top:4.5rem;}
   .prod-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(107,76,30,0.3) 0%,transparent 60%);}
   .prod-hero-eyebrow{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
   .prod-hero-eyebrow::before{content:'';width:2rem;height:1px;background:var(--wheat);}
@@ -49,67 +43,34 @@
   .prod-hero-h1 em{font-style:italic;color:var(--wheat);}
   .prod-hero-sub{font-size:1rem;font-weight:300;color:rgba(245,239,224,0.55);max-width:55ch;margin-top:1.2rem;line-height:1.8;opacity:0;animation:fadeUp 0.9s 0.5s forwards;}
 
-  /* ── PRODUCT CATEGORY TABS ── */
-  .prod-tabs{
-    position:sticky;top:4.5rem;z-index:100;
-    background:var(--pale);border-bottom:1px solid rgba(212,169,106,0.25);
-    display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
-  }
+  /* TABS — sticky */
+  .prod-tabs{position:sticky;top:4.5rem;z-index:100;background:var(--pale);border-bottom:1px solid rgba(212,169,106,0.25);display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
   .prod-tabs::-webkit-scrollbar{display:none;}
-  .prod-tab{
-    flex-shrink:0;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
-    font-weight:500;padding:1rem 2rem;border:none;background:none;
-    color:rgba(107,76,30,0.5);cursor:pointer;
-    border-bottom:2px solid transparent;transition:all 0.3s;white-space:nowrap;
-  }
+  .prod-tab{flex-shrink:0;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;padding:1rem 2rem;border:none;background:none;color:rgba(107,76,30,0.5);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.3s;white-space:nowrap;}
   .prod-tab.active,.prod-tab:hover{color:var(--rust);border-bottom-color:var(--rust);}
 
-  /* ── PRODUCT SECTION ── */
-  .prod-section{padding:5rem 7vw;border-bottom:1px solid rgba(212,169,106,0.15);}
-  .prod-section:last-child{border-bottom:none;}
-
+  /* SECTION */
+  .prod-section{padding:5rem 7vw;border-bottom:1px solid rgba(212,169,106,0.15);scroll-margin-top:8rem;}
   .prod-cat-label{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.8rem;}
   .prod-cat-label::before{content:'';width:1.5rem;height:1px;background:var(--rust);}
-  .prod-cat-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;color:var(--deep);line-height:1.08;margin-bottom:1.2rem;}
+  .prod-cat-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;color:var(--deep);line-height:1.08;margin-bottom:1rem;}
   .prod-cat-h2 em{font-style:italic;color:var(--earth);}
   .prod-cat-desc{font-size:0.95rem;font-weight:300;line-height:1.85;color:#5a4a2e;max-width:65ch;margin-bottom:3rem;}
 
-  /* ── HERO PRODUCT LAYOUT (first variant of each category) ── */
-  .prod-hero-card{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:0;border:1px solid rgba(212,169,106,0.2);
-    margin-bottom:1rem;overflow:hidden;
-  }
-  .prod-pkg-img{
-    position:relative;overflow:hidden;
-    background:var(--cream);
-    min-height:28rem;
-    display:flex;align-items:center;justify-content:center;
-    padding:2rem;
-  }
-  .prod-pkg-img img{
-    width:100%;max-width:420px;height:auto;object-fit:contain;
-    transition:transform 0.5s;
-  }
+  /* HERO CARD — side by side, equal height */
+  .prod-hero-card{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(212,169,106,0.2);margin-bottom:1rem;overflow:hidden;min-height:32rem;}
+  .prod-pkg-img{position:relative;overflow:hidden;background:var(--cream);display:flex;align-items:center;justify-content:center;padding:2.5rem;}
+  .prod-pkg-img img{width:100%;max-width:380px;height:auto;object-fit:contain;transition:transform 0.5s;}
   .prod-hero-card:hover .prod-pkg-img img{transform:scale(1.03);}
-  .prod-hero-badge{
-    position:absolute;top:1rem;left:1rem;
-    background:var(--deep);color:var(--wheat);
-    font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
-    font-weight:600;padding:0.3rem 0.7rem;
-  }
+  .prod-hero-badge{position:absolute;top:1rem;left:1rem;background:var(--deep);color:var(--wheat);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;padding:0.3rem 0.7rem;}
 
-  .prod-info{
-    padding:3rem;background:var(--deep);
-    display:flex;flex-direction:column;justify-content:center;
-    gap:1.5rem;
-  }
+  .prod-info{padding:3rem;background:var(--deep);display:flex;flex-direction:column;justify-content:center;gap:1.4rem;}
   .prod-eyebrow{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--wheat);font-weight:500;display:flex;align-items:center;gap:0.5rem;}
   .prod-eyebrow::before{content:'';width:1.2rem;height:1px;background:var(--wheat);}
   .prod-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;color:var(--cream);line-height:1.05;}
   .prod-name em{font-style:italic;color:var(--wheat);}
-  .prod-tagline{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(245,239,224,0.6);line-height:1.5;}
-  .prod-desc{font-size:0.88rem;font-weight:300;color:rgba(245,239,224,0.65);line-height:1.85;max-width:50ch;}
+  .prod-tagline{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(245,239,224,0.55);line-height:1.5;}
+  .prod-desc{font-size:0.88rem;font-weight:300;color:rgba(245,239,224,0.65);line-height:1.85;}
   .prod-usps{display:flex;flex-wrap:wrap;gap:0.5rem;}
   .prod-usp{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(212,169,106,0.3);padding:0.28rem 0.7rem;color:var(--wheat);font-weight:500;}
   .prod-pack-info{display:flex;gap:2rem;padding-top:1rem;border-top:1px solid rgba(212,169,106,0.1);}
@@ -117,61 +78,43 @@
   .pack-stat-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--wheat);line-height:1;}
   .pack-stat-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,224,0.4);}
 
-  /* ── HOW TO USE ── */
-  .how-to-use{
-    padding:3rem;background:var(--cream);
-    border:1px solid rgba(212,169,106,0.2);
-    margin-bottom:1rem;
-  }
+  /* HOW TO USE */
+  .how-to-use{padding:2.5rem;background:var(--cream);border:1px solid rgba(212,169,106,0.2);margin-bottom:1rem;}
   .htu-label{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem;}
   .htu-label::before{content:'';width:1.2rem;height:1px;background:var(--rust);}
   .htu-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
-  .htu-step{display:flex;flex-direction:column;align-items:center;gap:0.8rem;text-align:center;}
-  .htu-icon{
-    width:4rem;height:4rem;border-radius:50%;
-    border:1.5px solid rgba(107,76,30,0.25);
-    display:flex;align-items:center;justify-content:center;
-    background:var(--pale);
+  .htu-step{display:flex;flex-direction:column;align-items:center;gap:0.6rem;text-align:center;}
+  .htu-icon{width:3.8rem;height:3.8rem;border-radius:50%;border:1.5px solid rgba(107,76,30,0.25);display:flex;align-items:center;justify-content:center;background:var(--pale);}
+  .htu-icon svg{width:1.9rem;height:1.9rem;}
+  .htu-step-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:1.8rem;height:1.8rem;border-radius:50%;
+    background:var(--deep);border:1.5px solid var(--wheat);
+    font-family:'Cormorant Garamond',serif;font-size:0.75rem;font-weight:600;color:var(--wheat);
   }
-  .htu-icon svg{width:2rem;height:2rem;}
-  .htu-step-num{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:rgba(107,76,30,0.3);line-height:1;}
-  .htu-step-text{font-size:0.78rem;font-weight:300;color:var(--earth);line-height:1.6;}
+  .htu-step-text{font-size:0.75rem;font-weight:300;color:var(--earth);line-height:1.6;}
 
-  /* ── INGREDIENTS + NUTRITION ── */
-  .prod-details{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:0;border:1px solid rgba(212,169,106,0.2);
-    margin-bottom:1rem;
-  }
-  .prod-ingredients{padding:2.5rem;background:var(--pale);}
+  /* INGREDIENTS */
+  .prod-ingredients{padding:2.5rem;background:var(--pale);border:1px solid rgba(212,169,106,0.2);margin-bottom:1rem;}
   .detail-label{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;}
   .detail-label::before{content:'';width:1rem;height:1px;background:var(--rust);}
   .ingr-list{display:flex;flex-wrap:wrap;gap:0.5rem;}
-  .ingr-pill{background:var(--cream);border:1px solid rgba(107,76,30,0.2);padding:0.35rem 0.9rem;font-size:0.78rem;font-weight:400;color:var(--earth);}
+  .ingr-pill{background:var(--cream);border:1px solid rgba(107,76,30,0.2);padding:0.35rem 0.9rem;font-size:0.8rem;font-weight:400;color:var(--earth);}
   .ingr-note{font-size:0.72rem;font-weight:300;color:rgba(107,76,30,0.5);margin-top:1rem;line-height:1.6;font-style:italic;}
 
-  .prod-nutrition{padding:2.5rem;background:var(--deep);border-left:1px solid rgba(212,169,106,0.15);}
-  .nutrition-table{width:100%;border-collapse:collapse;margin-top:0.5rem;}
-  .nutrition-table tr{border-bottom:1px solid rgba(212,169,106,0.08);}
-  .nutrition-table tr:last-child{border-bottom:none;}
-  .nutrition-table td{padding:0.45rem 0;font-size:0.8rem;color:rgba(245,239,224,0.7);}
-  .nutrition-table td:first-child{font-weight:500;color:rgba(245,239,224,0.9);}
-  .nutrition-table td:last-child{text-align:right;color:var(--wheat);}
-  .nutrition-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.8rem;padding-bottom:0.8rem;border-bottom:2px solid rgba(212,169,106,0.3);}
-  .nut-calories{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--wheat);line-height:1;}
-  .nut-label{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,224,0.4);}
-  .nut-serving{font-size:0.68rem;color:rgba(245,239,224,0.4);}
+  /* STORAGE */
+  .storage-banner{display:flex;align-items:center;justify-content:center;gap:3rem;background:var(--earth);padding:1.5rem 3rem;border:1px solid rgba(212,169,106,0.2);margin-bottom:1rem;flex-wrap:wrap;}
+  .storage-item{display:flex;align-items:center;gap:0.8rem;}
+  .storage-icon{font-size:1.4rem;}
+  .storage-text{font-size:0.78rem;font-weight:500;color:var(--cream);letter-spacing:0.05em;}
+  .storage-sub{font-size:0.65rem;font-weight:300;color:rgba(245,239,224,0.6);}
 
-  /* ── VARIANTS GRID (smaller cards below hero) ── */
-  .variants-label{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--earth);font-weight:500;margin-bottom:1.2rem;margin-top:0.5rem;}
-  .variants-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem;}
-  .variant-card{
-    border:1px solid rgba(212,169,106,0.2);overflow:hidden;
-    cursor:pointer;transition:border-color 0.3s,transform 0.2s;
-    background:var(--cream);
-  }
+  /* VARIANTS */
+  .variants-label{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--earth);font-weight:500;margin:1.5rem 0 1rem;}
+  .variants-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+  .variant-card{border:1px solid rgba(212,169,106,0.2);overflow:hidden;cursor:pointer;transition:border-color 0.3s,transform 0.2s;background:var(--cream);}
   .variant-card:hover{border-color:var(--wheat);transform:translateY(-3px);}
-  .variant-img{height:12rem;overflow:hidden;background:var(--pale);display:flex;align-items:center;justify-content:center;padding:1rem;}
+  .variant-img{height:13rem;overflow:hidden;background:var(--pale);display:flex;align-items:center;justify-content:center;padding:1rem;}
   .variant-img img{width:100%;height:100%;object-fit:contain;}
   .variant-body{padding:1rem 1.2rem;background:var(--pale);}
   .variant-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--deep);margin-bottom:0.3rem;}
@@ -179,32 +122,18 @@
   .variant-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.6rem;}
   .variant-tag{font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(107,76,30,0.2);padding:0.2rem 0.5rem;color:var(--earth);}
 
-  /* ── PURI HOW TO USE (frying) ── */
-  .htu-puri .htu-steps{grid-template-columns:repeat(4,1fr);}
-
-  /* ── WRAPS SECTION ── */
+  /* WRAPS GRID */
   .wraps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;}
+  .wrap-card{border:1px solid rgba(212,169,106,0.15);overflow:hidden;background:rgba(245,239,224,0.04);}
+  .wrap-img{height:16rem;overflow:hidden;}
+  .wrap-img img{width:100%;height:100%;object-fit:cover;object-position:center;}
+  .wrap-info{padding:1.5rem;}
+  .wrap-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--cream);margin-bottom:0.5rem;}
+  .wrap-desc{font-size:0.78rem;font-weight:300;color:rgba(245,239,224,0.6);line-height:1.7;}
+  .wrap-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.8rem;}
+  .wrap-tag{font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(212,169,106,0.25);padding:0.2rem 0.5rem;color:var(--wheat);}
 
-  /* ── BHATURA SVG illustration ── */
-  .bhatura-art{
-    background:linear-gradient(135deg,#2a1a08 0%,#3d2510 50%,#1a0f05 100%);
-    min-height:28rem;display:flex;align-items:center;justify-content:center;
-    position:relative;overflow:hidden;
-  }
-
-  /* ── STORAGE BANNER ── */
-  .storage-banner{
-    display:flex;align-items:center;justify-content:center;gap:3rem;
-    background:var(--earth);padding:1.5rem 3rem;
-    border:1px solid rgba(212,169,106,0.2);
-    margin-bottom:1rem;flex-wrap:wrap;
-  }
-  .storage-item{display:flex;align-items:center;gap:0.8rem;}
-  .storage-icon{font-size:1.4rem;}
-  .storage-text{font-size:0.78rem;font-weight:500;color:var(--cream);letter-spacing:0.05em;}
-  .storage-sub{font-size:0.65rem;font-weight:300;color:rgba(245,239,224,0.6);letter-spacing:0.04em;}
-
-  /* ── FOOTER ── */
+  /* FOOTER */
   footer{background:#0d0a04;padding:1.8rem 7vw;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(212,169,106,0.08);}
   .foot-logo{display:inline-flex;align-items:center;height:2rem;}
   .foot-logo img{height:100%;width:auto;object-fit:contain;opacity:0.85;}
@@ -217,33 +146,29 @@
   .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);}
   .fade-up.visible{opacity:1;transform:translateY(0);}
 
-  /* ── MOBILE ── */
+  /* MOBILE */
   @media(max-width:768px){
-    nav { padding:0.9rem 5vw; }
-    nav .nav-links,.nav-cta { display:none; }
-    .nav-hamburger { display:flex; }
-    .prod-hero { padding:5rem 5vw 3rem; min-height:40vh; }
-    .prod-hero-h1 { font-size:clamp(2.5rem,9vw,4rem); }
-    .prod-tabs { top:3.8rem; }
-    .prod-tab { padding:0.8rem 1.2rem; font-size:0.65rem; }
-    .prod-section { padding:3rem 5vw; }
-    .prod-hero-card { grid-template-columns:1fr; }
-    .prod-pkg-img { min-height:18rem; }
-    .prod-info { padding:2rem 1.5rem; gap:1rem; }
-    .prod-name { font-size:clamp(1.8rem,7vw,2.8rem); }
-    .htu-steps { grid-template-columns:1fr 1fr; gap:1rem; }
-    .prod-details { grid-template-columns:1fr; }
-    .prod-nutrition { border-left:none; border-top:1px solid rgba(212,169,106,0.15); }
-    .variants-grid { grid-template-columns:1fr 1fr; gap:0.8rem; }
-    .wraps-grid { grid-template-columns:1fr; }
-    .storage-banner { padding:1.2rem 1.5rem; gap:1.5rem; }
-    footer { flex-direction:column; align-items:center; gap:1rem; text-align:center; }
-    .foot-links { gap:1rem; }
-    .how-to-use { padding:1.5rem; }
+    nav{padding:0.9rem 5vw;}
+    nav .nav-links,.nav-cta{display:none;}
+    .nav-hamburger{display:flex;}
+    .prod-hero{padding:5rem 5vw 3rem;min-height:38vh;}
+    .prod-tabs{top:3.8rem;}
+    .prod-tab{padding:0.8rem 1.2rem;font-size:0.62rem;}
+    .prod-section{padding:3rem 5vw;scroll-margin-top:7rem;}
+    .prod-hero-card{grid-template-columns:1fr;min-height:auto;}
+    .prod-pkg-img{min-height:16rem;padding:1.5rem;}
+    .prod-info{padding:2rem 1.5rem;gap:1rem;}
+    .prod-name{font-size:clamp(1.8rem,7vw,2.8rem);}
+    .htu-steps{grid-template-columns:1fr 1fr;gap:1rem;}
+    .variants-grid{grid-template-columns:1fr 1fr;}
+    .wraps-grid{grid-template-columns:1fr;}
+    .storage-banner{padding:1.2rem 1.5rem;gap:1.5rem;}
+    footer{flex-direction:column;align-items:center;gap:1rem;text-align:center;}
+    .foot-links{gap:1rem;}
   }
   @media(max-width:420px){
-    .variants-grid { grid-template-columns:1fr; }
-    .htu-steps { grid-template-columns:1fr 1fr; }
+    .variants-grid{grid-template-columns:1fr;}
+    .htu-steps{grid-template-columns:1fr 1fr;}
   }
 </style>
 </head>
@@ -273,31 +198,29 @@
   <a href="index.html#contact-strip" class="mob-cta" onclick="toggleMenu()">Get in Touch</a>
 </div>
 
-<!-- PAGE HERO -->
+<!-- HERO -->
 <div class="prod-hero">
   <div class="prod-hero-bg"></div>
   <div class="prod-hero-eyebrow">Satvik · Preservative-Free · Flash Frozen</div>
   <h1 class="prod-hero-h1">Our <em>Products</em></h1>
-  <p class="prod-hero-sub">Every flatbread we make begins with one promise — clean ingredients, traditional care, and zero compromise. Homestyle quality at commercial scale.</p>
+  <p class="prod-hero-sub">Every flatbread begins with a promise — clean ingredients, traditional care, zero compromise. Homestyle quality at commercial scale.</p>
 </div>
 
-<!-- CATEGORY TABS -->
+<!-- STICKY TABS -->
 <div class="prod-tabs" id="prod-tabs">
-  <button class="prod-tab active" onclick="scrollTo('chapati')">Satvik Chapati</button>
-  <button class="prod-tab" onclick="scrollTo('puri')">Satvik Puri</button>
-  <button class="prod-tab" onclick="scrollTo('bhatura')">Bhatura</button>
-  <button class="prod-tab" onclick="scrollTo('wraps')">Wraps</button>
+  <button class="prod-tab active" onclick="jumpTo('chapati',this)">🫓 Satvik Chapati</button>
+  <button class="prod-tab" onclick="jumpTo('puri',this)">🫔 Satvik Puri</button>
+  <button class="prod-tab" onclick="jumpTo('bhatura',this)">🍽 Bhatura</button>
+  <button class="prod-tab" onclick="jumpTo('wraps',this)">🌯 Wraps</button>
 </div>
 
-<!-- ══════════════════════════════════════
-     CHAPATI SECTION
-══════════════════════════════════════ -->
+<!-- ══ CHAPATI ══ -->
 <section class="prod-section fade-up" id="chapati">
   <div class="prod-cat-label">Satvik Chapati</div>
   <h2 class="prod-cat-h2">The Flatbread<br><em>India Grew Up With</em></h2>
   <p class="prod-cat-desc">Made from 100% whole wheat, kneaded fresh, precision-rolled to uniform thickness, half-cooked, and flash-frozen at –18°C. No maida, no palm oil, no preservatives. Four variants — each with its own character, all with the same uncompromising quality.</p>
 
-  <!-- HERO: Regular Chapati -->
+  <!-- Hero: Regular Chapati — packaging + info side by side -->
   <div class="prod-hero-card fade-up">
     <div class="prod-pkg-img">
       <div class="prod-hero-badge">Hero Product</div>
@@ -305,7 +228,7 @@
     </div>
     <div class="prod-info">
       <div class="prod-eyebrow">Whole Wheat · Regular</div>
-      <div class="prod-name">Satvik<br><em>Chapati</em></div>
+      <div class="prod-name">Satvik <em>Chapati</em></div>
       <div class="prod-tagline">"The chapati your kitchen deserves."</div>
       <div class="prod-desc">Our signature flatbread — rolled thin to perfect uniform thickness, half-cooked to lock in softness and nutrition, then flash-frozen within minutes. Bake on a tawa in under 60 seconds. Soft, pliable, authentic.</div>
       <div class="prod-usps">
@@ -317,22 +240,10 @@
         <span class="prod-usp">Zero Trans Fat</span>
       </div>
       <div class="prod-pack-info">
-        <div class="pack-stat">
-          <div class="pack-stat-num">400g</div>
-          <div class="pack-stat-label">Pack Weight</div>
-        </div>
-        <div class="pack-stat">
-          <div class="pack-stat-num">10</div>
-          <div class="pack-stat-label">Per Pack</div>
-        </div>
-        <div class="pack-stat">
-          <div class="pack-stat-num">40g</div>
-          <div class="pack-stat-label">Per Chapati</div>
-        </div>
-        <div class="pack-stat">
-          <div class="pack-stat-num">1 yr</div>
-          <div class="pack-stat-label">Shelf Life (–18°C)</div>
-        </div>
+        <div class="pack-stat"><div class="pack-stat-num">400g</div><div class="pack-stat-label">Pack Weight</div></div>
+        <div class="pack-stat"><div class="pack-stat-num">10</div><div class="pack-stat-label">Per Pack</div></div>
+        <div class="pack-stat"><div class="pack-stat-num">40g</div><div class="pack-stat-label">Per Chapati</div></div>
+        <div class="pack-stat"><div class="pack-stat-num">1 yr</div><div class="pack-stat-label">Shelf Life</div></div>
       </div>
     </div>
   </div>
@@ -344,136 +255,63 @@
       <div class="htu-step">
         <div class="htu-step-num">01</div>
         <div class="htu-icon">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="6" width="24" height="28" rx="3" stroke="rgba(107,76,30,0.5)" stroke-width="1.5" fill="rgba(107,76,30,0.05)"/>
-            <line x1="12" y1="16" x2="28" y2="16" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
-            <line x1="12" y1="21" x2="28" y2="21" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
-            <path d="M16 28 L20 24 L24 28" stroke="rgba(196,98,45,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <circle cx="20" cy="10" r="3" stroke="rgba(107,76,30,0.4)" stroke-width="1" fill="none"/>
-          </svg>
+          <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="6" width="24" height="28" rx="3" stroke="rgba(107,76,30,0.5)" stroke-width="1.5" fill="rgba(107,76,30,0.05)"/><line x1="12" y1="16" x2="28" y2="16" stroke="rgba(107,76,30,0.3)" stroke-width="1"/><line x1="12" y1="21" x2="28" y2="21" stroke="rgba(107,76,30,0.3)" stroke-width="1"/><path d="M16 28 L20 24 L24 28" stroke="rgba(196,98,45,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
         </div>
-        <div class="htu-step-text">Remove chapati from freezer. Let it thaw on a dry cloth until no longer frozen.</div>
+        <div class="htu-step-text">Remove from freezer. Let thaw on a dry cloth until no longer frozen.</div>
       </div>
       <div class="htu-step">
         <div class="htu-step-num">02</div>
         <div class="htu-icon">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="20" cy="28" rx="14" ry="4" fill="rgba(28,20,8,0.25)" stroke="rgba(28,20,8,0.4)" stroke-width="1.5"/>
-            <ellipse cx="20" cy="25" rx="14" ry="4" fill="rgba(40,28,10,0.35)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/>
-            <path d="M8 18 L6 14 Q6 12 8 12 L32 12 Q34 12 34 14 L32 18Z" fill="rgba(28,20,8,0.2)" stroke="rgba(28,20,8,0.3)" stroke-width="1"/>
-            <path d="M14 20 Q16 16 20 18 Q24 20 26 16" stroke="rgba(245,239,224,0.3)" stroke-width="1" fill="none"/>
-            <path d="M16 8 Q17 5 16 2" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M20 7 Q21 4 20 1" stroke="rgba(255,160,0,0.7)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M24 8 Q25 5 24 2" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          </svg>
+          <svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="28" rx="14" ry="4" fill="rgba(28,20,8,0.25)" stroke="rgba(28,20,8,0.4)" stroke-width="1.5"/><ellipse cx="20" cy="25" rx="14" ry="4" fill="rgba(40,28,10,0.35)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/><path d="M16 8 Q17 5 16 2" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20 7 Q21 4 20 1" stroke="rgba(255,160,0,0.7)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M24 8 Q25 5 24 2" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
         </div>
         <div class="htu-step-text">Heat a non-stick tawa on low flame. Place chapati on tawa.</div>
       </div>
       <div class="htu-step">
         <div class="htu-step-num">03</div>
         <div class="htu-icon">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="20" cy="28" rx="14" ry="4" fill="rgba(40,28,10,0.3)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/>
-            <ellipse cx="20" cy="24" rx="14" ry="5" fill="rgba(240,220,175,0.85)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/>
-            <path d="M12 22 Q16 20 20 22 Q24 24 28 22" stroke="rgba(107,76,30,0.12)" stroke-width="1" fill="none"/>
-            <!-- flip arrow -->
-            <path d="M30 18 Q34 14 30 10" stroke="rgba(196,98,45,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none" marker-end="url(#arr)"/>
-            <path d="M30 10 L28 14 L32 14" stroke="rgba(196,98,45,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
+          <svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="28" rx="14" ry="4" fill="rgba(40,28,10,0.3)" stroke="rgba(107,76,30,0.4)" stroke-width="1.5"/><ellipse cx="20" cy="24" rx="14" ry="5" fill="rgba(240,220,175,0.85)" stroke="rgba(107,76,30,0.3)" stroke-width="1.5"/><path d="M30 18 Q34 14 30 10" stroke="rgba(196,98,45,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M30 10 L28 14 L32 14" stroke="rgba(196,98,45,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
         </div>
-        <div class="htu-step-text">Cook 20 sec, flip and cook 30 sec. Max 3 flips. Press gently to puff.</div>
+        <div class="htu-step-text">Cook 20 sec, flip, cook 30 sec. Max 3 flips. Press gently to puff.</div>
       </div>
       <div class="htu-step">
         <div class="htu-step-num">04</div>
         <div class="htu-icon">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="22" r="12" fill="rgba(245,239,224,0.15)" stroke="rgba(212,169,106,0.4)" stroke-width="1.5"/>
-            <circle cx="20" cy="22" r="8" fill="rgba(245,239,224,0.1)" stroke="rgba(212,169,106,0.25)" stroke-width="1"/>
-            <ellipse cx="20" cy="22" rx="6" ry="3.5" fill="rgba(240,220,175,0.85)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
-            <ellipse cx="20" cy="21" rx="6" ry="3.5" fill="rgba(240,220,175,0.9)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
-            <path d="M16 12 Q17 9 20 8 Q23 9 24 12" stroke="rgba(212,169,106,0.4)" stroke-width="1" stroke-linecap="round" fill="none"/>
-            <circle cx="28" cy="10" r="4" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/>
-            <path d="M25 10 L27 12 L31 8" stroke="#D4A96A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
+          <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="22" r="12" fill="rgba(245,239,224,0.15)" stroke="rgba(212,169,106,0.4)" stroke-width="1.5"/><ellipse cx="20" cy="21" rx="6" ry="3.5" fill="rgba(240,220,175,0.9)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/><circle cx="28" cy="10" r="4" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/><path d="M25 10 L27 12 L31 8" stroke="#D4A96A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
         </div>
-        <div class="htu-step-text">Add a little ghee or butter. Serve hot with dal, sabzi or curry.</div>
+        <div class="htu-step-text">Add ghee or butter. Serve hot with dal, sabzi or curry.</div>
       </div>
     </div>
   </div>
 
   <!-- Storage -->
   <div class="storage-banner fade-up">
-    <div class="storage-item">
-      <div class="storage-icon">❄️</div>
-      <div><div class="storage-text">Store at –18°C</div><div class="storage-sub">Deep freezer</div></div>
-    </div>
-    <div class="storage-item">
-      <div class="storage-icon">📅</div>
-      <div><div class="storage-text">1 Year Shelf Life</div><div class="storage-sub">Frozen, unopened</div></div>
-    </div>
-    <div class="storage-item">
-      <div class="storage-icon">⏱️</div>
-      <div><div class="storage-text">Ready in 60 Seconds</div><div class="storage-sub">From thaw to serve</div></div>
-    </div>
-    <div class="storage-item">
-      <div class="storage-icon">🌿</div>
-      <div><div class="storage-text">Zero Preservatives</div><div class="storage-sub">Every single batch</div></div>
-    </div>
+    <div class="storage-item"><div class="storage-icon">❄️</div><div><div class="storage-text">Store at –18°C</div><div class="storage-sub">Deep freezer</div></div></div>
+    <div class="storage-item"><div class="storage-icon">📅</div><div><div class="storage-text">1 Year Shelf Life</div><div class="storage-sub">Frozen, unopened</div></div></div>
+    <div class="storage-item"><div class="storage-icon">⏱️</div><div><div class="storage-text">Ready in 60 Seconds</div><div class="storage-sub">From thaw to serve</div></div></div>
+    <div class="storage-item"><div class="storage-icon">🌿</div><div><div class="storage-text">Zero Preservatives</div><div class="storage-sub">Every single batch</div></div></div>
   </div>
 
-  <!-- Ingredients + Nutrition -->
-  <div class="prod-details fade-up">
-    <div class="prod-ingredients">
-      <div class="detail-label">Ingredients</div>
-      <div class="ingr-list">
-        <span class="ingr-pill">Whole Wheat Flour (59%)</span>
-        <span class="ingr-pill">Milk</span>
-        <span class="ingr-pill">Water</span>
-        <span class="ingr-pill">Cold Pressed Sunflower Oil</span>
-        <span class="ingr-pill">Pink Salt</span>
-      </div>
-      <div class="ingr-note">Allergen: Contains wheat gluten and milk. Not suitable for lactose intolerant persons.</div>
-      <div class="ingr-note" style="margin-top:0.5rem;font-style:normal;font-weight:500;color:var(--earth);">"Fresh. Honest. Intentional."</div>
+  <!-- Ingredients only — no nutrition box -->
+  <div class="prod-ingredients fade-up">
+    <div class="detail-label">Ingredients</div>
+    <div class="ingr-list">
+      <span class="ingr-pill">Whole Wheat Flour (59%)</span>
+      <span class="ingr-pill">Water</span>
+      <span class="ingr-pill">Cold Pressed Sunflower Oil</span>
+      <span class="ingr-pill">Pink Salt</span>
     </div>
-    <div class="prod-nutrition">
-      <div class="detail-label" style="color:var(--wheat);">
-        <span style="display:inline-block;width:1rem;height:1px;background:var(--wheat);"></span>
-        Nutrition Facts
-      </div>
-      <div class="nut-serving" style="color:rgba(245,239,224,0.4);font-size:0.68rem;margin-bottom:0.5rem;">Per serving: 1 Chapati (40g)</div>
-      <div class="nutrition-header">
-        <div>
-          <div class="nut-label">Calories per serving</div>
-          <div class="nut-calories">130</div>
-        </div>
-        <div style="text-align:right;">
-          <div class="nut-label">% Daily Value</div>
-          <div style="font-size:0.65rem;color:rgba(245,239,224,0.3);">Based on 2000 cal diet</div>
-        </div>
-      </div>
-      <table class="nutrition-table">
-        <tr><td>Total Fat</td><td>4.5g</td><td>6%</td></tr>
-        <tr><td>Saturated Fat</td><td>0g</td><td>0%</td></tr>
-        <tr><td>Trans Fat</td><td>0g</td><td>—</td></tr>
-        <tr><td>Cholesterol</td><td>0mg</td><td>0%</td></tr>
-        <tr><td>Sodium</td><td>210mg</td><td>9%</td></tr>
-        <tr><td>Total Carbohydrate</td><td>19g</td><td>7%</td></tr>
-        <tr><td>Dietary Fiber</td><td>3g</td><td>11%</td></tr>
-        <tr><td>Total Sugars</td><td>0g</td><td>—</td></tr>
-        <tr><td>Protein</td><td>5g</td><td>8%</td></tr>
-        <tr><td>Iron</td><td>1.2mg</td><td>6%</td></tr>
-      </table>
-    </div>
+    <div class="ingr-note">Allergen: Contains wheat gluten. Not suitable for lactose intolerant persons.</div>
+    <div class="ingr-note" style="margin-top:0.5rem;font-style:normal;font-weight:500;color:var(--earth);">"Fresh. Honest. Intentional."</div>
   </div>
 
-  <!-- Chapati Variants -->
+  <!-- Variants -->
   <div class="variants-label">More Variants</div>
   <div class="variants-grid fade-up">
     <div class="variant-card">
       <div class="variant-img"><img src="pkg-chapati-spinach.jpg" alt="Spinach Chapati"></div>
       <div class="variant-body">
         <div class="variant-name">Spinach Chapati</div>
-        <div class="variant-desc">Kneaded with fresh spinach puree for a vibrant green hue and gentle earthy flavour. Naturally coloured — no dyes, no additives. Rich in iron and folate.</div>
+        <div class="variant-desc">Kneaded with fresh spinach puree for a vibrant green hue and gentle earthy flavour. Naturally coloured — iron-rich and wholesome.</div>
         <div class="variant-tags"><span class="variant-tag">Fresh Spinach</span><span class="variant-tag">Natural Colour</span><span class="variant-tag">Iron Rich</span></div>
       </div>
     </div>
@@ -481,7 +319,7 @@
       <div class="variant-img"><img src="pkg-chapati-beetroot.jpg" alt="Beetroot Chapati"></div>
       <div class="variant-body">
         <div class="variant-name">Beetroot Chapati</div>
-        <div class="variant-desc">Deep rose-pink from real beetroot — naturally sweet, antioxidant-rich, and stunning on the plate. A feast for the eyes and the body.</div>
+        <div class="variant-desc">Deep rose-pink from real beetroot. Naturally sweet, antioxidant-rich, and stunning on the plate.</div>
         <div class="variant-tags"><span class="variant-tag">Fresh Beetroot</span><span class="variant-tag">Antioxidants</span><span class="variant-tag">Natural Colour</span></div>
       </div>
     </div>
@@ -489,32 +327,30 @@
       <div class="variant-img"><img src="pkg-chapati-khapli.jpg" alt="Khapli Chapati"></div>
       <div class="variant-body">
         <div class="variant-name">Khapli Wheat Chapati</div>
-        <div class="variant-desc">Made from ancient Emmer wheat — naturally low GI, easier to digest, richer in fibre and protein. The smart choice for health-conscious kitchens.</div>
-        <div class="variant-tags"><span class="variant-tag">Khapli / Emmer</span><span class="variant-tag">Low GI</span><span class="variant-tag">High Fibre</span><span class="variant-tag">Diabetic-Friendly</span></div>
+        <div class="variant-desc">Ancient Emmer wheat — naturally low GI, easier to digest, richer in fibre and protein. The smart choice for health-conscious kitchens.</div>
+        <div class="variant-tags"><span class="variant-tag">Khapli / Emmer</span><span class="variant-tag">Low GI</span><span class="variant-tag">High Fibre</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     PURI SECTION
-══════════════════════════════════════ -->
+<!-- ══ PURI ══ -->
 <section class="prod-section fade-up" id="puri" style="background:var(--cream);">
   <div class="prod-cat-label">Satvik Puri</div>
   <h2 class="prod-cat-h2">Golden, Puffed,<br><em>Perfect Every Time</em></h2>
-  <p class="prod-cat-desc">Par-fried, consistency-tested, and ready to finish in 10–15 seconds. No rolling, no kneading, no prep — just slide into hot oil and serve golden, puffed puris every time. Built for speed without shortcuts.</p>
+  <p class="prod-cat-desc">Par-fried, consistency-tested, ready to finish in 10–15 seconds. No rolling, no kneading, no prep — just slide into hot oil and serve golden, puffed puris every time.</p>
 
-  <!-- HERO: Regular Puri -->
+  <!-- Hero: Regular Puri -->
   <div class="prod-hero-card fade-up">
-    <div class="prod-pkg-img" style="background:#fff5e8;">
-      <div class="prod-hero-badge">500g Pack</div>
+    <div class="prod-pkg-img" style="background:#fff8ee;">
+      <div class="prod-hero-badge">500g Pack of 20</div>
       <img src="pkg-puri-front.jpg" alt="Satvik Puri packaging">
     </div>
     <div class="prod-info" style="background:linear-gradient(135deg,#1a0f02,#2a1808);">
       <div class="prod-eyebrow">Half Baked · Ready to Fry</div>
-      <div class="prod-name">Satvik<br><em>Puri</em></div>
+      <div class="prod-name">Satvik <em>Puri</em></div>
       <div class="prod-tagline">"Now frying gets easier too."</div>
-      <div class="prod-desc">Par-fried for perfect puffing and golden colour. Minimal oil absorption. Remove from freezer, drop into hot oil — puffed, golden, beautiful in 10–15 seconds. Consistent across every batch.</div>
+      <div class="prod-desc">Par-fried for perfect puffing and golden colour with minimal oil absorption. Remove from freezer, drop into hot oil — puffed and beautiful in 10–15 seconds. Consistent across every batch, every service.</div>
       <div class="prod-usps">
         <span class="prod-usp">No Maida</span>
         <span class="prod-usp">No Palm Oil</span>
@@ -531,23 +367,23 @@
     </div>
   </div>
 
-  <!-- How To Use: Puri -->
-  <div class="how-to-use htu-puri fade-up">
+  <!-- How To Use: Puri (frying) -->
+  <div class="how-to-use fade-up" style="background:var(--pale);">
     <div class="htu-label">How To Use</div>
     <div class="htu-steps">
       <div class="htu-step">
         <div class="htu-step-num">01</div>
         <div class="htu-icon">
-          <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="6" width="24" height="28" rx="3" stroke="rgba(107,76,30,0.5)" stroke-width="1.5" fill="rgba(107,76,30,0.05)"/><line x1="8" y1="20" x2="32" y2="20" stroke="rgba(160,210,255,0.4)" stroke-width="1"/><line x1="10" y1="24" x2="30" y2="24" stroke="rgba(160,210,255,0.3)" stroke-width="1"/><circle cx="20" cy="13" r="4" fill="rgba(160,210,255,0.15)" stroke="rgba(160,210,255,0.4)" stroke-width="1"/><line x1="18" y1="12" x2="20" y2="10" stroke="rgba(160,210,255,0.5)" stroke-width="1"/><line x1="20" y1="10" x2="22" y2="12" stroke="rgba(160,210,255,0.5)" stroke-width="1"/></svg>
+          <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="6" width="24" height="28" rx="3" stroke="rgba(107,76,30,0.5)" stroke-width="1.5" fill="rgba(107,76,30,0.05)"/><line x1="8" y1="20" x2="32" y2="20" stroke="rgba(160,210,255,0.4)" stroke-width="1"/><circle cx="20" cy="13" r="4" fill="rgba(160,210,255,0.15)" stroke="rgba(160,210,255,0.4)" stroke-width="1"/></svg>
         </div>
-        <div class="htu-step-text">Take puris out of the freezer. Fry immediately — do not thaw.</div>
+        <div class="htu-step-text">Take puris straight from the freezer. Do not thaw — fry immediately.</div>
       </div>
       <div class="htu-step">
         <div class="htu-step-num">02</div>
         <div class="htu-icon">
-          <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="26" r="10" fill="rgba(200,130,20,0.2)" stroke="rgba(200,130,20,0.5)" stroke-width="1.5"/><path d="M14 22 Q17 18 20 22 Q23 26 26 22" stroke="rgba(200,130,20,0.4)" stroke-width="1" fill="none"/><path d="M16 10 Q17 7 16 4" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20 9 Q21 6 20 3" stroke="rgba(255,160,0,0.7)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M24 10 Q25 7 24 4" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/><text x="20" y="30" text-anchor="middle" font-family="Jost,sans-serif" font-size="5" fill="rgba(200,130,20,0.7)">180°C</text></svg>
+          <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="26" r="10" fill="rgba(200,130,20,0.2)" stroke="rgba(200,130,20,0.5)" stroke-width="1.5"/><path d="M16 10 Q17 7 16 4" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20 9 Q21 6 20 3" stroke="rgba(255,160,0,0.7)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M24 10 Q25 7 24 4" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/><text x="20" y="30" text-anchor="middle" font-family="Jost,sans-serif" font-size="5" fill="rgba(200,130,20,0.7)">180°C</text></svg>
         </div>
-        <div class="htu-step-text">Heat oil in a deep pan to medium flame (~180°C).</div>
+        <div class="htu-step-text">Heat oil in a deep pan on medium flame (~180°C).</div>
       </div>
       <div class="htu-step">
         <div class="htu-step-num">03</div>
@@ -559,287 +395,197 @@
       <div class="htu-step">
         <div class="htu-step-num">04</div>
         <div class="htu-icon">
-          <svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="28" rx="13" ry="5" fill="rgba(245,239,224,0.15)" stroke="rgba(212,169,106,0.4)" stroke-width="1.5"/><ellipse cx="20" cy="26" rx="8" ry="5" fill="rgba(220,165,50,0.85)" stroke="rgba(180,120,20,0.4)" stroke-width="1.5"/><circle cx="28" cy="12" r="5" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/><path d="M25 12 L27 14 L31 10" stroke="#D4A96A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <!-- Sabzi bowl SVG -->
+          <svg viewBox="0 0 40 40" fill="none">
+            <ellipse cx="20" cy="28" rx="14" ry="5" fill="rgba(245,239,224,0.15)" stroke="rgba(212,169,106,0.4)" stroke-width="1.5"/>
+            <path d="M6 24 Q6 34 20 35 Q34 34 34 24 Z" fill="rgba(180,120,10,0.25)" stroke="rgba(200,140,20,0.4)" stroke-width="1.5"/>
+            <!-- sabzi bits -->
+            <circle cx="14" cy="28" r="2.5" fill="rgba(80,140,30,0.7)"/>
+            <circle cx="20" cy="26" r="2" fill="rgba(200,140,20,0.8)"/>
+            <circle cx="26" cy="29" r="2.5" fill="rgba(80,140,30,0.65)"/>
+            <circle cx="17" cy="31" r="1.8" fill="rgba(200,130,10,0.7)"/>
+            <circle cx="24" cy="26" r="1.8" fill="rgba(160,80,10,0.6)"/>
+            <circle cx="28" cy="10" r="4" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/>
+            <path d="M25 10 L27 12 L31 8" stroke="#D4A96A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
         </div>
-        <div class="htu-step-text">Drain on paper. Serve hot with subzi, chutney or halwa.</div>
+        <div class="htu-step-text">Drain on paper. Serve hot with sabzi or chutney.</div>
       </div>
     </div>
   </div>
 
-  <!-- Ingredients + Nutrition: Puri -->
-  <div class="prod-details fade-up" style="margin-top:1rem;">
-    <div class="prod-ingredients">
-      <div class="detail-label">Ingredients</div>
-      <div class="ingr-list">
-        <span class="ingr-pill">Whole Wheat Flour (59%)</span>
-        <span class="ingr-pill">Water</span>
-        <span class="ingr-pill">Semolina (Rawa)</span>
-        <span class="ingr-pill">Pink Salt</span>
-      </div>
-      <div class="ingr-note">Allergen: Contains wheat gluten. Consume within 5 days of opening the packet.</div>
+  <!-- Storage -->
+  <div class="storage-banner fade-up" style="background:#5a3a10;">
+    <div class="storage-item"><div class="storage-icon">❄️</div><div><div class="storage-text">Store at 0°C</div><div class="storage-sub">Regular freezer</div></div></div>
+    <div class="storage-item"><div class="storage-icon">📅</div><div><div class="storage-text">15-Day Shelf Life</div><div class="storage-sub">Refrigerated</div></div></div>
+    <div class="storage-item"><div class="storage-icon">⚡</div><div><div class="storage-text">10–15 Seconds</div><div class="storage-sub">Fry time from frozen</div></div></div>
+    <div class="storage-item"><div class="storage-icon">🌿</div><div><div class="storage-text">Zero Preservatives</div><div class="storage-sub">Every batch</div></div></div>
+  </div>
+
+  <!-- Ingredients: Puri -->
+  <div class="prod-ingredients fade-up">
+    <div class="detail-label">Ingredients</div>
+    <div class="ingr-list">
+      <span class="ingr-pill">Whole Wheat Flour (59%)</span>
+      <span class="ingr-pill">Water</span>
+      <span class="ingr-pill">Semolina (Rawa)</span>
+      <span class="ingr-pill">Pink Salt</span>
     </div>
-    <div class="prod-nutrition">
-      <div class="detail-label" style="color:var(--wheat);">
-        <span style="display:inline-block;width:1rem;height:1px;background:var(--wheat);"></span>
-        Nutrition Facts
-      </div>
-      <div class="nut-serving" style="color:rgba(245,239,224,0.4);font-size:0.68rem;margin-bottom:0.5rem;">Per serving: 1 Puri (25g)</div>
-      <div class="nutrition-header">
-        <div><div class="nut-label">Calories per serving</div><div class="nut-calories">130</div></div>
-      </div>
-      <table class="nutrition-table">
-        <tr><td>Total Fat</td><td>4.5g</td><td>6%</td></tr>
-        <tr><td>Trans Fat</td><td>0g</td><td>—</td></tr>
-        <tr><td>Cholesterol</td><td>0mg</td><td>0%</td></tr>
-        <tr><td>Sodium</td><td>210mg</td><td>9%</td></tr>
-        <tr><td>Total Carbohydrate</td><td>19g</td><td>7%</td></tr>
-        <tr><td>Dietary Fiber</td><td>3g</td><td>11%</td></tr>
-        <tr><td>Total Sugars</td><td>0g</td><td>—</td></tr>
-        <tr><td>Protein</td><td>5g</td><td>8%</td></tr>
-        <tr><td>Iron</td><td>1.2mg</td><td>6%</td></tr>
-      </table>
-    </div>
+    <div class="ingr-note">Allergen: Contains wheat gluten. Consume within 5 days of opening the packet.</div>
   </div>
 
   <!-- Puri Variants -->
-  <div class="variants-label" style="margin-top:1.5rem;">More Variants</div>
+  <div class="variants-label">More Variants</div>
   <div class="variants-grid fade-up">
     <div class="variant-card">
       <div class="variant-img" style="background:#fff5e8;"><img src="pkg-puri-masala.jpg" alt="Masala Puri"></div>
       <div class="variant-body">
         <div class="variant-name">Masala Puri</div>
-        <div class="variant-desc">Spiced whole wheat puris with a warming blend of cumin, coriander, and mild spices. Pairs beautifully with aloo sabzi or chutney.</div>
-        <div class="variant-tags"><span class="variant-tag">Spiced</span><span class="variant-tag">Whole Wheat</span></div>
+        <div class="variant-desc">Whole wheat puris with a warming blend of spices. Same golden puff, bolder flavour. Pairs beautifully with aloo sabzi or chole.</div>
+        <div class="variant-tags"><span class="variant-tag">Spiced</span><span class="variant-tag">Whole Wheat</span><span class="variant-tag">Ready to Fry</span></div>
       </div>
     </div>
     <div class="variant-card">
       <div class="variant-img" style="background:#fff5e8;"><img src="pkg-tricolor-front.jpg" alt="Tri-Color Puri"></div>
       <div class="variant-body">
         <div class="variant-name">Tri-Color Puri</div>
-        <div class="variant-desc">Spinach, beetroot and turmeric — three naturally coloured puris in every pack. No artificial colours. Just real food. A visual celebration on any plate.</div>
-        <div class="variant-tags"><span class="variant-tag">Spinach</span><span class="variant-tag">Beetroot</span><span class="variant-tag">Turmeric</span><span class="variant-tag">No Artificial Colour</span></div>
+        <div class="variant-desc">Spinach, beetroot and turmeric — three naturally coloured puris per pack. No artificial colours. A visual celebration on any plate.</div>
+        <div class="variant-tags"><span class="variant-tag">Spinach</span><span class="variant-tag">Beetroot</span><span class="variant-tag">Turmeric</span></div>
       </div>
     </div>
     <div class="variant-card">
-      <div class="variant-img" style="background:#fff5e8;display:flex;align-items:center;justify-content:center;">
-        <!-- Aloo Puri SVG illustration -->
-        <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:140px;height:140px;">
-          <circle cx="90" cy="90" r="85" fill="rgba(220,165,50,0.1)"/>
-          <!-- Bowl -->
-          <ellipse cx="90" cy="130" rx="55" ry="15" fill="rgba(107,76,30,0.15)"/>
-          <path d="M35 90 Q35 140 90 145 Q145 140 145 90 Z" fill="rgba(245,239,224,0.85)" stroke="rgba(107,76,30,0.25)" stroke-width="2"/>
-          <!-- Puri stack -->
-          <ellipse cx="90" cy="105" rx="38" ry="10" fill="rgba(200,145,40,0.7)" stroke="rgba(180,120,20,0.4)" stroke-width="1.5"/>
-          <ellipse cx="90" cy="98" rx="38" ry="10" fill="rgba(215,158,45,0.85)" stroke="rgba(180,120,20,0.45)" stroke-width="1.5"/>
-          <ellipse cx="90" cy="91" rx="38" ry="11" fill="rgba(228,172,50,0.95)" stroke="rgba(180,120,20,0.5)" stroke-width="2"/>
-          <!-- Aloo sabzi suggestion -->
-          <circle cx="58" cy="65" r="18" fill="rgba(220,170,30,0.3)" stroke="rgba(180,130,20,0.35)" stroke-width="1.5"/>
-          <circle cx="62" cy="60" r="4" fill="rgba(200,140,20,0.5)"/>
-          <circle cx="55" cy="67" r="3.5" fill="rgba(180,120,20,0.4)"/>
-          <circle cx="62" cy="71" r="3" fill="rgba(200,140,20,0.45)"/>
-          <text x="90" y="170" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="12" fill="rgba(107,76,30,0.4)" font-style="italic">Aloo Puri</text>
-        </svg>
-      </div>
+      <div class="variant-img" style="background:#fff5e8;"><img src="pkg-puri-aloo.jpg" alt="Aloo Puri"></div>
       <div class="variant-body">
         <div class="variant-name">Aloo Puri</div>
-        <div class="variant-desc">Whole wheat puris with a hint of aloo masala blended into the dough. Soft inside, golden outside. Pairs perfectly with chole or any gravy.</div>
-        <div class="variant-tags"><span class="variant-tag">Aloo Masala</span><span class="variant-tag">Whole Wheat</span></div>
+        <div class="variant-desc">Whole wheat puris with aloo masala blended into the dough. Soft inside, golden outside. Perfect with chole or any gravy.</div>
+        <div class="variant-tags"><span class="variant-tag">Aloo Masala</span><span class="variant-tag">Whole Wheat</span><span class="variant-tag">Ready to Fry</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     BHATURA SECTION
-══════════════════════════════════════ -->
+<!-- ══ BHATURA ══ -->
 <section class="prod-section fade-up" id="bhatura">
   <div class="prod-cat-label">Coming Soon</div>
   <h2 class="prod-cat-h2">Whole Wheat<br><em>Bhatura</em></h2>
-  <p class="prod-cat-desc">Oval-shaped, medium-sized, shiny brown whole wheat bhaturas — crafted for the perfect puff without the maida. Designed for commercial kitchens that serve chole bhatura at scale, without compromising on texture or authenticity.</p>
+  <p class="prod-cat-desc">Oval-shaped, medium-sized, shiny golden whole wheat bhaturas — crafted for the perfect puff without the maida. For commercial kitchens that serve chole bhatura at scale without compromising on texture or authenticity.</p>
 
   <div class="prod-hero-card fade-up">
-    <!-- Bhatura SVG illustration -->
-    <div class="bhatura-art">
-      <svg viewBox="0 0 520 460" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;max-height:420px;">
-        <!-- Background glow -->
-        <radialGradient id="glow" cx="50%" cy="55%" r="45%">
-          <stop offset="0%" stop-color="rgba(200,140,30,0.3)"/>
-          <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
-        </radialGradient>
-        <ellipse cx="260" cy="260" rx="200" ry="160" fill="url(#glow)"/>
-
-        <!-- Oil sheen surface -->
-        <ellipse cx="260" cy="340" rx="180" ry="40" fill="rgba(180,100,10,0.25)"/>
-
-        <!-- BHATURA 3 — back left -->
-        <ellipse cx="170" cy="285" rx="80" ry="52" fill="rgba(170,100,15,0.7)" stroke="rgba(140,80,10,0.5)" stroke-width="1.5"/>
-        <ellipse cx="160" cy="278" rx="70" ry="44" fill="rgba(185,115,20,0.8)" stroke="rgba(150,90,15,0.4)" stroke-width="1"/>
-        <!-- surface texture b3 -->
-        <path d="M120 275 Q145 268 170 272 Q195 276 215 270" stroke="rgba(140,80,10,0.15)" stroke-width="1" fill="none"/>
-        <circle cx="148" cy="282" r="5" fill="rgba(140,80,10,0.2)"/>
-        <circle cx="178" cy="275" r="4" fill="rgba(140,80,10,0.18)"/>
-        <ellipse cx="160" cy="258" rx="30" ry="12" fill="rgba(255,255,255,0.06)"/>
-
-        <!-- BHATURA 2 — back right -->
-        <ellipse cx="355" cy="278" rx="85" ry="55" fill="rgba(175,108,18,0.72)" stroke="rgba(140,85,12,0.5)" stroke-width="1.5"/>
-        <ellipse cx="348" cy="270" rx="74" ry="46" fill="rgba(192,122,22,0.82)" stroke="rgba(155,95,16,0.4)" stroke-width="1"/>
-        <path d="M308 270 Q330 262 358 266 Q382 270 400 262" stroke="rgba(140,80,10,0.15)" stroke-width="1" fill="none"/>
-        <circle cx="335" cy="276" r="5" fill="rgba(140,80,10,0.18)"/>
-        <circle cx="368" cy="268" r="6" fill="rgba(140,80,10,0.2)"/>
-        <ellipse cx="348" cy="252" rx="32" ry="13" fill="rgba(255,255,255,0.07)"/>
-
-        <!-- BHATURA 1 — HERO front centre -->
-        <!-- Shadow -->
-        <ellipse cx="262" cy="348" rx="110" ry="22" fill="rgba(0,0,0,0.3)"/>
-        <!-- Body -->
-        <ellipse cx="262" cy="248" rx="115" ry="78" fill="rgba(165,92,12,0.6)" stroke="rgba(130,70,8,0.5)" stroke-width="2"/>
-        <ellipse cx="262" cy="238" rx="112" ry="75" fill="rgba(198,128,24,0.9)" stroke="rgba(155,90,14,0.5)" stroke-width="2"/>
-        <!-- Rich golden brown tone layering -->
-        <ellipse cx="262" cy="232" rx="100" ry="66" fill="rgba(210,140,28,0.7)"/>
-        <ellipse cx="255" cy="222" rx="85" ry="55" fill="rgba(225,158,35,0.5)"/>
-        <!-- Signature puffed dome highlight -->
-        <ellipse cx="242" cy="210" rx="55" ry="32" fill="rgba(255,220,100,0.18)" transform="rotate(-12 242 210)"/>
-        <ellipse cx="235" cy="205" rx="32" ry="18" fill="rgba(255,240,160,0.12)" transform="rotate(-15 235 205)"/>
-        <!-- Brown spots / char marks -->
-        <circle cx="220" cy="235" r="8" fill="rgba(130,65,8,0.25)"/>
-        <circle cx="248" cy="258" r="6" fill="rgba(130,65,8,0.2)"/>
-        <circle cx="295" cy="242" r="7" fill="rgba(130,65,8,0.22)"/>
-        <circle cx="270" cy="218" r="5" fill="rgba(130,65,8,0.18)"/>
-        <circle cx="310" cy="265" r="9" fill="rgba(130,65,8,0.2)"/>
-        <circle cx="188" cy="248" r="6" fill="rgba(130,65,8,0.18)"/>
-        <!-- surface ridges -->
-        <path d="M175 240 Q210 228 250 234 Q290 240 330 228" stroke="rgba(155,90,14,0.15)" stroke-width="2" fill="none"/>
-        <path d="M170 256 Q208 246 252 252 Q295 258 338 246" stroke="rgba(155,90,14,0.12)" stroke-width="1.5" fill="none"/>
-        <path d="M180 272 Q215 264 255 268 Q295 272 332 262" stroke="rgba(155,90,14,0.1)" stroke-width="1.5" fill="none"/>
-        <!-- Oil sheen on edge -->
-        <path d="M150 248 Q148 300 200 330 Q260 350 325 330 Q375 305 372 250" stroke="rgba(200,150,30,0.12)" stroke-width="3" fill="none"/>
-
-        <!-- Steam wisps -->
-        <path d="M200 178 Q202 165 198 152 Q194 139 198 126" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path d="M255 170 Q258 155 254 140 Q250 125 255 110" stroke="rgba(255,255,255,0.25)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M310 178 Q313 165 309 152 Q305 139 310 126" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" fill="none"/>
-
-        <!-- Oil droplets -->
-        <circle cx="150" cy="320" r="4" fill="rgba(200,140,20,0.3)"/>
-        <circle cx="145" cy="328" r="3" fill="rgba(200,140,20,0.25)"/>
-        <circle cx="370" cy="318" r="4" fill="rgba(200,140,20,0.3)"/>
-        <circle cx="375" cy="326" r="2.5" fill="rgba(200,140,20,0.22)"/>
-
-        <!-- Label -->
-        <rect x="170" y="390" width="180" height="40" rx="4" fill="rgba(28,20,8,0.5)" stroke="rgba(212,169,106,0.3)" stroke-width="1"/>
-        <text x="260" y="406" text-anchor="middle" font-family="Jost,sans-serif" font-size="8" fill="rgba(212,169,106,0.5)" letter-spacing="1.5">COMING SOON</text>
-        <text x="260" y="422" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="14" font-weight="300" fill="rgba(245,239,224,0.8)" font-style="italic">Whole Wheat Bhatura</text>
-      </svg>
+    <div class="prod-pkg-img" style="background:#0f0800;padding:0;overflow:hidden;">
+      <img src="bhatura.jpg" alt="Whole Wheat Bhatura" style="width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 30%;">
     </div>
     <div class="prod-info" style="background:linear-gradient(135deg,#160a00,#221208);">
       <div class="prod-eyebrow">Oval · Whole Wheat · Par-Fried</div>
-      <div class="prod-name">Whole Wheat<br><em>Bhatura</em></div>
+      <div class="prod-name">Whole Wheat <em>Bhatura</em></div>
       <div class="prod-tagline">"Chole bhatura, without the compromise."</div>
-      <div class="prod-desc">Medium-sized oval bhaturas made from 100% whole wheat — shiny, golden brown, perfectly puffed. Designed for commercial kitchens that serve chole bhatura at scale. No maida, no shortcuts, just authentic flavour and texture your guests will remember.</div>
+      <div class="prod-desc">Medium-sized oval bhaturas made from 100% whole wheat — golden brown, perfectly puffed and shiny. No maida, no shortcuts. Designed for kitchens that need speed and authenticity in equal measure.</div>
       <div class="prod-usps">
         <span class="prod-usp">100% Whole Wheat</span>
         <span class="prod-usp">No Maida</span>
         <span class="prod-usp">Oval Shape</span>
-        <span class="prod-usp">Medium Sized</span>
         <span class="prod-usp">Par-Fried</span>
         <span class="prod-usp">Ready to Fry</span>
       </div>
-      <div style="padding:1.2rem;background:rgba(212,169,106,0.08);border:1px solid rgba(212,169,106,0.2);margin-top:0.5rem;">
+      <div style="padding:1.2rem;background:rgba(212,169,106,0.08);border:1px solid rgba(212,169,106,0.2);">
         <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--wheat);font-weight:500;margin-bottom:0.4rem;">🚀 Coming Soon</div>
-        <div style="font-size:0.82rem;font-weight:300;color:rgba(245,239,224,0.6);line-height:1.7;">We're perfecting the recipe. Want to be first to know when Bhatura is available?</div>
+        <div style="font-size:0.82rem;font-weight:300;color:rgba(245,239,224,0.6);line-height:1.7;">We're perfecting the recipe. Want to be first to know?</div>
         <a href="index.html#contact-strip" style="display:inline-flex;margin-top:0.8rem;background:var(--rust);color:#fff;padding:0.55rem 1.3rem;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;text-decoration:none;">Notify Me →</a>
       </div>
     </div>
   </div>
+
+  <!-- How To Use: Bhatura (same as puri but serve with sabzi) -->
+  <div class="how-to-use fade-up">
+    <div class="htu-label">How To Use</div>
+    <div class="htu-steps">
+      <div class="htu-step">
+        <div class="htu-step-num">01</div>
+        <div class="htu-icon">
+          <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="6" width="24" height="28" rx="3" stroke="rgba(107,76,30,0.5)" stroke-width="1.5" fill="rgba(107,76,30,0.05)"/><line x1="8" y1="20" x2="32" y2="20" stroke="rgba(160,210,255,0.4)" stroke-width="1"/><circle cx="20" cy="13" r="4" fill="rgba(160,210,255,0.15)" stroke="rgba(160,210,255,0.4)" stroke-width="1"/></svg>
+        </div>
+        <div class="htu-step-text">Take bhaturas straight from the freezer. Do not thaw — fry immediately.</div>
+      </div>
+      <div class="htu-step">
+        <div class="htu-step-num">02</div>
+        <div class="htu-icon">
+          <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="26" r="10" fill="rgba(200,130,20,0.2)" stroke="rgba(200,130,20,0.5)" stroke-width="1.5"/><path d="M16 10 Q17 7 16 4" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20 9 Q21 6 20 3" stroke="rgba(255,160,0,0.7)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M24 10 Q25 7 24 4" stroke="rgba(255,140,0,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/><text x="20" y="30" text-anchor="middle" font-family="Jost,sans-serif" font-size="5" fill="rgba(200,130,20,0.7)">180°C</text></svg>
+        </div>
+        <div class="htu-step-text">Heat oil in a deep kadhai on medium flame (~180°C).</div>
+      </div>
+      <div class="htu-step">
+        <div class="htu-step-num">03</div>
+        <div class="htu-icon">
+          <svg viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="26" rx="11" ry="7" fill="rgba(200,130,20,0.2)" stroke="rgba(200,130,20,0.4)" stroke-width="1.5"/><ellipse cx="20" cy="23" rx="10" ry="6" fill="rgba(210,150,30,0.7)" stroke="rgba(180,110,15,0.5)" stroke-width="1.5"/><ellipse cx="19" cy="21" rx="7" ry="4" fill="rgba(225,165,35,0.85)"/></svg>
+        </div>
+        <div class="htu-step-text">Slide bhatura into oil. Press lightly — it will puff and turn golden. Flip once.</div>
+      </div>
+      <div class="htu-step">
+        <div class="htu-step-num">04</div>
+        <div class="htu-icon">
+          <svg viewBox="0 0 40 40" fill="none">
+            <ellipse cx="20" cy="29" rx="14" ry="5" fill="rgba(107,76,30,0.15)" stroke="rgba(212,169,106,0.35)" stroke-width="1.5"/>
+            <path d="M6 25 Q6 35 20 36 Q34 35 34 25 Z" fill="rgba(140,80,10,0.2)" stroke="rgba(180,110,15,0.35)" stroke-width="1.5"/>
+            <circle cx="13" cy="29" r="3" fill="rgba(60,120,20,0.7)"/>
+            <circle cx="20" cy="27" r="2.5" fill="rgba(180,120,10,0.8)"/>
+            <circle cx="27" cy="30" r="3" fill="rgba(60,120,20,0.65)"/>
+            <circle cx="17" cy="32" r="2" fill="rgba(160,100,10,0.7)"/>
+            <circle cx="24" cy="27" r="2" fill="rgba(60,120,20,0.6)"/>
+            <circle cx="28" cy="10" r="4" fill="rgba(107,76,30,0.6)" stroke="rgba(212,169,106,0.4)" stroke-width="1"/>
+            <path d="M25 10 L27 12 L31 8" stroke="#D4A96A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="htu-step-text">Drain on paper. Serve hot with chole or sabzi.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     WRAPS SECTION
-══════════════════════════════════════ -->
+<!-- ══ WRAPS ══ -->
 <section class="prod-section fade-up" id="wraps" style="background:var(--deep);">
-  <div class="prod-cat-label" style="color:var(--wheat);">
-    <span style="display:inline-block;width:1.5rem;height:1px;background:var(--wheat);"></span>
-    Satvik Wraps
-  </div>
-  <h2 class="prod-cat-h2" style="color:var(--cream);">12-Inch <em style="color:var(--wheat);">Wraps</em><br><span style="color:rgba(245,239,224,0.6);">Built for Every Kitchen</span></h2>
-  <p class="prod-cat-desc" style="color:rgba(245,239,224,0.6);">Large 12-inch whole wheat wraps — ideal for rolls, kathi rolls, quesadillas, and wraps of all kinds. Naturally coloured variants for a stunning visual spread. No preservatives, no maida.</p>
+  <div class="prod-cat-label" style="color:var(--wheat);"><span style="display:inline-block;width:1.5rem;height:1px;background:var(--wheat);margin-right:0.8rem;"></span>Satvik Wraps</div>
+  <h2 class="prod-cat-h2" style="color:var(--cream);">12-Inch <em style="color:var(--wheat);">Wraps</em></h2>
+  <p class="prod-cat-desc" style="color:rgba(245,239,224,0.6);">Large 12-inch whole wheat wraps — ideal for rolls, kathi rolls, and wraps of all kinds. Naturally coloured variants for a stunning visual spread. No preservatives, no maida.</p>
 
   <div class="wraps-grid fade-up">
-    <!-- Regular Wrap -->
-    <div class="prod-hero-card" style="grid-template-columns:1fr;margin-bottom:0;">
-      <div class="prod-pkg-img" style="min-height:16rem;background:rgba(245,239,224,0.05);">
-        <img src="wrap1.jpg" alt="Regular Whole Wheat Wrap" style="max-width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div class="prod-info" style="padding:2rem;">
-        <div class="prod-eyebrow" style="font-size:0.6rem;">Regular · 12 inch</div>
-        <div class="prod-name" style="font-size:1.8rem;">Whole Wheat<br><em>Wrap</em></div>
-        <div class="prod-desc" style="font-size:0.82rem;">Our classic 12-inch whole wheat wrap — thin, pliable, and strong enough to hold any filling. Perfect for kathi rolls, shawarma-style wraps, or breakfast burritos. The everyday kitchen workhorse.</div>
-        <div class="prod-usps" style="margin-top:0.8rem;">
-          <span class="prod-usp">12 Inch</span>
-          <span class="prod-usp">Whole Wheat</span>
-          <span class="prod-usp">No Maida</span>
-        </div>
+    <div class="wrap-card">
+      <div class="wrap-img"><img src="wrap1.jpg" alt="Whole Wheat Wrap"></div>
+      <div class="wrap-info">
+        <div class="wrap-name">Whole Wheat Wrap</div>
+        <div class="wrap-desc">Our classic 12-inch whole wheat wrap — thin, pliable, and strong enough to hold any filling. The everyday kitchen workhorse.</div>
+        <div class="wrap-tags"><span class="wrap-tag">12 Inch</span><span class="wrap-tag">Whole Wheat</span><span class="wrap-tag">No Maida</span></div>
       </div>
     </div>
-
-    <!-- Spinach Wrap -->
-    <div class="prod-hero-card" style="grid-template-columns:1fr;margin-bottom:0;">
-      <div class="prod-pkg-img" style="min-height:16rem;background:rgba(245,239,224,0.05);">
-        <img src="wrap3.jpg" alt="Spinach Wrap" style="max-width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div class="prod-info" style="padding:2rem;background:rgba(45,90,39,0.4);">
-        <div class="prod-eyebrow" style="font-size:0.6rem;">Spinach · 12 inch</div>
-        <div class="prod-name" style="font-size:1.8rem;">Spinach<br><em>Wrap</em></div>
-        <div class="prod-desc" style="font-size:0.82rem;">Vibrant green from real spinach puree — a visual statement on any platter. Earthy, slightly savoury, with a softer bite. Brilliant for health-forward menus and colourful platters.</div>
-        <div class="prod-usps" style="margin-top:0.8rem;">
-          <span class="prod-usp">Fresh Spinach</span>
-          <span class="prod-usp">Natural Colour</span>
-          <span class="prod-usp">Iron Rich</span>
-        </div>
+    <div class="wrap-card">
+      <div class="wrap-img"><img src="wrap3.jpg" alt="Spinach Wrap"></div>
+      <div class="wrap-info">
+        <div class="wrap-name">Spinach Wrap</div>
+        <div class="wrap-desc">Vibrant green from real spinach puree — earthy, savoury, with a softer bite. Brilliant for health-forward menus and colourful platters.</div>
+        <div class="wrap-tags"><span class="wrap-tag">Fresh Spinach</span><span class="wrap-tag">Natural Colour</span><span class="wrap-tag">Iron Rich</span></div>
       </div>
     </div>
-
-    <!-- Beetroot Wrap -->
-    <div class="prod-hero-card" style="grid-template-columns:1fr;margin-bottom:0;">
-      <div class="prod-pkg-img" style="min-height:16rem;background:rgba(245,239,224,0.05);">
-        <img src="wrap4.jpg" alt="Beetroot Wrap" style="max-width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div class="prod-info" style="padding:2rem;background:rgba(90,20,35,0.4);">
-        <div class="prod-eyebrow" style="font-size:0.6rem;">Beetroot · 12 inch</div>
-        <div class="prod-name" style="font-size:1.8rem;">Beetroot<br><em>Wrap</em></div>
-        <div class="prod-desc" style="font-size:0.82rem;">Deep rose-pink from real beetroot — naturally sweet with a mild earthiness. Antioxidant-rich and absolutely stunning on the plate. The wrap that gets noticed before it's even tasted.</div>
-        <div class="prod-usps" style="margin-top:0.8rem;">
-          <span class="prod-usp">Fresh Beetroot</span>
-          <span class="prod-usp">Natural Colour</span>
-          <span class="prod-usp">Antioxidants</span>
-        </div>
+    <div class="wrap-card">
+      <div class="wrap-img"><img src="wrap4.jpg" alt="Beetroot Wrap"></div>
+      <div class="wrap-info">
+        <div class="wrap-name">Beetroot Wrap</div>
+        <div class="wrap-desc">Deep rose-pink from real beetroot — naturally sweet with a mild earthiness. Antioxidant-rich and absolutely stunning. The wrap that gets noticed.</div>
+        <div class="wrap-tags"><span class="wrap-tag">Fresh Beetroot</span><span class="wrap-tag">Natural Colour</span><span class="wrap-tag">Antioxidants</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Wraps storage note -->
-  <div class="storage-banner" style="background:rgba(212,169,106,0.1);border-color:rgba(212,169,106,0.2);margin-top:1.5rem;">
-    <div class="storage-item">
-      <div class="storage-icon">📏</div>
-      <div><div class="storage-text" style="color:var(--cream);">12 Inches</div><div class="storage-sub">Perfect for commercial portions</div></div>
-    </div>
-    <div class="storage-item">
-      <div class="storage-icon">🌿</div>
-      <div><div class="storage-text" style="color:var(--cream);">Naturally Coloured</div><div class="storage-sub">No artificial dyes</div></div>
-    </div>
-    <div class="storage-item">
-      <div class="storage-icon">❄️</div>
-      <div><div class="storage-text" style="color:var(--cream);">Flash Frozen</div><div class="storage-sub">Peak freshness preserved</div></div>
-    </div>
+  <div class="storage-banner" style="background:rgba(212,169,106,0.1);border-color:rgba(212,169,106,0.15);margin-top:1.5rem;">
+    <div class="storage-item"><div class="storage-icon">📏</div><div><div class="storage-text" style="color:var(--cream);">12 Inches</div><div class="storage-sub">Commercial portions</div></div></div>
+    <div class="storage-item"><div class="storage-icon">🌿</div><div><div class="storage-text" style="color:var(--cream);">Naturally Coloured</div><div class="storage-sub">No artificial dyes</div></div></div>
+    <div class="storage-item"><div class="storage-icon">❄️</div><div><div class="storage-text" style="color:var(--cream);">Flash Frozen</div><div class="storage-sub">Peak freshness preserved</div></div></div>
   </div>
 </section>
 
-<!-- CTA STRIP -->
+<!-- CTA -->
 <section style="padding:5rem 7vw;background:var(--earth);text-align:center;">
   <div style="font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,239,224,0.6);font-weight:500;margin-bottom:1rem;">For Commercial Kitchens</div>
-  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:var(--cream);line-height:1.05;margin-bottom:1rem;">Ready to Stock<br><em style="font-style:italic;color:var(--wheat);">Ethical Delights?</em></h2>
-  <p style="font-size:0.95rem;font-weight:300;color:rgba(245,239,224,0.65);max-width:50ch;margin:0 auto 2rem;line-height:1.85;">Whether you're a caterer, hotel, cloud kitchen or industrial facility — we have a solution for your scale. Talk to us about bulk pricing and custom orders.</p>
-  <a href="index.html#contact-strip" style="display:inline-flex;align-items:center;gap:0.8rem;background:var(--deep);color:var(--wheat);padding:1rem 2.5rem;font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;text-decoration:none;font-weight:500;border:1px solid rgba(212,169,106,0.3);transition:background 0.3s;">Get in Touch →</a>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:var(--cream);line-height:1.05;margin-bottom:1rem;">Ready to Stock<br><em style="color:var(--wheat);">Ethical Delights?</em></h2>
+  <p style="font-size:0.95rem;font-weight:300;color:rgba(245,239,224,0.65);max-width:50ch;margin:0 auto 2rem;line-height:1.85;">Whether you're a caterer, hotel, cloud kitchen or industrial facility — we have a solution for your scale.</p>
+  <a href="index.html#contact-strip" style="display:inline-flex;align-items:center;gap:0.8rem;background:var(--deep);color:var(--wheat);padding:1rem 2.5rem;font-size:0.75rem;letter-spacing:0.13em;text-transform:uppercase;text-decoration:none;font-weight:500;border:1px solid rgba(212,169,106,0.3);">Get in Touch →</a>
 </section>
 
 <footer>
@@ -867,11 +613,16 @@
     document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
   };
 
-  // Tab scroll
-  window.scrollTo = function(id) {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Tab click — scroll to section with offset for sticky nav
+  window.jumpTo = function(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const tabsH = document.getElementById('prod-tabs').offsetHeight;
+    const navH = document.getElementById('navbar').offsetHeight;
+    const top = el.getBoundingClientRect().top + window.scrollY - navH - tabsH - 8;
+    window.scrollTo({ top, behavior: 'smooth' });
     document.querySelectorAll('.prod-tab').forEach(t => t.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    btn.classList.add('active');
   };
 
   // Active tab on scroll
@@ -884,7 +635,7 @@
         if (idx > -1) { tabs.forEach(t => t.classList.remove('active')); tabs[idx]?.classList.add('active'); }
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.25, rootMargin: '-120px 0px -50% 0px' });
   sections.forEach(id => { const el = document.getElementById(id); if(el) obs.observe(el); });
 
   // Fade-up
@@ -892,7 +643,7 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-up').forEach((el, i) => {
-    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+    el.style.transitionDelay = (i % 3) * 0.1 + 's';
     fadeObs.observe(el);
   });
 </script>
