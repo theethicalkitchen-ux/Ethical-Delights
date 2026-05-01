@@ -59,8 +59,8 @@
 
   /* HERO CARD — side by side, equal height */
   .prod-hero-card{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(212,169,106,0.2);margin-bottom:1rem;overflow:hidden;min-height:32rem;}
-  .prod-pkg-img{position:relative;overflow:hidden;background:var(--cream);display:flex;align-items:center;justify-content:center;padding:2.5rem;}
-  .prod-pkg-img img{width:100%;max-width:380px;height:auto;object-fit:contain;transition:transform 0.5s;}
+  .prod-pkg-img{position:relative;overflow:hidden;background:var(--cream);}
+  .prod-pkg-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.5s;display:block;}
   .prod-hero-card:hover .prod-pkg-img img{transform:scale(1.03);}
   .prod-hero-badge{position:absolute;top:1rem;left:1rem;background:var(--deep);color:var(--wheat);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;padding:0.3rem 0.7rem;}
 
@@ -156,7 +156,7 @@
     .prod-tab{padding:0.8rem 1.2rem;font-size:0.62rem;}
     .prod-section{padding:3rem 5vw;scroll-margin-top:7rem;}
     .prod-hero-card{grid-template-columns:1fr;min-height:auto;}
-    .prod-pkg-img{min-height:16rem;padding:1.5rem;}
+    .prod-pkg-img{min-height:20rem;}
     .prod-info{padding:2rem 1.5rem;gap:1rem;}
     .prod-name{font-size:clamp(1.8rem,7vw,2.8rem);}
     .htu-steps{grid-template-columns:1fr 1fr;gap:1rem;}
@@ -222,9 +222,9 @@
 
   <!-- Hero: Regular Chapati — packaging + info side by side -->
   <div class="prod-hero-card fade-up">
-    <div class="prod-pkg-img" style="padding:0;background:#c8a060;">
+    <div class="prod-pkg-img" style="background:#c8a060;">
       <div class="prod-hero-badge">Hero Product</div>
-      <img src="pkg-chapati-front.jpg" alt="Satvik Chapati packaging" style="width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;">
+      <img src="pkg-chapati-front.jpg" alt="Satvik Chapati packaging">
     </div>
     <div class="prod-info">
       <div class="prod-eyebrow">Whole Wheat · Regular</div>
@@ -342,9 +342,9 @@
 
   <!-- Hero: Regular Puri -->
   <div class="prod-hero-card fade-up">
-    <div class="prod-pkg-img" style="padding:0;background:#e07020;">
+    <div class="prod-pkg-img" style="background:#e07020;">
       <div class="prod-hero-badge">500g Pack of 20</div>
-      <img src="pkg-puri-front.jpg" alt="Satvik Puri packaging" style="width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;">
+      <img src="pkg-puri-front.jpg" alt="Satvik Puri packaging">
     </div>
     <div class="prod-info" style="background:linear-gradient(135deg,#1a0f02,#2a1808);">
       <div class="prod-eyebrow">Half Baked · Ready to Fry</div>
@@ -471,8 +471,8 @@
   <p class="prod-cat-desc">Oval-shaped, medium-sized, shiny golden whole wheat bhaturas — crafted for the perfect puff without the maida. For commercial kitchens that serve chole bhatura at scale without compromising on texture or authenticity.</p>
 
   <div class="prod-hero-card fade-up">
-    <div class="prod-pkg-img" style="background:#0f0800;padding:0;overflow:hidden;">
-      <img src="bhatura.jpg" alt="Whole Wheat Bhatura" style="width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 30%;">
+    <div class="prod-pkg-img" style="background:#0f0800;">
+      <img src="bhatura.jpg" alt="Whole Wheat Bhatura" style="object-position:center 30%;">
     </div>
     <div class="prod-info" style="background:linear-gradient(135deg,#160a00,#221208);">
       <div class="prod-eyebrow">Oval · Whole Wheat · Par-Fried</div>
