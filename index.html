@@ -384,17 +384,17 @@
 
   /* ── BANNER 2: Freezer to Table ── */
   .b2 { background:var(--deep); }
-  .b2-inner { flex-direction:column; justify-content:center; align-items:center; gap:1.8rem; padding:3rem 8vw; text-align:center; }
+  .b2-inner { flex-direction:column; justify-content:center; align-items:center; gap:1rem; padding:2rem 8vw 1.5rem; text-align:center; overflow:hidden; }
   .b2-eyebrow { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--wheat); font-weight:500; display:flex; align-items:center; gap:0.8rem; }
   .b2-eyebrow::before,.b2-eyebrow::after { content:''; flex:1; max-width:3rem; height:1px; background:var(--wheat); }
   .b2-h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4.5vw,4.2rem); font-weight:300; color:var(--cream); line-height:1.08; }
   .b2-h2 em { font-style:italic; color:var(--wheat); }
-  .b2-flow { display:flex; align-items:flex-start; gap:0; justify-content:center; width:100%; max-width:900px; }
-  .b2-step { display:flex; flex-direction:column; align-items:center; gap:0.5rem; flex:1; }
-  .b2-step-visual { width:clamp(72px,9vw,100px); height:clamp(72px,9vw,100px); }
+  .b2-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; width:100%; max-width:900px; }
+  .b2-step { display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
+  .b2-step-visual { width:clamp(64px,7vw,90px); height:clamp(64px,7vw,90px); }
   .b2-step-visual svg { width:100%; height:100%; }
   .b2-step-label { font-size:clamp(0.6rem,0.85vw,0.72rem); letter-spacing:0.08em; text-transform:uppercase; color:rgba(245,239,224,0.6); font-weight:500; text-align:center; line-height:1.4; }
-  .b2-arrow { font-size:clamp(1.2rem,2vw,1.8rem); color:rgba(212,169,106,0.5); padding:0 0.3rem; padding-bottom:2.5rem; flex-shrink:0; align-self:center; }
+  .b2-arrow { display:none; }
   .b2-sub { font-size:clamp(0.8rem,1.1vw,0.92rem); font-weight:300; color:rgba(245,239,224,0.55); max-width:55ch; line-height:1.75; }
 
   /* ── BANNER 3: Process ── */
@@ -404,9 +404,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3.5rem 7vw;
-    gap: 2.5rem;
+    padding: 1.8rem 7vw 1.5rem;
+    gap: 1.5rem;
     text-align: center;
+    overflow: hidden;
   }
   .b3-left { display:flex; flex-direction:column; align-items:center; gap:0.8rem; }
   .b3-eyebrow {
@@ -424,8 +425,8 @@
   /* Steps: horizontal row of 5 cards */
   .b3-steps {
     display:grid;
-    grid-template-columns: repeat(5,1fr);
-    gap:1rem;
+    grid-template-columns: repeat(3,1fr);
+    gap:0.8rem;
     width:100%;
   }
   .b3-step {
@@ -499,10 +500,12 @@
     grid-template-columns:auto 1fr 1fr;
     gap:0;
     width:100%;
-    max-width:900px;
+    max-width:860px;
     border:1px solid rgba(212,169,106,0.15);
     border-radius:0.25rem;
     overflow:hidden;
+    /* Prevent left arrow overlap */
+    margin:0 auto;
   }
 
   /* Column headers */
@@ -752,24 +755,24 @@
     .hb-eyebrow { font-size:0.6rem; margin-bottom:1rem; font-family:'Jost',sans-serif; color:var(--wheat); }
 
     /* ── BANNER 2 — 3x2 grid of steps ── */
-    .b2-inner { padding:2.5rem 5vw; gap:1rem; justify-content:center; }
+    .b2-inner { padding:1.5rem 5vw 1rem; gap:0.7rem; justify-content:center; }
     .b2-h2 { font-size:clamp(1.6rem,6vw,2.4rem); font-family:'Cormorant Garamond',serif; color:var(--wheat); text-shadow:0 1px 0 rgba(255,255,255,0.1),0 -1px 0 rgba(0,0,0,0.3); }
     .b2-h2 em { color:var(--cream); }
     /* 6 steps in 3x2 grid — even, no lonely icon */
-    .b2-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem; width:100%; }
+    .b2-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; width:100%; }
     .b2-step { flex:none; }
-    .b2-step-visual { width:52px; height:52px; margin:0 auto; }
+    .b2-step-visual { width:46px; height:46px; margin:0 auto; }
     .b2-step-label {
-      font-size:0.52rem; letter-spacing:0.04em; text-align:center;
+      font-size:0.5rem; letter-spacing:0.03em; text-align:center;
       font-family:'Jost',sans-serif; color:rgba(245,239,224,0.75);
-      margin-top:0.3rem;
+      margin-top:0.25rem;
     }
     .b2-arrow { display:none; }
     .b2-sub { font-size:0.78rem; color:rgba(245,239,224,0.6); }
     .b2-eyebrow { font-family:'Jost',sans-serif; color:var(--wheat); font-size:0.62rem; }
 
     /* ── BANNER 3 — headline centred + 2x3 step grid ── */
-    .b3-inner { padding:2rem 5vw; gap:1.2rem; justify-content:center; }
+    .b3-inner { padding:1.5rem 5vw 1rem; gap:0.8rem; justify-content:center; }
     .b3-h2 {
       font-size:clamp(1.6rem,6vw,2.4rem);
       color:var(--wheat);
@@ -777,7 +780,7 @@
     }
     .b3-h2 em { color:var(--cream); }
     .b3-eyebrow { font-family:'Jost',sans-serif; font-size:0.6rem; color:var(--wheat); }
-    .b3-steps { grid-template-columns:1fr 1fr; gap:0.5rem; }
+    .b3-steps { grid-template-columns:1fr 1fr 1fr; gap:0.4rem; }
     .b3-step { padding:0.8rem 0.5rem; }
     .b3-step::after { display:none; }
     .b3-step-num { font-family:'Cormorant Garamond',serif; font-size:0.9rem; color:var(--wheat); }
@@ -789,7 +792,7 @@
     .b3-step-desc { display:none; }
 
     /* ── BANNER 4 — table, no left arrow overlap ── */
-    .b4-inner { padding:1.2rem 4vw; gap:0.8rem; }
+    .b4-inner { padding:1.2rem 4vw 1rem 5vw; gap:0.8rem; }
     .b4-h2 {
       font-size:clamp(1.4rem,5.5vw,2rem);
       color:var(--wheat);
@@ -797,7 +800,7 @@
     }
     .b4-h2 em { color:var(--cream); }
     /* Table — push right to clear any arrow remnants */
-    .b4-table { max-width:100%; grid-template-columns:auto 1fr 1fr; margin-left:0; }
+    .b4-table { max-width:100%; grid-template-columns:auto 1fr 1fr; margin:0; }
     .b4-col-hd { padding:0.4rem 0.5rem; font-size:0.5rem; letter-spacing:0.06em; }
     .b4-col-metric-hd { min-width:4.5rem; }
     .b4-metric { padding:0.6rem 0.5rem; }
@@ -818,9 +821,9 @@
 
     /* ── USP RIBBON ── */
     .usp-ribbon-inner { flex-wrap:wrap; }
-    .usp-pill { flex:1 1 25%; border-bottom:1px solid rgba(212,169,106,0.15); padding:0.75rem 0.3rem; }
-    .usp-pill-icon { font-size:1rem; }
-    .usp-pill-label { font-size:0.52rem; }
+    .usp-pill { flex:1 1 25%; border-bottom:1px solid rgba(212,169,106,0.15); border-right:1px solid rgba(212,169,106,0.15); padding:0.7rem 0.3rem; }
+    .usp-pill-icon { font-size:0.95rem; }
+    .usp-pill-label { font-size:0.5rem; color:var(--cream); }
     .usp-pill-sub { display:none; }
 
     /* ── SECTIONS ── */
