@@ -730,12 +730,9 @@
     .hb-slide { min-width:100%; height:100svh; overflow:hidden; }
     .hb-track { height:100%; }
 
-    /* Hide left arrow on first slide */
-    .hb-slide.hb-active:first-child ~ * { }
-    .hb-arrow.prev { display:none; }
+    /* Hide prev arrow on mobile always — avoids table overlap */
+    .hb-arrow.prev { display:none !important; }
     .hb-arrow.next { right:0.5rem; }
-    /* Show prev arrow only when not on first slide — handled by JS class */
-    #hero-banners.show-prev .hb-arrow.prev { display:flex; left:0.5rem; }
 
     /* ── BANNER 1 — full width centred, no overlap ── */
     .b1 .hb-slide-inner { flex-direction:column; justify-content:center; align-items:center; padding:5rem 6vw 3rem; text-align:center; }
@@ -821,9 +818,9 @@
 
     /* ── USP RIBBON ── */
     .usp-ribbon-inner { flex-wrap:wrap; }
-    .usp-pill { flex:1 1 25%; border-bottom:1px solid rgba(212,169,106,0.15); border-right:1px solid rgba(212,169,106,0.15); padding:0.7rem 0.3rem; }
-    .usp-pill-icon { font-size:0.95rem; }
-    .usp-pill-label { font-size:0.5rem; color:var(--cream); }
+    .usp-pill { flex:1 1 25%; border-bottom:1px solid rgba(212,169,106,0.2); border-right:1px solid rgba(212,169,106,0.15); padding:0.6rem 0.2rem; }
+    .usp-pill-icon { font-size:1rem; }
+    .usp-pill-label { font-size:0.48rem; color:var(--cream); display:block !important; letter-spacing:0.06em; }
     .usp-pill-sub { display:none; }
 
     /* ── SECTIONS ── */
@@ -1225,7 +1222,7 @@
         <div class="b1-text">
           <div class="hb-eyebrow">Since 2024 · Pune, India</div>
           <h1 class="b1-h1">Bringing<br><em>Respect</em><br>Back to<br>Indian<br>Flatbreads</h1>
-          <p class="b1-sub">Preservative-free, homestyle chapatis, puris, and wraps — crafted for consistency, scale, and savings.</p>
+          <p class="b1-sub"><strong style="color:var(--wheat);letter-spacing:0.05em;">Half-Baked · Blast Frozen · Ready to Cook.</strong><br><span style="color:rgba(245,239,224,0.65);">The next best thing to freshly made — authentic Satvik flatbreads on your table in 60 seconds.</span></p>
           <div class="b1-actions">
             <a href="products.html" class="btn-primary">Explore Products →</a>
             <a href="about.html" class="b1-ghost">Our Story</a>
@@ -1604,7 +1601,7 @@
     </div>
     <div class="usp-pill">
       <div class="usp-pill-icon">❄️</div>
-      <div class="usp-pill-label">Flash Frozen</div>
+      <div class="usp-pill-label">Blast Frozen</div>
       <div class="usp-pill-sub">–18°C · 1 Year Life</div>
     </div>
     <div class="usp-pill">
