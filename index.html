@@ -344,8 +344,8 @@
 
   /* ══ HERO BANNER CAROUSEL ══ */
   #hero-banners { position:relative; width:100%; height:calc(100vh - 4.5rem); min-height:520px; max-height:860px; overflow:hidden; margin-top:4.5rem; }
-  .hb-track { display:flex; height:100%; transition:transform 0.9s cubic-bezier(0.77,0,0.175,1); }
-  .hb-slide { min-width:100%; width:100%; height:100%; position:relative; overflow:hidden; flex-shrink:0; }
+  .hb-track { display:flex; height:100%; width:400%; transition:transform 0.9s cubic-bezier(0.77,0,0.175,1); }
+  .hb-slide { width:25%; flex-shrink:0; height:100%; position:relative; overflow:hidden; }
   .hb-slide-inner { width:100%; height:100%; display:flex; align-items:center; }
 
   /* ── Controls (shared) ── */
@@ -717,7 +717,7 @@
 
     /* ── BANNERS — fixed height ── */
     #hero-banners { height:100svh; min-height:540px; max-height:100svh; margin-top:0; }
-    .hb-slide { min-width:100%; height:100svh; overflow:hidden; }
+    .hb-slide { width:25%; height:100svh; overflow:hidden; }
     .hb-track { height:100%; }
 
     /* BANNER 1 — hide illustration, text only */
@@ -2314,7 +2314,7 @@
       clearTimeout(advTimer);
       elapsed = 0;
       cur = ((idx % total) + total) % total;
-      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      track.style.transform = 'translateX(-' + (cur * 25) + '%)';
       updateDots();
       activateSlide();
 
