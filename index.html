@@ -421,6 +421,8 @@
     font-weight:300; color:var(--cream); line-height:1.05;
   }
   .b3-h2 em { font-style:italic; color:var(--wheat); }
+  /* Mobile button inside grid — hidden on desktop */
+  .b3-mobile-btn { display:none; }
   /* Steps: horizontal row of 5 cards */
   .b3-steps {
     display:grid;
@@ -767,6 +769,16 @@
     .b3-step-desc { display:none; }
     /* Hide CTA button on mobile — clashes with playpause */
     .b3-inner .btn-primary { display:none; }
+    /* On mobile — show button inside the steps grid as the 6th cell */
+    .b3-steps-wrap { display:contents; }
+    .b3-mobile-btn {
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.58rem; letter-spacing:0.1em; text-transform:uppercase;
+      font-weight:600; color:var(--wheat); text-decoration:none;
+      border:1px solid rgba(212,169,106,0.4);
+      padding:0.4rem 0.5rem; text-align:center; line-height:1.3;
+      background:rgba(196,98,45,0.15);
+    }
 
     /* BANNER 4 — mobile */
     .b4-inner { padding:1.5rem 4vw 5rem; gap:1rem; }
@@ -1428,6 +1440,8 @@
             <div class="b3-step-title">Flash Frozen</div>
             <div class="b3-step-desc">–18°C in seconds, peak quality</div>
           </div>
+          <!-- Mobile only: button sits in empty 6th grid cell -->
+          <a href="process.html" class="b3-mobile-btn hb-animate">See Full<br>Process →</a>
         </div>
         <a href="process.html" class="btn-primary hb-animate">See Full Process →</a>
       </div>
@@ -2427,24 +2441,23 @@
     bannerEl.addEventListener('mouseenter', pause);
     bannerEl.addEventListener('mouseleave', resume);
 
-    // Mobile: pause on touch, resume after 4s or on next touch
-    let touchTimer = null;
-    bannerEl.addEventListener('touchstart', () => {
-      pause();
-      clearTimeout(touchTimer);
-      touchTimer = setTimeout(resume, 4000);
-    }, { passive: true });
 
     window.hbMove = function(dir) {
+      // Arrow clicked — always resume playing and update button
       paused = false;
       bannerEl.classList.remove('hb-paused');
+      updatePlayPauseBtn();
       goTo(cur + dir);
     };
 
-    // Init
+    // Desktop: pause on hover already handled above
+    // Mobile: touchstart removed — button is the only way to pause
+
+    // Init — start playing, show ⏸
     activateSlide();
     startProgress();
     advTimer = setTimeout(() => goTo(1), SLIDE_MS);
+    updatePlayPauseBtn();
   })();
 
 
