@@ -744,15 +744,15 @@
     /* Faint wheat stalk bg on b1 mobile */
     .hb-eyebrow { font-size:0.62rem; margin-bottom:1.2rem; }
 
-    /* BANNER 2 — centred, compact steps */
-    .b2-inner { padding:2rem 6vw; gap:1rem; justify-content:center; }
-    .b2-h2 { font-size:clamp(1.8rem,7vw,2.6rem); }
-    .b2-flow { display:grid; grid-template-columns:repeat(5,1fr); gap:0.3rem; width:100%; }
-    .b2-step { flex:none; }
-    .b2-step-visual { width:48px; height:48px; margin:0 auto; }
+    /* BANNER 2 — 3-col grid so all 5 steps show on mobile */
+    .b2-inner { padding:1.5rem 4vw 5rem; gap:0.8rem; justify-content:center; }
+    .b2-h2 { font-size:clamp(1.5rem,6vw,2.2rem); }
+    .b2-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; width:100%; justify-items:center; }
+    .b2-step { flex:none; width:100%; }
+    .b2-step-visual { width:44px; height:44px; margin:0 auto; }
     .b2-step-label { font-size:0.5rem; letter-spacing:0; }
     .b2-arrow { display:none; }
-    .b2-sub { font-size:0.78rem; }
+    .b2-sub { font-size:0.75rem; }
 
     /* BANNER 3 — centred headline + 2x3 step grid */
     .b3-inner { padding:2rem 5vw; gap:1.2rem; justify-content:center; }
@@ -779,12 +779,12 @@
     .b4-unit { font-size:0.48rem; }
     .b4-cta { display:none; }
 
-    /* Banner arrows — move to bottom to avoid overlapping content */
+    /* Banner arrows — bottom corners, playpause bottom centre */
     .hb-arrow { width:2rem; height:2rem; font-size:0.8rem; top:auto; bottom:2.8rem; transform:none; }
     .hb-arrow.prev { left:1.5rem; }
     .hb-arrow.next { right:1.5rem; }
-    .hb-controls { bottom:1rem; left:50%; transform:translateX(-50%); }
-    .hb-playpause { bottom:1rem; right:1.5rem; }
+    .hb-controls { bottom:0.7rem; left:50%; transform:translateX(-50%); }
+    .hb-playpause { bottom:0.6rem; left:50%; transform:translateX(-50%); right:auto; width:1.8rem; height:1.8rem; font-size:0.5rem; }
 
     /* ── USP RIBBON ── */
     .usp-ribbon-inner { flex-wrap:wrap; }
