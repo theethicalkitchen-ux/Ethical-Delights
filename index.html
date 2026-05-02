@@ -757,7 +757,7 @@
     /* BANNER 3 — centred headline + 2x3 step grid */
     .b3-inner { padding:2rem 5vw; gap:1.2rem; justify-content:center; }
     .b3-left { gap:0.5rem; }
-    .b3-h2 { font-size:clamp(1.6rem,6vw,2.4rem); }
+    .b3-h2 { font-size:clamp(1.3rem,5.5vw,2rem); }
     .b3-steps { grid-template-columns:1fr 1fr; gap:0.5rem; }
     .b3-step { padding:0.8rem 0.5rem; }
     .b3-step::after { display:none; }
@@ -767,7 +767,7 @@
     .b3-step-desc { display:none; }
 
     /* BANNER 4 — mobile */
-    .b4-inner { padding:1.5rem 4vw; gap:1rem; }
+    .b4-inner { padding:1.5rem 4vw 5rem; gap:1rem; }
     .b4-h2 { font-size:clamp(1.6rem,6vw,2.2rem); }
     .b4-table { max-width:100%; grid-template-columns:auto 1fr 1fr; }
     .b4-col-hd { padding:0.45rem 0.5rem; font-size:0.5rem; letter-spacing:0.08em; }
@@ -779,11 +779,12 @@
     .b4-unit { font-size:0.48rem; }
     .b4-cta { display:none; }
 
-    /* Banner arrows */
-    .hb-arrow { width:2rem; height:2rem; font-size:0.8rem; }
-    .hb-arrow.prev { left:0.5rem; }
-    .hb-arrow.next { right:0.5rem; }
-    .hb-controls { bottom:1.2rem; }
+    /* Banner arrows — move to bottom to avoid overlapping content */
+    .hb-arrow { width:2rem; height:2rem; font-size:0.8rem; top:auto; bottom:2.8rem; transform:none; }
+    .hb-arrow.prev { left:1.5rem; }
+    .hb-arrow.next { right:1.5rem; }
+    .hb-controls { bottom:1rem; left:50%; transform:translateX(-50%); }
+    .hb-playpause { bottom:1rem; right:1.5rem; }
 
     /* ── USP RIBBON ── */
     .usp-ribbon-inner { flex-wrap:wrap; }
