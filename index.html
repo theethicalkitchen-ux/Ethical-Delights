@@ -755,16 +755,18 @@
     .b2-sub { font-size:0.75rem; }
 
     /* BANNER 3 — centred headline + 2x3 step grid */
-    .b3-inner { padding:2rem 5vw 5rem; gap:1.2rem; justify-content:center; }
-    .b3-left { gap:0.5rem; }
-    .b3-h2 { font-size:clamp(1.3rem,5.5vw,2rem); }
-    .b3-steps { grid-template-columns:1fr 1fr; gap:0.5rem; }
-    .b3-step { padding:0.8rem 0.5rem; }
+    .b3-inner { padding:1.2rem 5vw 4.5rem; gap:0.8rem; justify-content:center; }
+    .b3-left { gap:0.3rem; }
+    .b3-h2 { font-size:clamp(1.1rem,4.5vw,1.6rem); }
+    .b3-steps { grid-template-columns:1fr 1fr; gap:0.4rem; }
+    .b3-step { padding:0.6rem 0.4rem; }
     .b3-step::after { display:none; }
     .b3-step-num { font-size:0.9rem; }
-    .b3-step-icon { font-size:1.2rem; }
-    .b3-step-title { font-size:0.56rem; }
+    .b3-step-icon { font-size:1.1rem; }
+    .b3-step-title { font-size:0.54rem; }
     .b3-step-desc { display:none; }
+    /* Hide CTA button on mobile — clashes with playpause */
+    .b3-inner .btn-primary { display:none; }
 
     /* BANNER 4 — mobile */
     .b4-inner { padding:1.5rem 4vw 5rem; gap:1rem; }
