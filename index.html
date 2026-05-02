@@ -2277,12 +2277,18 @@
     function activateSlide() {
       slides.forEach((s,i) => {
         s.classList.toggle('hb-active', i===cur);
-        // Clear any inline styles so CSS class takes over
-        s.querySelectorAll('.hb-animate').forEach(el => {
-          el.style.opacity = '';
-          el.style.transform = '';
-          el.style.transition = '';
-        });
+        if (i !== cur) {
+          s.querySelectorAll('.hb-animate').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(22px)';
+          });
+        }
+      });
+      const active = slides[cur];
+      active.querySelectorAll('.hb-animate').forEach((el, i) => {
+        el.style.transition = 'opacity 0.8s ' + (0.2 + i*0.15) + 's, transform 0.8s ' + (0.2 + i*0.15) + 's';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
       });
     }
 
