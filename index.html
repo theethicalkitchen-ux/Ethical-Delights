@@ -117,10 +117,11 @@
   .hero-bg-text{display:none;}
 
   /* MARQUEE */
-  .marquee-strip { background:var(--rust); overflow:hidden; padding:0.65rem 0; border:none; }
-  .marquee-inner { display:flex; animation:marquee 25s linear infinite; width:max-content; white-space:nowrap; }
-  .marquee-item { font-family:'Jost',sans-serif; font-size:0.65rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.92); white-space:nowrap; padding:0 0.5rem; }
-  .marquee-sep { color:rgba(255,255,255,0.4); margin:0 0.8rem; }
+  .marquee-strip{background:var(--rust);overflow:hidden;padding:0.7rem 0;border-top:1px solid rgba(245,239,224,0.15);border-bottom:1px solid rgba(245,239,224,0.15);}
+  .marquee-inner{display:inline-flex;animation:marquee 26s linear infinite;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee-item{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.92);display:inline-flex;align-items:center;padding:0 2.2rem;font-weight:600;}
+  .marquee-sep{color:rgba(255,255,255,0.4);}
 
   /* SECTION SHARED */
   section{padding:7rem 7vw;}
@@ -343,19 +344,19 @@
 
 
   /* ══ HERO BANNER CAROUSEL ══ */
-  #hero-banners { position:relative; width:100%; height:calc(100vh - 4.5rem); min-height:520px; max-height:860px; overflow:hidden; margin-top:4.5rem; }
+  #hero-banners { position:relative; width:100%; height:100vh; min-height:560px; max-height:900px; overflow:hidden; margin-top:4.5rem; }
   .hb-track { display:flex; height:100%; transition:transform 0.9s cubic-bezier(0.77,0,0.175,1); }
-  .hb-slide { min-width:100%; width:100%; height:100%; position:relative; overflow:hidden; flex-shrink:0; }
+  .hb-slide { min-width:100%; height:100%; position:relative; overflow:hidden; }
   .hb-slide-inner { width:100%; height:100%; display:flex; align-items:center; }
 
   /* ── Controls (shared) ── */
-  .hb-controls { position:absolute; bottom:1.2rem; left:calc(50% + 2rem); transform:translateX(-50%); display:flex; align-items:center; gap:0.6rem; z-index:10; }
+  .hb-controls { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:1rem; z-index:10; }
   .hb-dot { width:8px; height:8px; border-radius:50%; background:rgba(245,239,224,0.3); border:none; cursor:pointer; padding:0; transition:background 0.3s,transform 0.3s; }
   .hb-dot.active { background:var(--wheat); transform:scale(1.35); }
-  .hb-arrow { position:absolute; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; z-index:10; background:rgba(28,20,8,0.5); backdrop-filter:blur(8px); border:1px solid rgba(245,239,224,0.15); color:var(--wheat); font-size:1rem; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.3s; }
+  .hb-arrow { position:absolute; top:50%; transform:translateY(-50%); width:3rem; height:3rem; z-index:10; background:rgba(28,20,8,0.4); backdrop-filter:blur(8px); border:1px solid rgba(245,239,224,0.15); color:var(--wheat); font-size:1.1rem; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.3s; }
   .hb-arrow:hover { background:rgba(196,98,45,0.6); }
-  .hb-arrow.prev { left:1.5rem; }
-  .hb-arrow.next { right:1.5rem; }
+  .hb-arrow.prev { left:2rem; }
+  .hb-arrow.next { right:2rem; }
   .hb-progress { position:absolute; bottom:0; left:0; right:0; height:3px; background:rgba(245,239,224,0.1); z-index:10; }
   .hb-progress-fill { height:100%; background:var(--wheat); width:0%; transition:width 7s linear; }
   .hb-animate { opacity:0; transform:translateY(22px); transition:opacity 0.8s cubic-bezier(.4,0,.2,1),transform 0.8s cubic-bezier(.4,0,.2,1); }
@@ -383,17 +384,17 @@
 
   /* ── BANNER 2: Freezer to Table ── */
   .b2 { background:var(--deep); }
-  .b2-inner { flex-direction:column; justify-content:center; align-items:center; gap:1rem; padding:2rem 8vw 1.5rem; text-align:center; }
+  .b2-inner { flex-direction:column; justify-content:center; align-items:center; gap:1.8rem; padding:3rem 8vw; text-align:center; }
   .b2-eyebrow { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--wheat); font-weight:500; display:flex; align-items:center; gap:0.8rem; }
   .b2-eyebrow::before,.b2-eyebrow::after { content:''; flex:1; max-width:3rem; height:1px; background:var(--wheat); }
   .b2-h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4.5vw,4.2rem); font-weight:300; color:var(--cream); line-height:1.08; }
   .b2-h2 em { font-style:italic; color:var(--wheat); }
-  .b2-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; width:100%; max-width:900px; }
-  .b2-step { display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
-  .b2-step-visual { width:clamp(64px,7vw,90px); height:clamp(64px,7vw,90px); }
+  .b2-flow { display:flex; align-items:flex-start; gap:0; justify-content:center; width:100%; max-width:900px; }
+  .b2-step { display:flex; flex-direction:column; align-items:center; gap:0.5rem; flex:1; }
+  .b2-step-visual { width:clamp(72px,9vw,100px); height:clamp(72px,9vw,100px); }
   .b2-step-visual svg { width:100%; height:100%; }
   .b2-step-label { font-size:clamp(0.6rem,0.85vw,0.72rem); letter-spacing:0.08em; text-transform:uppercase; color:rgba(245,239,224,0.6); font-weight:500; text-align:center; line-height:1.4; }
-  .b2-arrow { display:none; }
+  .b2-arrow { font-size:clamp(1.2rem,2vw,1.8rem); color:rgba(212,169,106,0.5); padding:0 0.3rem; padding-bottom:2.5rem; flex-shrink:0; align-self:center; }
   .b2-sub { font-size:clamp(0.8rem,1.1vw,0.92rem); font-weight:300; color:rgba(245,239,224,0.55); max-width:55ch; line-height:1.75; }
 
   /* ── BANNER 3: Process ── */
@@ -403,8 +404,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1.8rem 7vw 1.5rem;
-    gap: 1.5rem;
+    padding: 3.5rem 7vw;
+    gap: 2.5rem;
     text-align: center;
   }
   .b3-left { display:flex; flex-direction:column; align-items:center; gap:0.8rem; }
@@ -424,7 +425,7 @@
   .b3-steps {
     display:grid;
     grid-template-columns: repeat(5,1fr);
-    gap:0.8rem;
+    gap:1rem;
     width:100%;
   }
   .b3-step {
@@ -472,6 +473,7 @@
     padding:1.8rem 7vw;
     gap:1.2rem;
     text-align:center;
+    overflow:hidden;
   }
 
   /* Headline */
@@ -497,12 +499,10 @@
     grid-template-columns:auto 1fr 1fr;
     gap:0;
     width:100%;
-    max-width:860px;
+    max-width:900px;
     border:1px solid rgba(212,169,106,0.15);
     border-radius:0.25rem;
     overflow:hidden;
-    /* Prevent left arrow overlap */
-    margin:0 auto;
   }
 
   /* Column headers */
@@ -576,7 +576,15 @@
   #hero { display:none; }
 
 
-  /* old responsive rules removed */
+  /* ── Responsive ── */
+  @media(max-width:900px) {
+    .hb-slide.b2 .hb-layout,
+    .hb-slide.b4 .hb-layout { grid-template-columns: 1fr; }
+    .hb-visual-col, .hb-contrast { display: none; }
+    .hb-process-steps { grid-template-columns: 1fr 1fr; }
+    .hb-slide.b1 .hb-mono { display: none; }
+    #hero-banners { height: auto; min-height: 100svh; }
+  }
 
 
   /* USP RIBBON */
@@ -589,25 +597,24 @@
   }
   .usp-ribbon-inner {
     display: flex; align-items: stretch;
-    border-top: 2px solid rgba(212,169,106,0.15);
   }
   .usp-pill {
     flex: 1; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    padding: 1.1rem 0.8rem; gap: 0.35rem;
-    border-right: 1px solid rgba(212,169,106,0.18);
+    padding: 1rem 0.6rem; gap: 0.3rem;
+    border-right: 1px solid rgba(245,239,224,0.15);
     text-align: center;
     transition: background 0.3s;
   }
   .usp-pill:last-child { border-right: none; }
-  .usp-pill:hover { background: var(--cream); }
+  .usp-pill:hover { background: rgba(0,0,0,0.15); }
   .usp-pill-icon { font-size: 1.2rem; line-height: 1; }
   .usp-pill-label {
-    font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
     font-weight: 700; color: #fff; line-height: 1.3;
   }
   .usp-pill-sub {
-    font-size: 0.54rem; color: rgba(245,239,224,0.6);
+    font-size: 0.56rem; color: rgba(245,239,224,0.55);
     letter-spacing: 0.05em; text-transform: uppercase;
   }
 
@@ -705,8 +712,8 @@
   ════════════════════════════════════ */
   @media(max-width:768px){
 
-    /* ── NAV ── */
-    nav { padding:0.85rem 5vw; }
+    /* ── NAV — always visible hamburger ── */
+    nav { padding:0.85rem 5vw; position:fixed; top:0; left:0; right:0; z-index:200; }
     nav .nav-links { display:none; }
     nav .nav-cta { display:none; }
     .nav-hamburger { display:flex !important; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; position:relative; z-index:201; }
@@ -714,74 +721,88 @@
     .nav-hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity:0; }
     .nav-hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .nav-logo { height:2.2rem; }
 
-    /* ── BANNERS — fixed height ── */
-    #hero-banners { height:100svh; min-height:540px; max-height:100svh; margin-top:0; }
+    /* ── BANNERS — fixed viewport height, no overflow ── */
+    #hero-banners {
+      height:100svh;
+      min-height:500px;
+      max-height:100svh;
+      margin-top:0;
+    }
     .hb-slide { min-width:100%; height:100svh; overflow:hidden; }
     .hb-track { height:100%; }
 
-    /* BANNER 1 — hide illustration, text only */
-    .b1-art { display:none !important; }
-    .b1 .hb-slide-inner { flex-direction:column; justify-content:center; align-items:flex-start; padding:4rem 6vw 3rem; }
-    .b1-text { flex:none; width:100%; padding:0; }
+    /* BANNER 1 — headline only, no illustration, clean */
+    .b1 .hb-slide-inner { flex-direction:column; justify-content:center; align-items:flex-start; padding:5rem 6vw 4rem; gap:0; position:relative; }
+    .b1-text { padding:0; flex:none; width:100%; position:relative; z-index:2; }
     .b1-text::before { display:none; }
-    .b1-h1 { font-size:clamp(2.6rem,10vw,3.8rem); margin-bottom:1rem; color:var(--wheat); }
-    .b1-h1 em { color:var(--cream); }
-    .b1-sub { font-size:0.86rem; margin-bottom:1.5rem; max-width:100%; }
+    .b1-h1 { font-size:clamp(2.8rem,11vw,4.5rem); margin-bottom:1rem; line-height:1.02; }
+    .b1-sub { font-size:0.9rem; max-width:100%; margin-bottom:1.8rem; }
     .b1-actions { flex-direction:column; align-items:flex-start; gap:0.8rem; }
+    .b1-art { display:none; }
+    /* Faint wheat stalk bg on b1 mobile */
+    .hb-eyebrow { font-size:0.62rem; margin-bottom:1.2rem; }
 
-    /* BANNER 2 */
-    .b2-inner { padding:1.5rem 5vw 1rem; gap:0.8rem; justify-content:center; }
-    .b2-h2 { font-size:clamp(1.6rem,6vw,2.4rem); }
-    .b2-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; width:100%; }
-    .b2-step-visual { width:46px; height:46px; margin:0 auto; }
-    .b2-step-label { font-size:0.5rem; text-align:center; color:rgba(245,239,224,0.8); margin-top:0.25rem; }
+    /* BANNER 2 — centred, compact steps */
+    .b2-inner { padding:2rem 6vw; gap:1rem; justify-content:center; }
+    .b2-h2 { font-size:clamp(1.8rem,7vw,2.6rem); }
+    .b2-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:0.4rem; width:100%; }
+    .b2-step { flex:none; }
+    .b2-step-visual { width:48px; height:48px; margin:0 auto; }
+    .b2-step-label { font-size:0.5rem; letter-spacing:0; }
+    .b2-arrow { display:none; }
     .b2-sub { font-size:0.78rem; }
 
-    /* BANNER 3 */
-    .b3-inner { padding:1.5rem 5vw 1rem; gap:0.8rem; justify-content:center; }
+    /* BANNER 3 — centred headline + 2x3 step grid */
+    .b3-inner { padding:2rem 5vw; gap:1.2rem; justify-content:center; }
+    .b3-left { gap:0.5rem; }
     .b3-h2 { font-size:clamp(1.6rem,6vw,2.4rem); }
-    .b3-steps { display:flex; flex-wrap:wrap; justify-content:center; gap:0.4rem; }
-    .b3-step { flex:0 0 calc(33.33% - 0.4rem); padding:0.7rem 0.4rem; }
+    .b3-steps { grid-template-columns:1fr 1fr; gap:0.5rem; }
+    .b3-step { padding:0.8rem 0.5rem; }
     .b3-step::after { display:none; }
-    .b3-step-num { font-size:0.85rem; }
-    .b3-step-icon { font-size:1.1rem; }
-    .b3-step-title { font-size:0.54rem; }
+    .b3-step-num { font-size:0.9rem; }
+    .b3-step-icon { font-size:1.2rem; }
+    .b3-step-title { font-size:0.56rem; }
     .b3-step-desc { display:none; }
 
-    /* BANNER 4 */
-    .b4-inner { padding:1.5rem 5vw 3rem; gap:0.8rem; }
-    .b4-h2 { font-size:clamp(1.4rem,5.5vw,2rem); }
-    .b4-table { max-width:100%; }
-    .b4-col-hd { padding:0.4rem 0.5rem; font-size:0.5rem; }
+    /* BANNER 4 — mobile */
+    .b4-inner { padding:1.5rem 3.5rem 1.5rem 3.5rem; gap:1rem; }
+    .b4-h2 { font-size:clamp(1.6rem,6vw,2.2rem); }
+    .b4-table { max-width:100%; grid-template-columns:auto 1fr 1fr; }
+    .b4-col-hd { padding:0.45rem 0.5rem; font-size:0.5rem; letter-spacing:0.08em; }
     .b4-col-metric-hd { min-width:4.5rem; }
-    .b4-metric { padding:0.6rem 0.5rem; }
-    .b4-metric-label { font-size:0.48rem; }
-    .b4-cell { padding:0.6rem 0.5rem; }
-    .b4-val { font-size:clamp(0.95rem,4vw,1.3rem); }
-    .b4-unit { font-size:0.46rem; }
+    .b4-metric { padding:0.7rem 0.5rem; }
+    .b4-metric-label { font-size:0.5rem; letter-spacing:0.06em; }
+    .b4-cell { padding:0.7rem 0.5rem; }
+    .b4-val { font-size:clamp(1rem,4.5vw,1.4rem); }
+    .b4-unit { font-size:0.48rem; }
     .b4-cta { display:none; }
-    .hb-arrow { width:1.8rem; height:1.8rem; top:50%; transform:translateY(-50%); font-size:0.75rem; }
-    .hb-arrow.prev { left:0.4rem; }
-    .hb-arrow.next { right:0.4rem; }
-    .hb-playpause { bottom:0.8rem; left:50%; transform:translateX(-50%); width:1.6rem; height:1.6rem; font-size:0.5rem; }
-    .hb-controls { bottom:1rem; }
 
-    /* ── USP RIBBON ── */
-    /* USP ribbon mobile — 4 per row, icon + label always showing */
+    /* Banner arrows */
+    .hb-arrow { width:2rem; height:2rem; font-size:0.8rem; }
+    .hb-arrow.prev { left:0.5rem; }
+    .hb-arrow.next { right:0.5rem; }
+    .hb-controls { bottom:1.2rem; }
+
+    /* ── USP RIBBON mobile ── */
     .usp-ribbon-inner { flex-wrap:wrap; }
-    .usp-pill { flex:0 0 25%; max-width:25%; padding:0.65rem 0.15rem; border-bottom:1px solid rgba(245,239,224,0.1); }
-    .usp-pill-icon { font-size:1.1rem; }
-    .usp-pill-label { font-size:0.45rem; color:#fff; font-weight:700; display:block; word-break:break-word; letter-spacing:0.03em; }
+    .usp-pill { flex:0 0 25%; max-width:25%; border-bottom:1px solid rgba(245,239,224,0.12); border-right:1px solid rgba(245,239,224,0.12); padding:0.65rem 0.2rem; }
+    .usp-pill-icon { font-size:1rem; }
+    .usp-pill-label { font-size:0.48rem; color:#fff; font-weight:700; display:block; line-height:1.2; }
     .usp-pill-sub { display:none; }
 
     /* ── SECTIONS ── */
     section { padding:3.5rem 5vw; }
+
+    /* ── WHY ── */
     .why-layout { grid-template-columns:1fr; gap:2rem; }
     .pillar-grid { grid-template-columns:1fr 1fr; gap:0.8rem; }
     .pillar { padding:1rem 0.8rem; }
-    .pillar-num { display:inline-flex;align-items:center;justify-content:center;width:2.2rem;height:2.2rem;font-size:0.95rem; }
+    .pillar-num { width:2.2rem; height:2.2rem; font-size:0.95rem; }
     .section-heading { font-size:clamp(2rem,7vw,3rem); }
+
+    /* ── FROZEN ── */
     .frozen-layout { grid-template-columns:1fr; gap:2rem; }
     .frozen-visual { height:12rem; }
     .stat-row { grid-template-columns:repeat(3,1fr); gap:0.5rem; }
@@ -791,23 +812,30 @@
     /* ── PRODUCTS ── */
     #products { padding:3.5rem 5vw; }
     .product-grid { grid-template-columns:1fr; gap:2rem; }
-    .card-carousel { height:72vw; min-height:260px; max-height:380px; }
-    .carousel-slide img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+    .product-card { box-shadow:none; background:var(--cream); }
+    .product-card:hover { transform:none; }
+    /* All product images now 4:3, use cover with fixed height */
+    .card-carousel { height:72vw; min-height:240px; max-height:360px; }
+    .carousel-slide img { width:100%; height:100%; object-fit:cover; object-position:center center; display:block; }
     #track-chapati .carousel-slide img { object-position:center 68%; }
     #track-puri .carousel-slide img { object-position:center 80%; }
     #track-wrap .carousel-slide img { object-position:center 45%; }
+    .product-body { padding:1.2rem 1rem; }
+    .product-name { font-size:1.5rem; }
+    .product-desc { font-size:0.82rem; }
 
     /* ── SPECIALTIES ── */
     #specialties { padding:3rem 5vw; }
     .var-slide { grid-template-columns:1fr; }
     .var-img { height:55vw; min-height:200px; }
     .var-content { border-left:none; border-top:1px solid rgba(212,169,106,0.2); padding:1.2rem 0; }
-    .var-name { font-size:1.3rem; }
     .var-num { width:2.4rem; height:2.4rem; font-size:1rem; margin-bottom:0.6rem; }
+    .var-name { font-size:1.3rem; }
 
     /* ── PROMISE ── */
     #promise { grid-template-columns:1fr; gap:1.5rem; padding:3rem 5vw; }
     .promise-items { grid-template-columns:1fr 1fr; gap:0.8rem; }
+    .promise-desc { font-size:0.7rem; }
 
     /* ── CHALLENGE ── */
     #challenge { padding:3.5rem 5vw; }
@@ -816,6 +844,9 @@
     .seg-tab { flex:1; padding:0.6rem 0.3rem; font-size:0.6rem; letter-spacing:0.06em; }
     #seg-caterers.active,#seg-horeca.active,#seg-industrial.active { grid-template-columns:1fr; gap:1.5rem; }
     .pain-item { padding:0.75rem 1rem; }
+    .pain-text strong { font-size:0.8rem; }
+    .pain-text span { font-size:0.72rem; }
+    .answer-h3 { font-size:clamp(1.5rem,5vw,2rem); }
 
     /* ── SOCIAL PROOF ── */
     #social-proof { padding:2rem 5vw; flex-wrap:wrap; gap:1.2rem; justify-content:center; }
@@ -823,29 +854,35 @@
     .sp-num { font-size:2.2rem; }
     .sp-quote { font-size:0.92rem; text-align:center; max-width:100%; }
 
-    /* ── MEDIA ── */
+    /* ── MEDIA SHOWCASE ── */
     #media-showcase { padding:3rem 0; }
     .media-header { padding:0 5vw 1.5rem; flex-direction:column; gap:1rem; }
     .media-heading { font-size:clamp(1.6rem,6vw,2.2rem); }
     .media-slide-inner { height:60vw; min-height:220px; max-height:380px; }
     .media-caption { padding:2rem 5vw 1.2rem; }
+    .media-caption-title { font-size:clamp(1rem,3.5vw,1.4rem); }
+    .media-dots { padding:0.8rem 5vw 0; }
+    .media-progress { margin:0 5vw; }
+    .media-nav-btns { gap:0.4rem; }
+    .media-nav-btn { width:2.4rem; height:2.4rem; font-size:0.9rem; }
 
     /* ── CONTACT ── */
     #contact-strip { grid-template-columns:1fr; gap:2rem; padding:3.5rem 5vw; }
 
     /* ── FOOTER ── */
     footer { flex-direction:column; align-items:center; gap:1rem; padding:1.4rem 5vw; text-align:center; }
-    .foot-links { gap:1rem; flex-wrap:wrap; justify-content:center; }
-    .foot-copy { font-size:0.62rem; }
+    .foot-links { gap:1rem; }
+    .foot-copy { font-size:0.6rem; }
   }
 
   @media(max-width:420px){
-    .b1-h1 { font-size:clamp(2.2rem,9vw,2.8rem); }
+    .b1-h1 { font-size:clamp(2.4rem,10vw,3rem); }
     .pillar-grid { grid-template-columns:1fr; }
     .usp-pill { flex:1 1 33%; }
+    .b2-flow { grid-template-columns:repeat(3,1fr); }
+    .b2-step:nth-child(n+8) { display:none; }
     .promise-items { grid-template-columns:1fr; }
     .seg-tab { font-size:0.55rem; padding:0.5rem 0.2rem; }
-    .b4-val { font-size:0.9rem; }
   }
 
 
@@ -898,35 +935,41 @@
   #hero-banners.hb-paused .hb-pause-icon { opacity:1; }
 
 
-  /* Play/Pause button — sits at bottom centre, away from arrows */
+  /* Play/Pause button */
   .hb-playpause {
     position:absolute;
-    bottom:1.2rem;
-    left:50%;
-    transform:translateX(-50%);
+    bottom:2.8rem;
+    right:2rem;
     width:2.2rem; height:2.2rem;
     border-radius:50%;
     background:rgba(28,20,8,0.55);
     backdrop-filter:blur(8px);
     border:1px solid rgba(212,169,106,0.35);
     color:var(--wheat);
-    font-size:0.6rem;
+    font-size:0.55rem;
     cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     z-index:10;
     transition:background 0.3s, border-color 0.3s;
+    letter-spacing:0.05em;
   }
-  .hb-playpause:hover { background:rgba(196,98,45,0.6); border-color:var(--rust); }
-  #hero-banners.hb-paused .hb-playpause { background:rgba(196,98,45,0.4); border-color:rgba(196,98,45,0.6); }
+  .hb-playpause:hover {
+    background:rgba(196,98,45,0.6);
+    border-color:var(--rust);
+  }
+  #hero-banners.hb-paused .hb-playpause {
+    background:rgba(196,98,45,0.4);
+    border-color:rgba(196,98,45,0.6);
+  }
 
 
-  /* ── CUSTOMER STRIP — cream bg, warm contrasting theme ── */
+  /* ── CUSTOMER STRIP ── */
   #customers {
-    background:var(--cream);
-    padding:2.5rem 0;
+    background:var(--deep);
+    padding:4rem 0;
     overflow:hidden;
-    border-top:3px solid var(--rust);
-    border-bottom:3px solid var(--rust);
+    border-top:1px solid rgba(212,169,106,0.1);
+    border-bottom:1px solid rgba(212,169,106,0.1);
   }
   .customer-header {
     text-align:center;
@@ -934,21 +977,21 @@
   }
   .customer-eyebrow {
     font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;
-    color:var(--rust);font-weight:600;margin-bottom:0.8rem;
+    color:var(--wheat);font-weight:500;margin-bottom:0.8rem;
     display:flex;align-items:center;justify-content:center;gap:0.8rem;
   }
   .customer-eyebrow::before,.customer-eyebrow::after {
-    content:'';flex:1;max-width:3rem;height:1px;background:var(--rust);
+    content:'';flex:1;max-width:3rem;height:1px;background:var(--wheat);
   }
   .customer-headline {
     font-family:'Cormorant Garamond',serif;
-    font-size:clamp(1.4rem,2.5vw,2.2rem);
-    font-weight:300;color:var(--deep);line-height:1.1;
+    font-size:clamp(1.8rem,3.5vw,3rem);
+    font-weight:300;color:var(--cream);line-height:1.1;
   }
-  .customer-headline em { font-style:italic;color:var(--rust); }
+  .customer-headline em { font-style:italic;color:var(--wheat); }
   .customer-sub {
     font-size:0.85rem;font-weight:300;
-    color:rgba(28,20,8,0.45);margin-top:0.6rem;
+    color:rgba(245,239,224,0.45);margin-top:0.6rem;
   }
   /* Marquee */
   .customer-marquee-wrap {
@@ -960,10 +1003,10 @@
     content:'';position:absolute;top:0;bottom:0;width:8rem;z-index:2;pointer-events:none;
   }
   .customer-marquee-wrap::before {
-    left:0;background:linear-gradient(to right,var(--cream),transparent);
+    left:0;background:linear-gradient(to right,var(--deep),transparent);
   }
   .customer-marquee-wrap::after {
-    right:0;background:linear-gradient(to left,var(--cream),transparent);
+    right:0;background:linear-gradient(to left,var(--deep),transparent);
   }
   .customer-marquee {
     display:flex;gap:0;
@@ -976,19 +1019,18 @@
     flex-shrink:0;
   }
   .customer-name {
-    font-family:'Jost',sans-serif;
-    font-size:clamp(0.75rem,1.3vw,0.95rem);
-    font-weight:600;color:var(--earth);
-    padding:0 2rem;white-space:nowrap;
-    transition:color 0.3s;letter-spacing:0.12em;
-    text-transform:uppercase;
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(1.1rem,2vw,1.5rem);
+    font-weight:300;color:rgba(245,239,224,0.75);
+    padding:0 2.2rem;white-space:nowrap;
+    transition:color 0.3s;letter-spacing:0.02em;
   }
   .customer-marquee:hover .customer-name:hover {
-    color:var(--rust);
+    color:var(--wheat);
   }
   .customer-dot {
-    width:5px;height:5px;border-radius:50%;
-    background:var(--rust);opacity:0.5;flex-shrink:0;
+    width:4px;height:4px;border-radius:50%;
+    background:rgba(212,169,106,0.3);flex-shrink:0;
   }
   /* Stats row below marquee */
   .customer-stats {
@@ -1000,15 +1042,15 @@
   }
   .customer-stat-num {
     font-family:'Cormorant Garamond',serif;
-    font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--rust);line-height:1;
+    font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--wheat);line-height:1;
   }
   .customer-stat-label {
     font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;
-    color:rgba(28,20,8,0.45);text-align:center;
+    color:rgba(245,239,224,0.4);text-align:center;
   }
   .customer-stat-div {
     width:1px;height:2.5rem;
-    background:rgba(107,76,30,0.2);
+    background:rgba(212,169,106,0.15);
   }
   @keyframes marquee {
     0% { transform:translateX(0); }
@@ -1169,7 +1211,7 @@
         <div class="b1-text">
           <div class="hb-eyebrow">Since 2024 · Pune, India</div>
           <h1 class="b1-h1">Bringing<br><em>Respect</em><br>Back to<br>Indian<br>Flatbreads</h1>
-          <p class="b1-sub"><strong style="color:var(--wheat);letter-spacing:0.05em;">Half-Baked · Blast Frozen · Ready to Cook.</strong><br><span style="color:rgba(245,239,224,0.65);">The next best thing to freshly made — authentic Satvik flatbreads on your table in 60 seconds.</span></p>
+          <p class="b1-sub"><strong style="color:var(--wheat);letter-spacing:0.04em;">Half-Baked · Blast Frozen · Ready to Cook.</strong><br>Next best thing to freshly made — authentic Satvik flatbreads on your table in 60 seconds.</p>
           <div class="b1-actions">
             <a href="products.html" class="btn-primary">Explore Products →</a>
             <a href="about.html" class="b1-ghost">Our Story</a>
@@ -1280,41 +1322,94 @@
         <div class="b2-flow hb-animate">
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><rect x="15" y="10" width="50" height="60" rx="6" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><rect x="22" y="24" width="18" height="26" rx="2" stroke="rgba(212,169,106,0.5)" stroke-width="1.5" fill="rgba(212,169,106,0.08)"/><rect x="44" y="24" width="14" height="26" rx="2" stroke="rgba(212,169,106,0.4)" stroke-width="1.5" fill="rgba(212,169,106,0.06)"/><line x1="40" y1="55" x2="40" y2="67" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="34" y1="61" x2="46" y2="61" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="36" y1="57" x2="44" y2="65" stroke="rgba(160,210,255,0.5)" stroke-width="1"/><line x1="44" y1="57" x2="36" y2="65" stroke="rgba(160,210,255,0.5)" stroke-width="1"/></svg>
+              <svg viewBox="0 0 80 80" fill="none"><rect x="15" y="10" width="50" height="60" rx="6" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><rect x="22" y="24" width="18" height="26" rx="2" stroke="rgba(212,169,106,0.5)" stroke-width="1.5" fill="rgba(212,169,106,0.08)"/><rect x="44" y="24" width="14" height="26" rx="2" stroke="rgba(212,169,106,0.4)" stroke-width="1.5" fill="rgba(212,169,106,0.06)"/><text x="40" y="80" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">FREEZER</text>
+              <!-- snowflake -->
+              <line x1="40" y1="55" x2="40" y2="67" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="34" y1="61" x2="46" y2="61" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="36" y1="57" x2="44" y2="65" stroke="rgba(160,210,255,0.5)" stroke-width="1"/><line x1="44" y1="57" x2="36" y2="65" stroke="rgba(160,210,255,0.5)" stroke-width="1"/>
+              </svg>
             </div>
             <div class="b2-step-label">Open<br>Freezer</div>
           </div>
+          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><rect x="18" y="14" width="44" height="52" rx="4" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><path d="M22 14 L24 10 L26 14 L28 10 L30 14 L32 10 L34 14 L36 10 L38 14 L40 10 L42 14 L44 10 L46 14 L48 10 L50 14 L52 10 L54 14 L56 10 L58 14 L60 10 L62 14" stroke="rgba(212,169,106,0.4)" stroke-width="1" fill="none"/><rect x="26" y="22" width="28" height="34" rx="2" fill="rgba(245,239,224,0.1)" stroke="rgba(212,169,106,0.35)" stroke-width="1"/><text x="40" y="34" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(245,239,224,0.7)" font-style="italic">Ethical</text><text x="40" y="43" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(245,239,224,0.7)" font-style="italic">Delights</text></svg>
+              <svg viewBox="0 0 80 80" fill="none"><rect x="18" y="14" width="44" height="52" rx="4" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><path d="M22 14 L24 10 L26 14 L28 10 L30 14 L32 10 L34 14 L36 10 L38 14 L40 10 L42 14 L44 10 L46 14 L48 10 L50 14 L52 10 L54 14 L56 10 L58 14 L60 10 L62 14" stroke="rgba(212,169,106,0.4)" stroke-width="1" fill="none"/><rect x="26" y="22" width="28" height="34" rx="2" fill="rgba(245,239,224,0.1)" stroke="rgba(212,169,106,0.35)" stroke-width="1"/><text x="40" y="34" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(245,239,224,0.7)" font-style="italic">Ethical</text><text x="40" y="43" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="7" fill="rgba(245,239,224,0.7)" font-style="italic">Delights</text><text x="40" y="80" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">PACKET</text></svg>
             </div>
             <div class="b2-step-label">Take<br>Packet</div>
           </div>
+          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="36" r="22" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><path d="M40 18 L40 36 L52 36" stroke="rgba(196,98,45,0.9)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="36" r="3" fill="rgba(196,98,45,0.8)"/></svg>
+              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="36" r="22" stroke="rgba(245,239,224,0.8)" stroke-width="2" fill="rgba(245,239,224,0.06)"/><path d="M40 18 L40 36 L52 36" stroke="rgba(196,98,45,0.9)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="36" r="3" fill="rgba(196,98,45,0.8)"/><text x="40" y="76" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">THAW</text></svg>
             </div>
             <div class="b2-step-label">Thaw<br>Briefly</div>
           </div>
+          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="52" rx="28" ry="7" fill="rgba(30,20,8,0.5)" stroke="rgba(107,76,30,0.6)" stroke-width="1.5"/><ellipse cx="40" cy="48" rx="28" ry="7" fill="rgba(40,28,10,0.6)" stroke="rgba(107,76,30,0.5)" stroke-width="1.5"/><ellipse cx="40" cy="43" rx="20" ry="6" fill="rgba(240,220,175,0.9)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/><path d="M26 56 Q24 50 27 46 Q29 51 31 47 Q33 52 28 56Z" fill="rgba(255,140,0,0.8)"/><path d="M38 54 Q36 48 39 44 Q41 49 43 45 Q45 50 40 54Z" fill="rgba(255,160,0,0.85)"/><path d="M52 56 Q50 50 53 46 Q55 51 57 47 Q59 52 54 56Z" fill="rgba(255,140,0,0.8)"/></svg>
+              <svg viewBox="0 0 80 80" fill="none">
+                <!-- Tawa -->
+                <ellipse cx="40" cy="52" rx="28" ry="7" fill="rgba(30,20,8,0.5)" stroke="rgba(107,76,30,0.6)" stroke-width="1.5"/>
+                <ellipse cx="40" cy="48" rx="28" ry="7" fill="rgba(40,28,10,0.6)" stroke="rgba(107,76,30,0.5)" stroke-width="1.5"/>
+                <!-- Chapati -->
+                <ellipse cx="40" cy="43" rx="20" ry="6" fill="rgba(240,220,175,0.9)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
+                <!-- Flames -->
+                <path d="M26 56 Q24 50 27 46 Q29 51 31 47 Q33 52 28 56Z" fill="rgba(255,140,0,0.8)"/>
+                <path d="M38 54 Q36 48 39 44 Q41 49 43 45 Q45 50 40 54Z" fill="rgba(255,160,0,0.85)"/>
+                <path d="M52 56 Q50 50 53 46 Q55 51 57 47 Q59 52 54 56Z" fill="rgba(255,140,0,0.8)"/>
+                <text x="40" y="78" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">COOK</text>
+              </svg>
             </div>
             <div class="b2-step-label">Bake<br>or Fry</div>
           </div>
+          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="44" r="24" fill="rgba(245,239,224,0.12)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/><ellipse cx="40" cy="50" rx="14" ry="4" fill="rgba(220,195,148,0.7)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/><ellipse cx="40" cy="46" rx="14" ry="4" fill="rgba(232,210,165,0.85)" stroke="rgba(107,76,30,0.28)" stroke-width="1"/><ellipse cx="40" cy="42" rx="14" ry="4" fill="rgba(242,225,185,0.95)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/><circle cx="56" cy="24" r="10" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1"/><path d="M50 24 L54 28 L62 20" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              <svg viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="44" r="24" fill="rgba(245,239,224,0.12)" stroke="rgba(212,169,106,0.5)" stroke-width="1.5"/>
+                <circle cx="40" cy="44" r="18" fill="rgba(245,239,224,0.08)" stroke="rgba(212,169,106,0.3)" stroke-width="1"/>
+                <ellipse cx="40" cy="50" rx="14" ry="4" fill="rgba(220,195,148,0.7)" stroke="rgba(107,76,30,0.25)" stroke-width="1"/>
+                <ellipse cx="40" cy="46" rx="14" ry="4" fill="rgba(232,210,165,0.85)" stroke="rgba(107,76,30,0.28)" stroke-width="1"/>
+                <ellipse cx="40" cy="42" rx="14" ry="4" fill="rgba(242,225,185,0.95)" stroke="rgba(107,76,30,0.3)" stroke-width="1"/>
+                <circle cx="56" cy="24" r="10" fill="rgba(107,76,30,0.7)" stroke="rgba(212,169,106,0.5)" stroke-width="1"/>
+                <path d="M50 24 L54 28 L62 20" stroke="#D4A96A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <text x="40" y="76" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">SERVE</text>
+              </svg>
             </div>
             <div class="b2-step-label">Serve<br>Hot &amp; Fresh</div>
           </div>
+          <div class="b2-arrow">→</div>
           <div class="b2-step">
             <div class="b2-step-visual">
-              <svg viewBox="0 0 80 80" fill="none"><rect x="15" y="10" width="50" height="60" rx="6" stroke="rgba(245,239,224,0.7)" stroke-width="2" fill="rgba(245,239,224,0.04)"/><rect x="22" y="24" width="18" height="26" rx="2" stroke="rgba(160,210,255,0.5)" stroke-width="1.5" fill="rgba(160,210,255,0.06)"/><rect x="44" y="24" width="14" height="26" rx="2" stroke="rgba(160,210,255,0.4)" stroke-width="1.5" fill="rgba(160,210,255,0.04)"/><path d="M28 6 Q40 2 52 6" stroke="rgba(196,98,45,0.7)" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M24 8 L28 4 L32 8" stroke="rgba(196,98,45,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="40" y1="50" x2="40" y2="62" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/><line x1="34" y1="56" x2="46" y2="56" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/></svg>
+              <svg viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="36" r="22" stroke="rgba(212,169,106,0.7)" stroke-width="2" fill="rgba(212,169,106,0.08)"/>
+                <path d="M28 40 Q40 52 52 40" stroke="rgba(212,169,106,0.9)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <circle cx="32" cy="30" r="3" fill="rgba(245,239,224,0.8)"/>
+                <circle cx="48" cy="30" r="3" fill="rgba(245,239,224,0.8)"/>
+                <path d="M32 12 Q34 8 32 4" stroke="rgba(212,169,106,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <path d="M40 10 Q42 6 40 2" stroke="rgba(212,169,106,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <path d="M48 12 Q50 8 48 4" stroke="rgba(212,169,106,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <text x="40" y="76" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(212,169,106,0.6)" letter-spacing="0.5">ENJOY</text>
+              </svg>
+            </div>
+            <div class="b2-step-label">Enjoy<br>Every Bite</div>
+          </div>
+          <div class="b2-arrow">→</div>
+          <div class="b2-step">
+            <div class="b2-step-visual">
+              <svg viewBox="0 0 80 80" fill="none">
+                <rect x="15" y="10" width="50" height="60" rx="6" stroke="rgba(245,239,224,0.7)" stroke-width="2" fill="rgba(245,239,224,0.04)"/>
+                <rect x="22" y="24" width="18" height="26" rx="2" stroke="rgba(160,210,255,0.5)" stroke-width="1.5" fill="rgba(160,210,255,0.06)"/>
+                <rect x="44" y="24" width="14" height="26" rx="2" stroke="rgba(160,210,255,0.4)" stroke-width="1.5" fill="rgba(160,210,255,0.04)"/>
+                <path d="M28 6 Q40 2 52 6" stroke="rgba(196,98,45,0.7)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M24 8 L28 4 L32 8" stroke="rgba(196,98,45,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <line x1="40" y1="50" x2="40" y2="62" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/>
+                <line x1="34" y1="56" x2="46" y2="56" stroke="rgba(160,210,255,0.6)" stroke-width="1.5"/>
+                <text x="40" y="80" text-anchor="middle" font-family="Jost,sans-serif" font-size="7" fill="rgba(160,210,255,0.5)" letter-spacing="0.5">STORE</text>
+              </svg>
             </div>
             <div class="b2-step-label">Store Back<br>in Freezer</div>
           </div>
-        </div></div>
+        </div>
         <p class="b2-sub hb-animate">No kneading. No rolling. No prep stress. Our flatbreads go from freezer to table in under 2 minutes — consistently perfect, every single time.</p>
         <a href="products.html" class="btn-primary hb-animate" style="align-self:center;margin-top:0.5rem;">Explore Products →</a>
       </div>
@@ -2277,12 +2372,20 @@
     function activateSlide() {
       slides.forEach((s,i) => {
         s.classList.toggle('hb-active', i===cur);
-        // Clear any inline styles so CSS class takes over
-        s.querySelectorAll('.hb-animate').forEach(el => {
-          el.style.opacity = '';
-          el.style.transform = '';
-          el.style.transition = '';
-        });
+        // reset animations on non-active
+        if (i !== cur) {
+          s.querySelectorAll('.hb-animate').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(22px)';
+          });
+        }
+      });
+      // trigger animations on active slide
+      const active = slides[cur];
+      active.querySelectorAll('.hb-animate').forEach((el, i) => {
+        el.style.transition = 'opacity 0.8s ' + (0.2 + i*0.15) + 's, transform 0.8s ' + (0.2 + i*0.15) + 's';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
       });
     }
 
@@ -2296,10 +2399,8 @@
     }
 
     function pauseProgress() {
-      // Freeze fill bar at current position
-      const fillWidth = fill.getBoundingClientRect().width;
-      const barWidth = fill.parentElement.getBoundingClientRect().width;
-      const pct = barWidth > 0 ? (fillWidth / barWidth * 100) : 0;
+      const computed = getComputedStyle(fill).width;
+      const pct = parseFloat(computed) / bannerEl.offsetWidth * 100;
       fill.style.transition = 'none';
       fill.style.width = pct + '%';
     }
@@ -2311,7 +2412,6 @@
       track.style.transform = 'translateX(-' + (cur * 100) + '%)';
       updateDots();
       activateSlide();
-
       if (!paused) {
         startProgress();
         advTimer = setTimeout(() => goTo(cur + 1), SLIDE_MS);
@@ -2354,11 +2454,15 @@
     bannerEl.addEventListener('mouseenter', pause);
     bannerEl.addEventListener('mouseleave', resume);
 
-    // Mobile: tap the play/pause button only — don't pause on general touch
-    // (general touch is reserved for swipe gestures)
+    // Mobile: pause on touch, resume after 4s or on next touch
+    let touchTimer = null;
+    bannerEl.addEventListener('touchstart', () => {
+      pause();
+      clearTimeout(touchTimer);
+      touchTimer = setTimeout(resume, 4000);
+    }, { passive: true });
 
     window.hbMove = function(dir) {
-      // Resume and reset play/pause state
       paused = false;
       bannerEl.classList.remove('hb-paused');
       updatePlayPauseBtn();
